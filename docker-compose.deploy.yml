@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  backend:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-12-may-2020/group-projects/leo/luna:master
+    env_file:
+      - ./env/prod.env
+    volumes:
+    - static-files:/static
+    - media-files:/media
+    - frontend:/frontend/build
+    command: 'sh /scripts/run.sh'
+    depends_on:
+      - postgres
+    tty: true
+
+  postgres:
+    image: postgres:11
+    env_file:
+      - ./env/prod.env
+    volumes:
+    - postgres_db:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static-files:/static
+      - media-files:/media
+      - frontend:/frontend
+      - /etc/letsencrypt:/etc/letsencrypt
+
+volumes:
+  postgres_db:
+  static-files:
+  media-files:
+  frontend:

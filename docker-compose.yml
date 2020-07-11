@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backend:
+    image: registry.gitlab.propulsion-home.ch/timo-huber/sailcom:latest
+    volumes:
+      - ./backend:/backend
+    env_file:
+      - ./env/dev.env
+    ports:
+      - '8000:8000'
+    command: 'python manage.py runserver 0.0.0.0:8000'
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:11
+    env_file:
+      - ./env/dev.env
+    volumes:
+    - postgres_db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+volumes:
+  postgres_db:

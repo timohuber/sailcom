@@ -1,0 +1,18 @@
+name: sailcom-backend
+dependencies:
+  - python=3.7
+  - psycopg2
+  - pip
+  - pip:
+      - flake8
+      - gunicorn
+      - django==3.0.7
+      - djangorestframework==3.11.0
+      - djangorestframework-simplejwt==4.4.0
+      - coreapi==2.3.3
+      - Markdown==3.2.2
+      - Pillow==7.1.2
+      - celery==4.4.6
+      - redis==3.5.3
+      - pytest==5.4.3
+      - django-cors-headers==3.4.0
