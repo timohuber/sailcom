@@ -6,7 +6,6 @@ import { loginAction } from '../../store/actions/loginActions';
 
 export default function LoginForm(props) {
     const dispatch = useDispatch();
-    const { push } = useHistory();
     const [formState, setFormState] = useState({ email: '', password: '' });
 
     const onChangeHandler = (e) => {
@@ -25,7 +24,6 @@ export default function LoginForm(props) {
         } else {
             document.getElementById('login-error').innerHTML = '';
             dispatch(loginAction(formState.email, formState.password));
-            // push('/');
         }
     };
 
