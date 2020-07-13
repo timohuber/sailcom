@@ -16,9 +16,9 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=100)
 
     street = models.CharField(max_length=200, blank=True, null=True)
-    address_appendix = models.CharField(max_length=200, blank=True, null=True);
+    address_appendix = models.CharField(max_length=200, blank=True, null=True)
     city = models.CharField(max_length=200, blank=True, null=True)
-    zip = models.IntegerField(max_length=200, blank=True, null=True)
+    zip_code = models.CharField(max_length=200, blank=True, null=True)
 
     phone = models.CharField(max_length=200, blank=True, null=True)
     mobile = models.CharField(max_length=200, blank=True, null=True)
