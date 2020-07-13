@@ -47,6 +47,8 @@ INSTALLED_APPS = [
 
     # tables
     'app.user',
+    'app.registration',
+    'app.mail'
 ]
 
 MIDDLEWARE = [
