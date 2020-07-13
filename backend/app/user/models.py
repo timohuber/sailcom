@@ -24,6 +24,7 @@ class User(AbstractUser):
     mobile = models.CharField(max_length=200, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
 
+    licence = models.FileField(upload_to='licences', blank=True, null=True)
     joined = models.DateField(auto_now_add=True)
     avatar = models.ImageField(upload_to='profile', blank=True, null=True)
 

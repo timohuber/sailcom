@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'app.boat.image',
     'app.lake',
     'app.mooring',
+    'app.booking',
 ]
 
 MIDDLEWARE = [
@@ -154,6 +155,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+
+    # 'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
 
 SIMPLE_JWT = {

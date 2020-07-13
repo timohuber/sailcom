@@ -1,6 +1,6 @@
 from django.db import models
 
-from app.lake.models import Lake
+from ..lake.models import Lake
 
 
 class Mooring(models.Model):
@@ -11,3 +11,6 @@ class Mooring(models.Model):
     updated = models.DateField(auto_now=True)
 
     lake = models.ForeignKey(to=Lake, related_name='images', on_delete=models.CASCADE, blank=True)
+
+    def __str__(self):
+        return f'{self.lake} {self.address}'

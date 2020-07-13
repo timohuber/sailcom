@@ -44,7 +44,6 @@ def code_is_valid(code):
         raise ValidationError(message='This code is not valid!')
 
 
-
 class CreateRegistrationSerializer(serializers.Serializer):
     email = serializers.EmailField(label='Registration E-Mail Address', validators=[email_does_not_exist])
 
