@@ -1,7 +1,7 @@
 from django.db import models
 
 from app.boat_crew.models import BoatCrew
-from app.boat_type.models import BoatType
+from .boat_type.models import BoatType
 from app.mooring.models import Mooring
 
 

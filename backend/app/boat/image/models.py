@@ -1,6 +1,6 @@
 from django.db import models
 
-from app.boat.models import Boat
+from ..models import Boat
 
 
 class Image(models.Model):
