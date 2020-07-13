@@ -20,8 +20,8 @@ class User(AbstractUser):
     city = models.CharField(max_length=200, blank=True, null=True)
     zip = models.IntegerField(max_length=200, blank=True, null=True)
 
-    phone = models.CharField(blank=True, null=True)
-    mobile = models.CharField(blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
+    mobile = models.CharField(max_length=200, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
 
     joined = models.DateField(auto_now_add=True)
