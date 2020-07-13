@@ -156,7 +156,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
-    # 'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    # 'DATETIME_FORMAT': "%Y/%m/%d %H:%M:%S",
 }
 
 SIMPLE_JWT = {
