@@ -1,0 +1,45 @@
+/* remove default react outlines */
+input, input:focus {
+  outline: none;
+}
+
+input {
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form.col-2 .input-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: $gap-width;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: $gap-width;
+
+  label {
+    margin-bottom: 10px;
+    font-size: $smaller-font-size;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: calc(#{$gap-width} / 2);
+    border: 1px solid $border-color;
+  }
+
+  .error {
+    color: $error-color;
+    font-size: $smaller-font-size;
+  }
+}
