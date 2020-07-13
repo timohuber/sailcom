@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from .models import Boat
+from .models import Booking
 
 
 class BoatSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Boat
+        model = Booking
         fields = ['__all__']
