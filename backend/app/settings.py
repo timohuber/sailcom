@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # tables
     'app.user',
     'app.registration',
-    'app.mail'
+    'app.mail',
     'app.boat',
     'app.boat_crew',
     'app.boat_document',
