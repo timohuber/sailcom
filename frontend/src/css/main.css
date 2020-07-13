@@ -69,6 +69,10 @@ form {
   display: flex;
   flex-direction: column; }
 
+form.col-1 {
+  max-width: 400px;
+  margin: auto; }
+
 form.col-2 .input-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -181,3 +185,8 @@ form.col-2 .input-container {
 
 #mobile-navigation.open {
   transform: translateY(0px); }
+
+.main-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  padding: calc(30px / 2); }
