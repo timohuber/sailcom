@@ -46,6 +46,13 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # tables
+    'app.boat',
+    'app.boat_crew',
+    'app.boat_document',
+    'app.boat_type',
+    'app.image',
+    'app.lake',
+    'app.mooring',
 ]
 
 MIDDLEWARE = [
