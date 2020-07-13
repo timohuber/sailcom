@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # tables
+    'app.user',
 ]
 
 MIDDLEWARE = [
@@ -132,11 +133,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-
 STATIC_URL = '/static-files/'
 STATIC_ROOT = '/static/'
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.environ.get('MEDIA_ROOT')
@@ -154,27 +152,21 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
 }
 
-# AUTH_USER_MODEL = 'user.User'
+# activate custom user model
+AUTH_USER_MODEL = 'user.User'
 
 # cors headers
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True  # remove for deployment
 CORS_ALLOW_CREDENTIALS = True
-"""CORS_ORIGIN_WHITELIST = [
+CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-]"""
+]
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:3000$',
 ]
-CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
-]
 
+# email settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'students@propulsionacademy.com'
