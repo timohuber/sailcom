@@ -1,27 +1,31 @@
 from rest_framework import serializers
+from datetime import datetime
 
 from .models import Booking
-from ..mail.models import Mail
+
+"""
+def timedelta_is_free(email):
+    try:
+        User.objects.get(email=email)
+        return email
+    except User.DoesNotExist:
+        raise ValidationError(message='User does not exist!')
+"""
 
 
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time']
+        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time', 'duration']
 
-    def save(self, request, **validated_data):
-        current_request = getattr(self.context, 'request', None)
-        test = 1
-        user = 1
-        new_booking = Booking(
-            user=user,
-            **request
+    def perform_create(self, validated_data):
+        instance = Booking.objects.create(
+            **validated_data
         )
-        new_booking.save()
+        return instance
 
-        email = Mail(recipient=user.email,
-                     subject='Buchungsbestätigung',
-                     content=f'Das Boot ist für Sie reserviert.')
-        email.save()
 
-        return new_booking
+class RetrieveBookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time']
