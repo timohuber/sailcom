@@ -1,0 +1,5 @@
+.main-wrapper {
+    max-width: $page-width;
+    margin: auto;
+    padding: calc(#{$gap-width} / 2);
+}

@@ -1,1 +1,25 @@
-$blue: #000000;
+/* colors */
+$base-color: #333;
+$brand-color: #2c5d7b;
+$brand-color-light: #86a2c2;
+$brand-color-dark: #20445a;
+$accent-color: #EE7219;
+$ladies-color: #EC619F;
+$race-color: #00B3C1;
+$offshore-color: #ED1C24;
+$error-color: #D01017;
+$border-color: #E4E4E4;
+
+/* font sizes */
+$base-font-size: rem(16px);
+$smaller-font-size: rem(14px);
+
+/* breakpoints */
+$break-point-xl: 1199px;
+$break-point-lg: 991px;
+$break-point-md: 768px;
+$break-point-sm: 575px;
+
+/* grid */
+$page-width: 1200px;
+$gap-width: 30px;

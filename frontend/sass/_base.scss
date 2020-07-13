@@ -1,4 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+  color: $base-color;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
+.components-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+
+  & > div {
+    padding: $gap-width;
+    text-align: left;
+  }
+}
+
+@media (max-width: #{$break-point-lg}) {
+  .components-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
