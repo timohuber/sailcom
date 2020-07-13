@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { registerAction } from '../../store/actions/registerActions';
+import { verificationAction } from '../../store/actions/registerActions';
 
 export default function VerificationForm(props) {
     const dispatch = useDispatch();
@@ -21,7 +22,6 @@ export default function VerificationForm(props) {
     const [formState, setFormState] = useState(initialState);
 
     const onChangeHandler = (e) => {
-        console.log(formState);
         const key = e.currentTarget.name;
         setFormState({
             ...formState,
@@ -31,13 +31,19 @@ export default function VerificationForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        if (formState.email === '') {
-            document.getElementById('register-error').innerHTML =
-                '<p>Please enter email address</p>';
-        } else {
-            document.getElementById('register-error').innerHTML = '';
-            dispatch(registerAction(formState.email));
-        }
+        const requiredFields = document.querySelectorAll('.required');
+        let requiredFieldsOK = true;
+
+        requiredFields.forEach((field) => {
+            if (!field.value) {
+                field.nextElementSibling.style.opacity = '1';
+                requiredFieldsOK = false;
+            } else {
+                field.nextElementSibling.style.opacity = '0';
+            }
+        });
+
+        return requiredFieldsOK ? verificationAction({ ...formState }) : null;
     };
 
     return (
@@ -55,21 +61,13 @@ export default function VerificationForm(props) {
                 </p>
                 <div className='input-container'>
                     <div className='input-wrapper'>
-                        <label htmlFor='first-name'>Vorname</label>
+                        <label htmlFor='code'>Code</label>
                         <input
-                            id='first-name'
-                            name='first_name'
+                            id='code'
+                            name='code'
                             onChange={(e) => onChangeHandler(e)}
+                            className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
-                    </div>
-
-                    <div className='input-wrapper'>
-                        <label htmlFor='last-name'>Vorname</label>
-                        <input id='last-name' name='last_name' onChange={(e) => onChangeHandler(e)}/>
-
                         <span className='error'>
                             Dieses Feld wird benötigt.
                         </span>
@@ -82,9 +80,95 @@ export default function VerificationForm(props) {
                             name='email'
                             onChange={(e) => onChangeHandler(e)}
                         />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='first-name'>Vorname</label>
+                        <input
+                            id='first-name'
+                            name='first_name'
+                            onChange={(e) => onChangeHandler(e)}
+                            className='required'
+                        />
                         <span className='error'>
                             Dieses Feld wird benötigt.
                         </span>
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='last-name'>Nachname</label>
+                        <input
+                            id='last-name'
+                            name='last_name'
+                            onChange={(e) => onChangeHandler(e)}
+                            className='required'
+                        />
+                        <span className='error'>
+                            Dieses Feld wird benötigt.
+                        </span>
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='street'>Strasse - Hausnummer</label>
+                        <input
+                            id='street'
+                            name='street'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='street-appendix'>Adresszusatz</label>
+                        <input
+                            id='street-appendix'
+                            name='street_appendix'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='city'>Ort</label>
+                        <input
+                            id='city'
+                            name='city'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='zip'>PLZ</label>
+                        <input
+                            id='zip'
+                            name='zip'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='phone'>Telephone</label>
+                        <input
+                            id='phone'
+                            name='phone'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='mobile'>Mobile</label>
+                        <input
+                            id='mobile'
+                            name='mobile'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='date-of-birth'>Geburtsdatum</label>
+                        <input
+                            id='date-of-birth'
+                            name='date_of_birth'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
                     </div>
 
                     <div className='input-wrapper'>
@@ -93,6 +177,7 @@ export default function VerificationForm(props) {
                             id='user-name'
                             name='user_name'
                             onChange={(e) => onChangeHandler(e)}
+                            className='required'
                         />
                         <span className='error'>
                             Dieses Feld wird benötigt.
@@ -100,23 +185,33 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='user-name'>Code</label>
+                        <label htmlFor='avatar'>Benutzerphoto</label>
                         <input
-                            id='code'
-                            name='code'
+                            type='file'
+                            id='avatar'
+                            name='avatar'
                             onChange={(e) => onChangeHandler(e)}
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                    </div>
+
+                    <div className='input-wrapper'>
+                        <label htmlFor='avatar'>Kopie Segelausweis</label>
+                        <input
+                            type='file'
+                            id='licence'
+                            name='licence'
+                            onChange={(e) => onChangeHandler(e)}
+                        />
                     </div>
 
                     <div className='input-wrapper'>
                         <label htmlFor='password'>Passwort</label>
                         <input
+                            type='password'
                             id='password'
                             name='password'
                             onChange={(e) => onChangeHandler(e)}
+                            className='required'
                         />
                         <span className='error'>
                             Dieses Feld wird benötigt.
@@ -124,11 +219,15 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='password-repeat'>Passwort bestätigen</label>
+                        <label htmlFor='password-repeat'>
+                            Passwort bestätigen
+                        </label>
                         <input
+                            type='password'
                             id='password-repeat'
                             name='password_repeat'
                             onChange={(e) => onChangeHandler(e)}
+                            className='required'
                         />
                         <span className='error'>
                             Dieses Feld wird benötigt.

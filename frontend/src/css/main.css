@@ -94,7 +94,8 @@ form.col-2 .input-container {
     border: 1px solid #E4E4E4; }
   .input-wrapper .error {
     color: #D01017;
-    font-size: 0.875rem; }
+    font-size: 0.875rem;
+    opacity: 1; }
   .input-wrapper .form-success {
     color: #06AD05;
     font-size: 0.875rem; }

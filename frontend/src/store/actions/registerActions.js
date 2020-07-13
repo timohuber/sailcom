@@ -51,22 +51,25 @@ export const verificationProceedAction = () => (dispatch, getState) => {
     dispatch(userRegistrationProceedValidation())
 }
 
-export const verificationAction = (email, code, password, password_repeat, username, first_name, last_name) => async (dispatch, getState) => {
+// export const verificationAction = (email, code, password, password_repeat, username, first_name, last_name) => async (dispatch, getState) => {
+
+export const verificationAction = (obj) => async (dispatch, getState) => {
     
     const config = {
-        method: 'POST',
+        method: 'PATCH',
         headers: new Headers({
             'Content-Type': 'application/json',
         }),
-        body: JSON.stringify({
-            email,
-            code,
-            password,
-            password_repeat,
-            username,
-            first_name,
-            last_name
-        }),
+        body: JSON.stringify(obj),
+        // body: JSON.stringify({
+        //     email,
+        //     code,
+        //     password,
+        //     password_repeat,
+        //     username,
+        //     first_name,
+        //     last_name
+        // }),
     }
     let fetchOk = false;
     const response = await fetch(baseUrl + 'registration/validation/', config)
