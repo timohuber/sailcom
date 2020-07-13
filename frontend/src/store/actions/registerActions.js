@@ -7,7 +7,7 @@ export const userVerification = () => {
     }
 }
 
-export const userRegistration = () => {
+export const verificationCodeRequested = () => {
     return {
         type: VERIFICATION_CODE_REQUESTED,
     }
@@ -39,7 +39,7 @@ export const registerAction = (email) => (dispatch, getState) => {
             document.getElementById('register-error').innerHTML = '<p class="error">Registrierung fehlgeschlagen - diese E-Mailadresse ist ungültig oder wurde schon benutzt.</p>';
             throw new Error(response.statusText);
         }
-    }).then(dispatch(userRegistration()))
+    }).then(dispatch(verificationCodeRequested()))
     .catch(error => {
         return console.log(error)
         
