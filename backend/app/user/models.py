@@ -14,9 +14,21 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=30, blank=True, null=True)
+
+    street = models.CharField(max_length=200, blank=True, null=True)
+    address_appendix = models.CharField(max_length=200, blank=True, null=True);
+    city = models.CharField(max_length=200, blank=True, null=True)
+    zip = models.IntegerField(max_length=200, blank=True, null=True)
+
+    phone = models.CharField(blank=True, null=True)
+    mobile = models.CharField(blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+
     joined = models.DateField(auto_now_add=True)
     avatar = models.ImageField(upload_to='profile', blank=True, null=True)
+
+    licence_ok = models.BooleanField(default=False)
+    entry_fee_paid = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 

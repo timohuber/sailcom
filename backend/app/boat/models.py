@@ -6,6 +6,7 @@ from app.mooring.models import Mooring
 
 
 class Boat(models.Model):
+    title = models.CharField(max_length=100)
     price_weekday = models.DecimalField(max_digits=10, decimal_places=10)
     price_weekend = models.DecimalField(max_digits=10, decimal_places=10)
     price_full_day = models.DecimalField(max_digits=10, decimal_places=10)
@@ -22,3 +23,6 @@ class Boat(models.Model):
     mooring = models.ForeignKey(to=Mooring, related_name='boat', on_delete=models.CASCADE, blank=True)
     type = models.ForeignKey(to=BoatType, related_name='boat', on_delete=models.CASCADE, blank=True)
     crew = models.OneToOneField(to=BoatCrew, related_name='boat', on_delete=models.CASCADE, blank=True)
+
+    def __str__(self):
+        return self.title

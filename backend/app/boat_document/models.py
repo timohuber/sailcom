@@ -10,3 +10,6 @@ class BoatDocument(models.Model):
     updated = models.DateField(auto_now=True)
 
     boat = models.ForeignKey(to=Boat, related_name='boat_documents', on_delete=models.CASCADE, blank=True)
+
+    def __str__(self):
+        return self.document
