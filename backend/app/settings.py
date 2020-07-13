@@ -47,6 +47,15 @@ INSTALLED_APPS = [
 
     # tables
     'app.user',
+    'app.registration',
+    'app.mail',
+    'app.boat',
+    'app.boat_crew',
+    'app.boat_document',
+    'app.boat_type',
+    'app.image',
+    'app.lake',
+    'app.mooring',
 ]
 
 MIDDLEWARE = [
