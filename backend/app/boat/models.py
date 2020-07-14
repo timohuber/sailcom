@@ -7,9 +7,10 @@ from ..mooring.models import Mooring
 
 class Boat(models.Model):
     title = models.CharField(max_length=100)
-    price_weekday = models.DecimalField(max_digits=19, decimal_places=10)
-    price_weekend = models.DecimalField(max_digits=19, decimal_places=10)
-    price_full_day = models.DecimalField(max_digits=19, decimal_places=10)
+    price_hour_weekday = models.DecimalField(max_digits=19, decimal_places=10)
+    price_hour_weekend = models.DecimalField(max_digits=19, decimal_places=10)
+    price_fullday_weekday = models.DecimalField(max_digits=19, decimal_places=10)
+    price_fullday_weekend = models.DecimalField(max_digits=19, decimal_places=10)
     description = models.CharField(max_length=3000)
     detail_description = models.CharField(max_length=3000, null=True)
     technical_description = models.CharField(max_length=3000, null=True)
