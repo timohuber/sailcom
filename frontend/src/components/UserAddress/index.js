@@ -12,7 +12,48 @@ export default function UserAddressForm(props) {
     //     React.createRef()
     // );
 
-    const initialState = {};
+    // const initialState = {
+    //     salutation: props.userData.salutation,
+    //     first_name: props.userData.first_name,
+    //     last_name: props.userData.last_name,
+    //     username: props.userData.username,
+    //     email: props.userData.email,
+    //     mobile: props.userData.mobile,
+    //     phone: props.userData.phone,
+    //     date_of_birth: props.userData.date_of_birth,
+    //     street: props.userData.street,
+    //     street_appendix: props.userData.street_appendix,
+    //     zip: props.userData.zip,
+    //     city: props.userData.city,
+    //     country: props.userData.country,
+    //     avatar: props.userData.avatar,
+    //     licence: props.userData.licence,
+    // };
+
+    const initialState = {
+        salutation: 'Herr',
+        first_name: 'Ramon',
+        last_name: 'Köstli',
+        username: 'ra',
+        email: 'ramonkos@gmail.com',
+        mobile: '076 14256237378',
+        phone: '0041 14256237378',
+        date_of_birth: '11.33.5555',
+        street: 'Bahnhofstr. 1',
+        street_appendix: null,
+        zip: '9999',
+        city: 'Winterthur',
+        country: 'Switzerland',
+        avatar: null,
+        licence: null,
+    };
+
+    // const [formState, setFormState] = useState(initialState);
+
+    // useEffect(() => {
+    //     console.log('user_id', user_id);
+    //     getUserCommentsAction(user_id);
+    // }, [getUserCommentsAction]);
 
     const [formState, setFormState] = useState(initialState);
 

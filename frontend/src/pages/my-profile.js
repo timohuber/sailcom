@@ -1,26 +1,35 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
+import Loading from '../components/GenericLoading';
+import { fetchUserData } from '../store/actions/loginActions';
 
 function MyProfilePage(props) {
-    
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState();
+    const dispatch = useDispatch();
+
+
     useEffect(() => {
-        console.log("user_id", user_id);
-        getUserCommentsAction(user_id);
-      }, [getUserCommentsAction]);
-    
+        if (props.userData) {
+            setUserData(props.userData);
+            setLoading(false);
+        } else {
+            dispatch(fetchUserData());
+        }
+    }, [props])
 
     return (
         <div className='main-wrapper'>
-            <UserAddressForm />
+            {loading ? <Loading /> : <UserAddressForm />}
         </div>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.currentUser,
+        userData: state.currentUser.userData,
     };
 };
 const connection = connect(mapStateToProps);

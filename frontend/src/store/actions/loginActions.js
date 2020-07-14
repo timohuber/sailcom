@@ -57,7 +57,7 @@ export const fetchUserData = ()=> (dispatch, getState) => {
         })
     }
 
-    const loginResponse = fetch(baseUrl + 'users/me/', config)
+    const loginResponse = fetch(baseUrl + 'user/me/', config)
     .then(response => {
         if (response.status == 401) {
         } 
