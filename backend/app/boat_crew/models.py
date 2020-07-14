@@ -8,3 +8,6 @@ class BoatCrew(models.Model):
     updated = models.DateField(auto_now=True)
     title = models.CharField(max_length=200, null=True, blank=True)
     members = models.ManyToManyField(to=User, related_name='member_of_boat_crew')
+
+    def __str__(self):
+        return self.title
