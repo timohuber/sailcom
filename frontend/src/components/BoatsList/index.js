@@ -22,7 +22,7 @@ export default function BoatListContainer(props) {
     const response = fetch(baseUrl + 'boat/')
     .then(res => res.json())
     .then(data => {
-        setData(data);
+        setData(data['results']);
         setLoading(false)
     })
     .catch(response => {
