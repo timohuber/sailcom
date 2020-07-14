@@ -11,6 +11,7 @@ import Intro from './pages/intro';
 import Home from './pages/home';
 import Login from './pages/login';
 import RegistrationPage from './pages/register';
+import BoatsListPage from './pages/boatslistpage';
 import VerificationPage from './pages/verification';
 import MyProfilePage from './pages/my-profile';
 
@@ -28,6 +29,10 @@ function App() {
                     </Route>
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/login' component={Login} />
+                    <Route exact path='/register' component={RegistrationPage} />
+                    <Route exact path='/boatslist' component={BoatsListPage} />
+
+
                     <Route
                         exact
                         path='/register'
