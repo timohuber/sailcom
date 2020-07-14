@@ -7,7 +7,6 @@ from ..user.serializers import UserSerializer
 
 
 class BookingSerializer(serializers.ModelSerializer):
-    # existing_bookings = serializers.ReadOnlyField(read_only=True, validators=[timedelta_is_free])
     user = UserSerializer(read_only=True)
     boat = BoatSerializer(read_only=True)
 
@@ -22,7 +21,9 @@ class BookingSerializer(serializers.ModelSerializer):
         return instance
 
 
-class RetrieveBookingSerializer(serializers.ModelSerializer):
+class BookingInBoatSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time']
+        fields = ['id', 'user', 'from_date_time', 'until_date_time', 'duration']

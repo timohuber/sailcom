@@ -39,8 +39,8 @@ function App() {
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/registrierung' component={RegistrationPage} />
-                    <Route exact path='/flotte' component={BoatsListPage} />
-                    <Route exact path='/flotte/:id' component={BoatDetailPage} />
+                    <Route exact path='/bootsliste' component={BoatsListPage} />
+                    <Route exact path='/boot/:id' component={BoatDetailPage} />
                     <Route exact path='/verifikation' component={VerificationPage} />
                     <Route exact path='/intro' component={Intro} />
                     <Route exact path='/profil' component={MyProfilePage} />

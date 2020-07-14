@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {baseUrl} from "../../store/constants";
 import {connect} from "react-redux";
+import BoatDetailContainer from './BoatDetailContainer'
 import Loading from '../GenericLoading'
 
 function BoatDetails(props) {
@@ -8,13 +9,12 @@ function BoatDetails(props) {
     const [loading, setLoading] = useState(true);
     const boatID = props.match.params.id
 
-
     useEffect(() => {
         const config = {
             method: 'GET',
             headers: new Headers({
-                'Authorization': `Bearer ${props.currentUser.accessToken}`,
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${props.currentUser.accessToken}`
             })
         }
         const response = fetch(baseUrl + 'boat/'+ boatID + '/', config)
@@ -26,12 +26,12 @@ function BoatDetails(props) {
         .catch(response => {
             return
         })
-    }, [])
-
-
+    }, [props.currentUser])
 
     return (
-        <h1>Chilli</h1>
+        <>
+        {loading ? <Loading /> : <BoatDetailContainer boat={boat}/>}
+        </>
     );
 };
 
