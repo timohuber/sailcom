@@ -4,12 +4,16 @@ from .boat_document.serializers import DocumentSerializer
 from .image.serializers import ImageSerializer
 from .models import Boat
 from ..boat_crew.serializers import BoatCrewSerializer
-
+from ..mooring.serializers import MooringSerializer
+from .image.serializers import ImageSerializer
 
 class BoatSerializer(serializers.ModelSerializer):
     crew = BoatCrewSerializer(read_only=True)
+
     images = ImageSerializer(read_only=True, many=True)
     boat_documents = DocumentSerializer(read_only=True, many=True)
+    mooring = MooringSerializer(read_only=True)
+
 
     class Meta:
         model = Boat
