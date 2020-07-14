@@ -37,7 +37,8 @@ def send_email(sender, instance, **kwargs):
 
 '''@receiver(post_save, sender=Transaction)
 def create_trans(sender, instance, created, **kwargs):
-    Transaction.objects.create(sent=False, )
+    test = 'test'
+    Transaction.objects.create(sent=False, price=100, user=)
 
 @receiver(post_save, sender=get_user_model())
 def create_user_cart(sender, instance, created, **kwargs):
