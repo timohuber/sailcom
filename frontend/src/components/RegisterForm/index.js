@@ -55,7 +55,7 @@ export default function RegisterForm(props) {
                 </div>
 
                 <div class='button-container'>
-                    <button id='submit-register' className='btn' type='submit'>
+                    <button id='submit-register' className='btn primary' type='submit'>
                         Absenden
                     </button>
                 </div>

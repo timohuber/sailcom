@@ -5,6 +5,8 @@ import '../App.css';
 
 export default function HomePage(props) {
      return (
-        <h1>Boat sharing</h1>
+         <div className='main-wrapper'>
+             <h1>Boat sharing</h1>
+         </div>
     );
 }
