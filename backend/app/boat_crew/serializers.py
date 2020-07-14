@@ -5,8 +5,8 @@ from ..user.serializers import UserSerializer
 
 
 class BoatCrewSerializer(serializers.ModelSerializer):
-    crew_member = UserSerializer(read_only=True, many=True)
+    members = UserSerializer(read_only=True, many=True)
 
     class Meta:
         model = BoatCrew
-        fields = ['id', 'created', 'updated', 'crew_member']
+        fields = ['id', 'created', 'updated', 'members']
