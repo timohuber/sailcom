@@ -1,4 +1,5 @@
 import React from 'react';
+import {NotQualifiedButton} from './buttons'
 
 export default function BoatDetailContainer(props) {
     const boat = props.boat
@@ -18,7 +19,9 @@ export default function BoatDetailContainer(props) {
                     </tr>
                 </tbody>
             </table>
-
+        <div className='boat-button-container'>
+            <NotQualifiedButton />
+        </div>
 
         </div>
     );
