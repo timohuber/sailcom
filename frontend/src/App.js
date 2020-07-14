@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {fetchUserData} from "./store/actions/loginActions";
 
 import './css/main.css';
 
@@ -13,11 +15,18 @@ import Login from './pages/login';
 import RegistrationPage from './pages/register';
 import BoatsListPage from './pages/boatslistpage';
 import VerificationPage from './pages/verification';
+import BoatDetailPage from './pages/boatdetails'
 
 // remove
 import Components from './pages/components';
 
 function App() {
+
+    const dispatch = useDispatch()
+    if (localStorage.getItem('accessToken')) {
+        dispatch(fetchUserData());
+    }
+
     return (
         <div className='App'>
             <BrowserRouter>
@@ -30,13 +39,9 @@ function App() {
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/register' component={RegistrationPage} />
                     <Route exact path='/boatslist' component={BoatsListPage} />
+                    <Route exact path='/boat/:id' component={BoatDetailPage} />
 
-
-                    <Route
-                        exact
-                        path='/register'
-                        component={RegistrationPage}
-                    />
+                    <Route exact path='/register' component={RegistrationPage}/>
                     <Route exact path='/verification' component={VerificationPage} />
                     <Route exact path='/intro' component={Intro} />
                     <Route exact path='/components' component={Components} />

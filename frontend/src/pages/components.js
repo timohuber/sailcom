@@ -51,7 +51,7 @@ export default function Components(props) {
 
                          </div>
                          <div className="button-container">
-                             <button className="btn">Submit</button>
+                             <button className="btn primary">Primary</button>
                          </div>
                      </form>
                  </div>
