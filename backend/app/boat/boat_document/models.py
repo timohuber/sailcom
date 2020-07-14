@@ -5,6 +5,7 @@ from ..models import Boat
 
 class BoatDocument(models.Model):
     type = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
     document = models.ImageField(upload_to='boat_documents', blank=True, null=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
