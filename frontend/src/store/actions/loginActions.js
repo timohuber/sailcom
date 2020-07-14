@@ -22,7 +22,7 @@ export const loginAction = (email, password) => (dispatch, getState) => {
         }),
     }
 
-    const loginResponse = fetch(baseUrl + 'token/', config)
+    const loginResponse = fetch(baseUrl + 'auth/token/', config)
     .then(response => {
         if (response.status == 401) {
             document.getElementById('login-error').innerHTML = '<p>No active account found with the given credentials.</p>';

@@ -11,6 +11,7 @@ import Intro from './pages/intro';
 import Home from './pages/home';
 import Login from './pages/login';
 import RegistrationPage from './pages/register';
+import VerificationPage from './pages/verification';
 
 // remove
 import Components from './pages/components';
@@ -26,7 +27,12 @@ function App() {
                     </Route>
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/login' component={Login} />
-                    <Route exact path='/register' component={RegistrationPage} />
+                    <Route
+                        exact
+                        path='/register'
+                        component={RegistrationPage}
+                    />
+                    <Route exact path='/verification' component={VerificationPage} />
                     <Route exact path='/intro' component={Intro} />
                     <Route exact path='/components' component={Components} />
                 </main>
