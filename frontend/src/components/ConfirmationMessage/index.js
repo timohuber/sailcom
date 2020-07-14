@@ -6,11 +6,11 @@ export default function ConfirmationMessage(props) {
         <div className='main-wrapper'>
             <h1>Bestätigung versendet</h1>
             <p>
-                Wir haben Ihnen ein Email geschickt. Clicken Sie auf weiter und
+                Wir haben Ihnen ein Email geschickt. Klicken Sie auf weiter und
                 geben Sie den im Email enthaltene Code auf der nächste Seite
                 ein.
             </p>
-            <div className='button-container'>
+            <div id="confirmation-button" className='button-container'>
                 <Link to='/verification'>
                     <button className='btn'>Weiter</button>
                 </Link>

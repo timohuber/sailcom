@@ -2,22 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { registerAction } from '../../store/actions/registerActions';
-import { verificationAction } from '../../store/actions/registerActions';
+import { baseUrl } from '../../store/constants';
 
 export default function VerificationForm(props) {
-    const dispatch = useDispatch();
+    const { push } = useHistory;
+    const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
+    const [licenceImageRef, licenceRestaurantImageRef] = useState(
+        React.createRef()
+    );
 
-    const initialState = {
-        // first_name: null,
-        // last_name: null,
-        // gender: null,
-        // email: null,
-        // phone: null,
-        // street: null,
-        // city: null,
-        // postal_code: null,
-    };
+    const initialState = {};
 
     const [formState, setFormState] = useState(initialState);
 
@@ -31,6 +25,9 @@ export default function VerificationForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        const avatar = document.getElementById('avatar').files[0];
+        const licence = document.getElementById('licence').files[0];
+
         const requiredFields = document.querySelectorAll('.required');
         let requiredFieldsOK = true;
 
@@ -42,8 +39,48 @@ export default function VerificationForm(props) {
                 field.nextElementSibling.style.opacity = '0';
             }
         });
+        if (!licence) {
+            requiredFieldsOK = false;
+            document.getElementById('licence-error').style.opacity = '1';
+        } else {
+            document.getElementById('licence-error').style.opacity = '0';
+        }
+        if (requiredFieldsOK) {
+            const form = new FormData();
 
-        return requiredFieldsOK ? verificationAction({ ...formState }) : null;
+            for (const [key, value] of Object.entries(formState)) {
+                form.append(key, value);
+            }
+
+            form.append('licence', licence);
+
+            if (avatar) {
+                form.append('avatar', avatar);
+            }
+
+            const config = {
+                method: 'PATCH',
+                headers: new Headers({}),
+                body: form,
+            };
+
+            const loginResponse = fetch(
+                baseUrl + 'registration/validation/',
+                config
+            )
+                .then((res) => {
+                    if (res.ok) {
+                        push('/'); //TODO push doesn't work
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    return data;
+                })
+                .catch((res) => {
+                    return;
+                });
+        }
     };
 
     return (
@@ -172,10 +209,10 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='user-name'>Benutzername</label>
+                        <label htmlFor='username'>Benutzername</label>
                         <input
-                            id='user-name'
-                            name='user_name'
+                            id='username'
+                            name='username'
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
@@ -186,22 +223,33 @@ export default function VerificationForm(props) {
 
                     <div className='input-wrapper'>
                         <label htmlFor='avatar'>Benutzerphoto</label>
+                        <label htmlFor='avatar' className='btn'>
+                            Choose a file..
+                        </label>
                         <input
                             type='file'
                             id='avatar'
                             name='avatar'
-                            onChange={(e) => onChangeHandler(e)}
+                            ref={userImageRef}
+                            style={{ display: 'none' }}
                         />
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='avatar'>Kopie Segelausweis</label>
+                        <label htmlFor='licence'>Kopie Segelausweis</label>
+                        <label htmlFor='licence' className='btn'>
+                            Choose a file..
+                        </label>
                         <input
                             type='file'
                             id='licence'
                             name='licence'
-                            onChange={(e) => onChangeHandler(e)}
+                            ref={licenceImageRef}
+                            style={{ display: 'none' }}
                         />
+                        <span id='licence-error' className='error'>
+                            Dieses Bild wird benötigt.
+                        </span>
                     </div>
 
                     <div className='input-wrapper'>
