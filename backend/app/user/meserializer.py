@@ -13,4 +13,6 @@ class MeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'bookings', 'instructed_for_models']
+        fields = ['id', 'salutation', 'email', 'first_name', 'last_name', 'street', 'address_appendix', 'city',
+                  'country', 'zip_code', 'phone', 'mobile', 'date_of_birth', 'licence', 'joined', 'avatar',
+                  'licence_ok', 'entry_fee_paid', 'bookings', 'instructed_for_models']

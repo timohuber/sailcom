@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from ..boat.models import Boat
 from ..event.models import Event
 from ..mail.models import Mail
+from ..transaction.models import Transaction
 
 User = get_user_model()
 
@@ -19,6 +20,7 @@ class Booking(models.Model):
     user = models.ForeignKey(to=User, related_name='bookings', on_delete=models.SET_NULL, null=True)
     boat = models.ForeignKey(to=Boat, related_name='bookings', on_delete=models.SET_NULL, null=True)
     event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.SET_NULL, null=True)
+    transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f'{self.id}: from {self.from_date_time} to: {self.until_date_time}'
@@ -31,3 +33,13 @@ def send_email(sender, instance, **kwargs):
                  subject='Buchungsbestätigung sailcom.ch',
                  content=f'Boot: {instance.boat.id}')
     email.save()
+
+
+'''@receiver(post_save, sender=Transaction)
+def create_trans(sender, instance, created, **kwargs):
+    Transaction.objects.create(sent=False, )
+
+@receiver(post_save, sender=get_user_model())
+def create_user_cart(sender, instance, created, **kwargs):
+    if created:
+        Cart.objects.create(user=instance)'''
