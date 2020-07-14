@@ -39,4 +39,4 @@ class ValidateRegistrationView(GenericAPIView):
             "response": "A token was sent by email",
             "user": serializer.validated_data
         }
-        return HttpResponse(res, status=200)
+        return HttpResponse(res, status=400)

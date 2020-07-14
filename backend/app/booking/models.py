@@ -17,3 +17,14 @@ class Booking(models.Model):
 
     def __str__(self):
         return f'{self.id}: from {self.from_date_time} to: {self.until_date_time}'
+
+
+@receiver(post_save, sender=Mail)
+def send_email(sender, instance, **kwargs):
+    send_mail(
+        instance.subject,
+        instance.content,
+        instance.sender,
+        [instance.recipient],
+        fail_silently=False,
+    )
