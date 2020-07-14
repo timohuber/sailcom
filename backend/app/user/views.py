@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import RetrieveAPIView, ListAPIView, RetrieveUpdateAPIView
 
+from .meserializer import MeSerializer
 from .serializers import UserSerializer
 from rest_framework import filters
 
@@ -21,7 +22,7 @@ class ListUsersView(ListAPIView):
 
 class ListMe(RetrieveUpdateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = MeSerializer
 
     def get_object(self):
         return self.request.user

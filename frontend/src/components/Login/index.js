@@ -57,7 +57,7 @@ export default function LoginForm(props) {
                 </div>
             </div>
             <div className='button-container'>
-                <button id='submit-login' className='btn' type='submit'>
+                <button id='submit-login' className='btn primary' type='submit'>
                     Abschicken
                 </button>
             </div>

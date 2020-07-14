@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'app.registration',
     'app.mail',
     'app.boat',
+    'app.event',
+    'app.event.event_type',
     'app.boat_crew',
     'app.boat.boat_document',
     'app.boat.boat_model',

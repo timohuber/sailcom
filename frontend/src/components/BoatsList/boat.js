@@ -8,13 +8,13 @@ export default function Boat(props) {
     }
     return (
             <article className='boat-list-element'>
-                <NavLink to='/'>
-                    <div className='boat-list-image' style={imageStyle} />
-                    <div className='boat-list-body'>
-                        <h3>{boat.title}</h3>
-                        <p className='mooring'>{boat.mooring.lake.title} {boat.mooring.address}</p>
-                    </div>
-                </NavLink>
+                <div className='boat-list-image' style={imageStyle} />
+                <div className='boat-list-body'>
+                    <h3>{boat.title}</h3>
+                    <p className='mooring'>{boat.mooring.lake.title}, {boat.mooring.address}</p>
+                    <p>{boat.description}</p>
+                    <NavLink className='btn secondary' to={`/boat/${boat.id}`}>Nicht qualifiziert</NavLink>
+                </div>
             </article>
     );
 };

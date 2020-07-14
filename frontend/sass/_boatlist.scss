@@ -1,0 +1,22 @@
+.boat-list-element {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: $gap-width;
+}
+
+.boat-list-image {
+  background-size: cover;
+  width: 30%;
+  margin-right: $gap-width;
+  flex-shrink: 0;
+
+  &:before {
+    content: '';
+    padding-top: 100%;
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+}

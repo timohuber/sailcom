@@ -16,6 +16,7 @@ urlpatterns = [
     path('backend/api/registration/', include('app.registration.urls')),
     path('backend/api/lakes/', include('app.lake.urls')),
     path('backend/api/user/', include('app.user.urls')),
+    path('backend/api/event/', include('app.event.urls')),
 
     path('backend/admin/', admin.site.urls),
     path('backend/api/docs/', include_docs_urls(title='Sailcom API documentation', permission_classes=[])),
