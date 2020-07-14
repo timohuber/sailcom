@@ -23,6 +23,11 @@ class ListCreateBookingsView(ListCreateAPIView):
                 "Buchungsanfang ist nach Buchungsende"
             }
             return HttpResponse(res, status=400)
+        if self.request.data.get('boat')==None :
+            res = {
+                "Bitte Boot Angeben"
+            }
+            return HttpResponse(res, status=400)
         existing_bookings = Booking.objects.filter(Q(boat__id__exact=self.request.data.get('boat')))\
             .filter((
                    Q(from_date_time__exact=from_date_time)

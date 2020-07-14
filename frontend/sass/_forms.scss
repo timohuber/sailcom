@@ -47,6 +47,7 @@ form.col-2 .input-container {
     .error {
         color: $error-color;
         font-size: $smaller-font-size;
+        opacity: 0;
     }
 
     .form-success {

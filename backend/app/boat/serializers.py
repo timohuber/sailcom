@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from .image.serializers import ImageSerializer
 from .models import Boat
 from ..boat_crew.serializers import BoatCrewSerializer
 from ..mooring.serializers import MooringSerializer

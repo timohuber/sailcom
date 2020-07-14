@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { registerAction } from '../../store/actions/registerActions';
 
-export default function Register(props) {
+export default function RegisterForm(props) {
     const dispatch = useDispatch();
     const { push } = useHistory();
     const [formState, setFormState] = useState({ email: '' });
@@ -30,6 +30,7 @@ export default function Register(props) {
 
     return (
         <>
+            <h1>Mitglied werden</h1>
             <form
                 id='register-form'
                 class='col-1'

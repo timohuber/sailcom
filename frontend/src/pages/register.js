@@ -1,13 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Register from '../components/Register';
+import RegisterForm from '../components/RegisterForm';
+import ConfirmationMessage from '../components/ConfirmationMessage';
 import '../App.css';
 
-export default function RegistrationPage(props) {
+function RegistrationPage(props) {
     return (
         <div className='main-wrapper'>
-            <h1>Mitglied werden</h1>
-            <Register />
+            {props.currentUser.registration.verificationCodeRequested ? (
+                <ConfirmationMessage />
+            ) : (
+                <RegisterForm />
+            )}
         </div>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.currentUser,
+    };
+};
+const connection = connect(mapStateToProps);
+const ConnectedRegistrationPage = connection(RegistrationPage);
+
+export default ConnectedRegistrationPage;
