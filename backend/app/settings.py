@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'app.lake',
     'app.mooring',
     'app.booking',
+    'app.invoice',
+    'app.transaction',
 ]
 
 MIDDLEWARE = [
