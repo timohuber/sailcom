@@ -23,8 +23,8 @@ class ListCreateBookingsView(ListCreateAPIView):
                 "Buchungsanfang ist nach Buchungsende"
             }
             return HttpResponse(res, status=400)
-
-        existing_bookings = Booking.objects.filter((
+        existing_bookings = Booking.objects.filter(Q(boat__id__exact=self.request.data.get('boat')))\
+            .filter((
                    Q(from_date_time__exact=from_date_time)
                     ) | (
                    Q(from_date_time__gt=from_date_time) &
@@ -53,8 +53,3 @@ class ListCreateBookingsView(ListCreateAPIView):
             duration=duration
         )
 
-        # send confirmation email => post save signal
-        email = Mail(recipient=self.request.user.email,
-                     subject='Buchungsbestätigung sailcom.ch',
-                     content=f'Boot: {serializer.data.get("boat")}')
-        email.save()

@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from ..boat.models import Boat
+from ..mail.models import Mail
 
 User = get_user_model()
 
@@ -19,12 +22,10 @@ class Booking(models.Model):
         return f'{self.id}: from {self.from_date_time} to: {self.until_date_time}'
 
 
-@receiver(post_save, sender=Mail)
+@receiver(post_save, sender=Booking)
 def send_email(sender, instance, **kwargs):
-    send_mail(
-        instance.subject,
-        instance.content,
-        instance.sender,
-        [instance.recipient],
-        fail_silently=False,
-    )
+
+    email = Mail(recipient=instance.user.email,
+                 subject='Buchungsbestätigung sailcom.ch',
+                 content=f'Boot: {instance.boat.id}')
+    email.save()
