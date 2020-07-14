@@ -14,6 +14,9 @@ urlpatterns = [
     path('backend/api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('backend/api/auth/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
     path('backend/api/registration/', include('app.registration.urls')),
+    path('backend/api/boatCrew/', include('app.boat_crew.urls')),
+    path('backend/api/lakes/', include('app.lake.urls')),
+    path('backend/api/user/', include('app.user.urls')),
 
     path('backend/admin/', admin.site.urls),
     path('backend/api/docs/', include_docs_urls(title='Sailcom API documentation', permission_classes=[])),

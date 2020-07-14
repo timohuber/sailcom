@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView
 
-# Create your views here.
+from .models import Lake
+from .serializers import LakeSerializer
+
+
+class ListLakesView(ListAPIView):
+    queryset = Lake.objects.all()
+    serializer_class = LakeSerializer
