@@ -15,6 +15,7 @@ import Login from './pages/login';
 import RegistrationPage from './pages/register';
 import BoatsListPage from './pages/boatslistpage';
 import VerificationPage from './pages/verification';
+import MyProfilePage from './pages/my-profile';
 import BoatDetailPage from './pages/boatdetails'
 
 // remove
@@ -37,13 +38,12 @@ function App() {
                     </Route>
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/login' component={Login} />
-                    <Route exact path='/register' component={RegistrationPage} />
-                    <Route exact path='/boatslist' component={BoatsListPage} />
-                    <Route exact path='/boat/:id' component={BoatDetailPage} />
-
-                    <Route exact path='/register' component={RegistrationPage}/>
-                    <Route exact path='/verification' component={VerificationPage} />
+                    <Route exact path='/registrierung' component={RegistrationPage} />
+                    <Route exact path='/flotte' component={BoatsListPage} />
+                    <Route exact path='/flotte/:id' component={BoatDetailPage} />
+                    <Route exact path='/verifikation' component={VerificationPage} />
                     <Route exact path='/intro' component={Intro} />
+                    <Route exact path='/profil' component={MyProfilePage} />
                     <Route exact path='/components' component={Components} />
                 </main>
             </BrowserRouter>

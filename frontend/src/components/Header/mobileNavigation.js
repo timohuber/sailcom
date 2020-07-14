@@ -66,7 +66,7 @@ export default function MobileNavigation(props) {
                         <NavLink to='/'>Beitreten</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/'>Profil</NavLink>
+                        <NavLink to='/my-profile'>Profil</NavLink>
                     </li>
                 </ul>
             </nav>
