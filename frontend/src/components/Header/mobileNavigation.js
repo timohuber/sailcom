@@ -8,10 +8,9 @@ export default function MobileNavigation(props) {
     // add onclick to all anchors
     const anchors = document.querySelectorAll('#mobile-navigation a')
 
-    // for (const anchor of anchors) {
-    //  anchor.addEventListener('click', toggleMobileNavigation())
-    //    anchor.style.color = "red"
-    // }
+    for (const anchor of anchors) {
+        anchor.addEventListener('click', toggleMobileNavigation)
+    }
 
     return (
         <div id="mobile-navigation">

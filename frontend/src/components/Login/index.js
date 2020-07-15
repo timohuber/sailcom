@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { loginAction } from '../../store/actions/loginActions';
 
@@ -28,7 +28,6 @@ export default function LoginForm(props) {
     };
 
     return (
-
         <form
             id='login-form'
             className='col-1'
@@ -57,7 +56,11 @@ export default function LoginForm(props) {
                 </div>
             </div>
             <div className='button-container'>
-                <button id='submit-login' className='btn primary' type='submit'>
+                <button
+                    id='submit-login'
+                    className='btn primary'
+                    type='submit'
+                >
                     Abschicken
                 </button>
             </div>

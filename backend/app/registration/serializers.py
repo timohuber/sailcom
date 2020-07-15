@@ -81,6 +81,18 @@ class ValidateRegistrationSerializer(serializers.Serializer):
     first_name = serializers.CharField(label='First name')
     last_name = serializers.CharField(label='Last name')
 
+    street = serializers.CharField(required=False, label='Street')
+    address_appendix = serializers.CharField(required=False, label='Address appendix')
+    city = serializers.CharField(required=False, label='City')
+    country = serializers.CharField(required=False, label='Country')
+    zip_code = serializers.CharField(required=False, label='Zip code')
+    phone = serializers.CharField(required=False, label='Phone')
+    mobile = serializers.CharField(required=False, label='Mobile')
+    date_of_birth = serializers.CharField(required=False, label='Date of birth')
+
+    licence = serializers.FileField(required=False, label='Licence')
+    avatar = serializers.ImageField(required=False, label='Avatar')
+
     def validate(self, data):
         code = data.get('code')
         email = data.get('email')
@@ -100,6 +112,19 @@ class ValidateRegistrationSerializer(serializers.Serializer):
         user.last_name = validated_data.get('last_name')
         user.is_active = True
         user.set_password(validated_data.get('password'))
+
+        user.street = validated_data.get('street')
+        user.address_appendix = validated_data.get('address_appendix ')
+        user.city = validated_data.get('city')
+        user.country = validated_data.get('country')
+        user.zip_code = validated_data.get('zip_code')
+        user.phone = validated_data.get('phone')
+        user.mobile = validated_data.get('mobile')
+        user.date_of_birth = validated_data.get('date_of_birth')
+
+        user.licence = validated_data.get('licence')
+        user.avatar = validated_data.get('avatar')
+
         user.registration.code_used = True
         user.save()
         user.registration.save()

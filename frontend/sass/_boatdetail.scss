@@ -1,0 +1,48 @@
+  .boat-detail-container {
+    .subtitle {
+      text-align: center;
+      margin-bottom: $gap-width;
+    }
+    .boat-button-container {
+      margin-bottom: $gap-width;
+
+    .btn {
+        width: auto;
+      }
+    }
+
+    .boat-prices {
+      width: 100%;
+      margin-bottom: $gap-width;
+
+      thead {
+        font-weight: bold;
+      }
+
+      td {
+        border-bottom: 1px solid $border-color;
+        padding: 8px;
+      }
+    }
+  }
+
+#boat-calendar {
+  margin-bottom: $gap-width;
+  height: 500px;
+
+  .rbc-toolbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rbc-toolbar-label {
+    padding: 10px;
+  }
+}
+
+#boat-datepicker {
+  .react-datepicker-popper {
+    z-index: 6;
+  }
+
+}

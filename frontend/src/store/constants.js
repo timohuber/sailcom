@@ -11,3 +11,16 @@ export const VERIFICATION_CODE_REQUESTED = 'VERIFICATION_CODE_REQUESTED';
 export const VERIFICATION_CONFORMED = 'VERIFICATION_CONFORMED';
 export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
+
+export const countrySelection = [
+    { key: 'switzerland', value: 'Schweiz' },
+    { key: 'germany', value: 'Deutschland' },
+    { key: 'austria', value: 'Österreich' },
+    { key: 'italy', value: 'Italien' },
+    { key: 'liechtenstein', value: 'Liechtenstein' },
+    { key: 'france', value: 'Frankreich' },
+    { key: 'holland', value: 'Niederlande' },
+    { key: 'spain', value: 'Spanien' },
+    { key: 'uk', value: 'Vereinigtes Königreich' },
+    { key: 'other', value: 'Andere' },
+];
