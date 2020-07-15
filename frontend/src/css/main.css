@@ -274,3 +274,22 @@ form.col-2 .input-container {
 
 #boat-datepicker .react-datepicker-popper {
   z-index: 6; }
+
+.event-list-element {
+  margin-bottom: 30px; }
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(30px / 2); }
+  .event-meta .event-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 8px 0px;
+    border-bottom: 1px solid #E4E4E4; }
+    .event-meta .event-row .event-cell {
+      width: 50%; }
+
+.modal {
+  padding: calc(30px / 2); }

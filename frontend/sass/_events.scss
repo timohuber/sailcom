@@ -1,0 +1,20 @@
+.event-list-element {
+  margin-bottom: $gap-width;
+}
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(#{$gap-width} / 2);
+
+  .event-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 8px 0px;
+    border-bottom: 1px solid $border-color;
+
+    .event-cell {
+      width: 50%;
+    }
+  }
+}
