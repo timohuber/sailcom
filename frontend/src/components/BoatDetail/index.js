@@ -31,7 +31,7 @@ function BoatDetails(props) {
 
     return (
         <>
-        {loading ? <Loading /> : <BoatDetailContainer boat={boat}/>}
+        {loading ? <Loading /> : <BoatDetailContainer boat={boat} user={props.currentUser.userData}/>}
         </>
     );
 };
