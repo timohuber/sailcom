@@ -14,7 +14,7 @@ User = get_user_model()
 class Booking(models.Model):
     from_date_time = models.DateTimeField()
     until_date_time = models.DateTimeField()
-    
+
     # remove blank and null? => delete db ;P
     duration = models.DurationField(blank=True, null=True)
     duration_weekday = models.DurationField(blank=True, null=True)
@@ -34,7 +34,6 @@ class Booking(models.Model):
 
 @receiver(post_save, sender=Booking)
 def send_email(sender, instance, **kwargs):
-
     email = Mail(recipient=instance.user.email,
                  subject='Buchungsbestätigung sailcom.ch',
                  content=f'Boot: {instance.boat.id}')
@@ -43,17 +42,14 @@ def send_email(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Booking)
 def create_trans(sender, instance, created, **kwargs):
-    test = 'test'
-    if instance.weekday_days+instance.weekend_days == 0:
-        if instance.from_date_time.date().isoweekday() < 6:
-            price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday)*float(
-                instance.duration.seconds/60/60)
-        else:
-            price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekend)*float(
+    if instance.weekday_days + instance.weekend_days == 0:  # hourly rate calculation
+        if instance.from_date_time.date().isoweekday() < 6:  # 1-5 Mon-Fri
+            price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday) * float(
                 instance.duration.seconds / 60 / 60)
-    else:
-        price = instance.weekday_days*float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday)\
-                + instance.weekend_days*float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
-    #(instance.duration.seconds/60/60)
+        else:
+            price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekend) * float(
+                instance.duration.seconds / 60 / 60)
+    else:  # daily rate calculation
+        price = instance.weekday_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday) \
+                + instance.weekend_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
     Transaction.objects.create(sent=False, price=price, booking=instance, user=instance.user)
-
