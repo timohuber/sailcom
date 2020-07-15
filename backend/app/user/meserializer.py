@@ -9,7 +9,7 @@ User = get_user_model()
 
 class MeSerializer(serializers.ModelSerializer):
     bookings = BookingSerializer(read_only=True, many=True)
-    instructed_for_models = BoatModelSerializer(read_only=True, many=True)
+    # instructed_for_models = BoatModelSerializer(read_only=True, many=True)
 
     class Meta:
         model = User
