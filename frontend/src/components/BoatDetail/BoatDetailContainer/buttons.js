@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 export const NotQualifiedButton = () => {
         return (
@@ -6,8 +7,14 @@ export const NotQualifiedButton = () => {
     );
 }
 
-export const BookBoatButton = () => {
+export const BookBoatButton = (props) => {
+    return (
+        <button className='btn primary' onClick={ e => props.triggerBookingModal(e) }>Buchen</button>
+    );
+}
+
+export const ToLoginPageButton = () => {
         return (
-        <button className='btn primary'>Buchen</button>
+        <NavLink to='/login' className='btn primary'>Login</NavLink>
     );
 }
