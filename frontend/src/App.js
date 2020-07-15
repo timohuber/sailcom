@@ -17,6 +17,7 @@ import BoatsListPage from './pages/boatslistpage';
 import VerificationPage from './pages/verification';
 import MyProfilePage from './pages/my-profile';
 import BoatDetailPage from './pages/boatdetails'
+import EventPage from './pages/events'
 
 // remove
 import Components from './pages/components';
@@ -44,6 +45,8 @@ function App() {
                     <Route exact path='/verifikation' component={VerificationPage} />
                     <Route exact path='/intro' component={Intro} />
                     <Route exact path='/profil' component={MyProfilePage} />
+                    <Route exact path='/events' component={EventPage} />
+
                     <Route exact path='/components' component={Components} />
                 </main>
             </BrowserRouter>

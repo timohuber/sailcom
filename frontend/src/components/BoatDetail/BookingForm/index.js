@@ -34,45 +34,47 @@ function BookingForm(props) {
     }
 
     return (
-        <div className='booking-form'>
-            <h1>Abschluuss</h1>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            Schiff:
-                        </td>
-                        <td>
-                            {props.boat.title}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Von
-                        </td>
-                        <td>
-                            {props.from.toISOString()}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Bis
-                        </td>
-                        <td>
-                            {props.until.toISOString()}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Total
-                        </td>
-                        <td>
-                            {totalPrice}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button className='btn primary' onClick={e => submitHandler(e)}>Buchung abschliessen</button>
+        <div className='modal'>
+            <div className='booking-form'>
+                <h1>Abschluss</h1>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Schiff:
+                            </td>
+                            <td>
+                                {props.boat.title}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Von
+                            </td>
+                            <td>
+                                {props.from.toISOString()}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bis
+                            </td>
+                            <td>
+                                {props.until.toISOString()}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total
+                            </td>
+                            <td>
+                                {totalPrice}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button className='btn primary' onClick={e => submitHandler(e)}>Buchung abschliessen</button>
+            </div>
         </div>
     );
 };
