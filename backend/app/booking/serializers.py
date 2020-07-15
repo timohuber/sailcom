@@ -27,3 +27,17 @@ class BookingInBoatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ['id', 'user', 'from_date_time', 'until_date_time', 'duration']
+
+
+class CreateBookingSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Booking
+        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time', 'duration']
+
+    def perform_create(self, validated_data):
+        instance = Booking.objects.create(
+            **validated_data
+        )
+        return instance
