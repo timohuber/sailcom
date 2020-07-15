@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework.generics import ListCreateAPIView, GenericAPIView
 
 from .models import Booking
-from .serializers import BookingSerializer
+from .serializers import BookingSerializer, CreateBookingSerializer
 from ..permissions import IsLoggedIn
 
 from ..mail.models import Mail
@@ -11,8 +11,13 @@ from ..mail.models import Mail
 
 class ListCreateBookingsView(ListCreateAPIView):
     queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
     permission_classes = [IsLoggedIn]
+
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreateBookingSerializer
+        return BookingSerializer
 
     def post(self, request, *args, **kwargs):
         until_date_time = request.data.get('until_date_time')
