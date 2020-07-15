@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from .models import Booking
 from ..boat.serializers import BoatSerializer
 from ..user.serializers import UserSerializer
+from ..event.serializers import EventSerializer
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -41,3 +42,12 @@ class CreateBookingSerializer(serializers.ModelSerializer):
             **validated_data
         )
         return instance
+
+
+class BookingInTransactionSerializer(serializers.ModelSerializer):
+    boat = BoatSerializer(read_only=True)
+    event = EventSerializer(read_only=True)
+
+    class Meta:
+        model = Booking
+        fields = ['id', 'boat', 'event', 'from_date_time', 'until_date_time', 'duration']
