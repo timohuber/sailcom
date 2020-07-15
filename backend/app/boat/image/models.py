@@ -9,3 +9,6 @@ class Image(models.Model):
     updated = models.DateField(auto_now=True)
 
     boat = models.ForeignKey(to=Boat, related_name='images', on_delete=models.CASCADE, blank=True)
+
+    def __str__(self):
+        return f'ID{self.id}: {self.image}'

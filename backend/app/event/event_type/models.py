@@ -10,4 +10,4 @@ class EventType(models.Model):
     updated = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return f'ID{self.id}: {self.title}'

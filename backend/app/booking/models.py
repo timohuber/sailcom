@@ -23,7 +23,7 @@ class Booking(models.Model):
     transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f'{self.id}: from {self.from_date_time} to: {self.until_date_time}'
+        return f'ID{self.id}: from {self.from_date_time} to: {self.until_date_time}'
 
 
 @receiver(post_save, sender=Booking)
@@ -35,12 +35,7 @@ def send_email(sender, instance, **kwargs):
     email.save()
 
 
-'''@receiver(post_save, sender=Transaction)
+@receiver(post_save, sender=Booking)
 def create_trans(sender, instance, created, **kwargs):
-    test = 'test'
-    Transaction.objects.create(sent=False, price=100, user=)
+    Transaction.objects.create(sent=False, price=100, booking=instance, user=instance.user)
 
-@receiver(post_save, sender=get_user_model())
-def create_user_cart(sender, instance, created, **kwargs):
-    if created:
-        Cart.objects.create(user=instance)'''

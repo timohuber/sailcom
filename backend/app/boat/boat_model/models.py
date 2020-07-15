@@ -9,7 +9,5 @@ class BoatModel(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
-    users = models.ManyToManyField(to=User, related_name='instructed_for_models', blank=True)
-
     def __str__(self):
-        return self.type_name
+        return f'ID{self.id}: {self.type_name}'

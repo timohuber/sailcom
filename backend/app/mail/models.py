@@ -12,7 +12,7 @@ class Mail(models.Model):
     sent = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.recipient}: {self.subject}'
+        return f'ID{self.id}: {self.recipient} {self.subject}'
 
 
 @receiver(post_save, sender=Mail)

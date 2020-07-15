@@ -13,4 +13,4 @@ class Mooring(models.Model):
     lake = models.ForeignKey(to=Lake, related_name='images', on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
-        return f'{self.lake} {self.address}'
+        return f'ID{self.id}: {self.lake}, {self.address}'
