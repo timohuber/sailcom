@@ -19,6 +19,8 @@ class Booking(models.Model):
     duration = models.DurationField(blank=True, null=True)
     duration_weekday = models.DurationField(blank=True, null=True)
     duration_weekend = models.DurationField(blank=True, null=True)
+    weekday_days = models.IntegerField(blank=True, null=True)
+    weekend_days = models.IntegerField(blank=True, null=True)
     user = models.ForeignKey(to=User, related_name='bookings', on_delete=models.SET_NULL, null=True)
     boat = models.ForeignKey(to=Boat, related_name='bookings', on_delete=models.SET_NULL, null=True)
     event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.SET_NULL,
@@ -42,7 +44,16 @@ def send_email(sender, instance, **kwargs):
 @receiver(post_save, sender=Booking)
 def create_trans(sender, instance, created, **kwargs):
     test = 'test'
-    price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday)*float(instance.duration.seconds/60/60)
+    if instance.weekday_days+instance.weekend_days == 0:
+        if instance.from_date_time.date().isoweekday() < 6:
+            price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday)*float(
+                instance.duration.seconds/60/60)
+        else:
+            price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekend)*float(
+                instance.duration.seconds / 60 / 60)
+    else:
+        price = instance.weekday_days*float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday)\
+                + instance.weekend_days*float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
     #(instance.duration.seconds/60/60)
     Transaction.objects.create(sent=False, price=price, booking=instance, user=instance.user)
 

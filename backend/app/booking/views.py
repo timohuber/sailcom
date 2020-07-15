@@ -64,27 +64,28 @@ class ListCreateBookingsView(ListCreateAPIView):
 
         sameday = until_date_time.date() == from_date_time.date()
         weekday = from_date_time.date().isoweekday() < 6
-        less_five = float(duration) > 5
+        less_24 = duration.days == 0
+        less_five = float(duration.seconds/60/60) < 5
 
         dt_start = serializer.validated_data.get('from_date_time').date()
         dt_end = serializer.validated_data.get('until_date_time').date()
         dt_current = dt_start
         weekday_count = 0
         weekend_count = 0
-        if less_five:
+        duration_weekday = 0
+        duration_weekend = 0
+        if not less_24:
             while dt_current <= dt_end:
                 if dt_current.isoweekday() > 5:
-                    weekend_count = weekend_count + 1
+                    weekend_count += 1
                 else:
-                    weekday_count = weekend_count + 1
+                    weekday_count += 1
                 dt_current = dt_current+timedelta(1)
-        if sameday & less_five & weekday:
-            duration_weekday = duration
-        else:
-            duration_weekend = duration
 
 
         serializer.save(
             user=self.request.user,
-            duration=duration
+            duration=duration,
+            weekday_days=weekday_count,
+            weekend_days=weekend_count
         )
