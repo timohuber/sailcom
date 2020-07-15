@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm';
 import ConfirmationMessage from '../components/ConfirmationMessage';
-import '../App.css';
 
 function RegistrationPage(props) {
     return (
