@@ -17,10 +17,14 @@ class Booking(models.Model):
     
     # remove blank and null? => delete db ;P
     duration = models.DurationField(blank=True, null=True)
+    duration_weekday = models.DurationField(blank=True, null=True)
+    duration_weekend = models.DurationField(blank=True, null=True)
     user = models.ForeignKey(to=User, related_name='bookings', on_delete=models.SET_NULL, null=True)
     boat = models.ForeignKey(to=Boat, related_name='bookings', on_delete=models.SET_NULL, null=True)
-    event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.SET_NULL, null=True)
-    transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL, null=True)
+    event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.SET_NULL,
+                                 blank=True, null=True)
+    transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL,
+                                       blank=True, null=True)
 
     def __str__(self):
         return f'ID{self.id}: from {self.from_date_time} to: {self.until_date_time}'
@@ -37,5 +41,8 @@ def send_email(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Booking)
 def create_trans(sender, instance, created, **kwargs):
-    Transaction.objects.create(sent=False, price=100, booking=instance, user=instance.user)
+    test = 'test'
+    price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday)*float(instance.duration.seconds/60/60)
+    #(instance.duration.seconds/60/60)
+    Transaction.objects.create(sent=False, price=price, booking=instance, user=instance.user)
 
