@@ -11,8 +11,8 @@ export default function ConfirmationMessage(props) {
                 ein.
             </p>
             <div id="confirmation-button" className='button-container'>
-                <Link to='/verification'>
-                    <button className='btn'>Weiter</button>
+                <Link to='/verifikation'>
+                    <button className='btn primary'>Weiter</button>
                 </Link>
             </div>
         </div>

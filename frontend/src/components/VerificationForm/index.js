@@ -88,7 +88,7 @@ export default function VerificationForm(props) {
             <h1>Registrierung abschliessen</h1>
             <form
                 id='register-form'
-                class='col-1'
+                class='col-2'
                 onSubmit={(e) => onSubmitHandler(e)}
             >
                 <p>
@@ -182,7 +182,7 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='phone'>Telephone</label>
+                        <label htmlFor='phone'>Festnetz</label>
                         <input
                             id='phone'
                             name='phone'
@@ -191,7 +191,7 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='mobile'>Mobile</label>
+                        <label htmlFor='mobile'>Handy</label>
                         <input
                             id='mobile'
                             name='mobile'
@@ -223,7 +223,7 @@ export default function VerificationForm(props) {
 
                     <div className='input-wrapper'>
                         <label htmlFor='avatar'>Benutzerphoto</label>
-                        <label htmlFor='avatar' className='btn'>
+                        <label htmlFor='avatar' className='btn primary'>
                             Choose a file..
                         </label>
                         <input
@@ -237,7 +237,7 @@ export default function VerificationForm(props) {
 
                     <div className='input-wrapper'>
                         <label htmlFor='licence'>Kopie Segelausweis</label>
-                        <label htmlFor='licence' className='btn'>
+                        <label htmlFor='licence' className='btn primary'>
                             Choose a file..
                         </label>
                         <input
@@ -284,7 +284,7 @@ export default function VerificationForm(props) {
                 </div>
 
                 <div class='button-container'>
-                    <button id='submit-register' className='btn' type='submit'>
+                    <button id='submit-register' className='btn primary' type='submit'>
                         Absenden
                     </button>
                 </div>
