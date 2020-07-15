@@ -1,15 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from app.boat.boat_model.models import BoatModel
-from app.event.event_type.models import EventType
+from ..boat.boat_model.models import BoatModel
+from ..event.event_type.models import EventType
 
 User = get_user_model()
 
 
 class Event(models.Model):
     title = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=19, decimal_places=10)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     from_date_time = models.DateTimeField()
@@ -22,4 +22,4 @@ class Event(models.Model):
     participants = models.ManyToManyField(to=User, related_name='participated_events', blank=True)
 
     def __str__(self):
-        return self.title
+        return f'ID{self.id}: {self.title}'
