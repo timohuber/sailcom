@@ -30,6 +30,10 @@ p {
   margin-top: 0;
   margin-bottom: 8px; }
 
+table {
+  margin-bottom: 8px;
+  border-spacing: 0; }
+
 ul {
   list-style-type: none;
   text-align: left;
@@ -228,3 +232,28 @@ form.col-2 .input-container {
     display: block;
     width: 100%;
     position: relative; }
+
+.boat-detail-container .subtitle {
+  text-align: center;
+  margin-bottom: 30px; }
+
+.boat-detail-container .boat-button-container .btn {
+  width: auto; }
+
+.boat-detail-container .boat-prices {
+  width: 100%; }
+  .boat-detail-container .boat-prices thead {
+    font-weight: bold; }
+  .boat-detail-container .boat-prices td {
+    border-bottom: 1px solid #E4E4E4;
+    padding: 8px; }
+
+.boat-detail-container #booking-calendar {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #E4E4E4;
+  margin-bottom: 30px; }

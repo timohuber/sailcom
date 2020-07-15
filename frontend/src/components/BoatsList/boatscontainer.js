@@ -5,7 +5,7 @@ export default function BoatsContainer(props) {
     return (
         <div className="main-wrapper boat-list">
             {props.data.map(boat => {
-                return <Boat boat={boat} />
+                return <Boat boat={boat} key={boat.id} />
             })}
         </div>
     );

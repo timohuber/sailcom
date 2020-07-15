@@ -14,7 +14,8 @@ function BoatDetails(props) {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.currentUser.accessToken}`
+                // 'Authorization': `Bearer ${props.currentUser.accessToken}`
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             })
         }
         const response = fetch(baseUrl + 'boat/'+ boatID + '/', config)
