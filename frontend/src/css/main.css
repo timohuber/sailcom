@@ -93,6 +93,10 @@ form.col-2 .input-container {
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 30px; }
 
+@media (max-width: 768px) {
+  form.col-2 .input-container {
+    grid-template-columns: repeat(1, 1fr); } }
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
@@ -106,6 +110,14 @@ form.col-2 .input-container {
     padding: 12px;
     margin-bottom: calc(30px / 2);
     border: 1px solid #E4E4E4; }
+  .input-wrapper select {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #e4e4e4;
+    padding: 8px;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit; }
   .input-wrapper .error {
     color: #D01017;
     font-size: 0.875rem;

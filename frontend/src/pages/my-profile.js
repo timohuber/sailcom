@@ -10,7 +10,6 @@ function MyProfilePage(props) {
     const [userData, setUserData] = useState();
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         if (props.userData) {
             setUserData(props.userData);
@@ -18,11 +17,13 @@ function MyProfilePage(props) {
         } else {
             dispatch(fetchUserData());
         }
-    }, [props])
+    }, [props]);
 
+    // TODO: uncomment
     return (
         <div className='main-wrapper'>
-            {loading ? <Loading /> : <UserAddressForm />}
+            {loading ? <Loading /> : <UserAddressForm userData={props.userData}/>}
+            {/* <UserAddressForm /> */}
         </div>
     );
 }
