@@ -24,6 +24,10 @@ class UserAdmin(UserAdmin):
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
         ('Groups', {'fields': ('groups',)}),
     )
+
+
+
+
     # fields which are shown when looking at an list of instances
     list_display = ('email', 'first_name', 'last_name', 'is_staff')
     ordering = ('email',)

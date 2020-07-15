@@ -14,8 +14,6 @@ function BoatDetails(props) {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${props.currentUser.accessToken}`
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             })
         }
         const response = fetch(baseUrl + 'boat/'+ boatID + '/', config)
@@ -31,7 +29,10 @@ function BoatDetails(props) {
 
     return (
         <>
-        {loading ? <Loading /> : <BoatDetailContainer boat={boat} user={props.currentUser.userData}/>}
+        {loading ?
+            <Loading /> :
+            <BoatDetailContainer boat={boat} user={props.currentUser.userData}/>
+        }
         </>
     );
 };

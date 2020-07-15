@@ -271,3 +271,6 @@ form.col-2 .input-container {
     flex-direction: column; }
   #boat-calendar .rbc-toolbar-label {
     padding: 10px; }
+
+#boat-datepicker .react-datepicker-popper {
+  z-index: 6; }
