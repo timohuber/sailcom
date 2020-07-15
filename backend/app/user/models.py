@@ -14,7 +14,8 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    salutation = models.CharField(max_length=10, choices=[('Herr', 'Herr'), ('Frau', 'Frau'), ('Firma', 'Firma')])
+    salutation = models.CharField(max_length=10, blank=True, null=True, choices=[('Herr', 'Herr'),
+                                                                                 ('Frau', 'Frau'), ('Firma', 'Firma')])
 
     street = models.CharField(max_length=200, blank=True, null=True)
     address_appendix = models.CharField(max_length=200, blank=True, null=True)
