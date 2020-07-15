@@ -19,5 +19,5 @@ urlpatterns = [
     path('backend/api/event/', include('app.event.urls')),
 
     path('backend/admin/', admin.site.urls),
-    path('backend/api/docs/', include_docs_urls(title='Sailcom API documentation', permission_classes=[])),
+    path('backend/api/docs/', include_docs_urls(title='Sailcom API documentation 🌊⛵🌊', permission_classes=[])),
 ]

@@ -16,7 +16,9 @@ class ListCreateBookingsView(ListCreateAPIView):
     permission_classes = [IsLoggedIn]
 
     def get_serializer_class(self):
-        if self.request.method == 'POST':
+        if self.request==None: #for API documentation
+            return BookingSerializer
+        elif self.request.method == 'POST': #for creating bookings
             return CreateBookingSerializer
         return BookingSerializer
 
@@ -74,13 +76,15 @@ class ListCreateBookingsView(ListCreateAPIView):
         weekend_count = 0
         duration_weekday = 0
         duration_weekend = 0
+
+        # loop through days to count weekend days and weekdays
         if not less_24:
             while dt_current <= dt_end:
                 if dt_current.isoweekday() > 5:
                     weekend_count += 1
                 else:
                     weekday_count += 1
-                dt_current = dt_current+timedelta(1)
+                dt_current = dt_current+timedelta(1)  # add 1 day to current day
 
 
         serializer.save(
