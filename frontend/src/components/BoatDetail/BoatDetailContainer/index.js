@@ -1,10 +1,13 @@
 import React from 'react';
 import {NotQualifiedButton} from './buttons'
 import {PricesTable} from './prices'
+import BoatCalendar from './calendar'
+import {connect} from "react-redux";
 
 export default function BoatDetailContainer(props) {
     const boat = props.boat
-    console.log(boat)
+    console.log(props.user)
+
     return (
         <div className='main-wrapper boat-detail-container'>
             <h1>{boat.title}</h1>
@@ -13,11 +16,7 @@ export default function BoatDetailContainer(props) {
                 <NotQualifiedButton />
             </div>
             <PricesTable boat={boat} />
-            <div id='booking-calendar'>
-                <p>Calendar</p>
-            </div>
-
-
+            <BoatCalendar boat={boat} />
         </div>
     );
 };
