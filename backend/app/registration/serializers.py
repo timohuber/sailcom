@@ -118,7 +118,7 @@ class ValidateRegistrationSerializer(serializers.Serializer):
         user.city = validated_data.get('city')
         user.country = validated_data.get('country')
         user.zip_code = validated_data.get('zip_code')
-        user.phone = validated_data.get('phone ')
+        user.phone = validated_data.get('phone')
         user.mobile = validated_data.get('mobile')
         user.date_of_birth = validated_data.get('date_of_birth')
 
