@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import { baseUrl, countrySelection } from '../../store/constants';
 import { fetchUserData } from '../../store/actions/loginActions';
-import { verificationAction } from '../../store/actions/registerActions';
+import { updateUserAction } from '../../store/actions/userActions';
 import Loading from '../../components/GenericLoading';
 
 export default function UserAddressForm(props) {
+    const initialState = {
+        ...props.userData
+    };
+    delete initialState.avatar;
+    delete initialState.licence;
+    delete initialState.email;
+
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState();
+    const [formState, setFormState] = useState(initialState);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,45 +28,6 @@ export default function UserAddressForm(props) {
         }
     }, []);
 
-    console.log(props)
-
-    const initialState = {
-        salutation: props.userData.salutation,
-        first_name: props.userData.first_name,
-        last_name: props.userData.last_name,
-        username: props.userData.username,
-        email: props.userData.email,
-        mobile: props.userData.mobile,
-        phone: props.userData.phone,
-        date_of_birth: props.userData.date_of_birth,
-        street: props.userData.street,
-        street_appendix: props.userData.street_appendix,
-        zip_code: props.userData.zip_code,
-        city: props.userData.city,
-        country: props.userData.country,
-        avatar: props.userData.avatar,
-        licence: props.userData.licence,
-    };
-
-    // const initialState = {
-    //     salutation: 'Herr',
-    //     first_name: 'Ramon',
-    //     last_name: 'Köstli',
-    //     username: 'ra',
-    //     email: 'ramonkos@gmail.com',
-    //     mobile: '076 14256237378',
-    //     phone: '0041 14256237378',
-    //     date_of_birth: '11.33.5555',
-    //     street: 'Bahnhofstr. 1',
-    //     street_appendix: null,
-    //     zip_code: '9999',
-    //     city: 'Winterthur',
-    //     country: 'Deutschland',
-    //     avatar: null,
-    //     licence: null,
-    // };
-
-    const [formState, setFormState] = useState(initialState);
     let requiredFieldsOK = true;
 
     const onChangeHandler = (e) => {
@@ -74,7 +41,6 @@ export default function UserAddressForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-
         const requiredFields = document.querySelectorAll('.required');
 
         requiredFields.forEach((field) => {
@@ -87,21 +53,22 @@ export default function UserAddressForm(props) {
         });
 
         if (requiredFieldsOK) {
-            dispatch(verificationAction(formState));
+            dispatch(updateUserAction(formState));
         }
     };
 
     const formHandler = () => {
         return (
             <>
-                <h1>
-                    Adresse {props.userData.first_name} {props.userData.last_name}
-                </h1>
                 <form
                     id='user-address-form'
                     class='col-2'
                     onSubmit={(e) => onSubmitHandler(e)}
                 >
+                    <h2>
+                        Adresse {props.userData.first_name}{' '}
+                        {props.userData.last_name}
+                    </h2>
                     <div className='input-container'>
                         <div className='input-wrapper'>
                             <label htmlFor='salutation'>Anrede</label>
@@ -110,21 +77,21 @@ export default function UserAddressForm(props) {
                                 name='salutation'
                                 className='required'
                                 onChange={(e) => onChangeHandler(e)}
-                                value={formState.salutation}
+                                value={props.userData.salutation}
                             >
                                 {formState.salutation === 'Herr' ? (
                                     <>
-                                        <option value='mister' selected>
+                                        <option value='Herr' selected>
                                             Herr
                                         </option>
-                                        <option value='miss'>Frau</option>
+                                        <option value='Frau'>Frau</option>
                                     </>
                                 ) : (
                                     <>
-                                        <option value='miss' selected>
+                                        <option value='Frau' selected>
                                             Frau
                                         </option>
-                                        <option value='mister' selected>
+                                        <option value='Herr' selected>
                                             Herr
                                         </option>
                                     </>
@@ -182,8 +149,7 @@ export default function UserAddressForm(props) {
                             <input
                                 id='email'
                                 name='email'
-                                onChange={(e) => onChangeHandler(e)}
-                                value={formState.email}
+                                value={props.userData.email}
                             />
                         </div>
 
@@ -210,6 +176,7 @@ export default function UserAddressForm(props) {
                         <div className='input-wrapper'>
                             <label htmlFor='date-of-birth'>Geburtsdatum</label>
                             <input
+                                type='date'
                                 id='date-of-birth'
                                 name='date_of_birth'
                                 onChange={(e) => onChangeHandler(e)}

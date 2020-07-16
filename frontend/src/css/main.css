@@ -293,3 +293,22 @@ form.col-2 .input-container {
 
 .modal {
   padding: calc(30px / 2); }
+
+.user-documents-img-btn-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px; }
+  .user-documents-img-btn-wrapper .user-document-list-image {
+    background-size: cover;
+    width: 30%;
+    margin-right: 30px;
+    flex-shrink: 0; }
+    .user-documents-img-btn-wrapper .user-document-list-image:before {
+      content: '';
+      padding-top: 100%;
+      display: block;
+      width: 100%;
+      position: relative; }
