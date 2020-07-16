@@ -6,18 +6,12 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    .img {
-    }
 }
 
 .emergency {
     color: $error-color;
     font-weight: bold;
 }
-
-// .staff-photo-container {
-//     position: relative;
-// }
 
 .staff-photo-container {
     filter: grayscale(100%);
