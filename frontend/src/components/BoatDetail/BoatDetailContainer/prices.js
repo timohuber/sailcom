@@ -3,7 +3,7 @@ import React from "react";
 export const PricesTable = (props) => {
     const boat = props.boat;
     return (
-         <table className='boat-prices'>
+         <table className='boat-prices simple'>
                 <thead>
                     <tr>
                         <td>

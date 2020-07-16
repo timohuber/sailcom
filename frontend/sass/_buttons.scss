@@ -6,20 +6,20 @@ button {
 
 .btn {
     border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 200px;
+    max-width: 100%;
+    text-align: center;
 }
 
 .btn.primary {
     background-color: $brand-color;
     color: #fff;
     padding: 10px 20px;
-
     height: 40px;
     border-radius: 20px;
     width: 200px;
-    max-width: 100%;
-
-    text-transform: uppercase;
-    letter-spacing: 1px;
 
     &:hover {
         background-color: $brand-color-dark;
@@ -28,6 +28,17 @@ button {
 
 .btn.secondary {
 
+}
+
+.btn.disabled {
+    background-color: $disabled-color;
+    color: #fff;
+    padding: 10px 20px;
+
+    height: 40px;
+    border-radius: 20px;
+    width: 200px;
+    max-width: 100%;
 }
 
 #confirmation-button {
