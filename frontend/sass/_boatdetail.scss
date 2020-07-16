@@ -1,30 +1,30 @@
-  .boat-detail-container {
+.boat-detail-container {
+
     .subtitle {
       text-align: center;
       margin-bottom: $gap-width;
     }
     .boat-button-container {
       margin-bottom: $gap-width;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
     .btn {
-        width: auto;
+        width: 300px;
+        margin-bottom: 15px;
       }
     }
-
-    .boat-prices {
-      width: 100%;
-      margin-bottom: $gap-width;
-
-      thead {
-        font-weight: bold;
-      }
-
-      td {
-        border-bottom: 1px solid $border-color;
-        padding: 8px;
-      }
-    }
+  .detail-description {
+    margin-bottom: $gap-width;
   }
+  .boat-documents {
+    margin-bottom: $gap-width;
+  }
+  .boat-technical-data {
+    margin-bottom: $gap-width;
+  }
+}
 
 #boat-calendar {
   margin-bottom: $gap-width;
@@ -41,8 +41,55 @@
 }
 
 #boat-datepicker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: $gap-width;
+
+ .react-datepicker__input-container {
+   padding-top: 8px;
+   padding-bottom: 8px;
+   &:before {
+     font-family: 'Font Awesome 5 Free';
+     content: '\f073';
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     left: 12px;
+     z-index: 1;
+   }
+   input {
+     padding: 12px;
+     padding-left: 40px;
+     border: 1px solid $border-color;
+     position: relative;
+     background-color: #fff;
+     width: 100%;
+   }
+ }
   .react-datepicker-popper {
     z-index: 6;
   }
+}
 
+
+.hero-image.boat {
+
+  background-image: url(https://images.unsplash.com/photo-1500917832468-298fa6292e2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)!important;
+
+  padding-top: 30%;
+  background-size: cover;
+  background-position: center;
+}
+
+.boat-booking-block {
+  display: flex;
+  flex-direction: column;
+  background-color: $light-background;
+  padding: $gap-width;
+  align-items: center;
+
+  .btn.btn-primary {
+
+  }
 }

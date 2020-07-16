@@ -33,11 +33,7 @@ export default function EventInformationTable(props) {
                     Leitung
                 </div>
                 <div className='event-cell'>
-                    {event.instructor.map(instructor => {
-                        return (<>{instructor.first_name} {instructor.last_name}</>)
-                    })
-
-                    }
+                    {event.instructor.first_name} {event.instructor.last_name}
                 </div>
             </div>
             <div className='event-row'>
