@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
+import UserDocumentsForm from '../components/UserDocuments';
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
 
@@ -19,11 +20,16 @@ function MyProfilePage(props) {
         }
     }, [props]);
 
-    // TODO: uncomment
+    // TODO: uncomment create tabs for each component
     return (
         <div className='main-wrapper'>
-            {loading ? <Loading /> : <UserAddressForm userData={props.userData}/>}
-            {/* <UserAddressForm /> */}
+                {loading ? (
+                <Loading />
+            ) : (<>
+                <UserDocumentsForm userData={props.userData} />
+                <UserAddressForm userData={props.userData} />
+                </>
+            )}
         </div>
     );
 }

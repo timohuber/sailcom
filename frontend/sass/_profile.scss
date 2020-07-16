@@ -1,0 +1,23 @@
+.user-documents-img-btn-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $gap-width;
+
+    .user-document-list-image {
+        background-size: cover;
+        width: 30%;
+        margin-right: $gap-width;
+        flex-shrink: 0;
+
+        &:before {
+            content: '';
+            padding-top: 100%;
+            display: block;
+            width: 100%;
+            position: relative;
+        }
+    }
+}
