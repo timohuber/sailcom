@@ -17,7 +17,7 @@ class Event(models.Model):
     from_date_time = models.DateTimeField()
     until_date_time = models.DateTimeField()
     meeting_point = models.CharField(max_length=100)
-    max_participants = models.IntegerField(blank=True, null=True)
+    max_participants = models.IntegerField()
 
     boat_model = models.ForeignKey(to=BoatModel, related_name='event', on_delete=models.SET_NULL, blank=True, null=True)
     event_type = models.ForeignKey(to=EventType, related_name='event', on_delete=models.SET_NULL, blank=True, null=True)

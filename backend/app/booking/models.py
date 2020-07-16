@@ -58,7 +58,7 @@ def create_trans(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Event)
 def create_booking(sender, instance, created, **kwargs):
-    br = 'br'
-    Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
-                           event=instance, user=instance.instructor,
-                           duration=instance.until_date_time - instance.from_date_time, boat=instance.boat)
+    if not Booking.objects.filter(event=instance.id):
+        Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
+                               event=instance, user=instance.instructor,
+                               duration=instance.until_date_time - instance.from_date_time, boat=instance.boat)
