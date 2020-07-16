@@ -7,6 +7,7 @@ import './css/main.css';
 
 // components
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 // pages
 import Intro from './pages/intro';
@@ -33,22 +34,23 @@ function App() {
         <div className='App'>
             <BrowserRouter>
                 <Header />
-                <main>
-                    <Route exact path='/'>
-                        <Redirect to='/intro' />
-                    </Route>
-                    <Route exact path='/home' component={Home} />
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/registrierung' component={RegistrationPage} />
-                    <Route exact path='/bootsliste' component={BoatsListPage} />
-                    <Route exact path='/boot/:id' component={BoatDetailPage} />
-                    <Route exact path='/verifikation' component={VerificationPage} />
-                    <Route exact path='/intro' component={Intro} />
-                    <Route exact path='/profil' component={MyProfilePage} />
-                    <Route exact path='/events' component={EventPage} />
+                    <main>
+                        <Route exact path='/'>
+                            <Redirect to='/intro' />
+                        </Route>
+                        <Route exact path='/home' component={Home} />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/registrierung' component={RegistrationPage} />
+                        <Route exact path='/bootsliste' component={BoatsListPage} />
+                        <Route exact path='/boot/:id' component={BoatDetailPage} />
+                        <Route exact path='/verifikation' component={VerificationPage} />
+                        <Route exact path='/intro' component={Intro} />
+                        <Route exact path='/profil' component={MyProfilePage} />
+                        <Route exact path='/events' component={EventPage} />
 
-                    <Route exact path='/components' component={Components} />
-                </main>
+                        <Route exact path='/components' component={Components} />
+                    </main>
+                <Footer />
             </BrowserRouter>
         </div>
     );
