@@ -14,7 +14,7 @@ export default function BoatDateTimePicker(props) {
                 minDate={today}
                 onChange={date => props.setStartDateTime(date)}
                 showTimeSelect
-                placeholderText="Bitte wählen"
+                placeholderText="Von"
                 dateFormat="MMMM d, yyyy h:mm aa"
 
             />
@@ -23,7 +23,7 @@ export default function BoatDateTimePicker(props) {
                 minDate={props.startDateTime}
                 onChange={date => props.setEndDateTime(date)}
                 showTimeSelect
-                placeholderText="Bitte wählen"
+                placeholderText="Bis"
                 dateFormat="MMMM d, yyyy h:mm aa"
             />
           </div>

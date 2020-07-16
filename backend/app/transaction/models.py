@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from ..event.models import Event
 from ..invoice.models import Invoice
 
 User = get_user_model()
@@ -14,6 +15,8 @@ class Transaction(models.Model):
 
     invoice = models.ForeignKey(to=Invoice, related_name='transactions', blank=True
                                 , on_delete=models.SET_NULL, null=True)
+    event = models.ForeignKey(to=Event, related_name='transactions', blank=True
+                              , on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(to=User, related_name='transactions', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):

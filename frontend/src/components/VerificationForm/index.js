@@ -173,10 +173,10 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='zip'>PLZ</label>
+                        <label htmlFor='zip-code'>PLZ</label>
                         <input
-                            id='zip'
-                            name='zip'
+                            id='zip-code'
+                            name='zip_code'
                             onChange={(e) => onChangeHandler(e)}
                         />
                     </div>

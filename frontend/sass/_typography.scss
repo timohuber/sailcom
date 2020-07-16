@@ -48,3 +48,31 @@ h3 {
     }
 }
 
+/* document icons */
+a.document {
+  display: flex;
+  align-items: center;
+}
+a.document.pdf:before {
+   font-family: 'Font Awesome 5 Free';
+   content: '\f1c1';
+   margin-right: 12px;
+  font-size: rem(22px);
+}
+
+/* tables */
+
+table.simple {
+  width: 100%;
+  margin-bottom: $gap-width;
+
+  thead {
+    font-weight: bold;
+  }
+
+  td {
+    border-bottom: 1px solid $border-color;
+    padding: 8px;
+  }
+}
+

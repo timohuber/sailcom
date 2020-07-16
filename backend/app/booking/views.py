@@ -26,14 +26,14 @@ class ListCreateBookingsView(ListCreateAPIView):
         until_date_time = request.data.get('until_date_time')
         from_date_time = request.data.get('from_date_time')
 
-        if from_date_time > until_date_time:
+        if from_date_time >= until_date_time:
             res = {
-                "Buchungsanfang ist nach Buchungsende"
+                "Buchungsende ist nicht nach Buchungsanfang"
             }
             return HttpResponse(res, status=400)
         if self.request.data.get('boat') == None:
             res = {
-                "Bitte Boot Angeben"
+                "Bitte Boot auswählen"
             }
             return HttpResponse(res, status=400)
         existing_bookings = Booking.objects.filter(Q(boat__id__exact=self.request.data.get('boat'))) \
@@ -55,9 +55,6 @@ class ListCreateBookingsView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.is_valid()
-        breakpoint = 'test'
-
-
 
         # calculate booking duration
         until_date_time = serializer.validated_data.get('until_date_time')

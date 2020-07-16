@@ -8,13 +8,13 @@ export default function EventParticipationModal(props) {
     const toggleEventParticipation = (e) => {
         e.preventDefault()
         const config = {
-            method: 'PATCH',
+            method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
             })
         }
-        const response = fetch(baseUrl + `event/${event.id}/`, config)
+        const response = fetch(baseUrl + `event/register/${event.id}/`, config)
         .then(res => {
             console.log(res)
             return res.json()

@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
-import {NotQualifiedButton, BookBoatButton, ToLoginPageButton} from './buttons'
+import {NotQualifiedButton, BookBoatButton, ToLoginPageButton, ToEventsPage} from './buttons'
 import {PricesTable} from './prices'
 import BoatCalendar from './calendar'
 import BoatDateTimePicker from "./datepicker";
+import BoatDocuments from './documents'
+import BoatTechnicalData from './technicalData'
 import BookingForm from '../BookingForm'
 import {connect} from "react-redux";
+
+import DefaultHeroImage from '../../../assets/default-hero-image.jpg'
+import LicenceDefault from "../../../assets/pdf.svg";
 
 function BoatDetailContainer(props) {
     const [startDateTime, setStartDateTime] = useState();
@@ -23,8 +28,15 @@ function BoatDetailContainer(props) {
         e.preventDefault()
         setBookingModal(true)
     }
+    const heroImageStyle = {
+        backgroundImage: boat.images.length > 0 ? `url(${boat.images[0].image})` : `url(${DefaultHeroImage})`
+        // backgroundImage: `url(${DefaultHeroImage})`,
+    }
 
+    console.log(boat)
     return (
+        <>
+        <div className='hero-image boat' style={heroImageStyle}></div>
         <div className='main-wrapper boat-detail-container'>
             <h1>{boat.title}</h1>
             <p className='subtitle'>{boat.mooring.lake.title}, {boat.mooring.address}</p>
@@ -33,18 +45,39 @@ function BoatDetailContainer(props) {
                     <ToLoginPageButton /> :
                     instructed ?
                     <BookBoatButton triggerBookingModal={triggerBookingModal}/> :
-                    <NotQualifiedButton />
+                    <>
+                        <NotQualifiedButton />
+                       <ToEventsPage />
+                   </>
                 }
             </div>
             <PricesTable boat={boat} />
-            <BoatDateTimePicker setStartDateTime={setStartDateTime} setEndDateTime={setEndDateTime} startDateTime={startDateTime} endDateTime={endDateTime}/>
-            <BoatCalendar boat={boat} />
+            <div className='detail-description'>
+                {boat.detail_description}
+            </div>
             {
-                bookingModal ?
-                <BookingForm from={startDateTime} until={endDateTime} boat={boat}/> :
-                null
+                boat.boat_documents.length > 0
+                ? <BoatDocuments documents={boat.boat_documents}/>
+                : null
             }
+            <BoatTechnicalData boat={boat}/>
+            <BoatCalendar boat={boat} />
+            <div className='boat-booking-block'>
+                <h2>Reservierung</h2>
+                <BoatDateTimePicker setStartDateTime={setStartDateTime} setEndDateTime={setEndDateTime} startDateTime={startDateTime} endDateTime={endDateTime}/>
+
+                {props.authorized
+                    ? <BookBoatButton triggerBookingModal={triggerBookingModal}/>
+                    : null
+                }
+                {
+                    bookingModal ?
+                    <BookingForm from={startDateTime} until={endDateTime} boat={boat}/> :
+                    null
+                }
+            </div>
         </div>
+        </>
     );
 };
 
