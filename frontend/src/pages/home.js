@@ -83,6 +83,13 @@ export default function HomePage(props) {
                         <Link to='/registrierung'>Account</Link> und nimm an
                         unseren öffentlichen
                         <Link to='/community/events'> Segel-Events</Link> teil.
+                        <div className='button-container'>
+                            <Link to='/registrierung'>
+                                <button className='btn primary'>
+                                    Mitglied werden
+                                </button>
+                            </Link>
+                        </div>
                     </p>
                 </div>
             </div>

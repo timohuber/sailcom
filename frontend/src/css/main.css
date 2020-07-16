@@ -232,6 +232,8 @@ form.col-2 .input-container {
       margin-bottom: 30px; }
     #mobile-navigation nav ul.level-1 > li > a {
       font-size: 2rem; }
+  #mobile-navigation a {
+    color: #fff; }
 
 #mobile-navigation.open {
   transform: translateY(0px); }
@@ -240,6 +242,14 @@ form.col-2 .input-container {
   max-width: 1200px;
   margin: auto;
   padding: calc(30px / 2); }
+
+.grid-col-5 {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 30px; }
+  .grid-col-5 > div {
+    margin-bottom: 30px; }
 
 .grid-col-3 {
   max-width: 1200px;
@@ -254,10 +264,12 @@ form.col-2 .input-container {
     grid-column: 2 / 4; } }
 
 @media (max-width: 768px) {
+  .grid-col-5,
   .grid-col-3 {
     grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 575px) {
+  .grid-col-5,
   .grid-col-3 {
     grid-template-columns: repeat(1, 1fr); } }
 
@@ -328,3 +340,28 @@ form.col-2 .input-container {
 
 .modal {
   padding: calc(30px / 2); }
+
+.footer-wrapper {
+  padding-top: 20px;
+  background-color: #2c5d7b;
+  width: 100%;
+  color: #fff; }
+  .footer-wrapper h3 {
+    text-transform: uppercase; }
+  .footer-wrapper a {
+    color: #fff;
+    font-weight: normal; }
+  .footer-wrapper p {
+    margin-bottom: 0px; }
+
+.icon-email:before {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f0e0';
+  margin-right: 12px;
+  font-size: 1rem; }
+
+.icon-phone:before {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f095';
+  margin-right: 12px;
+  font-size: 1rem; }

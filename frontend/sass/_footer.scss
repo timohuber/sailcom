@@ -1,0 +1,30 @@
+.footer-wrapper {
+    padding-top: 20px;
+    background-color: $brand-color;
+    width: 100%;
+    color: #fff;
+    h3 {
+        text-transform: uppercase;
+    }
+    a {
+        color: #fff;
+        font-weight: normal;
+    }
+    p {
+        margin-bottom: 0px;
+    }
+}
+
+.icon-email:before {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f0e0';
+    margin-right: 12px;
+    font-size: $base-font-size;
+}
+
+.icon-phone:before {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f095';
+    margin-right: 12px;
+    font-size: $base-font-size;
+}
