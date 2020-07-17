@@ -21,3 +21,25 @@
         }
     }
 }
+
+
+/* Transaction */
+.transaction-list-element.header {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: $brand-color;
+}
+
+.transaction-list-element {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid $border-color;
+
+    & > div {
+        padding: 8px;
+    }
+}
+
+.transaction-list-element-wrapper > .transaction-list-element:nth-child(even) {
+    background-color: #e8e8e8;
+}

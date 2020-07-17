@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
+import UserTransactions from '../components/UserTransactions'
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
 
@@ -28,6 +29,7 @@ function MyProfilePage(props) {
             ) : (<>
                 <UserDocumentsForm userData={props.userData} />
                 <UserAddressForm userData={props.userData} />
+                <UserTransactions />
                 </>
             )}
         </div>
