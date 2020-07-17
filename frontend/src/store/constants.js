@@ -27,3 +27,12 @@ export const countrySelection = [
     { key: 'uk', value: 'Vereinigtes Königreich' },
     { key: 'other', value: 'Andere' },
 ];
+
+export const authenticatedGetConfig =
+    {
+        method: 'GET',
+        headers: new Headers({
+        'Content-Type': 'application/json',
+         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        })
+    }

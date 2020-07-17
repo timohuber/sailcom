@@ -41,6 +41,8 @@ function BoatDetailContainer(props) {
     if(startDateTime) {
         console.log(startDateTime)
         const newDate = startDateTime - startDateTime.getTimezoneOffset() * 60000
+        console.log(startDateTime.toString())
+
         console.log(startDateTime.toISOString())
     }
 

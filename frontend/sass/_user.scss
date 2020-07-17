@@ -1,0 +1,23 @@
+.search-user-from {
+  margin-bottom: $gap-width;
+}
+
+.user-list-element{
+  display: flex;
+  flex-display: row;
+  margin-bottom: $gap-width;
+
+  .user-list-avatar {
+    width: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    flex-grow: 0;
+    margin-right: $gap-width;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+  }
+}

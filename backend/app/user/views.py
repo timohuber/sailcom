@@ -13,17 +13,11 @@ User = get_user_model()
 
 
 class ListUserView(RetrieveAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
     # TODO
     # add permission class, only staff
-
-    def get_queryset(self):
-        param = self.request.GET.get('search', '')
-        if param != '':
-            return User.objects.filter(Q(email__contains=param)
-                                       | Q(first_name__contains=param)
-                                       | Q(last_name__contains=param))
 
 
 class ListUsersView(ListAPIView):
@@ -31,6 +25,9 @@ class ListUsersView(ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['first_name', 'last_name', 'email']
+
+    # TODO
+    # add permission class, only staff
 
 
 class ListMe(RetrieveUpdateAPIView):
