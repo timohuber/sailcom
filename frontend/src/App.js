@@ -19,6 +19,7 @@ import VerificationPage from './pages/verification';
 import MyProfilePage from './pages/my-profile';
 import BoatDetailPage from './pages/boatdetails';
 import EventPage from './pages/events';
+import BoatSharing from './pages/boat-sharing';
 import Genossenschaft from './pages/genossenschaft';
 
 // remove
@@ -39,6 +40,7 @@ function App() {
                         <Redirect to='/intro' />
                     </Route>
                     <Route exact path='/home' component={Home} />
+                    <Route exact path='/boat-sharing' component={BoatSharing} />
                     <Route exact path='/login' component={Login} />
                     <Route
                         exact
