@@ -15,7 +15,6 @@ export default function BoatDateTimePicker(props) {
                     showTimeSelect
                     placeholderText="Von"
                     dateFormat="MMMM d, yyyy h:mm aa"
-
                 />
                 <DatePicker
                     selected={props.endDateTime ? props.endDateTime : null}

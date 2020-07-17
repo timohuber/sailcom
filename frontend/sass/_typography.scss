@@ -54,6 +54,11 @@ h4 {
     }
 }
 
+.error {
+    color: $error-color;
+    font-size: $smaller-font-size;
+}
+
 /* document icons */
 a.document {
   display: flex;

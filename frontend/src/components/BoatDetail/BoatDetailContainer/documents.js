@@ -2,7 +2,9 @@ import React from 'react';
 
 export default function BoatDocuments(props) {
     const documents = props.documents
-    console.log(documents)
+    if(!documents.length) {
+        return null
+    }
     return (
         <div className='boat-documents'>
             <p><strong>Dokumente</strong></p>
