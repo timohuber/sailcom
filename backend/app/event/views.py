@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponse
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, ListCreateAPIView, CreateAPIView
 
@@ -21,10 +22,29 @@ class ListEventsView(ListCreateAPIView):
     def get_queryset(self):
         return Event.objects.filter(from_date_time__gte=datetime.now())
 
+    def post(self, request, *args, **kwargs):
+        overlapping_bookings = Boat.objects.filter(id=self.request.data['boat']).filter(
+            (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
+             & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
+            |
+            (Q(bookings__from_date_time__lte=self.request.data['until_date_time'])
+             & Q(bookings__until_date_time__gte=self.request.data['until_date_time']))
+            |
+            (Q(bookings__from_date_time__gte=self.request.data['from_date_time'])
+             & Q(bookings__from_date_time__lte=self.request.data['until_date_time']))
+            |
+            (Q(bookings__until_date_time__gte=self.request.data['from_date_time'])
+             & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
+
+        )
+        if len(overlapping_bookings) > 0:
+            return HttpResponse('Das Boot ist leider schon besetzt', status=400)
+        return self.create(request, *args, **kwargs)
+
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user,
                         boat_model=BoatModel.objects.get(id=Boat.objects.get(id=self.request.data['boat']).model.id))
-        return HttpResponse('New event created', status=200)
+        return HttpResponse('Neue Veranstaltung wurde erstellt', status=200)
 
 
 class ListEventView(RetrieveUpdateAPIView):
