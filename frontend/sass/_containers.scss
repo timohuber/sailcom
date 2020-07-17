@@ -14,6 +14,16 @@
     }
 }
 
+.grid-col-4 {
+    max-width: $page-width;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: $gap-width;
+    & > div {
+        margin-bottom: $gap-width;
+    }
+}
+
 .grid-col-3 {
     max-width: $page-width;
     display: grid;

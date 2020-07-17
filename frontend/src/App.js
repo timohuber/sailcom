@@ -20,6 +20,7 @@ import MyProfilePage from './pages/my-profile';
 import BoatDetailPage from './pages/boatdetails';
 import EventPage from './pages/events';
 import BoatSharing from './pages/boat-sharing';
+import Genossenschaft from './pages/genossenschaft';
 
 // remove
 import Components from './pages/components';
@@ -41,6 +42,11 @@ function App() {
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/boat-sharing' component={BoatSharing} />
                     <Route exact path='/login' component={Login} />
+                    <Route
+                        exact
+                        path='/genossenschaft'
+                        component={Genossenschaft}
+                    />
                     <Route
                         exact
                         path='/registrierung'
