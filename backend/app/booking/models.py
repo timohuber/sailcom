@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -54,8 +55,6 @@ def create_trans(sender, instance, created, **kwargs):
                     + instance.weekend_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
         trx = Transaction.objects.create(sent=False, price=price, user=instance.user)
         Booking.objects.filter(id=instance.id).update(transaction=trx)
-
-
 
 
 @receiver(post_save, sender=Event)
