@@ -105,3 +105,18 @@
 
   }
 }
+
+/* Carousel */
+.boat-carousel {
+  margin-bottom: $gap-width;
+}
+
+.carousel-slider .slide > div {
+  padding-top: 60%;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-status, thumbs-wrapper {
+  display: none;
+}
