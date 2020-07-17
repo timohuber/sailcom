@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 from django.http import HttpResponse
 from rest_framework.generics import RetrieveAPIView, ListAPIView, RetrieveUpdateAPIView, CreateAPIView
 
@@ -12,8 +13,17 @@ User = get_user_model()
 
 
 class ListUserView(RetrieveAPIView):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    # TODO
+    # add permission class, only staff
+
+    def get_queryset(self):
+        param = self.request.GET.get('search', '')
+        if param != '':
+            return User.objects.filter(Q(email__contains=param)
+                                       | Q(first_name__contains=param)
+                                       | Q(last_name__contains=param))
 
 
 class ListUsersView(ListAPIView):
