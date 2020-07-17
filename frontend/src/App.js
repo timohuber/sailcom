@@ -16,7 +16,7 @@ import Login from './pages/login';
 import RegistrationPage from './pages/register';
 import BoatsListPage from './pages/boatslistpage';
 import VerificationPage from './pages/verification';
-import MyProfilePage from './pages/my-profile';
+import MyProfilePage from './pages/profile';
 import BoatDetailPage from './pages/boatdetails'
 import EventPage from './pages/events'
 
@@ -34,7 +34,7 @@ function App() {
         <div className='App'>
             <BrowserRouter>
                 <Header />
-                    <main>
+                    <main className='main-container'>
                         <Route exact path='/'>
                             <Redirect to='/intro' />
                         </Route>
@@ -57,3 +57,4 @@ function App() {
 }
 
 export default App;
+
