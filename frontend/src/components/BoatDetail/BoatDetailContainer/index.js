@@ -7,7 +7,7 @@ import BoatDocuments from './documents'
 import BoatTechnicalData from './technicalData'
 import BookingForm from '../BookingForm'
 import {connect} from "react-redux";
-
+import {smoothScroll} from '../../../lib/helpers/scroll'
 import DefaultHeroImage from '../../../assets/default-hero-image.jpg'
 import LicenceDefault from "../../../assets/pdf.svg";
 
@@ -26,7 +26,14 @@ function BoatDetailContainer(props) {
 
     const triggerBookingModal = (e) => {
         e.preventDefault()
-        setBookingModal(true)
+        if (!startDateTime || !endDateTime) {
+            smoothScroll('.boat-booking-block')
+            document.getElementById('datepicker-error').innerText = 'Bitte geben Sie den Zeitraum an'
+        } else {
+            setBookingModal(true)
+            document.getElementById('datepicker-error').innerText = ''
+        }
+
     }
     const heroImageStyle = {
         backgroundImage: boat.images.length > 0 ? `url(${boat.images[0].image})` : `url(${DefaultHeroImage})`
