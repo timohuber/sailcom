@@ -11,19 +11,19 @@ export default function MobileNavigation(props) {
     for (const anchor of anchors) {
         anchor.addEventListener('click', toggleMobileNavigation)
     }
-
+    console.log(props)
     return (
         <div id="mobile-navigation">
             <nav>
                 <ul className='level-1'>
                     <li>
-                        <NavLink to='/'>SailCom</NavLink>
+                        <NavLink to='/home'>SailCom</NavLink>
                         <ul className='level-2'>
                             <li>
-                                <NavLink to='/'>Boat Sharing</NavLink>
+                                <NavLink to='/boat-sharing'>Boat Sharing</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Genossenschaft</NavLink>
+                                <NavLink to='/genossenschaft'>Genossenschaft</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/'>Partner</NavLink>
@@ -31,27 +31,27 @@ export default function MobileNavigation(props) {
                         </ul>
                     </li>
                     <li>
-                        <NavLink to='/'>Boote</NavLink>
+                        <NavLink to='/bootsliste'>Boote</NavLink>
                         <ul className='level-2'>
                             <li>
-                                <NavLink to='/'>Flotte</NavLink>
+                                <NavLink to='/bootsliste'>Flotte</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/'>Standorte</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Bootsliste</NavLink>
+                                <NavLink to='/bootsliste'>Bootsliste</NavLink>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <NavLink to='/'>Community</NavLink>
+                        <NavLink to='/information'>Community</NavLink>
                        <ul className='level-2'>
                             <li>
-                                <NavLink to='/'>Information</NavLink>
+                                <NavLink to='/information'>Information</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Veranstaltungen</NavLink>
+                                <NavLink to='/events'>Veranstaltungen</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/'>Sailing Ladies</NavLink>
@@ -61,12 +61,14 @@ export default function MobileNavigation(props) {
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <NavLink to='/'>Beitreten</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/my-profile'>Profil</NavLink>
-                    </li>
+                    {
+                        props.authorized
+                        ? <li><NavLink to='/profil'>Profil</NavLink></li>
+                        :   <>
+                                <li><NavLink to='/login'>Login</NavLink></li>
+                                <li><NavLink to='/registrierung'>Beitreten</NavLink></li>
+                            </>
+                    }
                 </ul>
             </nav>
         </div>

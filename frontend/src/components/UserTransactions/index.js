@@ -5,7 +5,7 @@ import Loading from '../GenericLoading';
 import {baseUrl} from "../../store/constants";
 
 function UserTransactions(props) {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

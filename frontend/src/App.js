@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchUserData } from './store/actions/loginActions';
-
+import authComponent from './hoc/authHOC'
 import './css/main.css';
 
 // components
@@ -21,6 +21,7 @@ import BoatDetailPage from './pages/boatdetails';
 import EventPage from './pages/events';
 import BoatSharing from './pages/boat-sharing';
 import Genossenschaft from './pages/genossenschaft';
+import NotFoundPage from './pages/404';
 
 // remove
 import Components from './pages/components';
@@ -41,29 +42,23 @@ function App() {
                     </Route>
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/boat-sharing' component={BoatSharing} />
-                    <Route exact path='/login' component={Login} />
-                    <Route
-                        exact
-                        path='/genossenschaft'
-                        component={Genossenschaft}
-                    />
-                    <Route
-                        exact
-                        path='/registrierung'
-                        component={RegistrationPage}
-                    />
+                    <Route exact path='/genossenschaft' component={Genossenschaft} />
+                    <Route exact path='/login' component={authComponent(Login, true)} />
                     <Route exact path='/bootsliste' component={BoatsListPage} />
                     <Route exact path='/boot/:id' component={BoatDetailPage} />
-                    <Route
-                        exact
-                        path='/verifikation'
-                        component={VerificationPage}
-                    />
+                    <Route exact path='/registrierung' component={authComponent(RegistrationPage, true)} />
+                    <Route exact path='/verifikation' component={authComponent(VerificationPage, true)} />
                     <Route exact path='/intro' component={Intro} />
-                    <Route exact path='/profil' component={MyProfilePage} />
+                    <Route exact path='/profil' component={authComponent(MyProfilePage)} />
                     <Route exact path='/events' component={EventPage} />
-
                     <Route exact path='/components' component={Components} />
+
+
+                    <Route exact path='/404' component={NotFoundPage} />
+                    <Route path=''>
+                        <Redirect to='/404' />
+                    </Route>
+
                 </main>
                 <Footer />
             </BrowserRouter>
