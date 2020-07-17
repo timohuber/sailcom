@@ -414,6 +414,18 @@ form.col-2 .input-container {
   padding: 30px;
   align-items: center; }
 
+/* Carousel */
+.boat-carousel {
+  margin-bottom: 30px; }
+
+.carousel-slider .slide > div {
+  padding-top: 60%;
+  background-size: cover;
+  background-position: center; }
+
+.carousel-status, thumbs-wrapper {
+  display: none; }
+
 .event-list-element {
   margin-bottom: 30px; }
 
@@ -501,6 +513,22 @@ form.col-2 .input-container {
       display: block;
       width: 100%;
       position: relative; }
+
+/* Transaction */
+.transaction-list-element.header {
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #2c5d7b; }
+
+.transaction-list-element {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #E4E4E4; }
+  .transaction-list-element > div {
+    padding: 8px; }
+
+.transaction-list-element-wrapper > .transaction-list-element:nth-child(even) {
+  background-color: #e8e8e8; }
 
 .staff-wrapper {
   align-items: space-between; }
