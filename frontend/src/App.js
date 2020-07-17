@@ -55,10 +55,6 @@ function App() {
 
 
                     <Route exact path='/404' component={NotFoundPage} />
-                    <Route path=''>
-                        <Redirect to='/404' />
-                    </Route>
-
                 </main>
                 <Footer />
             </BrowserRouter>
@@ -67,3 +63,10 @@ function App() {
 }
 
 export default App;
+
+/*
+<Route path=''>
+    <Redirect to='/404' />
+</Route>
+
+* */
