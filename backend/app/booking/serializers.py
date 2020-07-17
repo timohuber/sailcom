@@ -27,7 +27,7 @@ class BookingInBoatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'from_date_time', 'until_date_time', 'duration']
+        fields = ['id', 'user', 'from_date_time', 'until_date_time', 'duration', 'transaction']
 
 
 class CreateBookingSerializer(serializers.ModelSerializer):
@@ -35,7 +35,7 @@ class CreateBookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time', 'duration']
+        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time', 'duration', 'transaction']
 
     def perform_create(self, validated_data):
         instance = Booking.objects.create(
@@ -50,4 +50,10 @@ class BookingInTransactionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ['id', 'boat', 'event', 'from_date_time', 'until_date_time', 'duration']
+        fields = ['id', 'boat', 'event', 'from_date_time', 'until_date_time', 'duration', 'transaction']
+
+
+class NumberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = ('id',)
