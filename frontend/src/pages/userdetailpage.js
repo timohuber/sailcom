@@ -3,6 +3,6 @@ import UserDetail from '../components/UserDetail'
 
 export default function UserDetailPage(props) {
      return (
-        <UserDetail />
+        <UserDetail match={props.match}/>
     );
 }

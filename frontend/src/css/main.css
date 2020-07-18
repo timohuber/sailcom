@@ -555,17 +555,25 @@ form.col-2 .input-container {
 .search-user-from {
   margin-bottom: 30px; }
 
+.user-avatar {
+  border-radius: 50%;
+  background-size: cover; }
+  .user-avatar:before {
+    content: '';
+    display: block;
+    padding-top: 100%; }
+
 .user-list-element {
   display: flex;
   flex-display: row;
   margin-bottom: 30px; }
   .user-list-element .user-list-avatar {
     width: 100px;
-    border-radius: 50%;
-    background-size: cover;
     flex-grow: 0;
     margin-right: 30px; }
-    .user-list-element .user-list-avatar:before {
-      content: '';
-      display: block;
-      padding-top: 100%; }
+
+/* Detail page */
+.user-detail-avatar {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto; }
