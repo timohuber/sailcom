@@ -173,6 +173,15 @@ form.col-2 .input-container {
     padding: 8px;
     color: inherit;
     font-size: inherit;
+    font-family: inherit;
+    margin-bottom: 15px; }
+  .input-wrapper textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: calc(30px / 2);
+    border: 1px solid #e4e4e4;
+    color: inherit;
+    font-size: inherit;
     font-family: inherit; }
   .input-wrapper .error {
     color: #D01017;
@@ -371,31 +380,37 @@ form.col-2 .input-container {
 .boat-datepicker-container {
   width: 100%; }
 
+#boat-datepicker .react-datepicker__input-container {
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+#event-datepicker,
 #boat-datepicker {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 30px; }
-  #boat-datepicker .react-datepicker__input-container {
-    padding-top: 8px;
-    padding-bottom: 8px; }
-    #boat-datepicker .react-datepicker__input-container:before {
-      font-family: 'Font Awesome 5 Free';
-      content: '\f073';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 12px;
-      z-index: 1; }
-    #boat-datepicker .react-datepicker__input-container input {
-      padding: 12px;
-      padding-left: 40px;
-      border: 1px solid #E4E4E4;
-      position: relative;
-      background-color: #fff;
-      width: 100%; }
+  #event-datepicker .react-datepicker__input-container:before,
+  #boat-datepicker .react-datepicker__input-container:before {
+    font-family: 'Font Awesome 5 Free';
+    content: '\f073';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    z-index: 1; }
+  #event-datepicker .react-datepicker__input-container input,
+  #boat-datepicker .react-datepicker__input-container input {
+    padding: 12px;
+    padding-left: 40px;
+    border: 1px solid #E4E4E4;
+    position: relative;
+    background-color: #fff;
+    width: 100%; }
+  #event-datepicker .react-datepicker-popper,
   #boat-datepicker .react-datepicker-popper {
     z-index: 6; }
+  #event-datepicker #datepicker-error,
   #boat-datepicker #datepicker-error {
     color: #D01017;
     font-size: 0.875rem;

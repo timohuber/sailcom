@@ -45,6 +45,12 @@
   width: 100%;
 }
 
+#boat-datepicker .react-datepicker__input-container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#event-datepicker,
 #boat-datepicker {
   display: flex;
   flex-direction: column;
@@ -52,8 +58,6 @@
   margin-bottom: $gap-width;
 
  .react-datepicker__input-container {
-   padding-top: 8px;
-   padding-bottom: 8px;
 
    &:before {
      font-family: 'Font Awesome 5 Free';

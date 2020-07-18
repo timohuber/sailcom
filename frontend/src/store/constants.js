@@ -13,7 +13,8 @@ export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
 // export const baseUrl = 'http://localhost:8000/backend/api/';
 
-export const SET_EVENT_MODAL = 'SET_EVENT_MODAL'
+export const SET_EVENT_MODAL = 'SET_EVENT_MODAL';
+export const WHERE_CREW = 'WHERE_CREW';
 
 export const countrySelection = [
     { key: 'switzerland', value: 'Schweiz' },
@@ -26,4 +27,10 @@ export const countrySelection = [
     { key: 'spain', value: 'Spanien' },
     { key: 'uk', value: 'Vereinigtes Königreich' },
     { key: 'other', value: 'Andere' },
+];
+
+export const eventType = [
+    { key: 'einweisungen', value: 'Einweisungen' },
+    { key: 'mitsegeln', value: 'Mitsegeln' },
+    { key: 'sailingladies', value: 'SailingLadies' },
 ];

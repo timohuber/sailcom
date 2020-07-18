@@ -58,6 +58,17 @@ form.col-2 .input-container {
         color: inherit;
         font-size: inherit;
         font-family: inherit;
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: calc(30px / 2);
+        border: 1px solid #e4e4e4;
+        color: inherit;
+        font-size: inherit;
+        font-family: inherit;
     }
 
     .error {
