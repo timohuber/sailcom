@@ -16,7 +16,7 @@ import Login from './pages/login';
 import RegistrationPage from './pages/register';
 import BoatsListPage from './pages/boatslistpage';
 import VerificationPage from './pages/verification';
-import MyProfilePage from './pages/my-profile';
+import MyProfilePage from './pages/profile';
 import BoatDetailPage from './pages/boatdetails';
 import EventPage from './pages/events';
 import BoatSharing from './pages/boat-sharing';
@@ -24,6 +24,7 @@ import Genossenschaft from './pages/genossenschaft';
 import NotFoundPage from './pages/404';
 import UserSearchPage from './pages/userlistpage'
 import UserDetailPage from './pages/userdetailpage'
+
 
 // remove
 import Components from './pages/components';
@@ -57,7 +58,7 @@ function App() {
                     <Route exact path='/mitglieder' component={UserSearchPage} />
                     <Route exact path='/mitglied/:id' component={UserDetailPage} />
 
-                <Route exact path='/components' component={Components} />
+                    <Route exact path='/components' component={Components} />
                     <Route exact path='/404' component={NotFoundPage} />
                 </main>
                 <Footer />
@@ -73,4 +74,6 @@ export default App;
     <Redirect to='/404' />
 </Route>
 
-* */
+*/
+
+

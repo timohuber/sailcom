@@ -3,7 +3,11 @@ import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
+<<<<<<< HEAD:frontend/src/pages/my-profile.js
 import UserTransactions from '../components/UserTransactions'
+=======
+import Accordion from '../components/Accordion';
+>>>>>>> accordion:frontend/src/pages/profile.js
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
 
@@ -21,15 +25,35 @@ function MyProfilePage(props) {
         }
     }, [props]);
 
+
+    const content = [
+        {
+            title: 'Adresse',
+            content: <UserAddressForm userData={props.userData} />,
+        },
+        {
+            title: 'Dokumente',
+            content: <UserDocumentsForm userData={props.userData} />,
+        },
+        {
+            title: 'accordion 3',
+            content: 'Lorem ipsum...',
+        },
+    ];
+
     // TODO: uncomment create tabs for each component
     return (
         <div className='main-wrapper'>
                 {loading ? (
                 <Loading />
             ) : (<>
+<<<<<<< HEAD:frontend/src/pages/my-profile.js
                 <UserDocumentsForm userData={props.userData} />
                 <UserAddressForm userData={props.userData} />
                 <UserTransactions />
+=======
+                    <Accordion content={content}/>    
+>>>>>>> accordion:frontend/src/pages/profile.js
                 </>
             )}
         </div>
