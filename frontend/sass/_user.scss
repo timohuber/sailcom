@@ -1,0 +1,34 @@
+.search-user-from {
+  margin-bottom: $gap-width;
+}
+
+.user-avatar {
+    border-radius: 50%;
+    background-size: cover;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+}
+
+.user-list-element{
+  display: flex;
+  flex-display: row;
+  margin-bottom: $gap-width;
+
+  .user-list-avatar {
+    width: 100px;
+    flex-grow: 0;
+    margin-right: $gap-width;
+
+  }
+}
+
+/* Detail page */
+.user-detail-avatar {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}

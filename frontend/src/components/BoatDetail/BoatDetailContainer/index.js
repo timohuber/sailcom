@@ -38,12 +38,6 @@ function BoatDetailContainer(props) {
         backgroundImage: boat.images.length > 0 ? `url(${boat.images[0].image})` : `url(${DefaultHeroImage})`
     }
 
-    if(startDateTime) {
-        console.log(startDateTime)
-        const newDate = startDateTime - startDateTime.getTimezoneOffset() * 60000
-        console.log(startDateTime.toISOString())
-    }
-
     return (
         <>
         {

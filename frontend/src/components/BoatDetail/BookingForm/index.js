@@ -3,7 +3,7 @@ import Loading from '../../GenericLoading'
 import BookingSuccess from './success'
 import {connect} from "react-redux";
 import {baseUrl} from "../../../store/constants";
-import {dateToISOString} from '../../../lib/helpers/formatDates'
+import {dateToISOString, dateToDisplayString} from '../../../lib/helpers/formatDates'
 
 function BookingForm(props) {
     const [calculatedPrice, setCalculatedPrice] = useState();
@@ -12,6 +12,12 @@ function BookingForm(props) {
 
     const from = dateToISOString(props.from)
     const until = dateToISOString(props.until)
+    console.log('props.from', props.from)
+    console.log('props.until', props.until)
+    console.log('from - display', dateToDisplayString(from))
+    console.log('until - display', dateToDisplayString(until))
+    console.log('ISO', from)
+    console.log('ISO', until)
 
     const config = {
         method: 'POST',

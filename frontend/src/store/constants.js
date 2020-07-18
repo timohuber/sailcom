@@ -29,8 +29,20 @@ export const countrySelection = [
     { key: 'other', value: 'Andere' },
 ];
 
+
+export const authenticatedGetConfig =
+    {
+        method: 'GET',
+        headers: new Headers({
+        'Content-Type': 'application/json',
+         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        })
+    }
+
+
 export const eventType = [
     { key: 'einweisungen', value: 'Einweisungen' },
     { key: 'mitsegeln', value: 'Mitsegeln' },
     { key: 'sailingladies', value: 'SailingLadies' },
 ];
+
