@@ -30,7 +30,7 @@ export const countrySelection = [
 ];
 
 export const eventType = [
-    { key: 'einweisungen', value: 'Einweisungen' },
-    { key: 'mitsegeln', value: 'Mitsegeln' },
-    { key: 'sailingladies', value: 'SailingLadies' },
+    { key: 1, value: 'Einweisungen' },
+    { key: 2, value: 'Mitsegeln' },
+    { key: 3, value: 'SailingLadies' },
 ];
