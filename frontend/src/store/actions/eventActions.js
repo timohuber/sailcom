@@ -40,4 +40,3 @@ export const createEventAction = (data) => async (dispatch) => {
         return error
     }
 };
-

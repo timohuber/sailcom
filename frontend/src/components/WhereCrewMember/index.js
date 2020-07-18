@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
-import 'react-datepicker/dist/react-datepicker.css';
+
 import Loading from '../../components/GenericLoading';
-import {
-    whereIsCurrentUserCrewMemberAction,
-    createEventAction,
-} from '../../store/actions/eventActions';
+import { whereIsCurrentUserCrewMemberAction } from '../../store/actions/eventActions';
 
 function WhereCrewMemberForm(props) {
     const dispatch = useDispatch();
-    let requiredFieldsOK = true;
-    const initialState = {};
-
-    const [value, setValue] = useState(initialState);
 
     useEffect(() => {
         if (props.whereCrew) {
@@ -20,30 +13,6 @@ function WhereCrewMemberForm(props) {
             dispatch(whereIsCurrentUserCrewMemberAction());
         }
     }, []);
-
-    const onChangeHandler = (e) => {
-        setValue({
-            boat: e.currentTarget.selectedOptions[0].getAttribute('id'),
-        });
-    };
-
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-        const requiredFields = document.querySelectorAll('.required');
-
-        requiredFields.forEach((field) => {
-            if (!field.value) {
-                field.nextElementSibling.style.opacity = '1';
-                requiredFieldsOK = false;
-            } else {
-                field.nextElementSibling.style.opacity = '0';
-            }
-        });
-
-        if (requiredFieldsOK) {
-            dispatch(createEventAction(value));
-        }
-    };
 
     const formHandler = () => {
         return (
@@ -79,6 +48,7 @@ const mapStateToProps = (state) => {
         whereCrew: state.events.whereCrew,
     };
 };
+
 const connection = connect(mapStateToProps);
 const ConnectedWhereCrewMemberForm = connection(WhereCrewMemberForm);
 
