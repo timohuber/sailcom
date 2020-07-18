@@ -61,25 +61,19 @@ h3 {
   margin-top: 0;
   margin-bottom: 12px; }
 
-<<<<<<< HEAD
 h4 {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 1px; }
 
-=======
->>>>>>> accordion
 @media (max-width: 768px) {
   h1 {
     font-size: 1.25rem; } }
 
-<<<<<<< HEAD
 .error {
   color: #D01017;
   font-size: 0.875rem; }
 
-=======
->>>>>>> accordion
 /* document icons */
 a.document {
   display: flex;
@@ -539,7 +533,6 @@ form.col-2 .input-container {
       width: 100%;
       position: relative; }
 
-<<<<<<< HEAD
 /* Transaction */
 .transaction-list-element.header {
   font-weight: bold;
@@ -599,7 +592,7 @@ form.col-2 .input-container {
   max-width: 200px;
   margin-left: auto;
   margin-right: auto; }
-=======
+
 .accordion-wrapper {
   width: 100%; }
   .accordion-wrapper section button.accordion {
@@ -619,4 +612,3 @@ form.col-2 .input-container {
 .panel.open {
   height: auto;
   padding-bottom: 30px; }
->>>>>>> accordion

@@ -3,11 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
-<<<<<<< HEAD:frontend/src/pages/my-profile.js
-import UserTransactions from '../components/UserTransactions'
-=======
 import Accordion from '../components/Accordion';
->>>>>>> accordion:frontend/src/pages/profile.js
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
 
@@ -47,13 +43,7 @@ function MyProfilePage(props) {
                 {loading ? (
                 <Loading />
             ) : (<>
-<<<<<<< HEAD:frontend/src/pages/my-profile.js
-                <UserDocumentsForm userData={props.userData} />
-                <UserAddressForm userData={props.userData} />
-                <UserTransactions />
-=======
-                    <Accordion content={content}/>    
->>>>>>> accordion:frontend/src/pages/profile.js
+                    <Accordion content={content}/>
                 </>
             )}
         </div>
