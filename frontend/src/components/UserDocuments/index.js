@@ -82,7 +82,7 @@ export default function UserDocumentsForm(props) {
                         <h2>Mein Profilbild</h2>
                         <div className='input-wrapper user-documents-img-btn-wrapper'>
                             <div
-                                className='user-document-list-image'
+                                className='user-document-list-image avatar'
                                 style={avatarStyle}
                             />
                             <label htmlFor='avatar' className='btn primary'>

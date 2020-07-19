@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-
 import {toggleMobileNavigation} from "./functions";
+import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
 
 export default function MobileNavigation(props) {
 
@@ -13,8 +13,12 @@ export default function MobileNavigation(props) {
         })
     }
 
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundSVG})`
+    }
+
     return (
-        <div id="mobile-navigation">
+        <div id="mobile-navigation" style={backgroundStyle}>
             <nav>
                 <ul className='level-1'>
                     <li>

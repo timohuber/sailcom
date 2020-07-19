@@ -15,14 +15,13 @@ function BookingForm(props) {
     const from = dateToISOString(props.from)
     const until = dateToISOString(props.until)
 
-    /*
     console.log('props.from', props.from)
     console.log('props.until', props.until)
     console.log('from - display', dateToDisplayString(from))
     console.log('until - display', dateToDisplayString(until))
     console.log('ISO', from)
     console.log('ISO', until)
-    */
+
 
     const config = {
         method: 'POST',

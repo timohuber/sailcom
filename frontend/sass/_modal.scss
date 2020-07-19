@@ -7,7 +7,6 @@
   width: 100%;
   height: 100vh;
   z-index: 5;
-
   display: flex;
 
   .inner {
@@ -16,6 +15,7 @@
     display: flex;
     width: 100%;
     position: relative;
+    border-radius: $large-border-radius;
   }
 
   .modal-close-icon {
