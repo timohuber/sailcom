@@ -251,7 +251,6 @@ export default function VerificationForm(props) {
                             style={{ display: 'none' }}
                         />
                         <span id='licence-error' className='error' data-key='licence'>
-                            Dieses Bild wird benötigt.
                         </span>
                     </div>
 
