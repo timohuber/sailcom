@@ -9,7 +9,18 @@ const userUpdate = (data) => {
     };
 };
 
-export const updateUserAction = (config) => async (dispatch, getState) => {
+export const updateUserAction = (data) => async (dispatch, getState) => {
+    const config =
+    {
+        method: 'PATCH',
+        headers: new Headers({
+        'Content-Type': 'application/json',
+         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }),
+        body: JSON.stringify({
+            data
+        }),
+    }
     const response = fetch(baseUrl + 'user/me/', config)
         .then((response) => response.json())
         .then((data) => {

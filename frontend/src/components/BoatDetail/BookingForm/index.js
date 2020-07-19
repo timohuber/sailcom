@@ -12,12 +12,15 @@ function BookingForm(props) {
 
     const from = dateToISOString(props.from)
     const until = dateToISOString(props.until)
+
+    /*
     console.log('props.from', props.from)
     console.log('props.until', props.until)
     console.log('from - display', dateToDisplayString(from))
     console.log('until - display', dateToDisplayString(until))
     console.log('ISO', from)
     console.log('ISO', until)
+    */
 
     const config = {
         method: 'POST',
@@ -39,8 +42,8 @@ function BookingForm(props) {
             setCalculatedPrice(data);
             setLoading(false)
         })
-        .catch(response => {
-            return
+        .catch(error => {
+            console.log('in error', error)
         })
     }, [])
 
@@ -49,11 +52,8 @@ function BookingForm(props) {
 
         const response = fetch(baseUrl + 'booking/', config)
         .then(res => {
-            console.log(res)
             if(!res.ok) {
-                res.text().then(text => {
-                    document.getElementById('booking-error').innerText = text
-                })
+                throw res
             }
             if (res.status === 201) {
                 setSuccess(true)
@@ -62,7 +62,10 @@ function BookingForm(props) {
         })
         .then(data => {
         })
-        .catch(response => {
+        .catch(error => {
+            error.text().then( errorMessage => {
+                document.getElementById('booking-error').innerText = errorMessage
+            })
         })
     }
     console.log(calculatedPrice)
@@ -131,3 +134,10 @@ const connection = connect(mapStateToProps);
 const ConnectedBookingForm = connection(BookingForm);
 
 export default ConnectedBookingForm;
+
+/*
+*                 // res.text().then(text => {
+                    throw new Error("Not 2xx response");
+                // })
+*
+* */

@@ -6,29 +6,39 @@ import { eventType } from '../../store/constants';
 import Loading from '../../components/GenericLoading';
 import {
     getEventInformationAction,
-    createEventAction,
+    updateEventAction,
 } from '../../store/actions/eventActions';
+import {
+    dateToISOString,
+    dateToDisplayString
+} from '../../lib/helpers/formatDates';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
+
 
 function EventEditForm(props) {
     const dispatch = useDispatch();
     const today = new Date();
     let requiredFieldsOK = true;
+    //TODO: pass event ID via props from where component is called
     const eventId = 4;
+    // const date_start = dateToDisplayString("2020-08-15T06:00:00Z")
+    // const date_end = dateToDisplayString("2020-08-16T18:00:00Z")
 
     const initialState = {
-        ...props.eventInfo,
-        // title: null,
-        // description: "Best Beef Burger in the world",
-        // price: 120.00,
-        // // from_date_time: "2020-08-15T06:00:00Z",
-        // // until_date_time: "2020-08-16T18:00:00Z",
-        // meeting_point: "Arbon",
-        // boat_model: null,
-        // event_type: 1,
-        // boat: 2,
-        // max_participants: 12,
-        // num_participants: 5,
+        // ...props.eventInfo,
+        title: 'Pizzaboat Party',
+        description: 'Best Beef Burger in the world',
+        price: 120.0,
+        // from_date_time: date_start,
+        // until_date_time: date_end,
+        // from_date_time: '21.08.2020 11:00',
+        // until_date_time: '22.08.2020 11:00',
+        meeting_point: 'Arbon',
+        boat_model: null,
+        event_type: 1,
+        boat: 2,
+        max_participants: 12,
+        num_participants: 5,
     };
 
     const [value, setValue] = useState(initialState);
@@ -40,14 +50,13 @@ function EventEditForm(props) {
             dispatch(getEventInformationAction(eventId));
         }
     }, []);
-    console.log(value.title);
+    // console.log(value.title);
     // if (props.eventInfo) {
     //     setValue(props.eventInfo);
     //     console.log(props.eventInfo.title)
     // }
 
     const onChangeHandler = (e) => {
-        console.log(e.currentTarget.value);
         const key = e.currentTarget.name;
         setValue({
             ...value,
@@ -76,7 +85,7 @@ function EventEditForm(props) {
         });
 
         if (requiredFieldsOK) {
-            dispatch(createEventAction(value));
+            dispatch(updateEventAction(eventId, value));
         }
     };
 
@@ -99,9 +108,7 @@ function EventEditForm(props) {
                                 className='required'
                                 value={value.title}
                             />
-                            <span className='error'>
-                                Dieses Feld wird benötigt.
-                            </span>
+                            <span className='error' data-key='title'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -113,9 +120,7 @@ function EventEditForm(props) {
                                 className='required'
                                 value={value.price}
                             />
-                            <span className='error'>
-                                Dieses Feld wird benötigt.
-                            </span>
+                            <span className='error' data-key='price'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -179,9 +184,7 @@ function EventEditForm(props) {
                             >
                                 Beschreibung hier eintippen...
                             </textarea>
-                            <span className='error'>
-                                Dieses Feld wird benötigt.
-                            </span>
+                            <span className='error' data-key='comment'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -193,13 +196,15 @@ function EventEditForm(props) {
                                 value={value.meeting_point}
                                 className='required'
                             />
-                            <span className='error'>
-                                Dieses Feld wird benötigt.
-                            </span>
+                            <span
+                                className='error'
+                                data-key='meeting_point'
+                            ></span>
                         </div>
 
                         <WhereCrewMemberForm
                             onChangeHandler={onChangeHandler}
+                            boat={value.boat}
                         />
 
                         <div className='input-wrapper'>
@@ -214,9 +219,10 @@ function EventEditForm(props) {
                                 value={value.max_participants}
                                 className='required'
                             />
-                            <span className='error'>
-                                Dieses Feld wird benötigt.
-                            </span>
+                            <span
+                                className='error'
+                                data-key='max_participants'
+                            ></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -226,22 +232,9 @@ function EventEditForm(props) {
                                 name='event_type'
                                 onChange={(e) => onChangeHandler(e)}
                                 className='required'
+                                value={value.event_type}
                             >
-                                <option value='' selected disabled hidden>
-                                    Bitte wählen
-                                </option>
-
                                 {eventType.map((type, i) => {
-                                    // if (props.event_type === value.type) {
-                                    //     return (
-                                    //         <option
-                                    //             value={type.key}
-                                    //             selected
-                                    //         >
-                                    //             {type.value}
-                                    //         </option>
-                                    //     );
-                                    // }
                                     return (
                                         <option key={i} value={type.key}>
                                             {type.value}
@@ -249,9 +242,10 @@ function EventEditForm(props) {
                                     );
                                 })}
                             </select>
-                            <span className='error'>
-                                Dieses Feld wird benötigt.
-                            </span>
+                            <span
+                                className='error'
+                                data-key='event_type'
+                            ></span>
                         </div>
                     </div>
                     <div className='button-container'>
@@ -267,7 +261,6 @@ function EventEditForm(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.events.eventInfo);
     return {
         eventInfo: state.events.eventInfo,
     };

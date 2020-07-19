@@ -1,0 +1,23 @@
+.accordion-wrapper {
+    width: 100%;
+    section button.accordion {
+        width: 100% !important;
+        display: flex;
+        justify-content: space-between;
+        background-color: $brand-color;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.panel {
+    height: 0;
+    overflow: hidden;
+}
+
+.panel.open {
+    height: auto;
+    padding-bottom: $gap-width;
+}
