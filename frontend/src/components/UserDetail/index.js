@@ -3,6 +3,7 @@ import {baseUrl, authenticatedGetConfig} from "../../store/constants";
 import AvatarDefault from "../../assets/avatar-placeholder.jpg";
 import UserAddress from "./address"
 import UserBoatsForm from "./userBoatsForm";
+import Loading from "../GenericLoading";
 
 export default function UserDetail(props) {
     const [user, setUser] = useState({});
@@ -29,9 +30,14 @@ export default function UserDetail(props) {
 
     return (
         <div className='main-wrapper'>
-            <div className='user-detail-avatar user-avatar' style={avatarStyle}></div>
-            <UserAddress user={user} />
-            <UserBoatsForm user={user} />
+        { loading
+        ? <Loading />
+        :   <>
+                <div className='user-detail-avatar user-avatar' style={avatarStyle}></div>
+                <UserAddress user={user} />
+                <UserBoatsForm user={user} />
+            </>
+        }
         </div>
     );
 };
