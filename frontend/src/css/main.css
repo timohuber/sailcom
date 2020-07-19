@@ -593,6 +593,36 @@ form.col-2 .input-container {
   margin-left: auto;
   margin-right: auto; }
 
+.boat-form-list-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 0px; }
+  .boat-form-list-element .toggle-instructed {
+    width: 30px;
+    height: 30px;
+    background-color: #bbbbbb60;
+    border-color: #bbbbbb;
+    color: #bbbbbb;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .boat-form-list-element .toggle-instructed:before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f00d';
+      font-weight: bold;
+      line-height: 1; }
+    .boat-form-list-element .toggle-instructed.instructed {
+      background-color: #06AD0560;
+      border-color: #06AD05;
+      color: #06AD05; }
+      .boat-form-list-element .toggle-instructed.instructed:before {
+        content: '\f00c'; }
+
 .accordion-wrapper {
   width: 100%; }
   .accordion-wrapper section button.accordion {

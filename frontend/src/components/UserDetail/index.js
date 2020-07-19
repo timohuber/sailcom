@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {baseUrl, authenticatedGetConfig} from "../../store/constants";
 import AvatarDefault from "../../assets/avatar-placeholder.jpg";
 import UserAddress from "./address"
-import UserBoats from "./userBoats";
+import UserBoatsForm from "./userBoatsForm";
 
 export default function UserDetail(props) {
     const [user, setUser] = useState({});
@@ -31,7 +31,7 @@ export default function UserDetail(props) {
         <div className='main-wrapper'>
             <div className='user-detail-avatar user-avatar' style={avatarStyle}></div>
             <UserAddress user={user} />
-            <UserBoats user={user} />
+            <UserBoatsForm user={user} />
         </div>
     );
 };
