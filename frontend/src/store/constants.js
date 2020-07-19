@@ -29,7 +29,6 @@ export const countrySelection = [
     { key: 'other', value: 'Andere' },
 ];
 
-
 export const authenticatedGetConfig =
     {
         method: 'GET',
@@ -38,6 +37,21 @@ export const authenticatedGetConfig =
          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         })
     }
+
+export const authenticatedPostConfig = (requestBody) => {
+    const form = new FormData();
+
+    for (const [key, value] of Object.entries(requestBody)) {
+        form.append(key, value);
+    }
+    return {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }),
+        body: form,
+    }
+}
 
 
 export const eventType = [
