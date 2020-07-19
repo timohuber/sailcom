@@ -1,4 +1,4 @@
-import { SET_EVENT_MODAL, WHERE_CREW } from '../constants';
+import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO } from '../constants';
 import Axios from '../../axios';
 
 export const setEventModal = (modal, modalEvent) => {
@@ -12,6 +12,13 @@ export const setEventModal = (modal, modalEvent) => {
 export const whereIsCurrentUserCrewMember = (info) => {
     return {
         type: WHERE_CREW,
+        payload: info,
+    }
+};
+
+export const getEventInformation = (info) => {
+    return {
+        type: GET_EVENT_INFO,
         payload: info,
     }
 };
@@ -37,6 +44,17 @@ export const createEventAction = (data) => async (dispatch) => {
         return response
     } catch (error) {
         console.log('Error creating a new event', error)
+        return error
+    }
+};
+
+export const getEventInformationAction = (event_id) => async (dispatch) => {
+    try {
+        const response = await Axios.get(`event/${event_id}/`);
+        dispatch(getEventInformation(response.data));
+        return response
+    } catch (error) {
+        console.log('Error in getting Restaurants>', error);
         return error
     }
 };

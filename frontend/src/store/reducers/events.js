@@ -1,9 +1,10 @@
-import { SET_EVENT_MODAL, WHERE_CREW } from '../constants';
+import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO } from '../constants';
 
 const initialState = {
     activeModal: null,
     modalEvent: null,
-    whereCrew: null
+    whereCrew: null,
+    eventInfo: null,
 };
 
 export const events = (state = initialState, action) => {
@@ -18,7 +19,11 @@ export const events = (state = initialState, action) => {
             return {
                 ...state,
                 whereCrew: action.payload,
-
+            };
+        case GET_EVENT_INFO:
+            return {
+                ...state,
+                eventInfo: action.payload,
             };
 
         default:

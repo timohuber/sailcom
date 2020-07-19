@@ -15,6 +15,7 @@ export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
 
 export const SET_EVENT_MODAL = 'SET_EVENT_MODAL';
 export const WHERE_CREW = 'WHERE_CREW';
+export const GET_EVENT_INFO = 'GET_EVENT_INFO';
 
 export const countrySelection = [
     { key: 'switzerland', value: 'Schweiz' },
