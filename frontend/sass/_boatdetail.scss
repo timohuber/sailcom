@@ -30,6 +30,7 @@
 #boat-calendar {
   margin-bottom: $gap-width;
   height: 500px;
+  font-family: $base-font-family;
 
   .rbc-time-view {
     background-color: #ffffff;
@@ -89,6 +90,10 @@
   flex-direction: column;
   width: 100%;
   margin-bottom: $gap-width;
+
+  .react-datepicker {
+    font-family: $base-font-family;
+  }
 
  .react-datepicker__input-container {
 

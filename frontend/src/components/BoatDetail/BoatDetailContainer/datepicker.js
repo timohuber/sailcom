@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-
+import {displayTimeDateFormatWithoutY} from "../../../store/constants"
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function BoatDateTimePicker(props) {
@@ -14,7 +14,7 @@ export default function BoatDateTimePicker(props) {
                     onChange={date => props.setStartDateTime(date)}
                     showTimeSelect
                     placeholderText="Von"
-                    dateFormat="MMMM d, yyyy h:mm aa"
+                    dateFormat={displayTimeDateFormatWithoutY}
                 />
                 <DatePicker
                     selected={props.endDateTime ? props.endDateTime : null}
@@ -22,7 +22,7 @@ export default function BoatDateTimePicker(props) {
                     onChange={date => props.setEndDateTime(date)}
                     showTimeSelect
                     placeholderText="Bis"
-                    dateFormat="MMMM d, yyyy h:mm aa"
+                    dateFormat={displayTimeDateFormatWithoutY}
                 />
                 <p id='datepicker-error' className='error'></p>
               </div>

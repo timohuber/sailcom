@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {dateToDisplayString} from '../../../lib/helpers/formatDates'
 
 export default function BookingSummary(props) {
     return (
@@ -17,6 +18,7 @@ export default function BookingSummary(props) {
                         Von
                     </td>
                     <td>
+                        {dateToDisplayString(props.from)}
                         {props.from}
                     </td>
                 </tr>
@@ -25,6 +27,7 @@ export default function BookingSummary(props) {
                         Bis
                     </td>
                     <td>
+                        {dateToDisplayString(props.until)}
                         {props.until}
                     </td>
                 </tr>

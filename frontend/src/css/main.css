@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   color: #333;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #f3f3f3; }
 
 img {
@@ -110,7 +110,8 @@ table.simple {
 button {
   font-size: inherit;
   cursor: pointer;
-  transition: 0.2s; }
+  transition: 0.2s;
+  font-family: "Open Sans", sans-serif; }
 
 .btn {
   border: none;
@@ -297,7 +298,8 @@ form.col-2 .input-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */ }
+  background-size: cover;
+  background-position: center center; }
   #mobile-navigation nav {
     display: flex;
     flex-direction: column;
@@ -427,6 +429,7 @@ form.col-2 .input-container {
 #boat-calendar {
   margin-bottom: 30px;
   height: 500px;
+  font-family: "Open Sans", sans-serif;
   /* today */ }
   #boat-calendar .rbc-time-view {
     background-color: #ffffff;
@@ -465,6 +468,9 @@ form.col-2 .input-container {
   flex-direction: column;
   width: 100%;
   margin-bottom: 30px; }
+  #event-datepicker .react-datepicker,
+  #boat-datepicker .react-datepicker {
+    font-family: "Open Sans", sans-serif; }
   #event-datepicker .react-datepicker__input-container:before,
   #boat-datepicker .react-datepicker__input-container:before {
     font-family: 'Font Awesome 5 Free';
@@ -548,7 +554,8 @@ form.col-2 .input-container {
     background-color: #ffffff;
     display: flex;
     width: 100%;
-    position: relative; }
+    position: relative;
+    border-radius: 15px; }
   .modal .modal-close-icon {
     position: absolute;
     right: 15px;
@@ -608,6 +615,7 @@ form.col-2 .input-container {
 
 .icon-phone:before {
   font-family: 'Font Awesome 5 Free';
+  font-weight: bold;
   content: '\f095';
   margin-right: 12px;
   font-size: 1rem; }
@@ -624,6 +632,8 @@ form.col-2 .input-container {
     width: 30%;
     margin-right: 30px;
     flex-shrink: 0; }
+    .user-documents-img-btn-wrapper .user-document-list-image.avatar {
+      border-radius: 50%; }
     .user-documents-img-btn-wrapper .user-document-list-image:before {
       content: '';
       padding-top: 100%;
@@ -731,7 +741,8 @@ form.col-2 .input-container {
     color: #fff;
     border: none;
     padding: 10px;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    border-radius: 3px; }
 
 .panel {
   height: 0;
