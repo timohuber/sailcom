@@ -12,8 +12,8 @@ $border-color: #E4E4E4;
 $success-color: #06AD05;
 $disabled-color: #bbbbbb;
 $light-background: #e8e8e8;
+$body-background: #f3f3f3;
 $paragraph-highlight-color: #00b0f0;
-
 
 /* font sizes */
 $large-font-size: rem(20px);
@@ -29,3 +29,7 @@ $break-point-sm: 575px;
 /* grid */
 $page-width: 1200px;
 $gap-width: 30px;
+$gap-width-small: 15px;
+
+/* others */
+$generic-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2)

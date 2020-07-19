@@ -2,6 +2,7 @@
 /* font sizes */
 /* breakpoints */
 /* grid */
+/* others */
 * {
   box-sizing: border-box; }
 
@@ -9,7 +10,8 @@ body {
   margin: 0;
   padding: 0;
   color: #333;
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f3f3f3; }
 
 img {
   max-width: 100%; }
@@ -29,6 +31,9 @@ a {
   color: #2c5d7b;
   text-decoration: none;
   font-weight: bold; }
+
+i {
+  font-style: normal; }
 
 p {
   margin-top: 0;
@@ -95,6 +100,13 @@ table.simple {
     border-bottom: 1px solid #E4E4E4;
     padding: 8px; }
 
+.upper-subtitle {
+  color: #2c5d7b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  font-size: 0.875rem; }
+
 button {
   font-size: inherit;
   cursor: pointer;
@@ -106,17 +118,26 @@ button {
   letter-spacing: 1px;
   min-width: 200px;
   max-width: 100%;
-  text-align: center; }
+  text-align: center;
+  font-weight: normal;
+  font-size: 0.875rem; }
 
 .btn.primary {
   background-color: #2c5d7b;
   color: #fff;
   padding: 10px 20px;
-  height: 40px;
+  min-height: 40px;
   border-radius: 20px;
   width: 200px; }
   .btn.primary:hover {
     background-color: #20445a; }
+
+.btn.secondary {
+  background-color: transparent;
+  text-transform: none;
+  letter-spacing: 0px;
+  color: #333;
+  font-size: 1rem; }
 
 .btn.disabled {
   background-color: #bbbbbb;
@@ -199,7 +220,10 @@ form.col-2 .input-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 15px; }
+  align-items: center;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2); }
   .site-header .site-logo {
     width: 150px; }
   .site-header #mobile-menu {
@@ -315,7 +339,10 @@ form.col-2 .input-container {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 30px; }
   .grid-col-3 > div {
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2);
+    padding: 15px; }
 
 @media (min-width: 768px) {
   .col-2 {
@@ -334,21 +361,45 @@ form.col-2 .input-container {
 .boat-list-element {
   text-align: left;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  margin-bottom: 30px; }
-
-.boat-list-image {
-  background-size: cover;
-  width: 30%;
-  margin-right: 30px;
-  flex-shrink: 0; }
-  .boat-list-image:before {
-    content: '';
-    padding-top: 100%;
-    display: block;
-    width: 100%;
-    position: relative; }
+  flex-direction: column;
+  margin-bottom: 30px;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2);
+  border: 1px solid #E4E4E4; }
+  .boat-list-element .boat-list-image {
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0; }
+    .boat-list-element .boat-list-image:before {
+      content: '';
+      padding-top: 60%;
+      display: block;
+      width: 100%;
+      position: relative; }
+  .boat-list-element .boat-list-body {
+    padding: calc(30px / 2); }
+  .boat-list-element .location > p {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: calc(30px / 2); }
+    .boat-list-element .location > p:before {
+      content: '\f3c5';
+      font-family: 'Font Awesome 5 Free';
+      position: absolute;
+      left: 0px;
+      top: 2px;
+      font-weight: bold; }
+    .boat-list-element .location > p.lake:before {
+      content: '\f773'; }
+  .boat-list-element .description {
+    padding-bottom: calc(30px / 2);
+    margin-bottom: calc(30px / 2);
+    border-bottom: 1px solid #E4E4E4; }
+  .boat-list-element .boat-button-container {
+    display: flex;
+    flex-direction: column; }
+    .boat-list-element .boat-button-container .btn {
+      width: 100%; }
 
 .boat-detail-container .subtitle {
   text-align: center;
@@ -372,14 +423,34 @@ form.col-2 .input-container {
 .boat-detail-container .boat-technical-data {
   margin-bottom: 30px; }
 
+/* calendar */
 #boat-calendar {
   margin-bottom: 30px;
-  height: 500px; }
+  height: 500px;
+  /* today */ }
+  #boat-calendar .rbc-time-view {
+    background-color: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2); }
   #boat-calendar .rbc-toolbar {
     display: flex;
     flex-direction: column; }
+    #boat-calendar .rbc-toolbar button {
+      background-color: #ffffff; }
+    #boat-calendar .rbc-toolbar .rbc-toolbar-label {
+      font-weight: bold; }
   #boat-calendar .rbc-toolbar-label {
     padding: 10px; }
+  #boat-calendar .rbc-timeslot-group {
+    color: #333;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: row; }
+    #boat-calendar .rbc-timeslot-group .rbc-time-slot {
+      display: flex;
+      flex-grow: 1;
+      align-items: center; }
+  #boat-calendar .rbc-today {
+    background-color: transparent; }
 
 .boat-datepicker-container {
   width: 100%; }
@@ -476,7 +547,33 @@ form.col-2 .input-container {
     padding: 30px;
     background-color: #ffffff;
     display: flex;
-    width: 100%; }
+    width: 100%;
+    position: relative; }
+  .modal .modal-close-icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    opacity: 0.8; }
+    .modal .modal-close-icon:after {
+      content: '\f00d';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: bold; }
+  .modal .modal-buttons-wrapper {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .modal .modal-buttons-wrapper .btn {
+      margin-top: 30px; }
   .modal .boat-booking-form {
     width: 100%;
     display: flex;
@@ -484,8 +581,9 @@ form.col-2 .input-container {
     align-items: center; }
     .modal .boat-booking-form table {
       width: 100%; }
+      .modal .boat-booking-form table .total {
+        font-weight: bold; }
     .modal .boat-booking-form .btn {
-      margin-top: auto;
       max-width: 100%;
       width: auto; }
 
@@ -612,3 +710,43 @@ form.col-2 .input-container {
 .panel.open {
   height: auto;
   padding-bottom: 30px; }
+
+.lds-ring-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 15px; }
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 2px;
+  border: 2px solid #2c5d7b;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #2c5d7b transparent transparent transparent; }
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s; }
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s; }
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s; }
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }

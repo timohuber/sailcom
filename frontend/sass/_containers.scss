@@ -31,6 +31,9 @@
     grid-column-gap: $gap-width;
     & > div {
         margin-bottom: $gap-width;
+        background-color: #ffffff;
+        box-shadow: $generic-box-shadow;
+        padding: $gap-width-small;
     }
 }
 
