@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {NavLink} from "react-router-dom";
 
 import { registerAction } from '../../store/actions/registerActions';
 
@@ -57,6 +58,7 @@ export default function RegisterForm(props) {
                     >
                         Absenden
                     </button>
+                    <NavLink className='btn secondary' to='/verifikation'>Ich habe bereits einen Code</NavLink>
                 </div>
             </form>
         </>

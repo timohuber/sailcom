@@ -62,14 +62,11 @@ export default function VerificationForm(props) {
                 return data;
             })
             .catch(error => {
-                console.log('registrierungsfehler', error)
-
-                /*
-                error.json().then( errorMessage => {
-                    formErrorHandler(errorMessage)
-                });
-                 */
-
+                if (error.status === 400) {
+                    error.json().then( errorMessage => {
+                        formErrorHandler(errorMessage)
+                    });
+                }
             });
     };
 
@@ -146,8 +143,8 @@ export default function VerificationForm(props) {
                     <div className='input-wrapper'>
                         <label htmlFor='street-appendix'>Adresszusatz</label>
                         <input
-                            id='street-appendix'
-                            name='street_appendix'
+                            id='address_appendix'
+                            name='address_appendix'
                             onChange={(e) => onChangeHandler(e)}
                         />
                     </div>
@@ -193,6 +190,7 @@ export default function VerificationForm(props) {
                         <input
                             id='date-of-birth'
                             name='date_of_birth'
+                            type='date'
                             onChange={(e) => onChangeHandler(e)}
                         />
                     </div>

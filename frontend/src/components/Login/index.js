@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { loginAction } from '../../store/actions/loginActions';
+import Axios from "../../axios";
+import {elementUpdatedMessage, formErrorHandler} from "../../lib/helpers/errorHandler";
 
 export default function LoginForm(props) {
     const dispatch = useDispatch();
@@ -15,15 +17,22 @@ export default function LoginForm(props) {
         });
     };
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        if (formState.email === '' || formState.password === '') {
-            document.getElementById('login-error').innerHTML =
-                '<p>Please enter email address and password</p>';
-        } else {
-            document.getElementById('login-error').innerHTML = '';
-            dispatch(loginAction(formState.email, formState.password));
+        dispatch(loginAction(formState))
+        /*
+        try {
+            const response = await Axios.post(`auth/token/`, formState);
+            return response;
+        } catch (error) {
+            if (error) {
+                if ([400, 401].includes(error.response.status)){
+                    formErrorHandler(error.response.data);
+                }
+            }
         }
+        */
+
     };
 
     return (
@@ -42,6 +51,9 @@ export default function LoginForm(props) {
                         type='email'
                         placeholder='EMAIL'
                     />
+                    <span className='error' data-key='email' />
+                </div>
+                <div className='input-wrapper'>
                     <input
                         id='login-password'
                         onChange={(e) => onChangeHandler(e)}
@@ -49,11 +61,10 @@ export default function LoginForm(props) {
                         type='password'
                         placeholder='PASSWORD'
                     />
-                    <div className='error' id='login-error'>
-                        Dieses Feld wird benötigt.
-                    </div>
+                    <span className='error' id='login-error' data-key='password' />
                 </div>
             </div>
+            <span className='error' data-key='detail'/>
             <div className='button-container'>
                 <button
                     id='submit-login'
@@ -66,3 +77,16 @@ export default function LoginForm(props) {
         </form>
     );
 }
+
+/*
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        if (formState.email === '' || formState.password === '') {
+            document.getElementById('login-error').innerHTML =
+                '<p>Please enter email address and password</p>';
+        } else {
+            document.getElementById('login-error').innerHTML = '';
+            dispatch(loginAction(formState.email, formState.password));
+        }
+    };
+*/

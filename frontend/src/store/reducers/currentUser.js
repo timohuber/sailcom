@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const currentUser = (state = initialState, action) => {
-
+    console.log('in reducer')
     switch (action.type) {
         case USER_LOGIN:
             return {
