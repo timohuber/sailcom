@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
 
 import Loading from '../../components/GenericLoading';
@@ -23,6 +23,7 @@ function WhereCrewMemberForm(props) {
                     name='boat'
                     onChange={(e) => props.onChangeHandler(e)}
                     className='required'
+                    value={props.boat}
                 >
                     <option value='' selected disabled hidden>
                         Bitte wählen
@@ -35,7 +36,7 @@ function WhereCrewMemberForm(props) {
                         );
                     })}
                 </select>
-                <span className='error'>Dieses Feld wird benötigt.</span>
+                <span className='error' data-key='title'></span>
             </div>
         );
     };
@@ -53,3 +54,9 @@ const connection = connect(mapStateToProps);
 const ConnectedWhereCrewMemberForm = connection(WhereCrewMemberForm);
 
 export default ConnectedWhereCrewMemberForm;
+
+// component can be added like this:
+// <WhereCrewMemberForm
+//     onChangeHandler={onChangeHandler}
+//     boat={value.boat} // for selected value
+// />
