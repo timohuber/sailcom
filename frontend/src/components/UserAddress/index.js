@@ -28,8 +28,6 @@ export default function UserAddressForm(props) {
         }
     }, []);
 
-    let requiredFieldsOK = true;
-
     const onChangeHandler = (e) => {
         const key = e.currentTarget.name;
 
@@ -41,23 +39,8 @@ export default function UserAddressForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        console.log(formState)
         dispatch(updateUserAction(formState));
-        /*
-        const requiredFields = document.querySelectorAll('.required');
-
-        requiredFields.forEach((field) => {
-            if (!field.value) {
-                field.nextElementSibling.style.opacity = '1';
-                requiredFieldsOK = false;
-            } else {
-                field.nextElementSibling.style.opacity = '0';
-            }
-        });
-
-        if (requiredFieldsOK) {
-            dispatch(updateUserAction(formState));
-        }
-        */
     };
 
     const formHandler = () => {

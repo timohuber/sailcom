@@ -29,7 +29,7 @@ export default function BoatCalendar(props) {
                 events={events}
                 step={60}
                 defaultDate={new Date()}
-                defaultView='day'
+                defaultView='week'
             />
           </div>
     );

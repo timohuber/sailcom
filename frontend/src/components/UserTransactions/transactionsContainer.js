@@ -2,7 +2,6 @@ import React from 'react';
 import Transaction from './transaction'
 
 export default function TransactionsContainer(props) {
-    console.log(props)
     return (
         <div className='transaction-container'>
             <h1>Ihre Transaktionen</h1>
@@ -25,7 +24,6 @@ export default function TransactionsContainer(props) {
                     return <Transaction transaction={transaction}/>
                 })}
             </div>
-            <h3>Haben Sie Fragen?</h3>
         </div>
     );
 };

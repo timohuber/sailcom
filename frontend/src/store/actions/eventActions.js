@@ -45,7 +45,7 @@ export const closeEventModalAction = () => (dispatch, getState) => {
 export const whereIsCurrentUserCrewMemberAction = () => async (dispatch) => {
     try {
         const response = await Axios.get('boat/wherecrew/');
-        dispatch(whereIsCurrentUserCrewMember(response.data['results']));
+        dispatch(whereIsCurrentUserCrewMember(response.data));
         return response;
     } catch (error) {
         console.log('Error in getting information about crew member>', error);
