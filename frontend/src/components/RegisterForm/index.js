@@ -10,7 +10,7 @@ export default function RegisterForm(props) {
     const [formState, setFormState] = useState({ email: '' });
 
     const onChangeHandler = (e) => {
-        const key = e.currentTarget.dataset.key;
+        const key = e.currentTarget.name;
         setFormState({
             ...formState,
             [key]: e.currentTarget.value,
@@ -19,13 +19,8 @@ export default function RegisterForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        if (formState.email === '') {
-            document.getElementById('register-error').innerHTML =
-                '<p>Please enter email address</p>';
-        } else {
-            document.getElementById('register-error').innerHTML = '';
-            dispatch(registerAction(formState.email));
-        }
+        console.log(formState)
+        dispatch(registerAction(formState.email));
     };
 
     return (
@@ -46,11 +41,11 @@ export default function RegisterForm(props) {
                         <input
                             id='register-email'
                             onChange={(e) => onChangeHandler(e)}
-                            data-key='email'
+                            name='email'
                             type='email'
                             placeholder='E-Mail'
                         />
-                        <div className='error' id='register-error'></div>
+                        <span className='error' data-key='email'/>
                     </div>
                 </div>
 

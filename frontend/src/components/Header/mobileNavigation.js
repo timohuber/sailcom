@@ -70,10 +70,10 @@ export default function MobileNavigation(props) {
                     </li>
                     {
                         props.authorized
-                        ? <li><NavLink to='/profil' onClick={ e => toggleMobileNavigation() }>Profil</NavLink></li>
+                        ? <li><NavLink to='/profil' >Profil</NavLink></li>
                         :   <>
-                                <li><NavLink to='/login' onClick={ e => toggleMobileNavigation() }>Login</NavLink></li>
-                                <li><NavLink to='/registrierung'onClick={ e => toggleMobileNavigation() }>Beitreten</NavLink></li>
+                                <li><NavLink to='/login' >Login</NavLink></li>
+                                <li><NavLink to='/registrierung' >Beitreten</NavLink></li>
                             </>
                     }
                 </ul>

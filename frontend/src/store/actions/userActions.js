@@ -17,9 +17,9 @@ export const updateUserAction = (data) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }),
-        body: JSON.stringify({
+        body: JSON.stringify(
             data
-        }),
+        ),
     }
     const response = fetch(baseUrl + 'user/me/', config)
         .then(res => {
