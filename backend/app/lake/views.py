@@ -7,3 +7,4 @@ from .serializers import LakeSerializer
 class ListLakesView(ListAPIView):
     queryset = Lake.objects.all()
     serializer_class = LakeSerializer
+    pagination_class = None

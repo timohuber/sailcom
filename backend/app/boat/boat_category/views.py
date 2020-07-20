@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView
 
-# Create your views here.
+from .models import BoatCategory
+from .serializers import BoatCategorySerializer
+
+
+class ListBoatCategories(ListAPIView):
+    queryset = BoatCategory.objects.all()
+    serializer_class = BoatCategorySerializer
+    pagination_class = None
