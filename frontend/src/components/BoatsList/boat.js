@@ -11,7 +11,7 @@ export default function Boat(props) {
         }
     }
     return (
-            <article className='boat-list-element'>
+            <article className='boat-list-element generic-box'>
                 <div className='boat-list-image' style={imageStyle} />
                 <div className='boat-list-body'>
                     <p className='upper-subtitle'>Day Easy</p>

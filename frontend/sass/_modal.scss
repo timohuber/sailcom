@@ -13,6 +13,7 @@
     padding: $gap-width;
     background-color: #ffffff;
     display: flex;
+    flex-direction: row;
     width: 100%;
     position: relative;
     border-radius: $large-border-radius;
@@ -48,6 +49,7 @@
 
     .btn {
       margin-top: $gap-width;
+      width: 100%;
     }
   }
 
@@ -70,5 +72,11 @@
       max-width: 100%;
       width: auto;
     }
+  }
+
+  /* events  */
+  .event-participation-modal {
+    display: flex;
+    flex-direction: column;
   }
 }

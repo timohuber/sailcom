@@ -12,7 +12,7 @@ export default function HomePage(props) {
                 Faszination Segeln - einfacher, günstiger, ökologischer und
                 abwechslungsreicher!
             </h1>
-            <div className='grid-col-3'>
+            <div className='grid-col-3 generic-box-grid'>
                 <div>
                     <h2>Boat Sharing</h2>
                     <hr />

@@ -4,6 +4,7 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment)
+// Calendar.momentLocalizer(moment)
 
 export default function BoatCalendar(props) {
     const bookings = props.boat.bookings
@@ -24,6 +25,7 @@ export default function BoatCalendar(props) {
         <div id='boat-calendar'>
             <Calendar
                 localizer={localizer}
+                // culture={'de-CH'}
                 events={events}
                 step={60}
                 defaultDate={new Date()}
