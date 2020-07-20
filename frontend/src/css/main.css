@@ -83,6 +83,13 @@ h4 {
   color: #D01017;
   font-size: 0.875rem; }
 
+#element-updated {
+  color: #06AD05;
+  font-size: 0.875rem;
+  min-height: 20px;
+  display: block;
+  margin-bottom: calc(30px / 2); }
+
 /* document icons */
 a.document {
   display: flex;

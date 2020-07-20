@@ -36,9 +36,9 @@ h1 {
 }
 
 h2 {
-  color: $brand-color;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+    color: $brand-color;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 h3 {
@@ -47,9 +47,9 @@ h3 {
 }
 
 h4 {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 @media (max-width: $break-point-md) {
@@ -63,32 +63,40 @@ h4 {
     font-size: $smaller-font-size;
 }
 
+#element-updated {
+    color: $success-color;
+    font-size: $smaller-font-size;
+    min-height: 20px;
+    display: block;
+    margin-bottom: calc(30px / 2);
+}
+
 /* document icons */
 a.document {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 a.document.pdf:before {
-   font-family: 'Font Awesome 5 Free';
-   content: '\f1c1';
-   margin-right: 12px;
-  font-size: rem(22px);
+    font-family: 'Font Awesome 5 Free';
+    content: '\f1c1';
+    margin-right: 12px;
+    font-size: rem(22px);
 }
 
 /* tables */
 
 table.simple {
-  width: 100%;
-  margin-bottom: $gap-width;
+    width: 100%;
+    margin-bottom: $gap-width;
 
-  thead {
-    font-weight: bold;
-  }
+    thead {
+        font-weight: bold;
+    }
 
-  td {
-    border-bottom: 1px solid $border-color;
-    padding: 8px;
-  }
+    td {
+        border-bottom: 1px solid $border-color;
+        padding: 8px;
+    }
 }
 
 .upper-subtitle {

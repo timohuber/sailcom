@@ -1,65 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Axios from '../../axios';
+
+import {
+    formErrorHandler,
+    elementUpdatedMessage,
+} from '../../lib/helpers/errorHandler';
 import { eventType, baseUrl } from '../../store/constants';
 import Loading from '../../components/GenericLoading';
-import {
-    getEventInformationAction,
-    updateEventAction,
-} from '../../store/actions/eventActions';
-import {
-    dateToISOString,
-    dateToDisplayString,
-    dateShowInTable,
-} from '../../lib/helpers/formatDates';
+import { dateShowInTable } from '../../lib/helpers/formatDates';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
 
-function EventEditForm(props) {
-    // const dispatch = useDispatch();
+export default function EventEditForm(props) {
     const today = new Date();
-    let requiredFieldsOK = true;
     //TODO: pass event ID via props from where component is called
     const event_id = 4;
 
-
-
-    const date_start = dateShowInTable("2020-08-15T06:00:00Z")
-    // console.log(dateShowInTable(date_start));
-    // const date_end = dateToDisplayString("2020-08-16T18:00:00Z")
-
-    // Sat Nov 21 2020 00:00:00 GMT+0100
-    // const initialState = {
-
-    //     // // ...props.eventInfo,
-    //     // title: 'Pizzaboat Party',
-    //     // description: 'Best Beef Burger in the world',
-    //     // price: 120.0,
-    //     // // from_date_time: date_start,
-    //     // // until_date_time: date_end,
-    //     // // from_date_time: '21.08.2020 11:00',
-    //     // // until_date_time: '22.08.2020 11:00',
-    //     // meeting_point: 'Arbon',
-    //     // boat_model: null,
-    //     // event_type: 1,
-    //     // boat: 2,
-    //     // max_participants: 12,
-    //     // num_participants: 5,
-    // };
-
-    // const [value, setValue] = useState(initialState);
-
-    // useEffect(() => {
-    //     if (props.eventInfo) {
-    //         setValue(props.eventInfo);
-    //     } else {
-    //         dispatch(getEventInformationAction(eventId));
-    //     }
-    // }, []);
-
     const [value, setValue] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [visibilityFilter, setVisibilityFilter] = useState();
 
     useEffect(() => {
         const config = {
@@ -77,14 +36,7 @@ function EventEditForm(props) {
             .catch((response) => {
                 return;
             });
-    }, [visibilityFilter]);
-
-
-    // console.log(value.title);
-    // if (props.eventInfo) {
-    //     setValue(props.eventInfo);
-    //     console.log(props.eventInfo.title)
-    // }
+    }, []);
 
     const onChangeHandler = (e) => {
         const key = e.currentTarget.name;
@@ -101,21 +53,20 @@ function EventEditForm(props) {
         });
     };
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        const requiredFields = document.querySelectorAll('.required');
-
-        requiredFields.forEach((field) => {
-            if (!field.value) {
-                field.nextElementSibling.style.opacity = '1';
-                requiredFieldsOK = false;
-            } else {
-                field.nextElementSibling.style.opacity = '0';
-            }
+        const errorSpanList = document.querySelectorAll('.error');
+        errorSpanList.forEach((error) => {
+            error.innerText = '';
         });
-
-        if (requiredFieldsOK) {
-            // dispatch(updateEventAction(eventId, value));
+        try {
+            const response = await Axios.patch(`event/${event_id}/`, value);
+            elementUpdatedMessage('Event');
+            return response;
+        } catch (error) {
+            if (error) {
+                formErrorHandler(error.response.data);
+            }
         }
     };
 
@@ -181,10 +132,14 @@ function EventEditForm(props) {
                                 <DatePicker
                                     selected={
                                         value.until_date_time
-                                            ? dateShowInTable(value.until_date_time)
+                                            ? dateShowInTable(
+                                                  value.until_date_time
+                                              )
                                             : null
                                     }
-                                    minDate={value.from_date_time}
+                                    minDate={dateShowInTable(
+                                        value.from_date_time
+                                    )}
                                     onChange={(date) =>
                                         onChangeDateHandler(
                                             date,
@@ -281,9 +236,12 @@ function EventEditForm(props) {
                         </div>
                     </div>
                     <div className='button-container'>
-                        <button className='btn primary' type='submit'>
-                            Speichern
-                        </button>
+                        <div>
+                            <span id='element-updated'></span>
+                            <button className='btn primary' type='submit'>
+                                Speichern
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -292,12 +250,3 @@ function EventEditForm(props) {
     return loading ? <Loading /> : formHandler();
 }
 
-const mapStateToProps = (state) => {
-    return {
-        eventInfo: state.events.eventInfo,
-    };
-};
-const connection = connect(mapStateToProps);
-const ConnectedEventEditForm = connection(EventEditForm);
-
-export default ConnectedEventEditForm;
