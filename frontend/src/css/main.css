@@ -595,7 +595,7 @@ form.col-2 .input-container {
       width: auto; }
 
 .footer-wrapper {
-  padding-top: 20px;
+  padding-top: 30px;
   background-color: #2c5d7b;
   width: 100%;
   color: #fff; }
@@ -606,6 +606,29 @@ form.col-2 .input-container {
     font-weight: normal; }
   .footer-wrapper p {
     margin-bottom: 0px; }
+  .footer-wrapper hr {
+    margin-bottom: 40px; }
+  .footer-wrapper .social-footer {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .footer-wrapper .social-footer ul {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .footer-wrapper .social-footer li {
+      display: inline-block;
+      background-color: #EE7219;
+      height: 30px;
+      width: 30px;
+      margin: 0 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .footer-wrapper .social-footer i {
+      margin: 33px 14px 33px 14px; }
 
 .icon-email:before {
   font-family: 'Font Awesome 5 Free';
