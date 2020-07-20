@@ -29,7 +29,6 @@ class ListUsersView(ListAPIView):
 
 
 class ListMe(RetrieveUpdateAPIView):
-    queryset = User.objects.all()
     serializer_class = MeSerializer
 
     def get_object(self):
