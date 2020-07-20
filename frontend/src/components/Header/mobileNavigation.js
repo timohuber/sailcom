@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import {toggleMobileNavigation} from "./functions";
 import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
@@ -6,12 +6,14 @@ import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
 export default function MobileNavigation(props) {
 
     // add onclick to all anchors
-    const anchors = document.querySelectorAll("#mobile-navigation a")
-    for (const anchor of anchors) {
-        anchor.addEventListener('click', function() {
-            toggleMobileNavigation()
-        })
-    }
+    useEffect(() => {
+        const anchors = document.querySelectorAll("#mobile-navigation a")
+        for (const anchor of anchors) {
+            anchor.addEventListener('click', function() {
+                toggleMobileNavigation()
+            })
+        }
+    }, []);
 
     const backgroundStyle = {
         backgroundImage: `url(${backgroundSVG})`

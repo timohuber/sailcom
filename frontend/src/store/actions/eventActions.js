@@ -1,4 +1,4 @@
-import { SET_EVENT_MODAL, WHERE_CREW } from '../constants';
+import { SET_EVENT_MODAL, WHERE_CREW, CLOSE_EVENT_MODAL } from '../constants';
 import Axios from '../../axios';
 
 export const setEventModal = (modal, modalEvent) => {
@@ -9,6 +9,13 @@ export const setEventModal = (modal, modalEvent) => {
     }
 }
 
+export const closeEventModal = () => {
+    return {
+        type: CLOSE_EVENT_MODAL
+    }
+}
+
+
 export const whereIsCurrentUserCrewMember = (info) => {
     return {
         type: WHERE_CREW,
@@ -18,6 +25,10 @@ export const whereIsCurrentUserCrewMember = (info) => {
 
 export const setEventModalAction = (modal, modalEvent) => (dispatch, getState) => {
     dispatch(setEventModal(modal, modalEvent))
+}
+
+export const closeEventModalAction = () => (dispatch, getState) => {
+    dispatch(closeEventModal())
 }
 
 export const whereIsCurrentUserCrewMemberAction = () => async (dispatch) => {

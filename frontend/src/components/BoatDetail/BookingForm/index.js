@@ -106,10 +106,3 @@ const connection = connect(mapStateToProps);
 const ConnectedBookingForm = connection(BookingForm);
 
 export default ConnectedBookingForm;
-
-/*
-*                 // res.text().then(text => {
-                    throw new Error("Not 2xx response");
-                // })
-*
-* */

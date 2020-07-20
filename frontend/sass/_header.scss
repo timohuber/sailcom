@@ -8,7 +8,7 @@
   box-shadow: $generic-box-shadow;
 
   .site-logo {
-    width: 150px;
+    height: 50px;
   }
 
   #mobile-menu {
@@ -24,7 +24,7 @@
     -o-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
     cursor: pointer;
-    z-index: 2;
+    z-index: 8;
 
     span {
       display: block;
@@ -90,7 +90,7 @@
 }
 
 #mobile-navigation {
-  z-index: 1;
+  z-index: 5;
   position: fixed;
   width: 100vw;
   height: 100vh;

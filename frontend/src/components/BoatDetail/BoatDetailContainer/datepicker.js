@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import DatePicker from "react-datepicker";
-import {displayTimeDateFormatWithoutY} from "../../../store/constants"
+import {baseUrl, displayTimeDateFormatWithoutY} from "../../../store/constants"
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function BoatDateTimePicker(props) {
     const today = new Date()
+
+     useEffect(() => {
+        const datePickers = document.querySelectorAll('.react-datepicker__input-container input')
+        datePickers.forEach( input => input.setAttribute("readOnly", true))
+     })
+
     return (
         <div className='boat-datepicker-container'>
             <div id='boat-datepicker'>
