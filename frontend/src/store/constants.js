@@ -13,7 +13,13 @@ export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
 // export const baseUrl = 'http://localhost:8000/backend/api/';
 
-export const SET_EVENT_MODAL = 'SET_EVENT_MODAL'
+export const SET_EVENT_MODAL = 'SET_EVENT_MODAL';
+export const WHERE_CREW = 'WHERE_CREW';
+
+/* time and date formats */
+export const displayTimeDateFormatWithoutY = "MMMM d, HH:mm";
+export const displayTimeDateFormat = "DD.MM.YYYY HH:mm";
+
 
 export const countrySelection = [
     { key: 'switzerland', value: 'Schweiz' },
@@ -27,3 +33,35 @@ export const countrySelection = [
     { key: 'uk', value: 'Vereinigtes Königreich' },
     { key: 'other', value: 'Andere' },
 ];
+
+export const authenticatedGetConfig =
+    {
+        method: 'GET',
+        headers: new Headers({
+        'Content-Type': 'application/json',
+         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        })
+    }
+
+export const authenticatedPostConfig = (requestBody) => {
+    const form = new FormData();
+
+    for (const [key, value] of Object.entries(requestBody)) {
+        form.append(key, value);
+    }
+    return {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }),
+        body: form,
+    }
+}
+
+
+export const eventType = [
+    { key: 1, value: 'Einweisungen' },
+    { key: 2, value: 'Mitsegeln' },
+    { key: 3, value: 'SailingLadies' },
+];
+

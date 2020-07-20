@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -27,7 +28,6 @@ class Booking(models.Model):
                                  blank=True, null=True)
     transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL,
                                        blank=True, null=True)
-
     def __str__(self):
         return f'ID{self.id}: from {self.from_date_time} to: {self.until_date_time}'
 
@@ -53,12 +53,13 @@ def create_trans(sender, instance, created, **kwargs):
         else:  # daily rate calculation
             price = instance.weekday_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday) \
                     + instance.weekend_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
-        Transaction.objects.create(sent=False, price=price, booking=instance, user=instance.user)
+        trx = Transaction.objects.create(sent=False, price=price, user=instance.user)
+        Booking.objects.filter(id=instance.id).update(transaction=trx)
 
 
 @receiver(post_save, sender=Event)
 def create_booking(sender, instance, created, **kwargs):
-    br = 'br'
-    Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
-                           event=instance, user=instance.instructor,
-                           duration=instance.until_date_time - instance.from_date_time, boat=instance.boat)
+    if not Booking.objects.filter(event=instance.id):
+        Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
+                               event=instance, user=instance.instructor,
+                               duration=instance.until_date_time - instance.from_date_time, boat=instance.boat)

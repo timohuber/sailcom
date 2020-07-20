@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
 import { baseUrl } from '../../store/constants';
+import {formErrorHandler} from '../../lib/helpers/errorHandler'
 
 export default function VerificationForm(props) {
-    const { push } = useHistory;
+    const { push } = useHistory();
     const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
     const [licenceImageRef, licenceRestaurantImageRef] = useState(
         React.createRef()
@@ -31,6 +30,7 @@ export default function VerificationForm(props) {
         const requiredFields = document.querySelectorAll('.required');
         let requiredFieldsOK = true;
 
+        /*
         requiredFields.forEach((field) => {
             if (!field.value) {
                 field.nextElementSibling.style.opacity = '1';
@@ -45,6 +45,8 @@ export default function VerificationForm(props) {
         } else {
             document.getElementById('licence-error').style.opacity = '0';
         }
+         */
+
         if (requiredFieldsOK) {
             const form = new FormData();
 
@@ -69,16 +71,19 @@ export default function VerificationForm(props) {
                 config
             )
                 .then((res) => {
-                    if (res.ok) {
-                        push('/'); //TODO push doesn't work
+                    if (!res.ok) {
+                        throw res
                     }
+                    push('/'); //TODO push doesn't work
                     return res.json();
                 })
                 .then((data) => {
                     return data;
                 })
-                .catch((res) => {
-                    return;
+                .catch(error => {
+                    error.json().then( errorMessage => {
+                        formErrorHandler(errorMessage)
+                    });
                 });
         }
     };
@@ -105,8 +110,7 @@ export default function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
+                        <span className='error' data-key='code'>
                         </span>
                     </div>
 
@@ -117,6 +121,8 @@ export default function VerificationForm(props) {
                             name='email'
                             onChange={(e) => onChangeHandler(e)}
                         />
+                        <span className='error' data-key='email'>
+                        </span>
                     </div>
 
                     <div className='input-wrapper'>
@@ -127,8 +133,7 @@ export default function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
+                        <span className='error' data-key='first_name'>
                         </span>
                     </div>
 
@@ -140,8 +145,7 @@ export default function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
+                        <span className='error' data-key='last_name'>
                         </span>
                     </div>
 
@@ -216,8 +220,7 @@ export default function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
+                        <span className='error' data-key='username'>
                         </span>
                     </div>
 
@@ -247,8 +250,7 @@ export default function VerificationForm(props) {
                             ref={licenceImageRef}
                             style={{ display: 'none' }}
                         />
-                        <span id='licence-error' className='error'>
-                            Dieses Bild wird benötigt.
+                        <span id='licence-error' className='error' data-key='licence'>
                         </span>
                     </div>
 
@@ -261,8 +263,7 @@ export default function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
+                        <span className='error' data-key='password' >
                         </span>
                     </div>
 
@@ -277,8 +278,7 @@ export default function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
+                        <span className='error' data-key='password_repeat'>
                         </span>
                     </div>
                 </div>

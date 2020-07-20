@@ -1,29 +1,34 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-
 import {toggleMobileNavigation} from "./functions";
+import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
 
 export default function MobileNavigation(props) {
 
     // add onclick to all anchors
-    const anchors = document.querySelectorAll('#mobile-navigation a')
-
+    const anchors = document.querySelectorAll("#mobile-navigation a")
     for (const anchor of anchors) {
-        anchor.addEventListener('click', toggleMobileNavigation)
+        anchor.addEventListener('click', function() {
+            toggleMobileNavigation()
+        })
+    }
+
+    const backgroundStyle = {
+        backgroundImage: `url(${backgroundSVG})`
     }
 
     return (
-        <div id="mobile-navigation">
+        <div id="mobile-navigation" style={backgroundStyle}>
             <nav>
                 <ul className='level-1'>
                     <li>
-                        <NavLink to='/'>SailCom</NavLink>
+                        <NavLink to='/home'>SailCom</NavLink>
                         <ul className='level-2'>
                             <li>
-                                <NavLink to='/'>Boat Sharing</NavLink>
+                                <NavLink to='/boat-sharing'>Boat Sharing</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Genossenschaft</NavLink>
+                                <NavLink to='/genossenschaft'>Genossenschaft</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/'>Partner</NavLink>
@@ -31,27 +36,27 @@ export default function MobileNavigation(props) {
                         </ul>
                     </li>
                     <li>
-                        <NavLink to='/'>Boote</NavLink>
+                        <NavLink to='/bootsliste'>Boote</NavLink>
                         <ul className='level-2'>
                             <li>
-                                <NavLink to='/'>Flotte</NavLink>
+                                <NavLink to='/bootsliste'>Flotte</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/'>Standorte</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Bootsliste</NavLink>
+                                <NavLink to='/bootsliste'>Bootsliste</NavLink>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <NavLink to='/'>Community</NavLink>
+                        <NavLink to='/information'>Community</NavLink>
                        <ul className='level-2'>
                             <li>
-                                <NavLink to='/'>Information</NavLink>
+                                <NavLink to='/information'>Information</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Veranstaltungen</NavLink>
+                                <NavLink to='/events'>Veranstaltungen</NavLink>
                             </li>
                             <li>
                                 <NavLink to='/'>Sailing Ladies</NavLink>
@@ -61,12 +66,14 @@ export default function MobileNavigation(props) {
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <NavLink to='/'>Beitreten</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/my-profile'>Profil</NavLink>
-                    </li>
+                    {
+                        props.authorized
+                        ? <li><NavLink to='/profil' onClick={ e => toggleMobileNavigation() }>Profil</NavLink></li>
+                        :   <>
+                                <li><NavLink to='/login' onClick={ e => toggleMobileNavigation() }>Login</NavLink></li>
+                                <li><NavLink to='/registrierung'onClick={ e => toggleMobileNavigation() }>Beitreten</NavLink></li>
+                            </>
+                    }
                 </ul>
             </nav>
         </div>

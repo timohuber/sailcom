@@ -12,7 +12,7 @@ Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 Axios.interceptors.request.use(function (config) {
     
-    const token = store.getState().currentUser.accessToken;
+    const token = localStorage.getItem('accessToken');
     if (token) {
         config.headers.Authorization = 'Bearer ' + token;
     }

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.db.models import Q
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from .detailserializer import DetailBoatSerializer
@@ -25,3 +25,29 @@ class ListBoatsWhereCrewView(ListAPIView):
         return Boat.objects.filter(crew__in=current_crews)
 
 
+class SearchBoatsView(ListAPIView):
+    serializer_class = BoatSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        boats = Boat.objects.exclude(
+            (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
+             & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
+            |
+            (Q(bookings__from_date_time__lte=self.request.data['until_date_time'])
+             & Q(bookings__until_date_time__gte=self.request.data['until_date_time']))
+            |
+            (Q(bookings__from_date_time__gte=self.request.data['from_date_time'])
+             & Q(bookings__from_date_time__lte=self.request.data['until_date_time']))
+            |
+            (Q(bookings__until_date_time__gte=self.request.data['from_date_time'])
+             & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
+
+        )
+
+        if self.request.data.get('lake') is not None and self.request.data.get('model') is not None:
+            return boats.filter(mooring__lake=self.request.data['lake'],
+                                model=self.request.data['model'])
+        if self.request.data.get('lake') is not None:
+            return boats.filter(mooring__lake=self.request.data['lake'])
+        if self.request.data.get('model') is not None:
+            return boats.filter(mooring__lake=self.request.data['model'])

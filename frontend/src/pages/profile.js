@@ -3,6 +3,8 @@ import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
+import UserTransactions from '../components/UserTransactions'
+import Accordion from '../components/Accordion';
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
 
@@ -20,14 +22,30 @@ function MyProfilePage(props) {
         }
     }, [props]);
 
+
+    const content = [
+        {
+            title: 'Adresse',
+            content: <UserAddressForm userData={props.userData} />,
+        },
+        {
+            title: 'Dokumente',
+            content: <UserDocumentsForm userData={props.userData} />,
+        },
+        {
+            title: 'Transaktionen',
+            content: <UserTransactions />,
+        },
+    ];
+
     // TODO: uncomment create tabs for each component
     return (
         <div className='main-wrapper'>
                 {loading ? (
                 <Loading />
             ) : (<>
-                <UserDocumentsForm userData={props.userData} />
-                <UserAddressForm userData={props.userData} />
+                        <h1>Hallo {props.userData.first_name}</h1>
+                        <Accordion content={content}/>
                 </>
             )}
         </div>

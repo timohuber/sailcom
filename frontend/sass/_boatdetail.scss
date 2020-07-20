@@ -26,29 +26,77 @@
   }
 }
 
+/* calendar */
 #boat-calendar {
   margin-bottom: $gap-width;
   height: 500px;
+  font-family: $base-font-family;
+
+  .rbc-time-view {
+    background-color: #ffffff;
+    box-shadow: $generic-box-shadow;
+  }
 
   .rbc-toolbar {
     display: flex;
     flex-direction: column;
+
+    button {
+      background-color: #ffffff;
+    }
+
+    .rbc-toolbar-label {
+      font-weight: bold;
+    }
   }
 
   .rbc-toolbar-label {
     padding: 10px;
   }
+
+
+  .rbc-timeslot-group {
+    color: $base-color;
+    font-size: rem(14px);
+    display: flex;
+    flex-direction: row;
+
+    .rbc-time-slot {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+    }
+  }
+
+  /* today */
+  .rbc-today {
+    background-color: transparent;
+  }
 }
 
+
+.boat-datepicker-container {
+  width: 100%;
+}
+
+#boat-datepicker .react-datepicker__input-container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#event-datepicker,
 #boat-datepicker {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: $gap-width;
 
+  .react-datepicker {
+    font-family: $base-font-family;
+  }
+
  .react-datepicker__input-container {
-   padding-top: 8px;
-   padding-bottom: 8px;
+
    &:before {
      font-family: 'Font Awesome 5 Free';
      content: '\f073';
@@ -58,6 +106,7 @@
      left: 12px;
      z-index: 1;
    }
+
    input {
      padding: 12px;
      padding-left: 40px;
@@ -69,6 +118,11 @@
  }
   .react-datepicker-popper {
     z-index: 6;
+  }
+  #datepicker-error {
+    color: $error-color;
+    font-size: $smaller-font-size;
+    text-align: center;
   }
 }
 
@@ -92,4 +146,19 @@
   .btn.btn-primary {
 
   }
+}
+
+/* Carousel */
+.boat-carousel {
+  margin-bottom: $gap-width;
+}
+
+.carousel-slider .slide > div {
+  padding-top: 60%;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-status, thumbs-wrapper {
+  display: none;
 }

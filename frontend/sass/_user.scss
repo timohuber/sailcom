@@ -1,0 +1,73 @@
+.search-user-from {
+  margin-bottom: $gap-width;
+}
+
+.user-avatar {
+    border-radius: 50%;
+    background-size: cover;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+}
+
+.user-list-element{
+  display: flex;
+  flex-display: row;
+  margin-bottom: $gap-width;
+
+  .user-list-avatar {
+    width: 100px;
+    flex-grow: 0;
+    margin-right: $gap-width;
+
+  }
+}
+
+/* Detail page */
+.user-detail-avatar {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boat-form-list-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 0px;
+
+  .toggle-instructed {
+    width: 30px;
+    height: 30px;
+    background-color: $disabled-color-60;
+    border-color: $disabled-color;
+    color: $disabled-color;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:before {
+     font-family: 'Font Awesome 5 Free';
+      content: '\f00d';
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    &.instructed {
+      background-color: $success-color-60;
+      border-color: $success-color;
+      color: $success-color;
+
+      &:before  {
+        content: '\f00c';
+      }
+    }
+  }
+}

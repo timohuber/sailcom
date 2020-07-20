@@ -9,7 +9,7 @@ import logo from "../../assets/logo/logo.png"
 const Header = (props) => {
     return (
         <>
-        <MobileNavigation />
+        <MobileNavigation authorized={props.authorized} />
         <header className="site-header">
             <NavLink to="/">
                 <img className="site-logo" src={logo} alt="logo" />

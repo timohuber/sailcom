@@ -1,8 +1,12 @@
 import React from 'react';
-import EventListContainer from '../components/EventList'
+import EventListContainer from '../components/EventList';
+import EventForm from '../components/EventCreate';
 
 export default function EventPage(props) {
-     return (
-             <EventListContainer />
+    return (
+        <>
+            <EventForm />
+            <EventListContainer />
+        </>
     );
 }

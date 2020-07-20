@@ -30,6 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# HTTPS
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -75,6 +78,9 @@ MIDDLEWARE = [
 
     # additional middleware
     'corsheaders.middleware.CorsMiddleware',
+
+    # translation
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -135,7 +141,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "es-ch"
 
 TIME_ZONE = 'UTC'
 

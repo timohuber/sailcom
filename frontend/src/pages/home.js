@@ -83,6 +83,8 @@ export default function HomePage(props) {
                         <Link to='/registrierung'>Account</Link> und nimm an
                         unseren öffentlichen
                         <Link to='/community/events'> Segel-Events</Link> teil.
+                        </p>
+
                         <div className='button-container'>
                             <Link to='/registrierung'>
                                 <button className='btn primary'>
@@ -90,7 +92,6 @@ export default function HomePage(props) {
                                 </button>
                             </Link>
                         </div>
-                    </p>
                 </div>
             </div>
         </div>
