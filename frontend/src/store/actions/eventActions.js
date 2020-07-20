@@ -1,4 +1,4 @@
-import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO, GET_EVENT_INFO } from '../constants';
+import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO, CLOSE_EVENT_MODAL } from '../constants';
 import Axios from '../../axios';
 import { formErrorHandler } from '../../lib/helpers/errorHandler';
 
