@@ -29,6 +29,7 @@ class SearchBoatsView(ListAPIView):
     serializer_class = BoatSerializer
 
     def get_queryset(self, *args, **kwargs):
+        # filter for date if provided
         if self.request.data.get('from_date_time') is not None and self.request.data.get('until_date_time') is not None:
             boats = Boat.objects.exclude(
                 Q(status_sharing=False) |
@@ -46,10 +47,17 @@ class SearchBoatsView(ListAPIView):
             )
         else:
             boats = Boat.objects.filter(status_sharing=True)
-        if self.request.data.get('lake') is not None and self.request.data.get('model') is not None:
-            return boats.filter(mooring__lake=self.request.data['lake'],
-                                model=self.request.data['model'])
+        # filter for lake and category
+        if self.request.data.get('lake') is not None and self.request.data.get('category') is not None:
+            data = boats.filter(mooring__lake=self.request.data['lake'],
+                                category=self.request.data['category'])
         if self.request.data.get('lake') is not None:
-            return boats.filter(mooring__lake=self.request.data['lake'])
-        if self.request.data.get('model') is not None:
-            return boats.filter(mooring__lake=self.request.data['model'])
+            data = boats.filter(mooring__lake=self.request.data['lake'])
+        if self.request.data.get('category') is not None:
+            data = boats.filter(category=self.request.data['category'])
+        if self.request.data.get('instructed') is not None:
+            if self.request.data.get('instructed'):
+                return data.filter(model__in=self.request.user.instructed_for_models.all())
+            if not self.request.data.get('instructed'):
+                return data.exclude(model__in=self.request.user.instructed_for_models.all())
+        return data
