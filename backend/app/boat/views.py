@@ -29,21 +29,23 @@ class SearchBoatsView(ListAPIView):
     serializer_class = BoatSerializer
 
     def get_queryset(self, *args, **kwargs):
-        boats = Boat.objects.exclude(
-            (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
-             & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
-            |
-            (Q(bookings__from_date_time__lte=self.request.data['until_date_time'])
-             & Q(bookings__until_date_time__gte=self.request.data['until_date_time']))
-            |
-            (Q(bookings__from_date_time__gte=self.request.data['from_date_time'])
-             & Q(bookings__from_date_time__lte=self.request.data['until_date_time']))
-            |
-            (Q(bookings__until_date_time__gte=self.request.data['from_date_time'])
-             & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
-
-        )
-
+        if self.request.data.get('from_date_time') is not None and self.request.data.get('until_date_time') is not None:
+            boats = Boat.objects.exclude(
+                Q(status_sharing=False) |
+                (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
+                 & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
+                |
+                (Q(bookings__from_date_time__lte=self.request.data['until_date_time'])
+                 & Q(bookings__until_date_time__gte=self.request.data['until_date_time']))
+                |
+                (Q(bookings__from_date_time__gte=self.request.data['from_date_time'])
+                 & Q(bookings__from_date_time__lte=self.request.data['until_date_time']))
+                |
+                (Q(bookings__until_date_time__gte=self.request.data['from_date_time'])
+                 & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
+            )
+        else:
+            boats = Boat.objects.filter(status_sharing=True)
         if self.request.data.get('lake') is not None and self.request.data.get('model') is not None:
             return boats.filter(mooring__lake=self.request.data['lake'],
                                 model=self.request.data['model'])
