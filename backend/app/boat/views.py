@@ -30,9 +30,9 @@ class SearchBoatsView(ListAPIView):
     serializer_class = BoatSerializer
 
     def get_queryset(self, *args, **kwargs):
-        # filter for date if provided
+        # filter for date if provided and exclude where sharing status is false
         if self.request.data.get('from_date_time') is not None and self.request.data.get('until_date_time') is not None:
-            boats = Boat.objects.exclude(
+            data = Boat.objects.exclude(
                 Q(status_sharing=False) |
                 (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
                  & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
@@ -47,16 +47,19 @@ class SearchBoatsView(ListAPIView):
                  & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
             )
         else:
-            boats = Boat.objects.filter(status_sharing=True)
+            data = Boat.objects.filter(status_sharing=True)
+
         # filter for lake and category
         if self.request.data.get('lake') is not None and self.request.data.get('category') is not None:
-            data = boats.filter(mooring__lake=self.request.data['lake'],
-                                category=self.request.data['category'])
+            data = data.filter(mooring__lake=self.request.data['lake'],
+                               category=self.request.data['category'])
         if self.request.data.get('lake') is not None:
-            data = boats.filter(mooring__lake=self.request.data['lake'])
+            data = data.filter(mooring__lake=self.request.data['lake'])
         if self.request.data.get('category') is not None:
-            data = boats.filter(category=self.request.data['category'])
+            data = data.filter(category=self.request.data['category'])
         if self.request.data.get('instructed') is not None:
+
+            # filter for is instructed
             if self.request.data.get('instructed'):
                 return data.filter(model__in=self.request.user.instructed_for_models.all())
             if not self.request.data.get('instructed'):
