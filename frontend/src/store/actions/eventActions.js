@@ -59,15 +59,16 @@ export const getEventInformationAction = (event_id) => async (dispatch) => {
         return response;
     } catch (error) {
         console.log('Error in getting event information', error);
-        error.json().then((errorMessage) => {
-            formErrorHandler(errorMessage);
-        });
+        // error.json().then((errorMessage) => {
+        //     formErrorHandler(errorMessage);
+        // });
     }
 };
 
 export const updateEventAction = (event_id, data) => async (dispatch) => {
     try {
         const response = await Axios.patch(`event/${event_id}/`, data);
+        console.log(response)
         return response;
     } catch (error) {
         console.log('Error updating event', error);

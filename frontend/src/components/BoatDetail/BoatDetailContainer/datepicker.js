@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function BoatDateTimePicker(props) {
     const today = new Date()
+
+    console.log(props.startDateTime)
     return (
         <div className='boat-datepicker-container'>
             <div id='boat-datepicker'>
