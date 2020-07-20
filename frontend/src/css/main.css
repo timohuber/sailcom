@@ -220,6 +220,17 @@ form.col-2 .input-container {
   .input-wrapper .form-success {
     color: #06AD05;
     font-size: 0.875rem; }
+  .input-wrapper.checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .input-wrapper.checkbox input {
+      width: auto;
+      margin: 0;
+      margin-right: 30px; }
+    .input-wrapper.checkbox label {
+      flex-grow: 1;
+      margin-bottom: 0; }
 
 .site-header {
   display: flex;
@@ -458,7 +469,11 @@ form.col-2 .input-container {
   #boat-calendar .rbc-today {
     background-color: transparent; }
 
-.boat-datepicker-container {
+.boat-datepicker-container .btn {
+  margin-top: 30px; }
+
+/* Date picker */
+.boat-datepicker-container, .react-datepicker-wrapper {
   width: 100%; }
 
 #boat-datepicker .react-datepicker__input-container {
@@ -469,8 +484,7 @@ form.col-2 .input-container {
 #boat-datepicker {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-bottom: 30px; }
+  width: 100%; }
   #event-datepicker .react-datepicker,
   #boat-datepicker .react-datepicker {
     font-family: "Open Sans", sans-serif; }
