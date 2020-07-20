@@ -17,7 +17,7 @@ class DetailBoatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Boat
-        fields = ['id', 'title', 'price_hour_weekday', 'price_hour_weekend', 'price_fullday_weekday',
+        fields = ['id', 'title', 'brand', 'owner', 'price_hour_weekday', 'price_hour_weekend', 'price_fullday_weekday',
                   'price_fullday_weekend', 'description', 'detail_description', 'technical_description',
                   'a_license_required', 'length', 'width', 'draught', 'max_crew', 'recommended_crew', 'mooring',
-                  'model', 'crew', 'images', 'boat_documents', 'bookings']
+                  'model', 'crew', 'images', 'boat_documents', 'bookings', 'registration_number', 'status_sharing']
