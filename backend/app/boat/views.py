@@ -1,3 +1,5 @@
+from datetime import timedelta
+from django.utils import timezone
 from django.db.models import Q
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
@@ -65,3 +67,25 @@ class SearchBoatsView(ListAPIView):
             if not self.request.data.get('instructed'):
                 return data.exclude(model__in=self.request.user.instructed_for_models.all())
         return data
+
+
+class FavouriteTodayView(ListAPIView):
+    serializer_class = DetailBoatSerializer
+
+    def get_queryset(self):
+        timezone.activate('Europe/Berlin')
+        from_date_time = timezone.localtime()
+        until_date_time = timezone.localtime() + timedelta(hours=2)
+        return Boat.objects.filter(mooring__lake=self.request.user.favourite_lake, status_sharing=True).exclude(
+            (Q(bookings__from_date_time__lte=from_date_time)
+             & Q(bookings__until_date_time__gte=from_date_time))
+            |
+            (Q(bookings__from_date_time__lte=until_date_time)
+             & Q(bookings__until_date_time__gte=until_date_time))
+            |
+            (Q(bookings__from_date_time__gte=from_date_time)
+             & Q(bookings__from_date_time__lte=until_date_time))
+            |
+            (Q(bookings__until_date_time__gte=from_date_time)
+             & Q(bookings__until_date_time__lte=until_date_time))
+        )

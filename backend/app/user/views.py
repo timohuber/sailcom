@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.db.models import Q
 from django.http import HttpResponse
 from rest_framework.generics import RetrieveAPIView, ListAPIView, RetrieveUpdateAPIView, CreateAPIView
 
@@ -8,6 +7,9 @@ from .serializers import UserSerializer
 from rest_framework import filters
 
 from ..boat.boat_model.models import BoatModel
+from ..invoice.models import Invoice
+from ..permissions import IsStaff
+from ..transaction.models import Transaction
 
 User = get_user_model()
 
@@ -15,9 +17,7 @@ User = get_user_model()
 class ListUserView(RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-    # TODO
-    # add permission class, only staff
+    permission_classes = [IsStaff]
 
 
 class ListUsersView(ListAPIView):
@@ -25,9 +25,7 @@ class ListUsersView(ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['first_name', 'last_name', 'email']
-
-    # TODO
-    # add permission class, only staff
+    permission_classes = [IsStaff]
 
 
 class ListMe(RetrieveUpdateAPIView):
@@ -40,6 +38,7 @@ class ListMe(RetrieveUpdateAPIView):
 
 class ToggleInstructedForView(CreateAPIView):
     serializer_class = UserSerializer
+    permission_classes = [IsStaff]
 
     def post(self, request, *args, **kwargs):
         searchUser = User.objects.filter(id=request.data['User'])
@@ -52,3 +51,23 @@ class ToggleInstructedForView(CreateAPIView):
         else:
             searchUser[0].instructed_for_models.remove(searchModel[0])
             return HttpResponse('Boot Model wurde entfernt', status=200)
+
+
+class CreateEntryFeeView(CreateAPIView):
+    serializer_class = UserSerializer
+
+    def post(self, request, *args, **kwargs):
+        searchUser = User.objects.get(id=self.request.data['User'])
+        if Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr', invoice__closed=True):
+            return HttpResponse('Kunde hat schon Eintrittsgebühr bezahlt', status=400)
+        if Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr', invoice__sent=False):
+            return HttpResponse('Für diesen Kunden gibt es schon'
+                                ' eine Eintrittsgebühr die noch nicht verschickt worden ist', status=400)
+        if Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr', invoice__sent=True):
+            return HttpResponse('Für diesen Kunden gibt es schon'
+                                ' eine Eintrittsgebühr die verschickt aber nicht bezahlt worden ist', status=400)
+        trx = Transaction.objects.create(sent=False, description='Eintrittsgebühr', user=searchUser, price=120)
+        inv = Invoice.objects.create(sent=False, closed=False)
+        trx.invoice = inv
+        trx.save()
+        return HttpResponse('Eintrittsgebühr Rechnung wurde erstellt', status=200)

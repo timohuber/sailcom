@@ -11,6 +11,7 @@ class ListBoatCrewView(ListAPIView):
 
 class ListBoatCrewMemberView(ListAPIView):
     serializer_class = BoatCrewSerializer
+    pagination_class = None
 
     def get_queryset(self):
         return BoatCrew.objects.filter(members=self.request.user)

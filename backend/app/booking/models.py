@@ -28,6 +28,7 @@ class Booking(models.Model):
                                  blank=True, null=True)
     transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL,
                                        blank=True, null=True)
+
     def __str__(self):
         return f'ID{self.id}: from {self.from_date_time} to: {self.until_date_time}'
 
