@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import ListBoatsView, ListBoatView, ListBoatsWhereCrewView, SearchBoatsView
+from .views import ListBoatsView, ListBoatView, ListBoatsWhereCrewView, SearchBoatsView, FavouriteTodayView
 from .boat_model.views import ListBoatModel
 from ..boat_crew.views import ListBoatCrewView, ListBoatCrewMemberView
 from .boat_category.views import ListBoatCategories
@@ -14,4 +14,5 @@ urlpatterns = [
     path('crew/', ListBoatCrewView.as_view()),
     path('crew/member/', ListBoatCrewMemberView.as_view()),
     path('category/', ListBoatCategories.as_view()),
+    path('favouriteToday/', FavouriteTodayView.as_view()),
 ]

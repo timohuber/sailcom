@@ -8,4 +8,4 @@ class Invoice(models.Model):
     closed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.id
+        return f'ID{self.id}: {self.created}, {self.sent}, {self.closed}'

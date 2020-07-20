@@ -9,6 +9,7 @@ User = get_user_model()
 class Transaction(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
     sent = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
@@ -18,9 +19,5 @@ class Transaction(models.Model):
                               , on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(to=User, related_name='transactions', on_delete=models.SET_NULL, null=True, blank=True)
 
-
     def __str__(self):
         return f'ID{self.id}: {self.created} {self.user}'
-
-
-
