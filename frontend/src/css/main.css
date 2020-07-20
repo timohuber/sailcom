@@ -16,6 +16,10 @@ body {
 img {
   max-width: 100%; }
 
+.App {
+  display: flex;
+  flex-direction: column; }
+
 .components-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr; }
@@ -226,7 +230,7 @@ form.col-2 .input-container {
   background-color: #fff;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2); }
   .site-header .site-logo {
-    width: 150px; }
+    height: 50px; }
   .site-header #mobile-menu {
     width: 40px;
     height: 32px;
@@ -240,7 +244,7 @@ form.col-2 .input-container {
     -o-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
     cursor: pointer;
-    z-index: 2; }
+    z-index: 8; }
     .site-header #mobile-menu span {
       display: block;
       position: absolute;
@@ -286,7 +290,7 @@ form.col-2 .input-container {
       left: 50%; }
 
 #mobile-navigation {
-  z-index: 1;
+  z-index: 5;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -340,11 +344,8 @@ form.col-2 .input-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 30px; }
-  .grid-col-3 > div {
-    margin-bottom: 30px;
-    background-color: #ffffff;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2);
-    padding: 15px; }
+  .grid-col-3 > div, .grid-col-3 > article {
+    margin-bottom: 30px; }
 
 @media (min-width: 768px) {
   .col-2 {
@@ -360,14 +361,16 @@ form.col-2 .input-container {
   .grid-col-3 {
     grid-template-columns: repeat(1, 1fr); } }
 
+.generic-box, .generic-box-grid > div {
+  background-color: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border: 1px solid #E4E4E4; }
+
 .boat-list-element {
   text-align: left;
   display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
-  background-color: #fff;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.2);
-  border: 1px solid #E4E4E4; }
+  flex-direction: column; }
   .boat-list-element .boat-list-image {
     background-size: cover;
     background-position: center;
@@ -524,11 +527,15 @@ form.col-2 .input-container {
 
 .event-list-element {
   margin-bottom: 30px; }
+  .event-list-element .event-button-container .btn {
+    margin-top: 15px;
+    display: block;
+    width: 100%; }
 
 .event-meta {
   display: flex;
   flex-direction: column;
-  margin-bottom: calc(30px / 2); }
+  margin-bottom: 15px; }
   .event-meta .event-row {
     display: flex;
     flex-direction: row;
@@ -548,11 +555,13 @@ form.col-2 .input-container {
   height: 100vh;
   z-index: 5;
   display: flex;
-  /* Book boats modal */ }
+  /* Book boats modal */
+  /* events  */ }
   .modal .inner {
     padding: 30px;
     background-color: #ffffff;
     display: flex;
+    flex-direction: row;
     width: 100%;
     position: relative;
     border-radius: 15px; }
@@ -580,7 +589,8 @@ form.col-2 .input-container {
     flex-direction: column;
     justify-content: center; }
     .modal .modal-buttons-wrapper .btn {
-      margin-top: 30px; }
+      margin-top: 30px;
+      width: 100%; }
   .modal .boat-booking-form {
     width: 100%;
     display: flex;
@@ -593,6 +603,9 @@ form.col-2 .input-container {
     .modal .boat-booking-form .btn {
       max-width: 100%;
       width: auto; }
+  .modal .event-participation-modal {
+    display: flex;
+    flex-direction: column; }
 
 .footer-wrapper {
   padding-top: 20px;
@@ -791,3 +804,18 @@ form.col-2 .input-container {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+.wrapper-404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-size: cover;
+  background-position: center; }
+
+.inner-404 {
+  text-align: center;
+  color: #ffffff; }
+  .inner-404 h1 {
+    color: #ffffff; }

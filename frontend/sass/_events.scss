@@ -1,10 +1,16 @@
 .event-list-element {
   margin-bottom: $gap-width;
+
+  .event-button-container .btn {
+    margin-top: $gap-width-small;
+    display: block;
+    width: 100%;
+  }
 }
 .event-meta {
   display: flex;
   flex-direction: column;
-  margin-bottom: calc(#{$gap-width} / 2);
+  margin-bottom: $gap-width-small;
 
   .event-row {
     display: flex;

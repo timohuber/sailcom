@@ -14,6 +14,11 @@ img {
   max-width: 100%;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 .components-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
