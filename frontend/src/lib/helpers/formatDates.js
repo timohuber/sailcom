@@ -1,4 +1,3 @@
-import moment from 'moment-timezone/moment-timezone';
 import moment from 'moment-timezone/moment-timezone'
 import {displayTimeDateFormat} from '../../store/constants'
 
