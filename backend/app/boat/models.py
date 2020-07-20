@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from .boat_category.models import BoatCategory
 from ..boat_crew.models import BoatCrew
 from .boat_model.models import BoatModel
 from ..mooring.models import Mooring
@@ -10,7 +11,6 @@ User = get_user_model()
 
 class Boat(models.Model):
     title = models.CharField(max_length=100)
-    brand = models.CharField(max_length=50, null=True)
     registration_number = models.CharField(max_length=20, null=True)
     price_hour_weekday = models.DecimalField(max_digits=10, decimal_places=2)
     price_hour_weekend = models.DecimalField(max_digits=10, decimal_places=2)
@@ -33,6 +33,8 @@ class Boat(models.Model):
     model = models.ForeignKey(to=BoatModel, related_name='boats', on_delete=models.SET_NULL, blank=True, null=True)
     crew = models.ForeignKey(to=BoatCrew, related_name='boat', on_delete=models.SET_NULL, blank=True, null=True)
     owner = models.ForeignKey(to=User, related_name='owned_boats', on_delete=models.SET_NULL, blank=True, null=True)
+    category = models.ForeignKey(to=BoatCategory, related_name='boats', on_delete=models.SET_NULL,
+                                 blank=True, null=True)
 
     def __str__(self):
         return f'ID{self.id}: {self.title}'
