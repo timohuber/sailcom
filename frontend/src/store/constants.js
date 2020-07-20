@@ -71,3 +71,18 @@ export const eventType = [
     { key: 3, value: 'SailingLadies' },
 ];
 
+export const lakeDict = {
+    1: 'Bielersee',
+    2: 'Bodensee',
+    3: 'Genfersee',
+    4: 'Greifensee',
+    5: 'Hallwilersee',
+    6: 'Lago Maggiore',
+    7: 'Neuenburgersee',
+    8: 'Thunersee',
+    9: 'Vierwaldstättersee',
+    10: 'Walensee',
+    11: 'Zugersee',
+    12: 'Zürich-Obersee',
+    13: 'Zürichsee',
+}
