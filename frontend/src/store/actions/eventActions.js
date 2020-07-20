@@ -66,6 +66,7 @@ export const getEventInformationAction = (event_id) => async (dispatch) => {
 };
 
 export const updateEventAction = (event_id, data) => async (dispatch) => {
+    
     try {
         const response = await Axios.patch(`event/${event_id}/`, data);
         console.log(response)
