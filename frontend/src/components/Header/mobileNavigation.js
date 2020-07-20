@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
+import {useDispatch} from "react-redux";
 import {NavLink} from 'react-router-dom';
 import {toggleMobileNavigation} from "./functions";
+import {userLogoutAction} from "../../store/actions/userActions";
 import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
 
 export default function MobileNavigation(props) {
-
+    const dispatch = useDispatch()
     // add onclick to all anchors
     useEffect(() => {
         const anchors = document.querySelectorAll("#mobile-navigation a")
@@ -14,6 +16,11 @@ export default function MobileNavigation(props) {
             })
         }
     }, []);
+
+    const toggleUserLogout = e => {
+        e.preventDefault()
+       dispatch(userLogoutAction())
+    }
 
     const backgroundStyle = {
         backgroundImage: `url(${backgroundSVG})`
@@ -70,7 +77,10 @@ export default function MobileNavigation(props) {
                     </li>
                     {
                         props.authorized
-                        ? <li><NavLink to='/profil' >Profil</NavLink></li>
+                        ? <>
+                                <li><NavLink to='/profil' >Profil</NavLink></li>
+                                <li><button className='btn secondary' onClick={ e => toggleUserLogout(e) }>Logout</button></li>
+                            </>
                         :   <>
                                 <li><NavLink to='/login' >Login</NavLink></li>
                                 <li><NavLink to='/registrierung' >Beitreten</NavLink></li>

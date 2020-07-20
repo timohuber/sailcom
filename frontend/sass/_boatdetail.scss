@@ -26,6 +26,13 @@
   }
 }
 
+.btn.back {
+  with: 100%;
+  margin-top: $gap-width;
+  margin-bottom: $gap-width;
+  display: block;
+}
+
 /* calendar */
 #boat-calendar {
   margin-bottom: $gap-width;

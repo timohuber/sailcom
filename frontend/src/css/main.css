@@ -239,6 +239,12 @@ form.col-2 .input-container {
       flex-grow: 1;
       margin-bottom: 0; }
 
+/* Registration */
+#register-form .btn.secondary {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
 .site-header {
   display: flex;
   flex-direction: row;
@@ -445,6 +451,12 @@ form.col-2 .input-container {
 
 .boat-detail-container .boat-technical-data {
   margin-bottom: 30px; }
+
+.btn.back {
+  with: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: block; }
 
 /* calendar */
 #boat-calendar {
