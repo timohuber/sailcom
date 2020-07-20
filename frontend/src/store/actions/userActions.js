@@ -22,7 +22,10 @@ export const updateUserAction = (data) => async (dispatch, getState) => {
         }),
     }
     const response = fetch(baseUrl + 'user/me/', config)
-        .then((response) => response.json())
+        .then(res => {
+            console.log(res)
+            return res.json()
+        })
         .then((data) => {
             dispatch(userUpdate(data));
             return data;
