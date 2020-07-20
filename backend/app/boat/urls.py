@@ -3,6 +3,7 @@ from django.urls import path
 from .views import ListBoatsView, ListBoatView, ListBoatsWhereCrewView, SearchBoatsView
 from .boat_model.views import ListBoatModel
 from ..boat_crew.views import ListBoatCrewView, ListBoatCrewMemberView
+from .boat_category.views import ListBoatCategories
 
 urlpatterns = [
     path('', ListBoatsView.as_view()),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('models/', ListBoatModel.as_view()),
     path('crew/', ListBoatCrewView.as_view()),
     path('crew/member/', ListBoatCrewMemberView.as_view()),
+    path('category/', ListBoatCategories.as_view()),
 ]

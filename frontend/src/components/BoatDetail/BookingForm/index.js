@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Loading from '../../GenericLoading'
+import GenericModalClose from '../../GenericModal/close'
 import BookingSuccess from './success'
+import BookingSummary from './bookingSummary'
 import {connect} from "react-redux";
 import {baseUrl} from "../../../store/constants";
 import {dateToISOString, dateToDisplayString} from '../../../lib/helpers/formatDates'
@@ -13,14 +15,13 @@ function BookingForm(props) {
     const from = dateToISOString(props.from)
     const until = dateToISOString(props.until)
 
-    /*
     console.log('props.from', props.from)
     console.log('props.until', props.until)
     console.log('from - display', dateToDisplayString(from))
     console.log('until - display', dateToDisplayString(until))
     console.log('ISO', from)
     console.log('ISO', until)
-    */
+
 
     const config = {
         method: 'POST',
@@ -68,57 +69,28 @@ function BookingForm(props) {
             })
         })
     }
-    console.log(calculatedPrice)
     return (
         <div className='modal'>
             <div className='inner'>
+                <GenericModalClose onClick={props.closeModal}/>
                 {
                     loading
                     ? <Loading />
-                    :
-                        <div className='boat-booking-form'>
+                    : success
+                        ? <BookingSuccess />
+                        : <div className='boat-booking-form'>
                             <h1>Abschluss</h1>
-                            <table className='simple'>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            Schiff:
-                                        </td>
-                                        <td>
-                                            {props.boat.title}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Von
-                                        </td>
-                                        <td>
-                                            {from}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Bis
-                                        </td>
-                                        <td>
-                                            {until}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Total
-                                        </td>
-                                        <td>
-                                            {calculatedPrice}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <BookingSummary
+                                boat={props.boat}
+                                calculatedPrice={calculatedPrice}
+                                from={from}
+                                until={until}
+                            />
                             <p id='booking-error' className='error'></p>
-                            {success
-                            ? <BookingSuccess />
-                            : <button className='btn primary' onClick={e => submitHandler(e)}>Buchung abschliessen</button>
-                            }
+                            <div className='modal-buttons-wrapper'>
+                                <button className='btn secondary' onClick={ e => props.closeModal(e) }>Abbrechen</button>
+                                <button className='btn primary' onClick={e => submitHandler(e)}>Buchung abschliessen</button>
+                            </div>
                         </div>
                     }
             </div>
@@ -134,10 +106,3 @@ const connection = connect(mapStateToProps);
 const ConnectedBookingForm = connection(BookingForm);
 
 export default ConnectedBookingForm;
-
-/*
-*                 // res.text().then(text => {
-                    throw new Error("Not 2xx response");
-                // })
-*
-* */

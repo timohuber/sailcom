@@ -1,22 +1,56 @@
 .boat-list-element {
   text-align: left;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  margin-bottom: $gap-width;
-}
+  flex-direction: column;
 
-.boat-list-image {
-  background-size: cover;
-  width: 30%;
-  margin-right: $gap-width;
-  flex-shrink: 0;
+  .boat-list-image {
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
 
-  &:before {
-    content: '';
-    padding-top: 100%;
-    display: block;
-    width: 100%;
+    &:before {
+      content: '';
+      padding-top: 60%;
+      display: block;
+      width: 100%;
+      position: relative;
+    }
+  }
+
+  .boat-list-body {
+      padding: calc(#{$gap-width} / 2);
+    }
+
+  .location > p {
+    padding-left: 25px;
     position: relative;
+    margin-bottom: calc(#{$gap-width} / 2);
+
+    &:before {
+      content: '\f3c5';
+      font-family: 'Font Awesome 5 Free';
+      position: absolute;
+      left: 0px;
+      top: 2px;
+      font-weight: bold;
+    }
+
+    &.lake:before {
+      content: '\f773';
+    }
+  }
+  .description {
+    padding-bottom: calc(#{$gap-width} / 2);
+    margin-bottom: calc(#{$gap-width} / 2);
+    border-bottom: 1px solid $border-color;
+  }
+
+  .boat-button-container {
+    display: flex;
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
   }
 }

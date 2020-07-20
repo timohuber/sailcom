@@ -16,9 +16,7 @@ function BoatDetailContainer(props) {
     const [startDateTime, setStartDateTime] = useState();
     const [endDateTime, setEndDateTime] = useState();
     const [bookingModal, setBookingModal] = useState(false)
-
     const boat = props.boat
-
 
     const triggerBookingModal = (e) => {
         e.preventDefault()
@@ -32,8 +30,13 @@ function BoatDetailContainer(props) {
             setBookingModal(true)
             document.getElementById('datepicker-error').innerText = ''
         }
-
     }
+
+    const closeModal = (e) => {
+        e.preventDefault()
+        setBookingModal(false)
+    }
+
     const heroImageStyle = {
         backgroundImage: boat.images.length > 0 ? `url(${boat.images[0].image})` : `url(${DefaultHeroImage})`
     }
@@ -42,7 +45,7 @@ function BoatDetailContainer(props) {
         <>
         {
             bookingModal ?
-            <BookingForm from={startDateTime} until={endDateTime} boat={boat}/> :
+            <BookingForm from={startDateTime} until={endDateTime} boat={boat} closeModal={closeModal}/> :
             null
         }
         <div className='hero-image boat' style={heroImageStyle}></div>

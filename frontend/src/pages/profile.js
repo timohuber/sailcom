@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
+import UserTransactions from '../components/UserTransactions'
 import Accordion from '../components/Accordion';
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
@@ -32,8 +33,8 @@ function MyProfilePage(props) {
             content: <UserDocumentsForm userData={props.userData} />,
         },
         {
-            title: 'accordion 3',
-            content: 'Lorem ipsum...',
+            title: 'Transaktionen',
+            content: <UserTransactions />,
         },
     ];
 
@@ -43,7 +44,8 @@ function MyProfilePage(props) {
                 {loading ? (
                 <Loading />
             ) : (<>
-                    <Accordion content={content}/>
+                        <h1>Hallo {props.userData.first_name}</h1>
+                        <Accordion content={content}/>
                 </>
             )}
         </div>

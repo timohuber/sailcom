@@ -12,6 +12,10 @@
         margin-right: $gap-width;
         flex-shrink: 0;
 
+        &.avatar {
+            border-radius: 50%;
+        }
+
         &:before {
             content: '';
             padding-top: 100%;
