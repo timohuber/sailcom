@@ -1,4 +1,5 @@
-import moment from 'moment-timezone/moment-timezone';
+import moment from 'moment-timezone/moment-timezone'
+import {displayTimeDateFormat} from '../../store/constants'
 
 export function dateToISOString(date) {
     return (
@@ -17,4 +18,3 @@ export function dateToDisplayString(date) {
 export function dateShowInTable(date) {
     return Date.parse(date);
 }
-

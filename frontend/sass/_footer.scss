@@ -1,5 +1,5 @@
 .footer-wrapper {
-    padding-top: 20px;
+    padding-top: $gap-width;
     background-color: $brand-color;
     width: 100%;
     color: #fff;
@@ -13,6 +13,34 @@
     p {
         margin-bottom: 0px;
     }
+    hr {
+        margin-bottom: 40px;
+    }
+    .social-footer {
+        margin: $gap-width;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        li {
+            display: inline-block;
+            background-color: $accent-color;
+            height: 30px;
+            width: 30px;
+            margin: 0 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        i {
+            margin: 33px 14px 33px 14px;
+        }
+    }
 }
 
 .icon-email:before {
@@ -24,6 +52,7 @@
 
 .icon-phone:before {
     font-family: 'Font Awesome 5 Free';
+    font-weight: bold;
     content: '\f095';
     margin-right: 12px;
     font-size: $base-font-size;

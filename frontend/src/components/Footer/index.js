@@ -14,6 +14,9 @@ export default function Footer(props) {
                         <h3>Kontakt</h3>
                         <ul>
                             <li>
+                                <p>SailCom Genossenschaft</p>
+                            </li>
+                            <li>
                                 <p>Frohburgstrasse 19</p>
                             </li>
                             <li>
@@ -25,7 +28,10 @@ export default function Footer(props) {
                                 </a>
                             </li>
                             <li>
-                                <a className='icon-email' href='mailto:info@sailcom.ch'>
+                                <a
+                                    className='icon-email'
+                                    href='mailto:info@sailcom.ch'
+                                >
                                     info@sailcom.ch
                                 </a>
                             </li>
@@ -97,6 +103,31 @@ export default function Footer(props) {
                             </li>
                         </ul>
                     </div>
+                </div>
+                <hr />
+                <div className='social-footer'>
+                    <ul>
+                        <li>
+                            <Link>
+                                <i class='fab fa-facebook-f'></i>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link>
+                                <i class='fab fa-instagram'></i>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link>
+                                <i class='fab fa-pinterest-p'></i>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link>
+                                <i class='fab fa-youtube'></i>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

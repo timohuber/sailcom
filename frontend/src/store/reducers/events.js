@@ -1,4 +1,4 @@
-import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO } from '../constants';
+import { SET_EVENT_MODAL, WHERE_CREW, CLOSE_EVENT_MODAL, GET_EVENT_INFO } from '../constants';
 
 const initialState = {
     activeModal: null,
@@ -15,6 +15,14 @@ export const events = (state = initialState, action) => {
                 activeModal: action.modal,
                 modalEvent: action.modalEvent,
             };
+
+        case CLOSE_EVENT_MODAL:
+            return {
+                ...state,
+                activeModal: null,
+                modalEvent: null,
+            };
+
         case WHERE_CREW:
             return {
                 ...state,

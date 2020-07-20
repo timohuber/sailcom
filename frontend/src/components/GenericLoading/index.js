@@ -2,6 +2,13 @@ import React from 'react';
 
 export default function Loading() {
     return (
-        <p>Data comming soon</p>
+        <div className='lds-ring-wrapper'>
+            <div className="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     );
 };

@@ -29,10 +29,13 @@ export default function EventParticipationModal(props) {
     }
 
     return (
-        <div className='modal event-participation-modal'>
+        <div className='event-participation-modal'>
             <h1>Anmeldung</h1>
             <EventInformationTable event={event}/>
-            <button className='btn primary' onClick={ e => toggleEventParticipation(e) }>Kostenpflichtig anmelden</button>
+             <div className='modal-buttons-wrapper'>
+                    <button className='btn secondary' onClick={ e => props.closeModal(e) }>Abbrechen</button>
+                    <button className='btn primary' onClick={e => toggleEventParticipation(e)}>Anmelden</button>
+            </div>
         </div>
     )
 }

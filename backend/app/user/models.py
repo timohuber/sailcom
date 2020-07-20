@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from .managers import CustomUserManager
+from ..lake.models import Lake
 
 
 class User(AbstractUser):
@@ -36,6 +37,8 @@ class User(AbstractUser):
 
     objects = CustomUserManager()
 
+    favourite_lake = models.ForeignKey(to=Lake, related_name='top_users', on_delete=models.SET_NULL, blank=True,
+                                       null=True)
 
     def __str__(self):
         return f'ID{self.id}: {self.email}'

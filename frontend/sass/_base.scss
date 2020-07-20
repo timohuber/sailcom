@@ -6,11 +6,17 @@ body {
   margin: 0;
   padding: 0;
   color: $base-color;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $base-font-family;
+  background-color: $body-background;
 }
 
 img {
   max-width: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
 }
 
 .components-wrapper {
