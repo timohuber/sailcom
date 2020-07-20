@@ -82,5 +82,21 @@ form.col-2 .input-container {
         color: $success-color;
         font-size: $smaller-font-size;
     }
-}
 
+    &.checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        input {
+            width: auto;
+            margin: 0;
+            margin-right: $gap-width;
+        }
+
+        label {
+            flex-grow: 1;
+            margin-bottom: 0;
+        }
+    }
+}

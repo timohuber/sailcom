@@ -75,7 +75,12 @@
 }
 
 
-.boat-datepicker-container {
+.boat-datepicker-container .btn {
+  margin-top: $gap-width;
+}
+
+/* Date picker */
+.boat-datepicker-container, .react-datepicker-wrapper {
   width: 100%;
 }
 
@@ -89,7 +94,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: $gap-width;
 
   .react-datepicker {
     font-family: $base-font-family;

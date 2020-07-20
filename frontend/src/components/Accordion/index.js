@@ -31,21 +31,3 @@ export default function Accordion(props) {
         </div>
     );
 }
-
-// How to use it:
-// const content = [
-//     {
-//         title: 'accordion 1',
-//         content: 'Lorem ipsum...',
-//     },
-//     {
-//         title: 'accordion 2',
-//         content: 'Lorem ipsum...',
-//     },
-//     {
-//         title: 'accordion 3',
-//         content: 'Lorem ipsum...',
-//     },
-// ];
-//
-// <Accordion content={content}/>
