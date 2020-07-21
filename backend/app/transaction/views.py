@@ -10,6 +10,5 @@ class ListTransactionsView(ListAPIView):
     serializer_class = TransactionSerializer
     permission_classes = [IsLoggedIn]
 
-
     def get_queryset(self):
         return Transaction.objects.filter(Q(user=self.request.user))

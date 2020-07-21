@@ -50,9 +50,3 @@ class BookingInTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ['id', 'boat', 'event', 'from_date_time', 'until_date_time', 'duration', 'transaction']
-
-
-class NumberSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Booking
-        fields = ('id',)
