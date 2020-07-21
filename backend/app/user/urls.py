@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import ListUserView, ListUsersView, ListMe, ToggleInstructedForView, CreateEntryFeeView
+from .views import ListUserView, ListUsersView, ListMe, ToggleInstructedForView, CreateEntryFeeView, \
+    TogglePaidEntryFeeView
 
 urlpatterns = [
     path('<int:pk>/', ListUserView.as_view()),
@@ -8,4 +9,5 @@ urlpatterns = [
     path('me/', ListMe.as_view()),
     path('toggleInstructed/', ToggleInstructedForView.as_view()),
     path('entryFee/', CreateEntryFeeView.as_view()),
+    path('togglePaidEntryFee/', TogglePaidEntryFeeView.as_view()),
 ]

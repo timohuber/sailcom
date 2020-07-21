@@ -10,6 +10,7 @@ from .serializers import EventSerializer
 
 from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
+from ..permissions import IsLoggedIn
 from ..transaction.models import Transaction
 
 
@@ -56,6 +57,7 @@ class ListEventView(RetrieveUpdateAPIView):
 
 class RegisterEventView(CreateAPIView):
     serializer_class = EventSerializer
+    permission_classes = [IsLoggedIn]
 
     def post(self, request, *args, **kwargs):
         currentUser = self.request.user
