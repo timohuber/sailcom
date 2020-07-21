@@ -16,6 +16,8 @@ class Booking(models.Model):
     until_date_time = models.DateTimeField()
 
     # remove blank and null? => delete db ;P
+    created = models.DateField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateField(auto_now=True, blank=True, null=True)
     duration = models.DurationField(blank=True, null=True)
     duration_weekday = models.DurationField(blank=True, null=True)
     duration_weekend = models.DurationField(blank=True, null=True)

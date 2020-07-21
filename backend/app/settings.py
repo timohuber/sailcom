@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'app.booking',
     'app.invoice',
     'app.transaction',
+    'app.membership_type',
 ]
 
 MIDDLEWARE = [
