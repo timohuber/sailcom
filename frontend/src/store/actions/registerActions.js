@@ -1,5 +1,6 @@
 import { baseUrl, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER } from '../constants'
 import {formErrorHandler} from '../../lib/helpers/errorHandler'
+import Axios from "../../axios";
 
 export const userVerification = () => {
     return {
@@ -7,9 +8,10 @@ export const userVerification = () => {
     }
 }
 
-export const verificationCodeRequested = () => {
+export const verificationCodeRequested = (email) => {
     return {
         type: VERIFICATION_CODE_REQUESTED,
+        email
     }
 }
 export const userRegistrationProceedValidation = () => {
@@ -18,40 +20,21 @@ export const userRegistrationProceedValidation = () => {
     }
 }
 
-export const registerAction = (email) => (dispatch, getState) => {
+export const registerAction = (email) => async (dispatch, getState) => {
 
-    const config = {
-        method: 'POST',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-            email
-        }),
-    }
-
-    const registrationResponse = fetch(baseUrl + 'registration/', config)
-    .then(res => {
-        console.log(res)
-        if (!res.ok) {
-            throw res
-        } else {
-            dispatch(verificationCodeRequested())
-            return res.json()
+    try {
+        const res = await Axios.post(`registration/`, {email});
+        if (res.status === 200) {
+            dispatch(verificationCodeRequested(email))
         }
-    })
-    .then(data => {
-        return data
-    })
-    .catch(error => {
-        console.log('error', error)
-
-        /*
-        error.json().then( errorMessage => {
-            formErrorHandler(errorMessage)
-        });
-         */
-    })
+        return res;
+    } catch (error) {
+        if (error) {
+            if ([400, 401].includes(error.response.status)){
+                formErrorHandler(error.response.data);
+            }
+        }
+    }
 }
 
 export const verificationProceedAction = () => (dispatch, getState) => {

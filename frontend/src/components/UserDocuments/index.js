@@ -48,14 +48,15 @@ export default function UserDocumentsForm(props) {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         const form = new FormData();
-        const Avatar = document.getElementById('avatar').files[0];
-        const Licence = document.getElementById('licence').files[0];
+        const avatar = document.getElementById('avatar').files[0];
+        const licence = document.getElementById('licence').files[0];
 
-        if (Avatar) {
-            form.append('avatar', Avatar);
+        if (avatar) {
+            form.append('avatar', avatar);
+            console.log(avatar)
         }
-        if (Licence) {
-            form.append('licence', Licence);
+        if (licence) {
+            form.append('licence', licence);
         }
 
         const config = {
@@ -67,7 +68,7 @@ export default function UserDocumentsForm(props) {
             }),
             body: form,
         };
-        dispatch(updateUserAction(config));
+        dispatch(updateUserAction(form));
     };
 
     const formHandler = () => {

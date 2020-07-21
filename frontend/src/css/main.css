@@ -176,6 +176,14 @@ input {
 form {
   display: flex;
   flex-direction: column; }
+  form .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  form .form-text-centered {
+    text-align: center;
+    margin: 0px auto 15px auto;
+    max-width: 570px; }
 
 form.col-1 {
   max-width: 400px;
