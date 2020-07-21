@@ -11,6 +11,7 @@ export const VERIFICATION_CODE_REQUESTED = 'VERIFICATION_CODE_REQUESTED';
 export const VERIFICATION_CONFORMED = 'VERIFICATION_CONFORMED';
 export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
+export const siteUrl = 'https://sailcom.propulsion-learn.ch/';
 // export const baseUrl = 'http://localhost:8000/backend/api/';
 
 export const SET_EVENT_MODAL = 'SET_EVENT_MODAL';
@@ -18,9 +19,9 @@ export const WHERE_CREW = 'WHERE_CREW';
 export const GET_EVENT_INFO = 'GET_EVENT_INFO';
 export const CLOSE_EVENT_MODAL = 'CLOSE_EVENT_MODAL';
 
+export const GET_ALL_BOAT_INFO = 'GET_ALL_BOAT_INFO';
 export const ADD_BOAT = 'ADD_BOAT';
 export const ADD_BOOKING_TO_BOAT = 'ADD_BOOKING_TO_BOAT';
-export const GET_ALL_BOAT_INFO = 'GET_ALL_BOAT_INFO';
 
 /* time and date formats */
 export const displayTimeDateFormatWithoutY = "MMMM d, HH:mm";
