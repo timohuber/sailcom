@@ -4,6 +4,7 @@ import BoatsContainer from "./boatscontainer";
 import BoatListFilter from "./Filter";
 import Loading from '../GenericLoading'
 import Accordion from "../Accordion";
+import {dateToISOString} from "../../lib/helpers/formatDates";
 
 export default function BoatListContainer(props) {
     const [data, setData] = useState([]);
@@ -13,6 +14,10 @@ export default function BoatListContainer(props) {
     useEffect(() => {
         let url = 'boat/'
 
+        if (visibilityFilter) {
+            url += visibilityFilter
+        }
+
         const config = {
             method: 'GET',
             headers: new Headers({
@@ -20,9 +25,10 @@ export default function BoatListContainer(props) {
             })
         }
 
-        const response = fetch(baseUrl + url, config)
+        fetch(baseUrl + url, config)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             setData(data['results']);
             setLoading(false)
         })
@@ -33,30 +39,21 @@ export default function BoatListContainer(props) {
 
     const submitFilterHandler = (e, filterQuery) => {
         e.preventDefault()
-        setVisibilityFilter(filterQuery)
-
-        /*
-        const config = {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }),
-            body: JSON.stringify({
-                visibilityFilter
-            })
+        console.log(dateToISOString(filterQuery.from_date_time))
+        let count = 0
+        let query = '?'
+        for (const [key, value] of Object.entries(filterQuery)) {
+            if(value) {
+                query += `${key}=${value}&`
+                count++
+            }
         }
-
-        const response = fetch(baseUrl + 'boat/search/', config)
-        .then(res => res.json())
-        .then(data => {
-            console.log('data')
-            setData(data['results']);
-            setLoading(false)
-        })
-        .catch(response => {
-            return
-        })
-        */
+        const searchURL = query.slice(0, -1)
+        if(count > 0) {
+            setVisibilityFilter(searchURL)
+        } else {
+            setVisibilityFilter(null)
+        }
     }
 
     const accordionContent = [
