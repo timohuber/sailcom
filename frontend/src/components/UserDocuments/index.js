@@ -6,6 +6,7 @@ import LicenceDefault from '../../assets/pdf.svg';
 import { fetchUserData } from '../../store/actions/loginActions';
 import Loading from '../../components/GenericLoading';
 import { updateUserAction } from '../../store/actions/userActions';
+import {NavLink} from "react-router-dom";
 
 export default function UserDocumentsForm(props) {
     const initialState = {
@@ -87,7 +88,7 @@ export default function UserDocumentsForm(props) {
                                 style={avatarStyle}
                             />
                             <label htmlFor='avatar' className='btn primary'>
-                                Datei auswählen
+                                Foto hochladen
                             </label>
                             <input
                                 type='file'
@@ -101,16 +102,19 @@ export default function UserDocumentsForm(props) {
                         <h2>Segelausweis</h2>
                         <div className='input-wrapper '>
                             <div className='user-documents-img-btn-wrapper'>
-                                <div
-                                    className='user-document-list-image'
-                                    style={licenceStyle}
-                                />
+                                {props.userData.licence
+                                ? <a
+                                    className=' document pdf'
+                                    href={props.userData.licence ? props.userData.licence : null}
+                                    target='_blank'>Ihr Segelausweis</a>
+                                : <p className='error'>Noch kein Segelausweis hochgeladen</p>
+                                }
                                 <label htmlFor='licence'></label>
                                 <label
                                     htmlFor='licence'
                                     className='btn primary'
                                 >
-                                    Datei auswählen
+                                    Ausweis hochladen
                                 </label>
                                 <input
                                     type='file'
@@ -120,9 +124,8 @@ export default function UserDocumentsForm(props) {
                                     style={{ display: 'none' }}
                                 />
                             </div>
-                            <span id='licence-error' className='error'>
-                                Dieses Bild wird benötigt.
-                            </span>
+                            <span id='licence-error' className='error' />
+
                         </div>
                     </div>
                     <div className='button-container'>
