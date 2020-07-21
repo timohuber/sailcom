@@ -2,6 +2,9 @@
   text-align: left;
   display: flex;
   flex-direction: column;
+  &.generic-box {
+    padding: 0;
+  }
 
   .boat-list-image {
     background-size: cover;
