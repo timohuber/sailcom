@@ -5,6 +5,9 @@ import BoatListFilter from "./Filter";
 import Loading from '../GenericLoading'
 import Accordion from "../Accordion";
 import {dateToISOString} from "../../lib/helpers/formatDates";
+import Axios from "../../axios";
+import {formErrorHandler} from "../../lib/helpers/errorHandler";
+import {getBoatOverview} from "../../store/actions/boatActions";
 
 export default function BoatListContainer(props) {
     const [data, setData] = useState([]);
@@ -12,39 +15,38 @@ export default function BoatListContainer(props) {
     const [visibilityFilter, setVisibilityFilter] = useState()
 
     useEffect(() => {
-        let url = 'boat/'
+        const fetchBoats = async () => {
+            let url = 'boat/'
 
-        if (visibilityFilter) {
-            url += visibilityFilter
-        }
-
-        const config = {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            })
-        }
-
-        fetch(baseUrl + url, config)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setData(data['results']);
-            setLoading(false)
-        })
-        .catch(response => {
-            return
-        })
+            if (visibilityFilter) {
+                url += visibilityFilter
+            }
+            try {
+                const response = await Axios.get(url);
+                setData(response.data.results)
+                setLoading(false)
+                return response;
+            } catch (error) {
+                console.log(error.response.data)
+            }
+       }
+       fetchBoats()
     }, [visibilityFilter])
 
     const submitFilterHandler = (e, filterQuery) => {
         e.preventDefault()
-        console.log(dateToISOString(filterQuery.from_date_time))
+
         let count = 0
         let query = '?'
         for (const [key, value] of Object.entries(filterQuery)) {
             if(value) {
-                query += `${key}=${value}&`
+                if(key === 'from_date_time' || key === 'until_date_time') {
+                    const formatted_date = dateToISOString(value)
+                    console.log('is date', formatted_date)
+                    query += `${key}=${formatted_date}&`
+                } else {
+                    query += `${key}=${value}&`
+                }
                 count++
             }
         }

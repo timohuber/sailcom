@@ -406,6 +406,8 @@ form.col-2 .input-container {
   text-align: left;
   display: flex;
   flex-direction: column; }
+  .boat-list-element.generic-box {
+    padding: 0; }
   .boat-list-element .boat-list-image {
     background-size: cover;
     background-position: center;
