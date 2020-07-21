@@ -2,6 +2,7 @@ from rest_framework.generics import ListAPIView
 
 from .models import BoatCrew
 from .serializers import BoatCrewSerializer
+from ..permissions import IsLoggedIn
 
 
 class ListBoatCrewView(ListAPIView):
@@ -11,7 +12,7 @@ class ListBoatCrewView(ListAPIView):
 
 class ListBoatCrewMemberView(ListAPIView):
     serializer_class = BoatCrewSerializer
-    pagination_class = None
+    permission_classes = [IsLoggedIn]
 
     def get_queryset(self):
         return BoatCrew.objects.filter(members=self.request.user)

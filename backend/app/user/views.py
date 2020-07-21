@@ -8,7 +8,7 @@ from rest_framework import filters
 
 from ..boat.boat_model.models import BoatModel
 from ..invoice.models import Invoice
-from ..permissions import IsStaff
+from ..permissions import IsStaff, IsLoggedIn
 from ..transaction.models import Transaction
 
 User = get_user_model()
@@ -30,6 +30,7 @@ class ListUsersView(ListAPIView):
 
 class ListMe(RetrieveUpdateAPIView):
     serializer_class = MeSerializer
+    permission_classes = [IsLoggedIn]
 
     def get_object(self):
         return self.request.user
@@ -54,8 +55,11 @@ class ToggleInstructedForView(CreateAPIView):
 
 class CreateEntryFeeView(CreateAPIView):
     serializer_class = UserSerializer
+    permission_classes = [IsStaff]
 
     def post(self, request, *args, **kwargs):
+        if len(User.objects.filter(id=self.request.data['User'])) == 0:
+            return HttpResponse('Kunde existiert nicht', status=400)
         searchUser = User.objects.get(id=self.request.data['User'])
         if Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr', invoice__closed=True):
             return HttpResponse('Kunde hat schon Eintrittsgebühr bezahlt', status=400)
@@ -70,3 +74,25 @@ class CreateEntryFeeView(CreateAPIView):
         trx.invoice = inv
         trx.save()
         return HttpResponse('Eintrittsgebühr Rechnung wurde erstellt', status=200)
+
+
+class TogglePaidEntryFeeView(CreateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsStaff]
+
+    def post(self, request, *args, **kwargs):
+        if len(User.objects.filter(id=self.request.data['User'])) == 0:
+            return HttpResponse('Kunde existiert nicht', status=400)
+        searchUser = User.objects.get(id=request.data['User'])
+        if len(Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr'))==0:
+            return HttpResponse('Eintrittsgebührrechnung wurde nicht erstellt', status=400)
+        searchTrx = Transaction.objects.get(user=searchUser, description='Eintrittsgebühr')
+        searchInv = Invoice.objects.get(transactions=searchTrx)
+        if searchInv.closed is True:
+            return HttpResponse('Eintrittsgebühr wurde schon bezahlt', status=400)
+        searchInv.sent = True
+        searchInv.closed = True
+        searchTrx.sent = True
+        searchInv.save()
+        searchTrx.save()
+        return HttpResponse('Eintrittsgebühr wurde empfangen', status=200)
