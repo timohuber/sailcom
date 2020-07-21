@@ -16,7 +16,8 @@ class ListBoatsView(ListAPIView):
 
     def get_queryset(self, *args, **kwargs):
         # filter for date if provided and exclude where sharing status is false
-        if self.request.query_params.get('from_date_time') is not None and self.request.query_params.get('until_date_time') is not None:
+        if self.request.query_params.get('from_date_time') is not None and \
+                self.request.query_params.get('until_date_time') is not None:
             data = Boat.objects.exclude(
                 Q(status_sharing=False) |
                 (Q(bookings__from_date_time__lte=self.request.query_params['from_date_time'])
@@ -50,6 +51,7 @@ class ListBoatsView(ListAPIView):
             if not self.request.query_params.get('instructed'):
                 return data.exclude(model__in=self.request.user.instructed_for_models.all())
         return data
+
 
 class ListBoatView(RetrieveAPIView):
     queryset = Boat.objects.all()
