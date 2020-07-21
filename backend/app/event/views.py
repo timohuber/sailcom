@@ -1,10 +1,12 @@
+from datetime import timedelta
+
 from django.db.models import Q
 from django.http import HttpResponse
+from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, ListCreateAPIView, CreateAPIView
 
 from .models import Event
 from .serializers import EventSerializer
-from datetime import datetime
 
 from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
@@ -20,7 +22,7 @@ class ListEventsView(ListCreateAPIView):
     serializer_class = EventSerializer
 
     def get_queryset(self):
-        return Event.objects.filter(from_date_time__gte=datetime.now())
+        return Event.objects.filter(from_date_time__gte=timezone.localtime()-timedelta(days=1))
 
     def post(self, request, *args, **kwargs):
         overlapping_bookings = Boat.objects.filter(id=self.request.data['boat']).filter(
@@ -60,7 +62,6 @@ class RegisterEventView(CreateAPIView):
         searchEvent = Event.objects.get(id=kwargs['pk'])
         registered = Event.objects.filter(id=kwargs['pk'], participants=currentUser)
 
-        br = 'br'
         if not registered:
             if searchEvent.participants.count() >= searchEvent.max_participants:
                 return HttpResponse('Leider ist diese Veranstaltung schon voll', status=400)

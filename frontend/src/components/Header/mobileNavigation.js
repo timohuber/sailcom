@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
+import {connect, useDispatch} from "react-redux";
 import {NavLink} from 'react-router-dom';
 import {toggleMobileNavigation} from "./functions";
+import {userLogoutAction} from "../../store/actions/userActions";
 import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
 
-export default function MobileNavigation(props) {
+function MobileNavigation(props) {
+    const dispatch = useDispatch()
 
     // add onclick to all anchors
     useEffect(() => {
@@ -15,10 +18,14 @@ export default function MobileNavigation(props) {
         }
     }, []);
 
+    const toggleUserLogout = e => {
+        e.preventDefault()
+       dispatch(userLogoutAction())
+    }
+
     const backgroundStyle = {
         backgroundImage: `url(${backgroundSVG})`
     }
-
     return (
         <div id="mobile-navigation" style={backgroundStyle}>
             <nav>
@@ -70,14 +77,33 @@ export default function MobileNavigation(props) {
                     </li>
                     {
                         props.authorized
-                        ? <li><NavLink to='/profil' onClick={ e => toggleMobileNavigation() }>Profil</NavLink></li>
+                        ? <>
+                                <li><NavLink to='/profil' >Profil</NavLink></li>
+                                <li><button className='btn secondary' onClick={ e => toggleUserLogout(e) }>Logout</button></li>
+                            </>
                         :   <>
-                                <li><NavLink to='/login' onClick={ e => toggleMobileNavigation() }>Login</NavLink></li>
-                                <li><NavLink to='/registrierung'onClick={ e => toggleMobileNavigation() }>Beitreten</NavLink></li>
+                                <li><NavLink to='/login' >Login</NavLink></li>
+                                <li><NavLink to='/registrierung' >Beitreten</NavLink></li>
                             </>
                     }
+                    {
+                        props.is_crew
+                        ? <NavLink to='/mitglieder'>Mitglieder</NavLink>
+                        : null
+                    }
+
                 </ul>
             </nav>
         </div>
     );
 };
+
+const mapStateToProps = (state) => {
+    return {
+        is_crew: state.events.is_crew
+    }
+}
+const connection = connect(mapStateToProps);
+const ConnectedMobileNavigation = connection(MobileNavigation);
+
+export default ConnectedMobileNavigation;

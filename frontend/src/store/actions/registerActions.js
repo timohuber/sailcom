@@ -1,5 +1,5 @@
 import { baseUrl, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER } from '../constants'
-
+import {formErrorHandler} from '../../lib/helpers/errorHandler'
 
 export const userVerification = () => {
     return {
@@ -31,27 +31,32 @@ export const registerAction = (email) => (dispatch, getState) => {
     }
 
     const registrationResponse = fetch(baseUrl + 'registration/', config)
-        .then(response => {
-        console.log(response)
-        if (response.status === 200) {
-            document.getElementById('register-error').innerHTML = '<p class="form-success">Registrierung erfolgreich - bitte prüfen Sie Ihr E-Mail.</p>';
+    .then(res => {
+        console.log(res)
+        if (!res.ok) {
+            throw res
         } else {
-            document.getElementById('register-error').innerHTML = '<p class="error">Registrierung fehlgeschlagen - diese E-Mailadresse ist ungültig oder wurde schon benutzt.</p>';
-            throw new Error(response.statusText);
+            dispatch(verificationCodeRequested())
+            return res.json()
         }
-    }).then(dispatch(verificationCodeRequested()))
-    .catch(error => {
-        return console.log(error)
-        
     })
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        console.log('error', error)
 
+        /*
+        error.json().then( errorMessage => {
+            formErrorHandler(errorMessage)
+        });
+         */
+    })
 }
 
 export const verificationProceedAction = () => (dispatch, getState) => {
     dispatch(userRegistrationProceedValidation())
 }
-
-// export const verificationAction = (email, code, password, password_repeat, username, first_name, last_name) => async (dispatch, getState) => {
 
 export const verificationAction = (obj) => async (dispatch, getState) => {
     
@@ -61,15 +66,7 @@ export const verificationAction = (obj) => async (dispatch, getState) => {
             'Content-Type': 'application/json',
         }),
         body: JSON.stringify(obj),
-        // body: JSON.stringify({
-        //     email,
-        //     code,
-        //     password,
-        //     password_repeat,
-        //     username,
-        //     first_name,
-        //     last_name
-        // }),
+
     }
     let fetchOk = false;
     const response = await fetch(baseUrl + 'registration/validation/', config)

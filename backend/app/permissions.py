@@ -18,6 +18,11 @@ class IsLoggedInOrReadOnly(BasePermission):
         return bool(request.user)
 
 
+class IsStaff(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_staff
+
+
 # Object level permission
 """
 class IsAuthorOrReadOnly(BasePermission):
@@ -40,4 +45,10 @@ class UserIsCurrentUser(BasePermission):
         if request.method == 'GET':
             return True
         return obj.author == request.user
+        
+class IsStaff(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method == 'GET':
+            return True
+        return request.user.is_staff
 """

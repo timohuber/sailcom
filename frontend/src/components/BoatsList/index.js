@@ -23,7 +23,6 @@ export default function BoatListContainer(props) {
         const response = fetch(baseUrl + url, config)
         .then(res => res.json())
         .then(data => {
-            console.log('data')
             setData(data['results']);
             setLoading(false)
         })

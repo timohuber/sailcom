@@ -4,6 +4,7 @@ const initialState = {
     activeModal: null,
     modalEvent: null,
     whereCrew: null,
+    is_crew: false,
     eventInfo: null,
 };
 
@@ -27,6 +28,7 @@ export const events = (state = initialState, action) => {
             return {
                 ...state,
                 whereCrew: action.payload,
+                is_crew: action.is_crew
             };
         case GET_EVENT_INFO:
             return {

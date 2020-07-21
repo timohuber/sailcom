@@ -100,3 +100,12 @@ form.col-2 .input-container {
         }
     }
 }
+
+
+
+/* Registration */
+#register-form .btn.secondary {
+    display: block;
+    margin-top: $gap-width;
+    margin-bottom: $gap-width;
+}

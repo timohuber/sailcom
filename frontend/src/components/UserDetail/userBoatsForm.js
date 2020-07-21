@@ -10,18 +10,17 @@ function UserBoatsForm(props) {
     const [user, setUser] = useState(props.user)
     const dispatch = useDispatch()
 
+    console.log('props userBoatsForm', props)
+
     useEffect(() => {
+        console.log('in use effect ')
         if (!props.whereCrew) {
             dispatch(whereIsCurrentUserCrewMemberAction());
         }
-    }, []);
-
-    useEffect(() => {
-        if (props.whereCrew) {
-            setUser(props.user)
+        else {
             setLoading(false)
         }
-    }, [props.whereCrew]);
+    });
 
     const toggleUserHandler = modelID => {
         const requestBody = {

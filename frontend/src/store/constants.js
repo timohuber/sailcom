@@ -19,6 +19,8 @@ export const GET_EVENT_INFO = 'GET_EVENT_INFO';
 export const CLOSE_EVENT_MODAL = 'CLOSE_EVENT_MODAL';
 
 export const GET_ALL_BOAT_INFO = 'GET_ALL_BOAT_INFO';
+export const ADD_BOAT = 'ADD_BOAT';
+export const ADD_BOOKING_TO_BOAT = 'ADD_BOOKING_TO_BOAT';
 
 /* time and date formats */
 export const displayTimeDateFormatWithoutY = "MMMM d, HH:mm";

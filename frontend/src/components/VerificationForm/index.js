@@ -30,62 +30,44 @@ export default function VerificationForm(props) {
         const requiredFields = document.querySelectorAll('.required');
         let requiredFieldsOK = true;
 
-        /*
-        requiredFields.forEach((field) => {
-            if (!field.value) {
-                field.nextElementSibling.style.opacity = '1';
-                requiredFieldsOK = false;
-            } else {
-                field.nextElementSibling.style.opacity = '0';
-            }
-        });
-        if (!licence) {
-            requiredFieldsOK = false;
-            document.getElementById('licence-error').style.opacity = '1';
-        } else {
-            document.getElementById('licence-error').style.opacity = '0';
+        const form = new FormData();
+
+        for (const [key, value] of Object.entries(formState)) {
+            form.append(key, value);
         }
-         */
 
-        if (requiredFieldsOK) {
-            const form = new FormData();
-
-            for (const [key, value] of Object.entries(formState)) {
-                form.append(key, value);
-            }
-
+        if (licence) {
             form.append('licence', licence);
+        }
 
-            if (avatar) {
-                form.append('avatar', avatar);
-            }
+        if (avatar) {
+            form.append('avatar', avatar);
+        }
 
-            const config = {
-                method: 'PATCH',
-                headers: new Headers({}),
-                body: form,
-            };
+        const config = {
+            method: 'PATCH',
+            headers: new Headers({}),
+            body: form,
+        };
 
-            const loginResponse = fetch(
-                baseUrl + 'registration/validation/',
-                config
-            )
-                .then((res) => {
-                    if (!res.ok) {
-                        throw res
-                    }
-                    push('/'); //TODO push doesn't work
-                    return res.json();
-                })
-                .then((data) => {
-                    return data;
-                })
-                .catch(error => {
+        const response = fetch(baseUrl + 'registration/validation/', config)
+            .then(res => {
+                if (!res.ok) {
+                    throw res
+                }
+                push('/'); //TODO push doesn't work
+                return res.json();
+            })
+            .then((data) => {
+                return data;
+            })
+            .catch(error => {
+                if (error.status === 400) {
                     error.json().then( errorMessage => {
                         formErrorHandler(errorMessage)
                     });
-                });
-        }
+                }
+            });
     };
 
     return (
@@ -103,7 +85,7 @@ export default function VerificationForm(props) {
                 </p>
                 <div className='input-container'>
                     <div className='input-wrapper'>
-                        <label htmlFor='code'>Code</label>
+                        <label htmlFor='code' className='required'>Code</label>
                         <input
                             id='code'
                             name='code'
@@ -115,7 +97,7 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='email'>Email</label>
+                        <label htmlFor='email' className='required'>Email</label>
                         <input
                             id='email'
                             name='email'
@@ -126,7 +108,7 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='first-name'>Vorname</label>
+                        <label htmlFor='first-name' className='required'>Vorname</label>
                         <input
                             id='first-name'
                             name='first_name'
@@ -138,7 +120,7 @@ export default function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='last-name'>Nachname</label>
+                        <label htmlFor='last-name' className='required'>Nachname</label>
                         <input
                             id='last-name'
                             name='last_name'
@@ -161,8 +143,8 @@ export default function VerificationForm(props) {
                     <div className='input-wrapper'>
                         <label htmlFor='street-appendix'>Adresszusatz</label>
                         <input
-                            id='street-appendix'
-                            name='street_appendix'
+                            id='address_appendix'
+                            name='address_appendix'
                             onChange={(e) => onChangeHandler(e)}
                         />
                     </div>
@@ -208,6 +190,7 @@ export default function VerificationForm(props) {
                         <input
                             id='date-of-birth'
                             name='date_of_birth'
+                            type='date'
                             onChange={(e) => onChangeHandler(e)}
                         />
                     </div>

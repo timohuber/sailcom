@@ -10,7 +10,6 @@ const initialState = {
 };
 
 export const currentUser = (state = initialState, action) => {
-
     switch (action.type) {
         case USER_LOGIN:
             return {
