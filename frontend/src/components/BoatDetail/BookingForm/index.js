@@ -3,11 +3,13 @@ import Loading from '../../GenericLoading'
 import GenericModalClose from '../../GenericModal/close'
 import BookingSuccess from './success'
 import BookingSummary from './bookingSummary'
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {baseUrl} from "../../../store/constants";
 import {dateToISOString, dateToDisplayString} from '../../../lib/helpers/formatDates'
+import {addBookingToBoatAction} from "../../../store/actions/boatActions";
 
 function BookingForm(props) {
+    const dispatch = useDispatch()
     const [calculatedPrice, setCalculatedPrice] = useState();
     const [loading, setLoading] = useState(true);
     const [success, setSuccess] = useState(false);
@@ -62,11 +64,14 @@ function BookingForm(props) {
             return res.json()
         })
         .then(data => {
+             dispatch(addBookingToBoatAction(data))
         })
         .catch(error => {
-            error.text().then( errorMessage => {
-                document.getElementById('booking-error').innerText = errorMessage
-            })
+            if(error.status === 400) {
+                error.text().then( errorMessage => {
+                    document.getElementById('booking-error').innerText = errorMessage
+                })
+            }
         })
     }
     return (

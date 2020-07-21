@@ -70,7 +70,7 @@ function BoatDetailContainer(props) {
 
             <BoatCarousel images={boat.images}/>
 
-            <BoatCalendar boat={boat} />
+            <BoatCalendar boat={boat} boatID={boat.id}/>
 
             {instructed
                 ?
