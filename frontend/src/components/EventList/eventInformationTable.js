@@ -4,7 +4,7 @@ import {dateToDisplayString} from '../../lib/helpers/formatDates'
 
 export default function EventInformationTable(props) {
     const event = props.event
-    console.log(event.event_type)
+    console.log(event)
     return (
         <div className='event-meta'>
             <div className='event-row'>
@@ -55,7 +55,7 @@ export default function EventInformationTable(props) {
                     Plätze
                 </div>
                 <div className='event-cell'>
-                    {event.participants.length} / 3
+                    {event.participants.length} / {event.max_participants}
                 </div>
             </div>
         </div>

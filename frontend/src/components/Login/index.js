@@ -20,20 +20,7 @@ export default function LoginForm(props) {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         dispatch(loginAction(formState))
-        /*
-        try {
-            const response = await Axios.post(`auth/token/`, formState);
-            return response;
-        } catch (error) {
-            if (error) {
-                if ([400, 401].includes(error.response.status)){
-                    formErrorHandler(error.response.data);
-                }
-            }
-        }
-        */
-
-    };
+        };
 
     return (
         <form

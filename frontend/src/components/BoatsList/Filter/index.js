@@ -3,9 +3,6 @@ import SelectLake from "./selectLake";
 import SelectCategory from "./selectCategory";
 import PeriodPicker from "./periodPicker";
 import {connect} from "react-redux";
-import UserAddressForm from "../../UserAddress";
-import UserDocumentsForm from "../../UserDocuments";
-import UserTransactions from "../../UserTransactions";
 
 function BoatListFilter(props) {
     const [formState, setFormState] = useState({})
@@ -19,7 +16,6 @@ function BoatListFilter(props) {
     };
 
     const onChangeDateHandler = (date, key) => {
-        console.log(formState)
         setFormState({
             ...formState,
             [key]: date,

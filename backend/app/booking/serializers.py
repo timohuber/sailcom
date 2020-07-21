@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.core.exceptions import ValidationError
 
 from .models import Booking
 from ..boat.serializers import BoatSerializer
@@ -51,9 +50,3 @@ class BookingInTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ['id', 'boat', 'event', 'from_date_time', 'until_date_time', 'duration', 'transaction']
-
-
-class NumberSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Booking
-        fields = ('id',)

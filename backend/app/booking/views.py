@@ -5,7 +5,7 @@ from rest_framework.generics import ListCreateAPIView, ListAPIView
 from datetime import timedelta, datetime
 
 from .models import Booking
-from .serializers import BookingSerializer, CreateBookingSerializer, NumberSerializer
+from .serializers import BookingSerializer, CreateBookingSerializer
 from ..boat.models import Boat
 from ..permissions import IsLoggedIn
 
@@ -101,16 +101,6 @@ class CalculateBookingView(ListAPIView):
                 "Bitte Boot auswählen"
             }
             return HttpResponse(res, status=400)
-        existing_bookings = Booking.objects.filter(Q(boat__id__exact=self.request.data.get('boat'))) \
-            .filter((
-                        Q(from_date_time__exact=from_date_time)
-                    ) | (
-                            Q(from_date_time__gt=from_date_time) &
-                            Q(from_date_time__lt=until_date_time)
-                    ) | (
-                            Q(from_date_time__lt=from_date_time) &
-                            Q(until_date_time__gt=from_date_time)
-                    ))
 
         duration = until_date_time - from_date_time
         less_24 = duration.days == 0

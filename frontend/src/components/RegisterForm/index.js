@@ -32,7 +32,7 @@ export default function RegisterForm(props) {
                 class='col-1'
                 onSubmit={(e) => onSubmitHandler(e)}
             >
-                <p>
+                <p className='form-text-centered'>
                     Du möchtest gerne segeln und besitzt kein Boot. Werde
                     Mitglied und nutze 60 Boote! Das geht ganz einfach -
                     Formular ausfüllen und Du erhältst weitere Infos per Mail!

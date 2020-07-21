@@ -9,4 +9,5 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'salutation', 'email', 'first_name', 'last_name', 'street', 'address_appendix', 'city',
                   'country', 'zip_code', 'phone', 'mobile', 'date_of_birth', 'licence', 'joined', 'avatar',
-                  'licence_ok', 'entry_fee_paid', 'instructed_for_models', 'favourite_lake']
+                  'licence_ok', 'entry_fee_paid', 'requested_membership',
+                  'instructed_for_models', 'favourite_lake', 'is_crew']

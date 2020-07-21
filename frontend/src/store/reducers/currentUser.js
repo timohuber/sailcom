@@ -34,7 +34,8 @@ export const currentUser = (state = initialState, action) => {
                 ...state,
                 registration: {
                     ...state.registration,
-                    verificationCodeRequested: true
+                    verificationCodeRequested: true,
+                    email: action.email
                     }
                 }
 
@@ -50,7 +51,7 @@ export const currentUser = (state = initialState, action) => {
         case UPDATE_CURRENT_USER:
             return {
                 ...state,
-                userInfo: action.userInfo
+                userData: action.payload
             }
 
         default:

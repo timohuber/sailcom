@@ -3,7 +3,7 @@ import { baseUrl, UPDATE_CURRENT_USER, USER_LOGOUT } from '../constants';
 const userUpdate = (data) => {
     return {
         type: UPDATE_CURRENT_USER,
-        userData: data,
+        payload: data,
     };
 };
 
@@ -19,12 +19,13 @@ export const updateUserAction = (data) => async (dispatch, getState) => {
     {
         method: 'PATCH',
         headers: new Headers({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }),
-        body: JSON.stringify(
-            data
-        ),
+        // body: JSON.stringify(
+        //     data
+        // ),
+        body: data
     }
     const response = fetch(baseUrl + 'user/me/', config)
         .then(res => {

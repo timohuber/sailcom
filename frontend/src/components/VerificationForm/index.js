@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { baseUrl } from '../../store/constants';
 import {formErrorHandler} from '../../lib/helpers/errorHandler'
+import {connect} from "react-redux";
 
-export default function VerificationForm(props) {
+function VerificationForm(props) {
     const { push } = useHistory();
     const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
     const [licenceImageRef, licenceRestaurantImageRef] = useState(
         React.createRef()
     );
 
-    const initialState = {};
-
-    const [formState, setFormState] = useState(initialState);
+    const [formState, setFormState] = useState({
+        email: props.registration.email
+    });
 
     const onChangeHandler = (e) => {
         const key = e.currentTarget.name;
@@ -78,7 +79,7 @@ export default function VerificationForm(props) {
                 class='col-2'
                 onSubmit={(e) => onSubmitHandler(e)}
             >
-                <p>
+                <p className='form-text-centered'>
                     Du möchtest gerne segeln und besitzt kein Boot. Werde
                     Mitglied und nutze 60 Boote! Das geht ganz einfach -
                     Formular ausfüllen und Du erhältst weitere Infos per Mail!
@@ -102,6 +103,7 @@ export default function VerificationForm(props) {
                             id='email'
                             name='email'
                             onChange={(e) => onChangeHandler(e)}
+                            defaultValue={props.registration.email}
                         />
                         <span className='error' data-key='email'>
                         </span>
@@ -265,6 +267,7 @@ export default function VerificationForm(props) {
                         </span>
                     </div>
                 </div>
+                <span className='error' data-key='non_field_errors'/>
 
                 <div class='button-container'>
                     <button id='submit-register' className='btn primary' type='submit'>
@@ -275,3 +278,13 @@ export default function VerificationForm(props) {
         </>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        registration: state.currentUser.registration
+    }
+}
+const connection = connect(mapStateToProps);
+const ConnectedVerificationForm = connection(VerificationForm);
+
+export default ConnectedVerificationForm;

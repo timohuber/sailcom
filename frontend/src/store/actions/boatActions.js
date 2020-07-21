@@ -49,22 +49,3 @@ export const addBookingToBoatAction = (booking) => (dispatch) => {
    dispatch(addBookingToBoat(booking));
 };
 
-
-
-
-/*
-export const addBoatAction = (boatID) => async (dispatch) => {
-    try {
-        const response = await Axios.get(`boat/'+ ${boatID}`);
-        console.log(response)
-        dispatch(addBoat(response.data))
-        return response;
-    } catch (error) {
-        console.log('Error updating event', error);
-        error.json().then((errorMessage) => {
-            formErrorHandler(errorMessage);
-        });
-    }
-};
-
-*/
