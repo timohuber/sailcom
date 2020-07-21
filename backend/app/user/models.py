@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from .managers import CustomUserManager
+from ..boat_crew.models import BoatCrew
 from ..lake.models import Lake
 
 
@@ -39,6 +40,13 @@ class User(AbstractUser):
 
     favourite_lake = models.ForeignKey(to=Lake, related_name='top_users', on_delete=models.SET_NULL, blank=True,
                                        null=True)
+
+    @property
+    def is_crew(self):
+        userCrew = BoatCrew.objects.filter(members=self)
+        if len(userCrew) > 0:
+            return True
+        return False
 
     def __str__(self):
         return f'ID{self.id}: {self.email}'

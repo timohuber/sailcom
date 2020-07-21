@@ -84,7 +84,7 @@ class TogglePaidEntryFeeView(CreateAPIView):
         if len(User.objects.filter(id=self.request.data['User'])) == 0:
             return HttpResponse('Kunde existiert nicht', status=400)
         searchUser = User.objects.get(id=request.data['User'])
-        if len(Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr'))==0:
+        if len(Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr')) == 0:
             return HttpResponse('Eintrittsgebührrechnung wurde nicht erstellt', status=400)
         searchTrx = Transaction.objects.get(user=searchUser, description='Eintrittsgebühr')
         searchInv = Invoice.objects.get(transactions=searchTrx)

@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-from requests import Response
-from rest_framework import status
 from rest_framework.generics import GenericAPIView
 
 from .serializers import CreateRegistrationSerializer, ValidateRegistrationSerializer
@@ -16,7 +14,7 @@ class CreateRegistrationView(GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(serializer.validated_data)
-        
+
         # does not work yet
         res = {
             "response": "A token was sent by email"
