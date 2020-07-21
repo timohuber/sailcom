@@ -1,5 +1,6 @@
 import React from "react";
 import {connect, useDispatch} from "react-redux";
+import {NavLink} from 'react-router-dom'
 import {DisplayInformationButton, FullyBookedButton, ParticipateButton, NotLoggedInButton} from './buttons'
 import {setEventModalAction} from '../../store/actions/eventActions'
 
@@ -13,6 +14,7 @@ function ButtonsContainer(props) {
         dispatch(setEventModalAction(modal, event))
     }
 
+    console.log()
     return (
         <div className='event-button-container'>
             <DisplayInformationButton toggleModal={toggleModal}/>
@@ -20,6 +22,14 @@ function ButtonsContainer(props) {
                 ? <NotLoggedInButton toggleModal={toggleModal}/>
                 : <ParticipateButton toggleModal={toggleModal}/>
             }
+            {
+                user.authorized
+                ? event.instructor.id === user.userData.id
+                    ? <NavLink to={`/event-bearbeiten/${event.id}/`} className='btn secondary'>Event bearbeiten</NavLink>
+                    : null
+                : null
+            }
+
         </div>
     )
 }
