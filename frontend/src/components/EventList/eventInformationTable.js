@@ -55,7 +55,7 @@ export default function EventInformationTable(props) {
                     Plätze
                 </div>
                 <div className='event-cell'>
-                    {event.participants.length} / 3
+                    {event.participants.length} / {event.max_participants}
                 </div>
             </div>
         </div>

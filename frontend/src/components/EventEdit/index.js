@@ -14,9 +14,7 @@ import WhereCrewMemberForm from '../../components/WhereCrewMember';
 
 export default function EventEditForm(props) {
     const today = new Date();
-    //TODO: pass event ID via props from where component is called
-    const event_id = 4;
-
+    const event_id = props.match.params.id;
     const [value, setValue] = useState([]);
     const [loading, setLoading] = useState(true);
 

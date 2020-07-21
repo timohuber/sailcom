@@ -19,6 +19,8 @@ import VerificationPage from './pages/verification';
 import MyProfilePage from './pages/profile';
 import BoatDetailPage from './pages/boatdetails';
 import EventPage from './pages/events';
+import EditEventPage from './pages/edit-event'
+import CreateEventPage from './pages/create-event'
 import BoatSharing from './pages/boat-sharing';
 import Genossenschaft from './pages/genossenschaft';
 import NotFoundPage from './pages/404';
@@ -54,7 +56,8 @@ function App() {
                     <Route exact path='/intro' component={Intro} />
                     <Route exact path='/profil' component={authComponent(MyProfilePage)} />
                     <Route exact path='/events' component={EventPage} />
-
+                    <Route exact path='/event-bearbeiten/:id' component={authComponent(EditEventPage)} />
+                    <Route exact path='/event-erstellen' component={authComponent(CreateEventPage)} />
                     <Route exact path='/mitglieder' component={UserSearchPage} />
                     <Route exact path='/mitglied/:id' component={UserDetailPage} />
 
