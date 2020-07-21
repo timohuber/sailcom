@@ -5,7 +5,7 @@ from rest_framework.generics import ListCreateAPIView, ListAPIView
 from datetime import timedelta, datetime
 
 from .models import Booking
-from .serializers import BookingSerializer, CreateBookingSerializer, NumberSerializer
+from .serializers import BookingSerializer, CreateBookingSerializer
 from ..boat.models import Boat
 from ..permissions import IsLoggedIn
 

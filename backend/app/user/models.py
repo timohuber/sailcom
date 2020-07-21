@@ -35,6 +35,7 @@ class User(AbstractUser):
 
     licence_ok = models.BooleanField(default=False)
     entry_fee_paid = models.BooleanField(default=False)
+    requested_membership = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
