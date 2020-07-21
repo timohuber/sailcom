@@ -13,15 +13,15 @@ export default function UserAddressForm(props) {
     delete initialState.avatar;
     delete initialState.licence;
     delete initialState.email;
+    delete initialState.bookings;
+    delete initialState.instructed_for_models;
 
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState();
     const [formState, setFormState] = useState(initialState);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (props.userData) {
-            setUserData(props.userData);
             setLoading(false);
         } else {
             dispatch(fetchUserData());
@@ -39,8 +39,13 @@ export default function UserAddressForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(formState)
-        dispatch(updateUserAction(formState));
+        const form = new FormData();
+        for (const [key, value] of Object.entries(formState)) {
+            if (value) {
+                form.append(key, value)
+            }
+        }
+        dispatch(updateUserAction(form));
     };
 
     const formHandler = () => {
@@ -63,7 +68,7 @@ export default function UserAddressForm(props) {
                                 name='salutation'
                                 className='required'
                                 onChange={(e) => onChangeHandler(e)}
-                                value={props.userData.salutation}
+                                value={formState.salutation}
                             >
                                 {formState.salutation === 'Herr' ? (
                                     <>
