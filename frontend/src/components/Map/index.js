@@ -8,17 +8,19 @@ export class MapContainer extends React.Component {
         super(props);
         this.state = {
             boatInfo: props.boatInfo,
+            showingInfoWindow: false,
+            // activeMarker: {},
+            // selectedPlace: {},
         };
-        MapContainer.defaultProps = mapStyle;
-        console.log(mapStyle.mapStyle)
     }
 
     render() {
-        console.log(this.state.boatInfo);
+        // console.log(this.state.boatInfo);
         return (
             <Map
                 google={this.props.google}
-                style={{ width: '100%', height: '45%' }}
+                onClick={this.onMapClicked}
+                style={{ width: '100%', height: '100%' }}
                 styles={mapStyle.mapStyle}
                 className={'map'}
                 zoom={8}
@@ -32,6 +34,8 @@ export class MapContainer extends React.Component {
                     const longitude = boat.mooring.longitude;
                     return (
                         <Marker
+                            onClick={this.onMarkerClick}
+                            key={i}
                             title={boat.title}
                             name={'no name'}
                             position={{
@@ -46,18 +50,15 @@ export class MapContainer extends React.Component {
                                 }
                             }
                         >
-                            {/* <InfoWindow
-                                visible={showInfoWindow}
-                                style={styles.infoWindow}
+                            
+                            <InfoWindow
+                                marker={this.state.activeMarker}
+                                visible={this.state.showingInfoWindow}
                             >
-                                <div className={classes.infoWindow}>
-                                    <p>
-                                        Click on the map or drag the marker to
-                                        select location where the incident
-                                        occurred
-                                    </p>
+                                <div>
+                                    <h2>{boat.title}</h2>
                                 </div>
-                            </InfoWindow> */}
+                            </InfoWindow>
                         </Marker>
                     );
                 })}

@@ -124,7 +124,9 @@ function HomePage(props) {
                         </div>
                     </div>
                 </div>
-                <Maps boatInfo={props.boatInfo} />
+                <div className='map-home-wrapper'>
+                    <Maps boatInfo={props.boatInfo} />
+                </div>
             </>
         );
     };

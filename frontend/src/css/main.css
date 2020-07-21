@@ -863,3 +863,8 @@ form.col-2 .input-container {
   color: #ffffff; }
   .inner-404 h1 {
     color: #ffffff; }
+
+.map-home-wrapper {
+  width: 100%;
+  height: 50vh;
+  position: relative !important; }
