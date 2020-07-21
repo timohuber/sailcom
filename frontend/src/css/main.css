@@ -66,6 +66,15 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 2px; }
 
+h2.h2-underlined:after {
+  position: relative;
+  content: '';
+  width: 100px;
+  height: 3px;
+  background-color: #2c5d7b;
+  margin: 0 auto;
+  display: block; }
+
 h3 {
   margin-top: 0;
   margin-bottom: 12px; }
@@ -647,6 +656,28 @@ form.col-2 .input-container {
   .modal .event-participation-modal {
     display: flex;
     flex-direction: column; }
+
+.home-icon-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
+  .home-icon-box .upper-wrapper {
+    text-align: center; }
+    .home-icon-box .upper-wrapper h2 {
+      color: #000; }
+    .home-icon-box .upper-wrapper #home-boat-icon {
+      max-height: 60px; }
+    .home-icon-box .upper-wrapper #home-community-icon {
+      margin-top: 10px;
+      max-height: 50px; }
+    .home-icon-box .upper-wrapper #home-switzerland-icon {
+      margin-top: 5px;
+      max-height: 60px; }
+    .home-icon-box .upper-wrapper h2#home-boat-icon-box-title {
+      margin-top: 14px; }
+  .home-icon-box .btn {
+    margin: 15px 0; }
 
 .footer-wrapper {
   padding-top: 30px;
