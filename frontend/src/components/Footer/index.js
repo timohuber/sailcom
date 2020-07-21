@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import Logo from '../assets/logo/logo.png';
-// import Map from '../assets/swiss-map.jpg';
-// import Community from '../assets/community.png';
-
 export default function Footer(props) {
     return (
         <div className='footer-wrapper'>
