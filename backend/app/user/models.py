@@ -1,9 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from .managers import CustomUserManager
 from ..boat_crew.models import BoatCrew
 from ..lake.models import Lake
+from ..membership_type.models import MembershipType
 
 
 class User(AbstractUser):
@@ -35,7 +38,9 @@ class User(AbstractUser):
 
     licence_ok = models.BooleanField(default=False)
     entry_fee_paid = models.BooleanField(default=False)
-    requested_membership = models.BooleanField(default=False)
+    is_member = models.BooleanField(default=False)
+    membership_type = models.ForeignKey(to=MembershipType, related_name='users', on_delete=models.SET_NULL,
+                                        blank=True, null=True)
 
     objects = CustomUserManager()
 

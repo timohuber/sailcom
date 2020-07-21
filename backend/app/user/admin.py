@@ -20,7 +20,7 @@ class UserAdmin(UserAdmin):
                                       'favourite_lake')}),
         ('Address', {'fields': ('street', 'address_appendix', 'city', 'zip_code', 'country')}),
         ('Documents', {'fields': ('avatar', 'licence')}),
-        ('Status', {'fields': ('licence_ok', 'entry_fee_paid', 'requested_membership')}),
+        ('Status', {'fields': ('licence_ok', 'entry_fee_paid', 'is_member', 'membership_type')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
         ('Groups', {'fields': ('groups',)}),
