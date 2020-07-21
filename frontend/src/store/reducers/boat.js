@@ -1,26 +1,31 @@
-import { ADD_BOAT, ADD_BOOKING_TO_BOAT } from '../constants';
+import { ADD_BOAT, ADD_BOOKING_TO_BOAT, GET_ALL_BOAT_INFO } from '../constants';
 
 const initialState = {
-    boatlist: {}
+    boatlist: {},
+    boatOverview: null,
 };
 
 export const boats = (state = initialState, action) => {
-
     switch (action.type) {
         case ADD_BOAT:
-            const new_key = action.id
+            const new_key = action.id;
             return {
                 ...state,
                 boatlist: {
                     ...state.boatlist,
-                    [new_key]: action.payload
-                    }
-                }
+                    [new_key]: action.payload,
+                },
+            };
+        case GET_ALL_BOAT_INFO:
+            return {
+                ...state,
+                boatOverview: action.payload,
+            };
 
         case ADD_BOOKING_TO_BOAT:
-            const boat_key = action.boat_id
-            const new_bookings_array = state.boatlist[boat_key].bookings
-            new_bookings_array.push(action.payload)
+            const boat_key = action.boat_id;
+            const new_bookings_array = state.boatlist[boat_key].bookings;
+            new_bookings_array.push(action.payload);
 
             return {
                 ...state,
@@ -28,11 +33,11 @@ export const boats = (state = initialState, action) => {
                     ...state.boatlist,
                     [boat_key]: {
                         ...state.boatlist[boat_key],
-                        bookings: new_bookings_array
-                    }
-                }
-            }
-            /*
+                        bookings: new_bookings_array,
+                    },
+                },
+            };
+        /*
             return {
                 ...state,
                 boatlist: {
@@ -51,4 +56,4 @@ export const boats = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
