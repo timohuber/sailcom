@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
+import UserMembership from '../components/UserMembership';
 import UserTransactions from '../components/UserTransactions'
 import Accordion from '../components/Accordion';
 import Loading from '../components/GenericLoading';
@@ -27,6 +28,10 @@ function MyProfilePage(props) {
         {
             title: 'Adresse',
             content: <UserAddressForm userData={props.userData} />,
+        },
+        {
+            title: 'Mitgliedschaft',
+            content: <UserMembership userData={props.userData} />,
         },
         {
             title: 'Dokumente',

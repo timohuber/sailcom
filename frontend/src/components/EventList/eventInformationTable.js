@@ -4,7 +4,7 @@ import {dateToDisplayString} from '../../lib/helpers/formatDates'
 
 export default function EventInformationTable(props) {
     const event = props.event
-    console.log(event.event_type)
+    console.log(event)
     return (
         <div className='event-meta'>
             <div className='event-row'>

@@ -48,6 +48,7 @@ class ListBoatView(RetrieveAPIView):
 class ListBoatsWhereCrewView(ListAPIView):
     serializer_class = DetailBoatSerializer
     permission_classes = [IsLoggedIn]
+    pagination_class = None
 
     def get_queryset(self):
         current_crews = BoatCrew.objects.filter(members=self.request.user)
