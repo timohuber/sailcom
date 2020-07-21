@@ -15,7 +15,7 @@ class ListCreateBookingsView(ListCreateAPIView):
     permission_classes = [IsLoggedIn]
 
     def get_serializer_class(self):
-        if self.request == None:  # for API documentation
+        if self.request is None:  # for API documentation
             return BookingSerializer
         elif self.request.method == 'POST':  # for creating bookings
             return CreateBookingSerializer
@@ -30,7 +30,7 @@ class ListCreateBookingsView(ListCreateAPIView):
                 "Buchungsende ist nicht nach Buchungsanfang"
             }
             return HttpResponse(res, status=400)
-        if self.request.data.get('boat') == None:
+        if self.request.data.get('boat') is None:
             res = {
                 "Bitte Boot auswählen"
             }
@@ -88,15 +88,15 @@ class CalculateBookingView(ListAPIView):
     serializer_class = BookingSerializer
 
     def post(self, request, *args, **kwargs):
-        until_date_time = datetime.strptime(request.data.get('until_date_time'),'%Y-%m-%dT%H:%MZ')
-        from_date_time = datetime.strptime(request.data.get('from_date_time'),'%Y-%m-%dT%H:%MZ')
+        until_date_time = datetime.strptime(request.data.get('until_date_time'), '%Y-%m-%dT%H:%MZ')
+        from_date_time = datetime.strptime(request.data.get('from_date_time'), '%Y-%m-%dT%H:%MZ')
 
         if from_date_time >= until_date_time:
             res = {
                 "Buchungsende ist nicht nach Buchungsanfang"
             }
             return HttpResponse(res, status=400)
-        if self.request.data.get('boat') == None:
+        if self.request.data.get('boat') is None:
             res = {
                 "Bitte Boot auswählen"
             }
@@ -143,4 +143,3 @@ class CalculateBookingView(ListAPIView):
                         + weekend_count * float(Boat.objects.get(id=request.data['boat']).price_fullday_weekend)
 
         return HttpResponse(price, status=200)
-

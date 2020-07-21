@@ -28,8 +28,6 @@ export default function UserAddressForm(props) {
         }
     }, []);
 
-    let requiredFieldsOK = true;
-
     const onChangeHandler = (e) => {
         const key = e.currentTarget.name;
 
@@ -41,20 +39,8 @@ export default function UserAddressForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        const requiredFields = document.querySelectorAll('.required');
-
-        requiredFields.forEach((field) => {
-            if (!field.value) {
-                field.nextElementSibling.style.opacity = '1';
-                requiredFieldsOK = false;
-            } else {
-                field.nextElementSibling.style.opacity = '0';
-            }
-        });
-
-        if (requiredFieldsOK) {
-            dispatch(updateUserAction(formState));
-        }
+        console.log(formState)
+        dispatch(updateUserAction(formState));
     };
 
     const formHandler = () => {
@@ -98,7 +84,6 @@ export default function UserAddressForm(props) {
                                 )}
                             </select>
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -112,7 +97,6 @@ export default function UserAddressForm(props) {
                                 value={formState.first_name}
                             />
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -126,7 +110,6 @@ export default function UserAddressForm(props) {
                                 value={formState.last_name}
                             />
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -140,7 +123,6 @@ export default function UserAddressForm(props) {
                                 value={formState.user_name}
                             />
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -194,7 +176,6 @@ export default function UserAddressForm(props) {
                                 className='required'
                             />
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -220,7 +201,6 @@ export default function UserAddressForm(props) {
                                 className='required'
                             />
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -234,7 +214,6 @@ export default function UserAddressForm(props) {
                                 className='required'
                             />
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
 
@@ -265,7 +244,6 @@ export default function UserAddressForm(props) {
                                 })}
                             </select>
                             <span className='error'>
-                                Dieses Feld wird benötigt.
                             </span>
                         </div>
                     </div>

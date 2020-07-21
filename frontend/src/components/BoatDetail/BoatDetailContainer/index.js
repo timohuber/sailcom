@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NotQualifiedButton, BookBoatButton, ToLoginPageButton, ToEventsPage} from './buttons'
+import {BookBoatButton} from './buttons'
 import {PricesTable} from './prices'
 import BoatCalendar from './calendar'
 import ButtonsContainer from './buttonsContainer';
@@ -11,12 +11,14 @@ import BookingForm from '../BookingForm'
 import {connect} from "react-redux";
 import {smoothScroll} from '../../../lib/helpers/scroll'
 import DefaultHeroImage from '../../../assets/default-hero-image.jpg'
+import {NavLink} from "react-router-dom";
 
 function BoatDetailContainer(props) {
     const [startDateTime, setStartDateTime] = useState();
     const [endDateTime, setEndDateTime] = useState();
     const [bookingModal, setBookingModal] = useState(false)
     const boat = props.boat
+    let instructed = false
 
     const triggerBookingModal = (e) => {
         e.preventDefault()
@@ -40,6 +42,9 @@ function BoatDetailContainer(props) {
     const heroImageStyle = {
         backgroundImage: boat.images.length > 0 ? `url(${boat.images[0].image})` : `url(${DefaultHeroImage})`
     }
+     if (props.currentUser.authorized) {
+        instructed = props.currentUser.userData.instructed_for_models.includes(props.boat.model)
+    }
 
     return (
         <>
@@ -53,7 +58,7 @@ function BoatDetailContainer(props) {
             <h1>{boat.title}</h1>
             <p className='subtitle'>{boat.mooring.lake.title}, {boat.mooring.address}</p>
 
-            <ButtonsContainer boat={boat} triggerBookingModal={triggerBookingModal}/>
+            <ButtonsContainer user={props.currentUser} instructed={instructed} triggerBookingModal={triggerBookingModal}/>
 
             <PricesTable boat={boat} />
             <div className='detail-description'>
@@ -65,9 +70,9 @@ function BoatDetailContainer(props) {
 
             <BoatCarousel images={boat.images}/>
 
-            <BoatCalendar boat={boat} />
+            <BoatCalendar boat={boat} boatID={boat.id}/>
 
-            {props.authorized
+            {instructed
                 ?
                 <div className='boat-booking-block'>
                     <h2>Reservierung</h2>
@@ -77,6 +82,7 @@ function BoatDetailContainer(props) {
                 </div>
                 : null
             }
+            <NavLink className='btn secondary back' to='/bootsliste'>Zurück zur Liste</NavLink>
         </div>
         </>
     );
@@ -84,7 +90,7 @@ function BoatDetailContainer(props) {
 
 const mapStateToProps = (state) => {
     return {
-        authorized: state.currentUser.authorized
+        currentUser: state.currentUser
     }
 }
 const connection = connect(mapStateToProps);
