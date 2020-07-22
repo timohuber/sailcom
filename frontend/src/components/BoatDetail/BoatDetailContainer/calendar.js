@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
-import moment from 'moment'
+import moment from 'moment-timezone/moment-timezone'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Loading from '../../GenericLoading'
 import {connect} from "react-redux";
+
+// moment.tz.add("Europe/Zurich|CET CEST|-10 -20|01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-19Lc0 11A0 1o00 11A0 1xG10 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|38e4");
+// moment.tz.setDefault("Europe/Zurich|CET CEST|-10 -20|01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-19Lc0 11A0 1o00 11A0 1xG10 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|38e4");
 
 const localizer = momentLocalizer(moment)
 // Calendar.momentLocalizer(moment)
@@ -13,18 +16,14 @@ function BoatCalendar(props) {
     const [loading, setLoading] = useState(true)
 
     useEffect( () => {
-        console.log('in use effect')
         const bookings = props.boatlist[props.boatID].bookings
         const events = []
 
         bookings.forEach(booking => {
-            const start_date = booking.from_date_time.split(/[T:-]/)
-            const end_date = booking.until_date_time.split(/[T:-]/)
-
             events.push({
-                'title': booking.user.fist_name,
-                'start': new Date(start_date[0], parseInt(start_date[1]) - 1, start_date[2], start_date[3], start_date[4]),
-                'end': new Date(end_date[0], parseInt(end_date[1]) - 1, end_date[2], end_date[3], end_date[4])
+                title: booking.user.fist_name,
+                start: new Date(booking.from_date_time),
+                end: new Date(booking.until_date_time),
             })
             setData(events)
             setLoading(false)

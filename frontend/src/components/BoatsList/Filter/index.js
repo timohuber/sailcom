@@ -70,6 +70,7 @@ function BoatListFilter(props) {
                         }
                     </div>
                     <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState) }>Suchen</button>
+                    <button className='btn secondary' onClick={ e => props.resetFilter(e) } >Filter zurücksetzen</button>
                 </form>
             </div>
     );
