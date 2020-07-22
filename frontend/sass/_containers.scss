@@ -2,6 +2,10 @@
     max-width: $page-width;
     margin: auto;
     padding: calc(#{$gap-width} / 2);
+
+    &.narrow {
+        max-width: $page-width-narrow;
+    }
 }
 
 .grid-col-5 {

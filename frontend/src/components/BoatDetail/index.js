@@ -47,28 +47,3 @@ const connection = connect(mapStateToProps);
 const ConnectedBoatDetails = connection(BoatDetails);
 
 export default ConnectedBoatDetails;
-
-
-/*
-
-useEffect(() => {
-        const config = {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            })
-        }
-        const response = fetch(baseUrl + 'boat/'+ boatID + '/', config)
-        .then(res => res.json())
-        .then(data => {
-            dispatch(addBoatAction(data))
-            setBoat(data);
-            setLoading(false)
-        })
-        .catch(response => {
-            return
-        })
-    }, [props.currentUser])
-
-
-*/

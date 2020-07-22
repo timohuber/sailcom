@@ -1,7 +1,9 @@
 .search-user-from {
   margin-bottom: $gap-width;
 }
-
+.user-edit-membership, .user-address, .user-boats {
+  margin-bottom: $gap-width;
+}
 .user-avatar {
     border-radius: 50%;
     background-size: cover;
@@ -31,6 +33,8 @@
   max-width: 200px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: $gap-width;
+  margin-top: $gap-width;
 }
 
 .boat-form-list-element {
