@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Logo from '../assets/logo/logo.png';
-import Map from '../assets/swiss-map.jpg';
-import Community from '../assets/community.png';
 import GoogleMap from '../components/Map';
+import Boat from '../assets/home-sailboat.svg';
+import Community from '../assets/home-community.svg';
+import Switzerland from '../assets/home-switzerland.svg';
+import { smoothScroll } from '../lib/helpers/scroll';
 
-export default function HomePage(props) {
+function HomePage(props) {
     return (
         <>
             <div className='main-wrapper'>
@@ -15,40 +16,77 @@ export default function HomePage(props) {
                     abwechslungsreicher!
                 </h1>
                 <div className='grid-col-3 generic-box-grid'>
-                    <div>
-                        <h2>Boat Sharing</h2>
-                        <hr />
-                        <p>
-                            Als SailCom-Mitglied verfügst du über eine ganze
-                            Flotte und kannst auf fast allen Schweizer Seen
-                            segeln. Schnell online reservieren und schon kannst
-                            du lossegeln.
-                        </p>
-                        <img src={Logo}></img>
+                    <div className='home-icon-box'>
+                        <div className='upper-wrapper'>
+                            <img id='home-boat-icon' src={Boat}></img>
+                            <h2 className='h2-underlined'>Boat Sharing</h2>
+                            <p>
+                                Als SailCom-Mitglied verfügst du über eine ganze
+                                Flotte und kannst auf fast allen Schweizer Seen
+                                segeln. Schnell online reservieren und schon
+                                kannst du lossegeln.
+                            </p>
+                        </div>
+
+                        <Link to='/boat-sharing'>
+                            <button className='btn primary'>Mehr Infos</button>
+                        </Link>
                     </div>
-                    <div>
-                        <h2>Flexibilität</h2>
-                        <hr />
-                        <p>
-                            Bei SailCom bist du frei, du kannst nach Lust, Laune
-                            oder wo du gerade die perfekte Bö entdeckst, dein
-                            Boot schnappen und segeln. Geniesse die
-                            unterschiedlichen Landschaften und Winde der
-                            Schweizer Seen.
-                        </p>
-                        <img src={Map}></img>
+                    <div className='home-icon-box'>
+                        <div className='upper-wrapper'>
+                            <img id='home-community-icon' src={Community}></img>
+                            <h2 className='h2-underlined'>Community</h2>
+                            <p>
+                                SailCom ist mehr als eine Eignergemeinschaft:
+                                Bei SailCom kannst Du mit andern segeln, an
+                                Events teilnehmen, Kurse besuchen, an Regatten
+                                teilnehmen und natürlich auch ganz alleine
+                                segeln.
+                            </p>
+                        </div>
+
+                        <Link to='/events'>
+                            <button className='btn primary'>
+                                Events Anschauen
+                            </button>
+                        </Link>
                     </div>
-                    <div>
-                        <h2>Community</h2>
-                        <hr />
-                        <p>
-                            SailCom ist mehr als eine Eignergemeinschaft: Bei
-                            SailCom kannst Du mit andern segeln, an Events
-                            teilnehmen, Kurse besuchen, an Regatten teilnehmen
-                            und natürlich auch ganz alleine segeln.
-                        </p>
-                        <img src={Community}></img>
+                    <div className='home-icon-box'>
+                        <div className='upper-wrapper'>
+                            <img
+                                id='home-switzerland-icon'
+                                src={Switzerland}
+                            ></img>
+                            <h2
+                                id='home-boat-icon-box-title'
+                                className='h2-underlined'
+                            >
+                                Flexibilität
+                            </h2>
+                            <p>
+                                Bei SailCom bist du frei, du kannst nach Lust,
+                                Laune oder wo du gerade die perfekte Bö
+                                entdeckst, dein Boot schnappen und segeln.
+                                Geniesse die unterschiedlichen Landschaften und
+                                Winde der Schweizer Seen.
+                            </p>
+                        </div>
+                        <Link to='/'>
+                            <button
+                                className='btn primary'
+                                // onClick={smoothScroll('#google-map-home')}
+                            >
+                                Miet Locations
+                            </button>
+                        </Link>
                     </div>
+                </div>
+            </div>
+            <div id='google-map-home' className='map-home-wrapper'>
+                <GoogleMap />
+            </div>
+            <div className='main-wrapper'>
+                <div className='grid-col-3 generic-box-grid'>
                     <div>
                         <h2>Finde das passende Boot</h2>
                         <hr />
@@ -64,6 +102,11 @@ export default function HomePage(props) {
                             </Link>
                             an.
                         </p>
+                        <Link to='/boote'>
+                            <button className='btn primary'>
+                                Boote Anschauen
+                            </button>
+                        </Link>
                     </div>
                     <div className='col-2'>
                         <h2>Werde Mitglied</h2>
@@ -109,9 +152,8 @@ export default function HomePage(props) {
                     </div>
                 </div>
             </div>
-            <div className='map-home-wrapper'>
-                <GoogleMap />
-            </div>
         </>
     );
 }
+
+export default HomePage;
