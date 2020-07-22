@@ -19,18 +19,18 @@ export default function PeriodPicker(props) {
                 <div className='input-wrapper'>
                     <label>Zeitraum</label>
                     <DatePicker
-                        selected={props.from ? dateToISOString(props.from) : null}
+                        selected={props.from ? props.from : null}
                         minDate={today}
-                        onChange={date => props.onChangeDateHandler(dateToISOString(date), 'from_date_time')}
+                        onChange={date => props.onChangeDateHandler(date, 'from_date_time')}
                         showTimeSelect
                         placeholderText="Von"
                         dateFormat={displayTimeDateFormatWithoutY}
                         id='from_date_time'
                     />
                     <DatePicker
-                        selected={props.until ? Date.parse(props.until) : null}
-                        minDate={Date.parse(props.from)}
-                        onChange={date => props.onChangeDateHandler(dateToISOString(date), 'until_date_time')}
+                        selected={props.until ? props.until : null}
+                        minDate={props.from}
+                        onChange={date => props.onChangeDateHandler(date, 'until_date_time')}
                         showTimeSelect
                         placeholderText="Bis"
                         dateFormat={displayTimeDateFormatWithoutY}

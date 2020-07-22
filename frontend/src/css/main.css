@@ -149,7 +149,10 @@ button {
   padding: 10px 20px;
   min-height: 40px;
   border-radius: 20px;
-  width: 200px; }
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
   .btn.primary:hover {
     background-color: #20445a; }
 
@@ -412,6 +415,8 @@ form.col-2 .input-container {
   text-align: left;
   display: flex;
   flex-direction: column; }
+  .boat-list-element.generic-box {
+    padding: 0; }
   .boat-list-element .boat-list-image {
     background-size: cover;
     background-position: center;
@@ -595,6 +600,9 @@ form.col-2 .input-container {
     .event-meta .event-row .event-cell {
       width: 50%; }
 
+.event-list > .event-list-element:last-child {
+  margin-bottom: 0; }
+
 .modal {
   padding: 30px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -692,9 +700,9 @@ form.col-2 .input-container {
   .footer-wrapper p {
     margin-bottom: 0px; }
   .footer-wrapper hr {
-    margin-bottom: 40px; }
+    width: 100%; }
   .footer-wrapper .social-footer {
-    margin: 30px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center; }

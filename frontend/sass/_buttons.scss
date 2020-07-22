@@ -23,6 +23,9 @@ button {
     min-height: 40px;
     border-radius: 20px;
     width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 
     &:hover {
         background-color: $brand-color-dark;

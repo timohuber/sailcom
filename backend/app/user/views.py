@@ -8,6 +8,7 @@ from rest_framework import filters
 
 from ..boat.boat_model.models import BoatModel
 from ..invoice.models import Invoice
+from ..membership_type.models import MembershipType
 from ..permissions import IsStaff, IsLoggedIn
 from ..transaction.models import Transaction
 
@@ -69,7 +70,7 @@ class CreateEntryFeeView(CreateAPIView):
         if Transaction.objects.filter(user=searchUser, description='Eintrittsgebühr', invoice__sent=True):
             return HttpResponse('Für diesen Kunden gibt es schon'
                                 ' eine Eintrittsgebühr die verschickt aber nicht bezahlt worden ist', status=400)
-        trx = Transaction.objects.create(sent=False, description='Eintrittsgebühr', user=searchUser, price=120)
+        trx = Transaction.objects.create(sent=False, description='Eintrittsgebühr', user=searchUser, price=200)
         inv = Invoice.objects.create(sent=False, closed=False)
         trx.invoice = inv
         trx.save()
@@ -96,3 +97,40 @@ class TogglePaidEntryFeeView(CreateAPIView):
         searchInv.save()
         searchTrx.save()
         return HttpResponse('Eintrittsgebühr wurde empfangen', status=200)
+
+
+class ToggleIsMemberView(CreateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsStaff]
+
+    def post(self, request, *args, **kwargs):
+        if len(User.objects.filter(id=self.request.data['User'])) == 0:
+            return HttpResponse('Kunde existiert nicht', status=400)
+        searchUser = User.objects.get(id=request.data['User'])
+        if searchUser.is_member is False:
+            searchUser.is_member = True
+            searchUser.save()
+            return HttpResponse('Kunde ist jetzt Mitglied', status=200)
+        searchUser.is_member = False
+        searchUser.save()
+        return HttpResponse('Kunde ist kein Mitglied mehr', status=200)
+
+
+class CreateMembershipRequestView(CreateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsLoggedIn]
+
+    def post(self, request, *args, **kwargs):
+        if self.request.user.is_member is True:
+            return HttpResponse('Sie sind bereits schon Mitglied', status=400)
+        if self.request.user.membership_type is None:
+            self.request.user.membership_type = MembershipType.objects.get(title='Member')
+            self.request.user.save()
+            trx = Transaction.objects.create(sent=False, description='Eintrittsgebühr',
+                                             user=self.request.user, price=200)
+            inv = Invoice.objects.create(sent=False, closed=False)
+            trx.invoice = inv
+            trx.save()
+            return HttpResponse('Sie haben eine Mitgliedschaft beantragt', status=200)
+        if self.request.user.membership_type.title == "Member" and self.request.user.is_member is False:
+            return HttpResponse('Die Beantragung wird noch bearbeitet', status=400)

@@ -17,7 +17,7 @@ function WhereCrewMemberForm(props) {
     const formHandler = () => {
         return (
             <div className='input-wrapper'>
-                <label htmlFor='boat'>Boat</label>
+                <label htmlFor='boat'>Boot auswählen</label>
                 <select
                     id='boat'
                     name='boat'
@@ -41,12 +41,23 @@ function WhereCrewMemberForm(props) {
         );
     };
 
-    return props.whereCrew ? formHandler() : <Loading />;
+    if (props.currentUser.authorized && props.currentUser.userData.is_crew) {
+        return props.whereCrew ? formHandler() : <Loading />;
+    }
+    else {
+        return (
+            <div className='input-wrapper'>
+                <label htmlFor='boat'>Boot auswählen</label>
+                <p className='error'>Keine Boote</p>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
         whereCrew: state.events.whereCrew,
+        currentUser: state.currentUser
     };
 };
 
@@ -54,9 +65,3 @@ const connection = connect(mapStateToProps);
 const ConnectedWhereCrewMemberForm = connection(WhereCrewMemberForm);
 
 export default ConnectedWhereCrewMemberForm;
-
-// component can be added like this:
-// <WhereCrewMemberForm
-//     onChangeHandler={onChangeHandler}
-//     boat={value.boat} // for selected value
-// />

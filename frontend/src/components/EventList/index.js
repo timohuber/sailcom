@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {baseUrl} from "../../store/constants";
 import {connect} from "react-redux";
+import {NavLink} from 'react-router-dom'
 import Loading from '../GenericLoading'
 import EventsContainer from './eventscontainer'
 import EventModal from './modal'
@@ -34,8 +35,18 @@ function EventListContainer(props) {
                 : null
             }
             <h1>Veranstaltungen</h1>
+            {
+                props.currentUser.authorized
+                ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                : null
+            }
             {loading ?
                 <Loading /> : <EventsContainer data={data}/>
+            }
+            {
+                props.currentUser.authorized
+                ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                : null
             }
         </>
     );

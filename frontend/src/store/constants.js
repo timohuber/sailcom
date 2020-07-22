@@ -19,14 +19,13 @@ export const WHERE_CREW = 'WHERE_CREW';
 export const GET_EVENT_INFO = 'GET_EVENT_INFO';
 export const CLOSE_EVENT_MODAL = 'CLOSE_EVENT_MODAL';
 
+export const GET_ALL_BOAT_INFO = 'GET_ALL_BOAT_INFO';
 export const ADD_BOAT = 'ADD_BOAT';
 export const ADD_BOOKING_TO_BOAT = 'ADD_BOOKING_TO_BOAT';
-export const GET_ALL_BOAT_INFO = 'GET_ALL_BOAT_INFO';
 
 /* time and date formats */
 export const displayTimeDateFormatWithoutY = "MMMM d, HH:mm";
 export const displayTimeDateFormat = "DD.MM.YYYY HH:mm";
-
 
 export const countrySelection = [
     { key: 'switzerland', value: 'Schweiz' },
@@ -91,4 +90,9 @@ export const lakeDict = {
     11: 'Zugersee',
     12: 'Zürich-Obersee',
     13: 'Zürichsee',
+}
+
+export const membership_types = {
+    1: 'Genossenschaftmitglied',
+    2: 'Verwaltungsratsmitglied'
 }

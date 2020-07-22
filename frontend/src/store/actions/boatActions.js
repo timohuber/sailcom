@@ -48,3 +48,4 @@ export const addBookingToBoatAction = (booking) => (dispatch) => {
     console.log('addBookingToBoatAction', booking)
    dispatch(addBookingToBoat(booking));
 };
+
