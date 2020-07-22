@@ -28,6 +28,16 @@ class IsStaffOrCrew(BasePermission):
         return request.user.is_staff or request.user.is_crew
 
 
+class IsMember(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_member
+
+
+class IsStaffOrCreator(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_staff or obj.user == request.user
+
+
 # Object level permission
 """
 class IsAuthorOrReadOnly(BasePermission):

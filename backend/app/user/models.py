@@ -15,7 +15,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
 
     # Additional fields required when using createsuperuser (by default USERNAME_FIELD and passwords)
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['']
 
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=100)
@@ -62,7 +62,6 @@ class User(AbstractUser):
 
 @receiver(post_save, sender=User)
 def send_email(sender, instance, **kwargs):
-    test = 'test'
     if instance.is_active:
         if instance.request_membership:
             subject = 'Neuer Benutzer hat sich registriert'

@@ -6,6 +6,7 @@ User = get_user_model()
 
 class EventType(models.Model):
     title = models.CharField(max_length=100)
+    is_public = models.BooleanField(default=False)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 

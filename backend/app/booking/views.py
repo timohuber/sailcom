@@ -1,13 +1,13 @@
 from django.db.models import Q
 from django.http import HttpResponse
-from rest_framework.generics import ListCreateAPIView, ListAPIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView, DestroyAPIView
 
 from datetime import timedelta, datetime
 
 from .models import Booking
 from .serializers import BookingSerializer, CreateBookingSerializer
 from ..boat.models import Boat
-from ..permissions import IsLoggedIn
+from ..permissions import IsLoggedIn, IsStaffOrCreator
 
 
 class ListCreateBookingsView(ListCreateAPIView):
@@ -133,3 +133,16 @@ class CalculateBookingView(ListAPIView):
                         + weekend_count * float(Boat.objects.get(id=request.data['boat']).price_fullday_weekend)
 
         return HttpResponse(price, status=200)
+
+
+class DestroyBookingView(DestroyAPIView):
+    queryset = Booking.objects.all()
+    permission_classes = [IsStaffOrCreator]
+
+
+class MyBookingView(ListAPIView):
+    serializer_class = BookingSerializer
+    permission_classes = [IsLoggedIn]
+
+    def get_queryset(self):
+        return Booking.objects.filter(Q(user=self.request.user))
