@@ -5,28 +5,35 @@ import {NavLink} from 'react-router-dom'
 import Loading from '../GenericLoading'
 import EventsContainer from './eventscontainer'
 import EventModal from './modal'
+import EventListFilter from './Filter'
+import Accordion from "../Accordion";
+import {dateToISOString} from "../../lib/helpers/formatDates";
+import Axios from "../../axios";
 
 function EventListContainer(props) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [visibilityFilter, setVisibilityFilter] = useState()
 
-    useEffect(() => {
-        const config = {
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            })
-        }
-        const response = fetch(baseUrl + 'event/all/', config)
-        .then(res => res.json())
-        .then(data => {
-            setData(data['results'])
-            setLoading(false)
-        })
-        .catch(response => {
-            return
-        })
-    }, [])
+     useEffect(() => {
+        console.log(visibilityFilter)
+        const fetchBoats = async () => {
+            let url = 'event/'
+
+            if (visibilityFilter) {
+                url += visibilityFilter
+            }
+            try {
+                const response = await Axios.get(url);
+                setData(response.data.results)
+                setLoading(false)
+                return response;
+            } catch (error) {
+                console.log(error.response.data)
+            }
+       }
+       fetchBoats()
+    }, [visibilityFilter])
 
     const updateState = event_id => {
         console.log('old state', data)
@@ -51,8 +58,41 @@ function EventListContainer(props) {
         setData(newState)
     }
 
+ const resetFilter = (e) => {
+        e.preventDefault()
+        setVisibilityFilter(null)
+    }
+
+    const submitFilterHandler = (e, filterQuery) => {
+        e.preventDefault()
+        let count = 0
+        let query = '?'
+        for (const [key, value] of Object.entries(filterQuery)) {
+            if(value) {
+                query += `${key}=${value}&`
+                count++
+            }
+        }
+        const searchURL = query.slice(0, -1)
+        if(count > 0) {
+            setVisibilityFilter(searchURL)
+        } else {
+            resetFilter(e)
+        }
+    }
+
+    const accordionContent = [
+        {
+            title: 'Filter',
+            content: <EventListFilter submitFilterHandler={submitFilterHandler} resetFilter={resetFilter}/>,
+        }
+    ];
+
     return (
         <>
+            <div className='main-wrapper'>
+                <Accordion content={accordionContent}/>
+            </div>
             {props.events.activeModal
                 ? <EventModal activeModal={props.events.activeModal} event={props.events.modalEvent} updateState={updateState}/>
                 : null
