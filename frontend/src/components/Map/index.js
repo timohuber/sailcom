@@ -1,73 +1,39 @@
-import React from 'react';
-import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
-import mapStyle from './map-styles.js';
-import BoatIcon from '../../assets/sailboat.svg';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+import Maps from '../../components/Map/mapContainer';
+import Loading from '../../components/GenericLoading';
+import { getBoatOverviewAction } from '../../store/actions/boatActions';
 
-export class MapContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            boatInfo: props.boatInfo,
-            showingInfoWindow: false,
-            // activeMarker: {},
-            // selectedPlace: {},
-        };
-    }
+const GoogleMap = (props) => {
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
 
-    render() {
-        // console.log(this.state.boatInfo);
+    useEffect(() => {
+        if (props.boatOverview) {
+            setLoading(false);
+        } else {
+            dispatch(getBoatOverviewAction());
+        }
+    }, [props.boatOverview]);
+
+    const mapHandler = (props) => {
         return (
-            <Map
-                google={this.props.google}
-                onClick={this.onMapClicked}
-                style={{ width: '100%', height: '100%' }}
-                styles={mapStyle.mapStyle}
-                className={'map'}
-                zoom={8}
-                initialCenter={{
-                    lat: 46.822398674887474,
-                    lng: 8.224210049999993,
-                }}
-            >
-                {this.state.boatInfo.map((boat, i) => {
-                    const latitude = boat.mooring.latitude;
-                    const longitude = boat.mooring.longitude;
-                    return (
-                        <Marker
-                            onClick={this.onMarkerClick}
-                            key={i}
-                            title={boat.title}
-                            name={'no name'}
-                            position={{
-                                lat: latitude,
-                                lng: longitude,
-                            }}
-                            icon={
-                                {
-                                    // url: `url(${BoatIcon})`,
-                                    // anchor: new google.maps.Point(32, 32),
-                                    // scaledSize: new google.maps.Size(64, 64),
-                                }
-                            }
-                        >
-                            
-                            <InfoWindow
-                                marker={this.state.activeMarker}
-                                visible={this.state.showingInfoWindow}
-                            >
-                                <div>
-                                    <h2>{boat.title}</h2>
-                                </div>
-                            </InfoWindow>
-                        </Marker>
-                    );
-                })}
-            </Map>
+            <>
+                <Maps boatOverview={props.boatOverview} />;
+            </>
         );
-    }
-}
+    };
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyAUsuOTrYn3EnR53GxcUBZT2GpSaAD6dfQ',
-    // language: props.language,
-})(MapContainer);
+    return loading ? <Loading /> : mapHandler(props);
+};
+
+const mapStateToProps = (state) => {
+    return {
+        boatOverview: state.boats.boatOverview,
+    };
+};
+const connection = connect(mapStateToProps);
+const ConnectedGoogleMap = connection(GoogleMap);
+
+export default ConnectedGoogleMap;
