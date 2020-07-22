@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { baseUrl } from '../../store/constants';
-import {formErrorHandler} from '../../lib/helpers/errorHandler'
-import {connect} from "react-redux";
+import { formErrorHandler } from '../../lib/helpers/errorHandler';
+import { connect } from 'react-redux';
 
 function VerificationForm(props) {
     const { push } = useHistory();
@@ -12,7 +12,8 @@ function VerificationForm(props) {
     );
 
     const [formState, setFormState] = useState({
-        email: props.registration.email
+        email: props.registration.email,
+        request_membership: false,
     });
 
     const onChangeHandler = (e) => {
@@ -20,6 +21,13 @@ function VerificationForm(props) {
         setFormState({
             ...formState,
             [key]: e.currentTarget.value,
+        });
+    };
+
+    const checkBoxHandler = () => {
+        setFormState({
+            ...formState,
+            request_membership: !formState.request_membership,
         });
     };
 
@@ -52,9 +60,9 @@ function VerificationForm(props) {
         };
 
         const response = fetch(baseUrl + 'registration/validation/', config)
-            .then(res => {
+            .then((res) => {
                 if (!res.ok) {
-                    throw res
+                    throw res;
                 }
                 push('/'); //TODO push doesn't work
                 return res.json();
@@ -62,10 +70,10 @@ function VerificationForm(props) {
             .then((data) => {
                 return data;
             })
-            .catch(error => {
+            .catch((error) => {
                 if (error.status === 400) {
-                    error.json().then( errorMessage => {
-                        formErrorHandler(errorMessage)
+                    error.json().then((errorMessage) => {
+                        formErrorHandler(errorMessage);
                     });
                 }
             });
@@ -86,51 +94,55 @@ function VerificationForm(props) {
                 </p>
                 <div className='input-container'>
                     <div className='input-wrapper'>
-                        <label htmlFor='code' className='required'>Code</label>
+                        <label htmlFor='code' className='required'>
+                            Code
+                        </label>
                         <input
                             id='code'
                             name='code'
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='code'>
-                        </span>
+                        <span className='error' data-key='code'></span>
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='email' className='required'>Email</label>
+                        <label htmlFor='email' className='required'>
+                            Email
+                        </label>
                         <input
                             id='email'
                             name='email'
                             onChange={(e) => onChangeHandler(e)}
                             defaultValue={props.registration.email}
                         />
-                        <span className='error' data-key='email'>
-                        </span>
+                        <span className='error' data-key='email'></span>
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='first-name' className='required'>Vorname</label>
+                        <label htmlFor='first-name' className='required'>
+                            Vorname
+                        </label>
                         <input
                             id='first-name'
                             name='first_name'
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='first_name'>
-                        </span>
+                        <span className='error' data-key='first_name'></span>
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='last-name' className='required'>Nachname</label>
+                        <label htmlFor='last-name' className='required'>
+                            Nachname
+                        </label>
                         <input
                             id='last-name'
                             name='last_name'
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='last_name'>
-                        </span>
+                        <span className='error' data-key='last_name'></span>
                     </div>
 
                     <div className='input-wrapper'>
@@ -205,8 +217,7 @@ function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='username'>
-                        </span>
+                        <span className='error' data-key='username'></span>
                     </div>
 
                     <div className='input-wrapper'>
@@ -235,8 +246,11 @@ function VerificationForm(props) {
                             ref={licenceImageRef}
                             style={{ display: 'none' }}
                         />
-                        <span id='licence-error' className='error' data-key='licence'>
-                        </span>
+                        <span
+                            id='licence-error'
+                            className='error'
+                            data-key='licence'
+                        ></span>
                     </div>
 
                     <div className='input-wrapper'>
@@ -248,8 +262,7 @@ function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='password' >
-                        </span>
+                        <span className='error' data-key='password'></span>
                     </div>
 
                     <div className='input-wrapper'>
@@ -263,14 +276,36 @@ function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='password_repeat'>
-                        </span>
+                        <span
+                            className='error'
+                            data-key='password_repeat'
+                        ></span>
+                    </div>
+                    <div className='input-wrapper checkbox'>
+                        <input
+                            type='checkbox'
+                            id='membership_request'
+                            name='membership_request'
+                            value='true'
+                            onChange={(e) => checkBoxHandler(e)}
+                        />
+                        <label htmlFor='membership_request'>
+                            Mitgliedschaft beantragen
+                        </label>
+                        <span
+                            className='error'
+                            data-key='membership_request'
+                        ></span>
                     </div>
                 </div>
-                <span className='error' data-key='non_field_errors'/>
+                <span className='error' data-key='non_field_errors' />
 
                 <div class='button-container'>
-                    <button id='submit-register' className='btn primary' type='submit'>
+                    <button
+                        id='submit-register'
+                        className='btn primary'
+                        type='submit'
+                    >
                         Absenden
                     </button>
                 </div>
@@ -281,9 +316,9 @@ function VerificationForm(props) {
 
 const mapStateToProps = (state) => {
     return {
-        registration: state.currentUser.registration
-    }
-}
+        registration: state.currentUser.registration,
+    };
+};
 const connection = connect(mapStateToProps);
 const ConnectedVerificationForm = connection(VerificationForm);
 
