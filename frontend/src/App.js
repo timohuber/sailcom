@@ -8,6 +8,7 @@ import './css/main.css';
 // components
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from "./components/ScrollToTop";
 
 // pages
 import Intro from './pages/intro';
@@ -39,6 +40,7 @@ function App() {
     return (
         <div className='App'>
             <BrowserRouter>
+                <ScrollToTop />
                 <Header />
                 <main>
                     <Route exact path='/'>
