@@ -28,3 +28,8 @@
 .event-list > .event-list-element:last-child {
   margin-bottom: 0;
 }
+
+#edit-event-form .btn.secondary {
+  margin-top: $gap-width;
+  margin-bottom: $gap-width-small;
+}
