@@ -45,6 +45,8 @@ function VerificationForm(props) {
             form.append(key, value);
         }
 
+        form.append('username', formState.email);
+
         if (licence) {
             form.append('licence', licence);
         }
@@ -104,6 +106,11 @@ function VerificationForm(props) {
                             className='required'
                         />
                         <span className='error' data-key='code'></span>
+                        <span
+                            style={{ display: 'none' }}
+                            className='error'
+                            data-key='username'
+                        ></span>
                     </div>
 
                     <div className='input-wrapper'>
@@ -209,7 +216,7 @@ function VerificationForm(props) {
                         />
                     </div>
 
-                    <div className='input-wrapper'>
+                    {/* <div className='input-wrapper'>
                         <label htmlFor='username'>Benutzername</label>
                         <input
                             id='username'
@@ -217,8 +224,8 @@ function VerificationForm(props) {
                             onChange={(e) => onChangeHandler(e)}
                             className='required'
                         />
-                        <span className='error' data-key='username'></span>
-                    </div>
+                        <span style={{display: 'none'}} className='error' data-key='username'></span>
+                    </div> */}
 
                     <div className='input-wrapper'>
                         <label htmlFor='avatar'>Benutzerphoto</label>
