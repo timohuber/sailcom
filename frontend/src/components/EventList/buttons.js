@@ -15,12 +15,12 @@ export const FullyBookedButton = () => {
 
 export const ParticipateButton = (props) => {
     return (
-        <button className='btn primary' onClick={ e => props.toggleModal(e, 'participate')} >Teilnehmen</button>
+        <button className={`btn ${props.signedUp ? 'disabled' : 'primary'}`} onClick={ e => props.toggleModal(e, 'participate')} >{props.signedUp ? 'Abmelden' : 'Teilnehmen'}</button>
     );
 }
 
 export const NotLoggedInButton = () => {
     return (
-        <NavLink to='/login' className='btn disabled'>Anmelden</NavLink>
+        <NavLink to='/login' className='btn disabled'>Einloggen</NavLink>
     );
 }

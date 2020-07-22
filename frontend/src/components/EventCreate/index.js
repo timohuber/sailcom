@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, connect } from 'react-redux';
 
 import DatePicker from 'react-datepicker';
@@ -32,21 +32,13 @@ function EventForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        const requiredFields = document.querySelectorAll('.required');
-
-        requiredFields.forEach((field) => {
-            if (!field.value) {
-                field.nextElementSibling.style.opacity = '1';
-                requiredFieldsOK = false;
-            } else {
-                field.nextElementSibling.style.opacity = '0';
-            }
-        });
-
-        if (requiredFieldsOK) {
-            dispatch(createEventAction(value));
-        }
+        dispatch(createEventAction(value));
     };
+
+     useEffect(() => {
+        const datePickers = document.querySelectorAll('.react-datepicker__input-container input')
+        datePickers.forEach( input => input.setAttribute("readOnly", true))
+     })
 
     return (
         <div className='main-wrapper'>
@@ -66,9 +58,7 @@ function EventForm(props) {
                             className='required'
                             value={value.title}
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                        <span className='error' data-key='title'/>
                     </div>
 
                     <div className='input-wrapper'>
@@ -80,9 +70,7 @@ function EventForm(props) {
                             className='required'
                             value={value.price}
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                        <span className='error' data-key='price'/>
                     </div>
 
                     <div className='input-wrapper'>
@@ -105,6 +93,7 @@ function EventForm(props) {
                                 id='from_date_time'
                                 name='from_date_time'
                             />
+                            <span id='datepicker-error' className='error' data-key='from_date_time'/>
                             <DatePicker
                                 selected={
                                     value.until_date_time
@@ -121,7 +110,7 @@ function EventForm(props) {
                                 id='until_date_time'
                                 name='until_date_time'
                             />
-                            <p id='datepicker-error' className='error'></p>
+                            <span id='datepicker-error' className='error' data-key='until_date_time'/>
                         </div>
                     </div>
 
@@ -132,17 +121,12 @@ function EventForm(props) {
                             type='richtext'
                             rows='4'
                             cols='50'
-                            name='comment'
+                            name='description'
                             onChange={(e) => onChangeHandler(e)}
-                            required='required'
-                            required='required'
                             value={value.description}
-                        >
-                            Beschreibung hier eintippen...
-                        </textarea>
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                            placeholder='Beschreibung hier eintippen...'
+                        />
+                        <span className='error' data-key='description'/>
                     </div>
 
                     <div className='input-wrapper'>
@@ -154,9 +138,7 @@ function EventForm(props) {
                             value={value.meeting_point}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                        <span className='error' data-key='meeting_point'/>
                     </div>
 
                     <WhereCrewMemberForm onChangeHandler={onChangeHandler} />
@@ -173,9 +155,7 @@ function EventForm(props) {
                             value={value.max_participants}
                             className='required'
                         />
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                        <span className='error' data-key='max_participants'/>
                     </div>
 
                     <div className='input-wrapper'>
@@ -198,9 +178,7 @@ function EventForm(props) {
                                 );
                             })}
                         </select>
-                        <span className='error'>
-                            Dieses Feld wird benötigt.
-                        </span>
+                        <span className='error' data-key='event_type'/>
                     </div>
                 </div>
                 <div className='button-container'>

@@ -11,6 +11,7 @@ import { eventType, baseUrl } from '../../store/constants';
 import Loading from '../../components/GenericLoading';
 import { dateShowInTable } from '../../lib/helpers/formatDates';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
+import {NavLink} from "react-router-dom";
 
 export default function EventEditForm(props) {
     const today = new Date();
@@ -68,11 +69,16 @@ export default function EventEditForm(props) {
         }
     };
 
+     useEffect(() => {
+        const datePickers = document.querySelectorAll('.react-datepicker__input-container input')
+        datePickers.forEach( input => input.setAttribute("readOnly", true))
+     })
+
     const formHandler = () => {
         return (
             <div className='main-wrapper'>
                 <form
-                    id='user-address-form'
+                    id='edit-event-form'
                     className='col-2'
                     onSubmit={(e) => onSubmitHandler(e)}
                 >
@@ -163,11 +169,9 @@ export default function EventEditForm(props) {
                                 cols='50'
                                 name='comment'
                                 onChange={(e) => onChangeHandler(e)}
-                                required='required'
-                                required='required'
                                 value={value.description}
+                                placeholder={'Beschreibung hier eintippen...'}
                             >
-                                Beschreibung hier eintippen...
                             </textarea>
                             <span className='error' data-key='comment'></span>
                         </div>
@@ -235,12 +239,13 @@ export default function EventEditForm(props) {
                     </div>
                     <div className='button-container'>
                         <div>
-                            <span id='element-updated'></span>
+                            <span id='element-updated' />
                             <button className='btn primary' type='submit'>
                                 Speichern
                             </button>
                         </div>
                     </div>
+                    <NavLink to='/events' className='btn secondary'>Zurück</NavLink>
                 </form>
             </div>
         );

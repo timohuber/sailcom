@@ -28,10 +28,33 @@ function EventListContainer(props) {
         })
     }, [])
 
+    const updateState = event_id => {
+        console.log('old state', data)
+        const user_id = props.currentUser.userData.id
+        let event_index = 0
+        data.forEach((item, index) =>{
+            if(item.id === event_id) {
+                event_index = index;
+            }
+        })
+        let new_participants = data[event_index].participants
+        if (new_participants.includes(user_id)) {
+            console.log('it contains id')
+            new_participants.splice(new_participants.indexOf(user_id), 1);
+        } else {
+            console.log('it does not contain id')
+            new_participants.push(user_id)
+        }
+        let newState = data
+        newState[event_index].participants = new_participants
+        console.log('new State', newState)
+        setData(newState)
+    }
+
     return (
         <>
             {props.events.activeModal
-                ? <EventModal activeModal={props.events.activeModal} event={props.events.modalEvent}/>
+                ? <EventModal activeModal={props.events.activeModal} event={props.events.modalEvent} updateState={updateState}/>
                 : null
             }
             <h1>Veranstaltungen</h1>

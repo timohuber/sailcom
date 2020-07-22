@@ -13,14 +13,15 @@ function ButtonsContainer(props) {
         e.preventDefault()
         dispatch(setEventModalAction(modal, event))
     }
-
-    console.log()
+    console.log(event)
     return (
         <div className='event-button-container'>
             <DisplayInformationButton toggleModal={toggleModal}/>
             {!user.authorized
                 ? <NotLoggedInButton toggleModal={toggleModal}/>
-                : <ParticipateButton toggleModal={toggleModal}/>
+                : event.max_participants <= event.participants.length
+                    ? <FullyBookedButton />
+                    : <ParticipateButton toggleModal={toggleModal} signedUp={event.participants.includes(user.userData.id)}/>
             }
             {
                 user.authorized
