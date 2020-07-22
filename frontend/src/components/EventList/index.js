@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {baseUrl} from "../../store/constants";
 import {connect} from "react-redux";
 import {NavLink} from 'react-router-dom'
 import Loading from '../GenericLoading'
@@ -7,7 +6,6 @@ import EventsContainer from './eventscontainer'
 import EventModal from './modal'
 import EventListFilter from './Filter'
 import Accordion from "../Accordion";
-import {dateToISOString} from "../../lib/helpers/formatDates";
 import Axios from "../../axios";
 
 function EventListContainer(props) {
@@ -16,7 +14,6 @@ function EventListContainer(props) {
     const [visibilityFilter, setVisibilityFilter] = useState()
 
      useEffect(() => {
-        console.log(visibilityFilter)
         const fetchBoats = async () => {
             let url = 'event/'
 

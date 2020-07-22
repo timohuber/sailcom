@@ -23,6 +23,8 @@ export const GET_ALL_BOAT_INFO = 'GET_ALL_BOAT_INFO';
 export const ADD_BOAT = 'ADD_BOAT';
 export const ADD_BOOKING_TO_BOAT = 'ADD_BOOKING_TO_BOAT';
 
+export const GET_MEMBERSHIP_CATEGORIES = 'GET_MEMBERSHIP_CATEGORIES'
+
 /* time and date formats */
 export const displayTimeDateFormatWithoutY = "MMMM d, HH:mm";
 export const displayTimeDateFormat = "DD.MM.YYYY HH:mm";

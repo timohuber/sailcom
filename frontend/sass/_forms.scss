@@ -87,12 +87,13 @@ form.col-2 .input-container {
         color: $error-color;
         font-size: $smaller-font-size;
         min-height: 20px;
-        // opacity: 0;
+        text-align: center;
     }
 
     .form-success {
         color: $success-color;
         font-size: $smaller-font-size;
+        text-align: center;
     }
 
     &.checkbox {

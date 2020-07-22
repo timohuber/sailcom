@@ -21,12 +21,8 @@ function UserMembership(props) {
     if(user.userData.membership_type) {
         membershipComponent = <ExistingMembership user={user} />
     }
-    /*
+
     if(!user.userData.membership_type && user.userData.request_membership) {
-        membershipComponent = <PendingMembership user={user} />
-    }
-     */
-    if(true) {
         membershipComponent = <PendingMembership user={user} />
     }
     return (

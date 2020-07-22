@@ -3,9 +3,11 @@ import {baseUrl, authenticatedGetConfig} from "../../store/constants";
 import AvatarDefault from "../../assets/avatar-placeholder.jpg";
 import UserAddress from "./address"
 import UserBoatsForm from "./userBoatsForm";
+import UserEditMembership from './editMembership';
 import Loading from "../GenericLoading";
+import {connect} from "react-redux";
 
-export default function UserDetail(props) {
+function UserDetail(props) {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const userID = props.match.params.id
@@ -28,16 +30,29 @@ export default function UserDetail(props) {
             : `url(${AvatarDefault})`,
     };
 
+    //
+
     return (
         <div className='main-wrapper'>
-        { loading
-        ? <Loading />
-        :   <>
-                <div className='user-detail-avatar user-avatar' style={avatarStyle}></div>
-                <UserAddress user={user} />
-                <UserBoatsForm user={user} />
-            </>
-        }
+            {loading
+                ? <Loading/>
+                : <>
+                    <div className='user-detail-avatar user-avatar' style={avatarStyle}/>
+                    <UserAddress user={user}/>
+                    <UserBoatsForm user={user}/>
+                    <UserEditMembership user={user}/>
+                </>
+            }
         </div>
     );
 };
+
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.currentUser,
+    }
+}
+const connection = connect(mapStateToProps);
+const ConnectedUserDetail = connection(UserDetail);
+
+export default ConnectedUserDetail;

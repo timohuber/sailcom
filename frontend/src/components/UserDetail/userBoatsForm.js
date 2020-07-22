@@ -10,10 +10,7 @@ function UserBoatsForm(props) {
     const [user, setUser] = useState(props.user)
     const dispatch = useDispatch()
 
-    console.log('props userBoatsForm', props)
-
     useEffect(() => {
-        console.log('in use effect ')
         if (!props.whereCrew) {
             dispatch(whereIsCurrentUserCrewMemberAction());
         }
@@ -59,7 +56,7 @@ function UserBoatsForm(props) {
 
     return (
             <div className='user-boats'>
-                <h3>Boote freischalten</h3>
+                <h2>Boote freischalten</h2>
                 <div className='user-boats-form'>
                     {loading
                         ? <Loading />
