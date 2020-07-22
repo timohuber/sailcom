@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from .boat_category.models import BoatCategory
 from ..boat_crew.models import BoatCrew
@@ -31,10 +33,16 @@ class Boat(models.Model):
 
     mooring = models.ForeignKey(to=Mooring, related_name='boat', on_delete=models.SET_NULL, blank=True, null=True)
     model = models.ForeignKey(to=BoatModel, related_name='boats', on_delete=models.SET_NULL, blank=True, null=True)
-    crew = models.ForeignKey(to=BoatCrew, related_name='boat', on_delete=models.SET_NULL, blank=True, null=True)
+    crew = models.OneToOneField(to=BoatCrew, related_name='boat', on_delete=models.SET_NULL, blank=True, null=True)
     owner = models.ForeignKey(to=User, related_name='owned_boats', on_delete=models.SET_NULL, blank=True, null=True)
     category = models.ForeignKey(to=BoatCategory, related_name='boats', on_delete=models.SET_NULL,
                                  blank=True, null=True)
 
     def __str__(self):
         return f'ID{self.id}: {self.title}'
+
+
+@receiver(post_save, sender=Boat)
+def create_crew(sender, instance, created, **kwargs):
+    if len(BoatCrew.objects.filter(boat=instance)) == 0:
+        BoatCrew.objects.create(boat=instance, title=instance.title)

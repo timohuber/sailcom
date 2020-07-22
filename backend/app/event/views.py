@@ -10,7 +10,8 @@ from .serializers import EventSerializer
 
 from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
-from ..permissions import IsLoggedIn
+from ..mail.models import Mail
+from ..permissions import IsLoggedIn, IsMember
 from ..transaction.models import Transaction
 
 
@@ -64,9 +65,17 @@ class ListEventView(RetrieveUpdateAPIView):
 
 class RegisterEventView(CreateAPIView):
     serializer_class = EventSerializer
-    permission_classes = [IsLoggedIn]
+
+    def get_permissions(self):
+        searchEvent = Event.objects.filter(id=self.kwargs['pk'])
+        if searchEvent[0].event_type.is_public:
+            return (IsLoggedIn(),)
+        else:
+            return (IsMember(),)
 
     def post(self, request, *args, **kwargs):
+        if len(Event.objects.filter(id=kwargs['pk'])) == 0:
+            return HttpResponse('Veranstaltung existiert nicht', status=500)
         currentUser = self.request.user
         searchEvent = Event.objects.get(id=kwargs['pk'])
         registered = Event.objects.filter(id=kwargs['pk'], participants=currentUser)
@@ -76,8 +85,19 @@ class RegisterEventView(CreateAPIView):
                 return HttpResponse('Leider ist diese Veranstaltung schon voll', status=400)
             searchEvent.participants.add(currentUser)
             Transaction.objects.create(price=searchEvent.price, user=currentUser, event=searchEvent)
+            email = Mail(recipient=searchEvent.instructor.email,
+                         subject=f'Neue Registrierung für Veranstaltung {searchEvent.title}',
+                         content=f'{currentUser.first_name} {currentUser.last_name} hat sich für {searchEvent.title}'
+                                 f'registriert')
+            email.save()
             return HttpResponse('Danke für die Registrierung', status=200)
         else:
             Transaction.objects.get(user=currentUser, event=searchEvent).delete()
             searchEvent.participants.remove(currentUser)
+            Transaction.objects.create(price=searchEvent.price, user=currentUser, event=searchEvent)
+            email = Mail(recipient=searchEvent.instructor.email,
+                         subject=f'Abmeldung für Veranstaltung {searchEvent.title}',
+                         content=f'{currentUser.first_name} {currentUser.last_name} hat sich für {searchEvent.title}'
+                                 f'abgemeldet')
+            email.save()
             return HttpResponse('Schade! Sie haben sich für diese Veranstaltung abgemeldet', status=200)

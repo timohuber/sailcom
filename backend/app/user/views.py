@@ -157,9 +157,7 @@ class AcceptMembershipRequestView(CreateAPIView):
             trx.invoice = inv
             trx.save()
             return HttpResponse('Mitgliedschaft Rechnung wurde für den Kunden erstellt', status=200)
-        if searchUser.request_membership is True and\
-                searchUser.is_member is False and\
-                searchUser.membership_type is not None:
+        if searchUser.request_membership is True and searchUser.is_member is False:
             return HttpResponse('Die Beantragung ist schon in Bearbeitung', status=400)
 
 

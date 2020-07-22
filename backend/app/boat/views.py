@@ -1,7 +1,7 @@
 from datetime import timedelta
 from django.utils import timezone
 from django.db.models import Q
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
 
 from .detailserializer import DetailBoatSerializer
 from .models import Boat
@@ -10,7 +10,7 @@ from ..boat_crew.models import BoatCrew
 from ..permissions import IsLoggedIn
 
 
-class ListBoatsView(ListAPIView):
+class ListBoatsView(ListCreateAPIView):
     serializer_class = BoatSerializer
 
     def get_queryset(self, *args, **kwargs):

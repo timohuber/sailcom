@@ -22,3 +22,4 @@ class BoatSerializer(serializers.ModelSerializer):
                   'price_fullday_weekend', 'description', 'a_license_required', 'bookings',
                   'length', 'width', 'draught', 'max_crew', 'recommended_crew', 'mooring',
                   'model', 'crew', 'images', 'boat_documents', 'registration_number', 'status_sharing', 'category']
+        read_only_fields = ['bookings']

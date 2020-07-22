@@ -74,7 +74,7 @@ class CreateRegistrationSerializer(serializers.Serializer):
 
 class ValidateRegistrationSerializer(serializers.Serializer):
     email = serializers.EmailField(label='Registration E-Mail Address', validators=[email_does_exist])
-    username = serializers.CharField(label='Username')
+    username = serializers.CharField(label='Username', required=False)
     code = serializers.CharField(label='Validation code', write_only=True, validators=[code_is_valid])
     password = serializers.CharField(label='password', write_only=True)
     password_repeat = serializers.CharField(label='password_repeat', write_only=True)
