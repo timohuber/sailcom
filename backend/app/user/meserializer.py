@@ -13,6 +13,6 @@ class MeSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'salutation', 'email', 'first_name', 'last_name', 'street', 'address_appendix', 'city',
                   'country', 'zip_code', 'phone', 'mobile', 'date_of_birth', 'licence', 'joined', 'avatar',
-                  'licence_ok', 'entry_fee_paid', 'bookings', 'is_member', 'membership_type',
+                  'licence_ok', 'entry_fee_paid', 'bookings', 'is_member', 'membership_type', 'request_membership'
                   'instructed_for_models', 'favourite_lake', 'is_crew']
         read_only_fields = ['instructed_for_models']
