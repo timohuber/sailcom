@@ -27,7 +27,6 @@ import NotFoundPage from './pages/404';
 import UserSearchPage from './pages/userlistpage'
 import UserDetailPage from './pages/userdetailpage'
 
-
 // remove
 import Components from './pages/components';
 
