@@ -281,25 +281,21 @@ function VerificationForm(props) {
                             data-key='password_repeat'
                         ></span>
                     </div>
-                    <div className='input-wrapper'>
-                        <label htmlFor='membership_request'>
-                            Mitgliedschaft beantragen
-                        </label>
+                    <div className='input-wrapper checkbox'>
                         <input
                             type='checkbox'
                             id='membership_request'
                             name='membership_request'
-                            // onChange={setFormState({
-                            //     ...formState,
-                            //     membership_request: !formState.membership_request,
-                            // })}
-                            // onChange={checkBoxHandler()}
-                            // className='required'
+                            value='true'
+                            onChange={(e) => checkBoxHandler(e)}
                         />
-                        {/* <span
+                        <label htmlFor='membership_request'>
+                            Mitgliedschaft beantragen
+                        </label>
+                        <span
                             className='error'
                             data-key='membership_request'
-                        ></span> */}
+                        ></span>
                     </div>
                 </div>
                 <span className='error' data-key='non_field_errors' />
