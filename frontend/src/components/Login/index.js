@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { loginAction } from '../../store/actions/loginActions';
 import { getUrlParams } from '../../lib/helpers/getUrlParams';
 
 export default function LoginForm(props) {
     const dispatch = useDispatch();
+    let history = useHistory();
     const [formState, setFormState] = useState({ email: '', password: '' });
     let url_param = getUrlParams();
+    console.log(url_param);
 
     const onChangeHandler = (e) => {
         const key = e.currentTarget.dataset.key;
@@ -20,7 +22,8 @@ export default function LoginForm(props) {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        dispatch(loginAction(formState, url_param));
+        dispatch(loginAction(formState));
+        history.push(`/${url_param}`);
     };
 
     return (
