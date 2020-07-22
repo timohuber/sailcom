@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { loginAction } from '../../store/actions/loginActions';
-import Axios from "../../axios";
-import {elementUpdatedMessage, formErrorHandler} from "../../lib/helpers/errorHandler";
+import Axios from '../../axios';
+import {
+    elementUpdatedMessage,
+    formErrorHandler,
+} from '../../lib/helpers/errorHandler';
 
 export default function LoginForm(props) {
     const dispatch = useDispatch();
@@ -19,8 +22,8 @@ export default function LoginForm(props) {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        dispatch(loginAction(formState))
-        };
+        dispatch(loginAction(formState));
+    };
 
     return (
         <form
@@ -48,16 +51,13 @@ export default function LoginForm(props) {
                         type='password'
                         placeholder='PASSWORD'
                     />
-                    <span className='error' id='login-error' data-key='password' />
+                    {/* <span className='error' id='login-error' data-key='password' /> */}
+                    <span className='error' data-key='detail' />
                 </div>
             </div>
-            <span className='error' data-key='detail'/>
+            {/* <span className='error' data-key='detail'/> */}
             <div className='button-container'>
-                <button
-                    id='submit-login'
-                    className='btn primary'
-                    type='submit'
-                >
+                <button id='submit-login' className='btn primary' type='submit'>
                     Abschicken
                 </button>
             </div>
