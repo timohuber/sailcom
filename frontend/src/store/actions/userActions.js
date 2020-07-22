@@ -1,4 +1,5 @@
-import { baseUrl, UPDATE_CURRENT_USER, USER_LOGOUT } from '../constants';
+import { baseUrl, UPDATE_CURRENT_USER, USER_LOGOUT, GET_USER_BOOKINGS } from '../constants';
+import Axios from "../../axios";
 
 const userUpdate = (data) => {
     return {
@@ -13,18 +14,22 @@ const userLogout = () => {
     };
 };
 
+const getUserBookings = (data) => {
+    console.log('in getUserBookings')
+
+    return {
+        type: GET_USER_BOOKINGS,
+        payload: data
+    };
+};
 
 export const updateUserAction = (data) => async (dispatch, getState) => {
     const config =
     {
         method: 'PATCH',
         headers: new Headers({
-        // 'Content-Type': 'application/json',
          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }),
-        // body: JSON.stringify(
-        //     data
-        // ),
         body: data
     }
     const response = fetch(baseUrl + 'user/me/', config)
@@ -42,4 +47,17 @@ export const userLogoutAction = () => (dispatch, getState) => {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
     dispatch(userLogout())
+};
+
+
+export const getUserBookingsAction = () => async (dispatch) => {
+    console.log('in getUserBookingsAction')
+    try {
+        const response = await Axios.get('booking/myBookings/');
+        dispatch(getUserBookings(response.data.results));
+    } catch (error) {
+        if (error) {
+            console.log('an error occurred', error)
+        }
+    }
 };

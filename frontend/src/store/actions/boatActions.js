@@ -15,9 +15,9 @@ export const getBoatOverviewAction = () => async (dispatch) => {
         dispatch(getBoatOverview(response.data.results));
         return response;
     } catch (error) {
-        console.log(error.response.data)
-        formErrorHandler(error.response.data);
-        return error.response.data;
+        if (error) {
+            console.log('an error occurred', error)
+        }
     }
 };
 

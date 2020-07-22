@@ -5,7 +5,7 @@ export default function ExistingMembership(props) {
     return (
         <>
             <h1>Ihre Mitgliedschaft</h1>
-            <p>Typ: {user.membership_type}</p>
+            <p>Typ: {user.userData.membership_type}</p>
         </>
     );
 };

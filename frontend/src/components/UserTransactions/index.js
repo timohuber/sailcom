@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {connect, useDispatch} from 'react-redux';
+import {connect} from 'react-redux';
 import TransactionsContainer from './transactionsContainer'
 import Loading from '../GenericLoading';
 import {baseUrl} from "../../store/constants";

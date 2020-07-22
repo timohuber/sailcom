@@ -1,6 +1,7 @@
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_SIGNUP = 'USER_SIGNUP';
+export const GET_USER_BOOKINGS = 'GET_USER_BOOKINGS';
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';

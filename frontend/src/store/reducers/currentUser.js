@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER } from '../constants';
+import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS } from '../constants';
 
 const initialState = {
     authorized: false,
@@ -39,6 +39,18 @@ export const currentUser = (state = initialState, action) => {
                     }
                 }
 
+        case UPDATE_CURRENT_USER:
+            return {
+                ...state,
+                userData: action.payload
+            }
+
+        case GET_USER_BOOKINGS:
+            return {
+                ...state,
+                bookings: action.payload
+            }
+
         case VERIFICATION_CONFORMED:
             return {
                 ...state,
@@ -47,12 +59,6 @@ export const currentUser = (state = initialState, action) => {
                     verificationConformed: true
                     }
                 }
-
-        case UPDATE_CURRENT_USER:
-            return {
-                ...state,
-                userData: action.payload
-            }
 
         default:
             return state;
