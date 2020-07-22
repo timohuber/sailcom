@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchUserData } from './store/actions/loginActions';
 import authComponent from './hoc/authHOC';
+import staffOrCrewHOC from './hoc/stuffOrCrewHOC'
 import './css/main.css';
 
 // components
@@ -89,12 +90,12 @@ function App() {
                     <Route
                         exact
                         path='/mitglieder'
-                        component={UserSearchPage}
+                        component={staffOrCrewHOC(UserSearchPage)}
                     />
                     <Route
                         exact
                         path='/mitglied/:id'
-                        component={UserDetailPage}
+                        component={staffOrCrewHOC(UserDetailPage)}
                     />
 
                     <Route exact path='/components' component={Components} />

@@ -87,8 +87,11 @@ function MobileNavigation(props) {
                             </>
                     }
                     {
-                        props.is_crew
-                        ? <NavLink to='/mitglieder'>Mitglieder</NavLink>
+                        props.is_crew || props.is_staff
+                        ?
+                            <li>
+                                <NavLink to='/mitglieder'>Mitglieder</NavLink>
+                            </li>
                         : null
                     }
 

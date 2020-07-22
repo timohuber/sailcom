@@ -33,14 +33,18 @@ function UserDetail(props) {
     //
 
     return (
-        <div className='main-wrapper'>
+        <div className='main-wrapper narrow'>
             {loading
                 ? <Loading/>
                 : <>
                     <div className='user-detail-avatar user-avatar' style={avatarStyle}/>
                     <UserAddress user={user}/>
                     <UserBoatsForm user={user}/>
-                    <UserEditMembership user={user}/>
+                    {
+                        props.currentUser.is_staff
+                        ? <UserEditMembership user={user}/>
+                        : null
+                    }
                 </>
             }
         </div>
@@ -49,7 +53,7 @@ function UserDetail(props) {
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.currentUser,
+        currentUser: state.currentUser.userData,
     }
 }
 const connection = connect(mapStateToProps);

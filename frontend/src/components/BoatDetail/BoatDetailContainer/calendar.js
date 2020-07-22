@@ -25,9 +25,11 @@ function BoatCalendar(props) {
                 start: new Date(booking.from_date_time),
                 end: new Date(booking.until_date_time),
             })
-            setData(events)
-            setLoading(false)
         })
+
+        setData(events)
+        setLoading(false)
+
     }, [props.boatlist])
 
     return (<>

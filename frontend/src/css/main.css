@@ -132,7 +132,8 @@ button {
   font-size: inherit;
   cursor: pointer;
   transition: 0.2s;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Open Sans", sans-serif;
+  padding: 0; }
 
 .btn {
   border: none;
@@ -247,10 +248,12 @@ form.col-2 .input-container {
   .input-wrapper .error {
     color: #D01017;
     font-size: 0.875rem;
-    min-height: 20px; }
+    min-height: 20px;
+    text-align: center; }
   .input-wrapper .form-success {
     color: #06AD05;
-    font-size: 0.875rem; }
+    font-size: 0.875rem;
+    text-align: center; }
   .input-wrapper.checkbox {
     display: flex;
     flex-direction: row;
@@ -360,8 +363,9 @@ form.col-2 .input-container {
       margin-bottom: 30px; }
     #mobile-navigation nav ul.level-1 > li > a {
       font-size: 2rem; }
-  #mobile-navigation a {
-    color: #fff; }
+  #mobile-navigation a, #mobile-navigation button {
+    color: #fff;
+    text-align: left; }
 
 #mobile-navigation.open {
   transform: translateY(0px); }
@@ -370,6 +374,8 @@ form.col-2 .input-container {
   max-width: 1200px;
   margin: auto;
   padding: calc(30px / 2); }
+  .main-wrapper.narrow {
+    max-width: 600px; }
 
 .grid-col-5 {
   max-width: 1200px;
@@ -802,6 +808,9 @@ form.col-2 .input-container {
 .search-user-from {
   margin-bottom: 30px; }
 
+.user-edit-membership, .user-address, .user-boats {
+  margin-bottom: 30px; }
+
 .user-avatar {
   border-radius: 50%;
   background-size: cover; }
@@ -823,7 +832,9 @@ form.col-2 .input-container {
 .user-detail-avatar {
   max-width: 200px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 30px; }
 
 .boat-form-list-element {
   display: flex;
@@ -934,4 +945,5 @@ form.col-2 .input-container {
 .map-home-wrapper {
   width: 100%;
   height: 50vh;
-  position: relative !important; }
+  position: relative !important;
+  margin-bottom: 30px; }
