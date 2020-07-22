@@ -33,6 +33,11 @@ export default function BoatListContainer(props) {
        fetchBoats()
     }, [visibilityFilter])
 
+    const resetFilter = (e) => {
+        e.preventDefault()
+        setVisibilityFilter(null)
+    }
+
     const submitFilterHandler = (e, filterQuery) => {
         e.preventDefault()
 
@@ -54,14 +59,14 @@ export default function BoatListContainer(props) {
         if(count > 0) {
             setVisibilityFilter(searchURL)
         } else {
-            setVisibilityFilter(null)
+            resetFilter(e)
         }
     }
 
     const accordionContent = [
         {
             title: 'Filter',
-            content: <BoatListFilter submitFilterHandler={submitFilterHandler}/>,
+            content: <BoatListFilter submitFilterHandler={submitFilterHandler} resetFilter={resetFilter}/>,
         }
     ];
 

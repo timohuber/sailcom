@@ -27,7 +27,6 @@ export const ADD_BOOKING_TO_BOAT = 'ADD_BOOKING_TO_BOAT';
 export const displayTimeDateFormatWithoutY = "MMMM d, HH:mm";
 export const displayTimeDateFormat = "DD.MM.YYYY HH:mm";
 
-
 export const countrySelection = [
     { key: 'switzerland', value: 'Schweiz' },
     { key: 'germany', value: 'Deutschland' },
@@ -91,4 +90,9 @@ export const lakeDict = {
     11: 'Zugersee',
     12: 'Zürich-Obersee',
     13: 'Zürichsee',
+}
+
+export const membership_types = {
+    1: 'Genossenschaftmitglied',
+    2: 'Verwaltungsratsmitglied'
 }
