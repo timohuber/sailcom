@@ -1,7 +1,8 @@
 from django.urls import path
 
 from .views import ListUserView, ListUsersView, ListMe, ToggleInstructedForView, CreateEntryFeeView, \
-    TogglePaidEntryFeeView, ToggleIsMemberView, CreateMembershipRequestView
+    TogglePaidEntryFeeView, ToggleIsMemberView, CreateMembershipRequestView, AcceptMembershipRequestView, \
+    OpenMembershipRequestView
 
 urlpatterns = [
     path('<int:pk>/', ListUserView.as_view()),
@@ -12,4 +13,6 @@ urlpatterns = [
     path('togglePaidEntryFee/', TogglePaidEntryFeeView.as_view()),
     path('toggleIsMember/', ToggleIsMemberView.as_view()),
     path('membershipRequest/', CreateMembershipRequestView.as_view()),
+    path('acceptMembershipRequest/', AcceptMembershipRequestView.as_view()),
+    path('openMembershipRequest/', OpenMembershipRequestView.as_view()),
 ]
