@@ -1,6 +1,8 @@
 import { baseUrl, USER_LOGIN } from '../constants';
 import Axios from "../../axios";
-import {formErrorHandler} from "../../lib/helpers/errorHandler";
+import { formErrorHandler } from "../../lib/helpers/errorHandler";
+// import { useHistory } from 'react-router-dom';
+
 
 export const userLogin = (accessToken, refreshToken, currentUser) => {
     return {
@@ -20,6 +22,8 @@ export const loginAction = (formState) => async (dispatch, getState) => {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             dispatch(userLogin(accessToken, refreshToken, res.data.user));
+            // const history = useHistory();
+            // history.goBack();
         }
         return res;
     } catch (error) {

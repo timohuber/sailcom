@@ -163,6 +163,9 @@ button {
   color: #333;
   font-size: 1rem; }
 
+.btn.secondary.gap-width-margin {
+  margin: 30px; }
+
 .btn.disabled {
   background-color: #bbbbbb;
   color: #fff;

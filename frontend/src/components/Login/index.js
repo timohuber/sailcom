@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { loginAction } from '../../store/actions/loginActions';
-import Axios from '../../axios';
-import {
-    elementUpdatedMessage,
-    formErrorHandler,
-} from '../../lib/helpers/errorHandler';
 
 export default function LoginForm(props) {
     const dispatch = useDispatch();
@@ -31,7 +27,9 @@ export default function LoginForm(props) {
             className='col-1'
             onSubmit={(e) => onSubmitHandler(e)}
         >
-            <p>Bitte geben Sie Ihren Benutzernamen und das Passwort ein.</p>
+            <p className='form-text-centered'>
+                Bitte geben Sie Ihren Benutzernamen und das Passwort ein.
+            </p>
             <div className='input-container'>
                 <div className='input-wrapper'>
                     <input
@@ -51,29 +49,26 @@ export default function LoginForm(props) {
                         type='password'
                         placeholder='PASSWORD'
                     />
-                    {/* <span className='error' id='login-error' data-key='password' /> */}
+                    <span
+                        className='error'
+                        id='login-error'
+                        data-key='password'
+                    />
                     <span className='error' data-key='detail' />
                 </div>
             </div>
-            {/* <span className='error' data-key='detail'/> */}
             <div className='button-container'>
                 <button id='submit-login' className='btn primary' type='submit'>
                     Abschicken
                 </button>
             </div>
+            <div className='button-container'>
+                <Link to='/registrierung'>
+                    <button className='btn secondary gap-width-margin'>
+                        Neu hier? Jetzt registrieren
+                    </button>
+                </Link>
+            </div>
         </form>
     );
 }
-
-/*
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-        if (formState.email === '' || formState.password === '') {
-            document.getElementById('login-error').innerHTML =
-                '<p>Please enter email address and password</p>';
-        } else {
-            document.getElementById('login-error').innerHTML = '';
-            dispatch(loginAction(formState.email, formState.password));
-        }
-    };
-*/
