@@ -23,7 +23,14 @@ class ListEventsView(ListCreateAPIView):
     serializer_class = EventSerializer
 
     def get_queryset(self):
-        return Event.objects.filter(from_date_time__gte=timezone.localtime()-timedelta(days=1))
+        data = Event.objects.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1))
+        if self.request.query_params.get('category') is not None:
+            data = data.filter(Q(boat__category=self.request.query_params.get('category')))
+        if self.request.query_params.get('lake') is not None:
+            data = data.filter(Q(boat__mooring__lake=self.request.query_params.get('lake')))
+        if self.request.query_params.get('boat') is not None:
+            data = data.filter(Q(boat=self.request.query_params.get('boat')))
+        return data
 
     def post(self, request, *args, **kwargs):
         overlapping_bookings = Boat.objects.filter(id=self.request.data['boat']).filter(

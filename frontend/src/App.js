@@ -8,6 +8,7 @@ import './css/main.css';
 // components
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from "./components/ScrollToTop";
 
 // pages
 import Intro from './pages/intro';
@@ -27,6 +28,7 @@ import NotFoundPage from './pages/404';
 import UserSearchPage from './pages/userlistpage';
 import UserDetailPage from './pages/userdetailpage';
 
+
 // remove
 import Components from './pages/components';
 
@@ -39,6 +41,7 @@ function App() {
     return (
         <div className='App'>
             <BrowserRouter>
+                <ScrollToTop />
                 <Header />
                 <main>
                     <Route exact path='/' component={Home}></Route>

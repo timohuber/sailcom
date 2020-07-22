@@ -20,7 +20,7 @@ export default function EventModal(props) {
                     { props.activeModal === 'information'
                         ? <EventInformationModal event={props.event} />
                         : props.activeModal === 'participate'
-                        ? <EventParticipationModal event={props.event} closeModal={closeModalHandler}/>
+                        ? <EventParticipationModal event={props.event} closeModal={closeModalHandler} updateState={props.updateState}/>
                         : null
                     }
             </div>

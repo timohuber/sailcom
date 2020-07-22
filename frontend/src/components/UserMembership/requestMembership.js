@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import GenericTextInput from '../GenericForm/textInput'
 import {formErrorHandler} from '../../lib/helpers/errorHandler'
+import Axios from "../../axios";
+import {getBoatOverview} from "../../store/actions/boatActions";
 
 export default function RequestMembershipForm(props) {
     const user = props.user.userData
@@ -21,7 +23,7 @@ export default function RequestMembershipForm(props) {
         console.log(formState)
     };
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault()
         const licenceFile = document.getElementById('licence').files[0];
 
@@ -45,7 +47,14 @@ export default function RequestMembershipForm(props) {
             }
         }
         if(requiredOK) {
-            console.log('all good')
+            try {
+                const response = await Axios.post('user/membershipRequest/');
+                console.log(response)
+                return response;
+            } catch (error) {
+                console.log('an error occurred', error.response.data)
+            }
+
         } else {
             formErrorHandler(errors)
         }

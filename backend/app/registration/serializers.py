@@ -14,13 +14,13 @@ def email_does_exist(email):
         User.objects.get(email=email)
         return email
     except User.DoesNotExist:
-        raise ValidationError(message='User does not exist!')
+        raise ValidationError(message='Benutzer existiert nicht!')
 
 
 def email_does_not_exist(email):
     try:
         User.objects.get(email=email)
-        raise ValidationError(message='This email is taken')
+        raise ValidationError(message='Die Email ist bereits vergeben!')
     except User.DoesNotExist:
         return email
 
@@ -28,7 +28,7 @@ def email_does_not_exist(email):
 def username_does_not_exist(username):
     try:
         User.objects.get(username=username)
-        raise ValidationError(message='This username is taken')
+        raise ValidationError(message='Der Username ist bereits vergeben!')
     except User.DoesNotExist:
         return username
 
@@ -39,9 +39,9 @@ def code_is_valid(code):
         if not reg_profile.code_used:
             return code
         else:
-            raise ValidationError(message='This code has already been used!')
+            raise ValidationError(message='Der Code wurde schon gebraucht!')
     except Registration.DoesNotExist:
-        raise ValidationError(message='This code is not valid!')
+        raise ValidationError(message='Der Code ist nicht gültig!')
 
 
 class CreateRegistrationSerializer(serializers.Serializer):
@@ -65,8 +65,8 @@ class CreateRegistrationSerializer(serializers.Serializer):
         registration_profile.save()
 
         email = Mail(recipient=email,
-                     subject='Thank you for registering!',
-                     content=f'Here is your validation code: {registration_profile.code}')
+                     subject='Vielen Dank für Ihre Registrierung!',
+                     content=f'Ihr Code zur Validierung: {registration_profile.code}')
         email.save()
 
         return new_user

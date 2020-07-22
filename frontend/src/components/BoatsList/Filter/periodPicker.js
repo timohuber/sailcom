@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import DatePicker from "react-datepicker";
 import {displayTimeDateFormatWithoutY} from "../../../store/constants"
 import "react-datepicker/dist/react-datepicker.css";
-import {dateToISOString, dateParseWithTimezone} from "../../../lib/helpers/formatDates";
 
 
 export default function PeriodPicker(props) {

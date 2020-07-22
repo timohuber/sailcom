@@ -15,10 +15,7 @@ export const formErrorHandler = error => {
 
 export const elementUpdatedMessage = (element) => {
     (document.getElementById('element-updated').innerText =
-        `${element} updated.`);
-    setTimeout(function(){
-        document.getElementById('element-updated').innerHTML = '';
-    }, 4000);
+        `${element} erfolgreich gespichert.`);
 };
 
 // <span id='event-updated'></span>

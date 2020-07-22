@@ -14,6 +14,7 @@ urlpatterns = [
     path('backend/api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('backend/api/auth/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
     path('backend/api/registration/', include('app.registration.urls')),
+    path('backend/api/membershipTypes/', include('app.membership_type.urls')),
     path('backend/api/lakes/', include('app.lake.urls')),
     path('backend/api/user/', include('app.user.urls')),
     path('backend/api/event/', include('app.event.urls')),

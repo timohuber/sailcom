@@ -4,11 +4,10 @@ import {dateToDisplayString} from '../../lib/helpers/formatDates'
 
 export default function EventInformationTable(props) {
     const event = props.event
-    console.log(event)
     return (
         <div className='event-meta'>
             <div className='event-row'>
-                <div className='event-cell' colspan='2'>
+                <div className='event-cell' colSpan='2'>
                     <span className='upper-subtitle'>
                         {
                             Boolean(event.event_type)
