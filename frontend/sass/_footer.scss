@@ -15,10 +15,11 @@
         margin-bottom: 0px;
     }
     hr {
-        margin-bottom: 40px;
+        width: 100%;
+        // margin-bottom: 40px;
     }
     .social-footer {
-        margin: $gap-width;
+        margin-bottom: $gap-width;
         display: flex;
         justify-content: center;
         align-items: center;

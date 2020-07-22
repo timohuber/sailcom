@@ -670,9 +670,9 @@ form.col-2 .input-container {
   .footer-wrapper p {
     margin-bottom: 0px; }
   .footer-wrapper hr {
-    margin-bottom: 40px; }
+    width: 100%; }
   .footer-wrapper .social-footer {
-    margin: 30px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center; }
