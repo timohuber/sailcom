@@ -10,7 +10,7 @@ from ..boat.boat_model.models import BoatModel
 from ..invoice.models import Invoice
 from ..mail.models import Mail
 from ..membership_type.models import MembershipType
-from ..permissions import IsStaff, IsLoggedIn
+from ..permissions import IsStaff, IsLoggedIn, IsStaffOrCrew
 from ..transaction.models import Transaction
 
 User = get_user_model()
@@ -27,7 +27,7 @@ class ListUsersView(ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['first_name', 'last_name', 'email']
-    permission_classes = [IsStaff]
+    permission_classes = [IsStaffOrCrew]
 
 
 class ListMe(RetrieveUpdateAPIView):

@@ -89,6 +89,7 @@ class ValidateRegistrationSerializer(serializers.Serializer):
     phone = serializers.CharField(required=False, label='Phone')
     mobile = serializers.CharField(required=False, label='Mobile')
     date_of_birth = serializers.CharField(required=False, label='Date of birth')
+    request_membership = serializers.BooleanField(default=False)
 
     licence = serializers.FileField(required=False, label='Licence')
     avatar = serializers.ImageField(required=False, label='Avatar')
@@ -99,15 +100,15 @@ class ValidateRegistrationSerializer(serializers.Serializer):
         user = User.objects.get(email=email)
         reg_profile = Registration.objects.get(code=code)
         if reg_profile != user.registration:
-            raise ValidationError(message='The code does not belong to this email!')
+            raise ValidationError(message='Dieser Code gehört nicht zu dieser Email!')
         if data.get('password') != data.get('password_repeat'):
-            raise ValidationError(message='Passwords do not match!')
+            raise ValidationError(message='Passwörter stimmen nicht überein!')
         return data
 
     def save(self, validated_data):
         email = validated_data.get('email')
         user = User.objects.get(email=email)
-        user.username = validated_data.get('username')
+        user.username = validated_data.get('email')
         user.first_name = validated_data.get('first_name')
         user.last_name = validated_data.get('last_name')
         user.is_active = True
@@ -124,6 +125,7 @@ class ValidateRegistrationSerializer(serializers.Serializer):
 
         user.licence = validated_data.get('licence')
         user.avatar = validated_data.get('avatar')
+        user.request_membership = validated_data.get('request_membership')
 
         user.registration.code_used = True
         user.save()
