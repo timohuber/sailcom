@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import Logo from '../assets/logo/logo.png';
-// import Map from '../assets/swiss-map.jpg';
-// import Community from '../assets/community.png';
-
 export default function Footer(props) {
     return (
         <div className='footer-wrapper'>
@@ -93,7 +89,7 @@ export default function Footer(props) {
                         <h3>Beitreten</h3>
                         <ul>
                             <li>
-                                <Link>Mitglied werden Kosten</Link>
+                                <Link>Mitglied werden</Link>
                             </li>
                             <li>
                                 <Link>Voraussetzungen</Link>
@@ -104,8 +100,8 @@ export default function Footer(props) {
                         </ul>
                     </div>
                 </div>
-                <hr />
                 <div className='social-footer'>
+                    <hr />
                     <ul>
                         <li>
                             <Link>
@@ -128,6 +124,7 @@ export default function Footer(props) {
                             </Link>
                         </li>
                     </ul>
+                    <hr />
                 </div>
             </div>
         </div>

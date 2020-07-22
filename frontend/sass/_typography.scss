@@ -5,7 +5,7 @@ a {
 }
 
 i {
-  font-style: normal;
+    font-style: normal;
 }
 
 p {
@@ -39,6 +39,16 @@ h2 {
     color: $brand-color;
     text-transform: uppercase;
     letter-spacing: 2px;
+}
+
+h2.h2-underlined:after {
+    position: relative;
+    content: '';
+    width: 100px;
+    height: 3px;
+    background-color: #2c5d7b;
+    margin: 0 auto;
+    display: block;
 }
 
 h3 {
@@ -100,9 +110,9 @@ table.simple {
 }
 
 .upper-subtitle {
-  color: $brand-color;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: bold;
-  font-size: rem(14px);
+    color: $brand-color;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    font-size: rem(14px);
 }
