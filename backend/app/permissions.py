@@ -19,8 +19,8 @@ class IsLoggedInOrReadOnly(BasePermission):
 
 
 class IsStaff(BasePermission):
-    def has_object_permission(self, request, view, obj):
-        return request.user.is_staff
+    def has_permission(self, request, view):
+        return request.user.is_staff is True
 
 
 # Object level permission

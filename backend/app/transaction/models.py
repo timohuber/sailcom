@@ -12,6 +12,7 @@ class Transaction(models.Model):
     description = models.CharField(max_length=100, blank=True, null=True)
     sent = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    membership_fee = models.DecimalField(max_digits=3, decimal_places=2, blank=True, null=True)
 
     invoice = models.ForeignKey(to=Invoice, related_name='transactions', blank=True,
                                 on_delete=models.SET_NULL, null=True)

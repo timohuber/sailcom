@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView
 
-# Create your views here.
+from .models import MembershipType
+from .serializers import MembershipTypeSerializer
+
+
+class MembershipTypesView(ListAPIView):
+    queryset = MembershipType.objects.all()
+    serializer_class = MembershipTypeSerializer
+    pagination_class = None

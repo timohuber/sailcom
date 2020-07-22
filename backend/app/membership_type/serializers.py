@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import MembershipType
 
 
-class MailSerializer(serializers.ModelSerializer):
+class MembershipTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = MembershipType
         exclude = ()

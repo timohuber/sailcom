@@ -15,9 +15,8 @@ class CreateRegistrationView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save(serializer.validated_data)
 
-        # does not work yet
         res = {
-            "response": "A token was sent by email"
+            "Ein Token wurde an die Email geschickt"
         }
         return HttpResponse(res, status=200)
 
@@ -32,8 +31,7 @@ class ValidateRegistrationView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save(serializer.validated_data)
 
-        # does not work yet
         res = {
-            "A token was sent by email"
+            "Vielen Dank für Ihre Registrierung! Sie können sich jetzt anmelden"
         }
         return HttpResponse(res, status=200)
