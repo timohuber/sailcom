@@ -1,9 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from .managers import CustomUserManager
 from ..boat_crew.models import BoatCrew
 from ..lake.models import Lake
+from ..mail.models import Mail
 from ..membership_type.models import MembershipType
 
 
@@ -55,3 +58,19 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'ID{self.id}: {self.email}'
+
+
+@receiver(post_save, sender=User)
+def send_email(sender, instance, **kwargs):
+    test = 'test'
+    if instance.is_active:
+        if instance.request_membership:
+            subject = 'Neuer Benutzer hat sich registriert'
+            content = f'{instance.first_name} {instance.last_name} hat sich registriert und will Mitglied werden'
+        else:
+            subject = 'Neues Mitglied hat sich registriert'
+            content = f'{instance.first_name} {instance.last_name} hat sich registriert.'
+        email = Mail(recipient='sailcom@timo-huber.ch',
+                     subject=subject,
+                     content=content)
+        email.save()
