@@ -38,9 +38,9 @@ class ListEventsView(ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         # method 1 where booking is not created already
         if self.request.data.get('boat') is None:
-            HttpResponse('Die Boot Information fehlt', status=400)
+            return HttpResponse('Die Boot Information fehlt', status=400)
         if self.request.data.get('from_date_time') is None or self.request.data.get('until_date_time') is None:
-            HttpResponse('Die Daten von und bis sind nicht vollständig', status=400)
+            return HttpResponse('Die Daten von und bis sind nicht vollständig', status=400)
         if self.request.data.get('booking') is None:
             overlapping_bookings = Boat.objects.filter(id=self.request.data['boat']).filter(
                 (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
