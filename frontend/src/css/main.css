@@ -531,12 +531,17 @@ form.col-2 .input-container {
     #boat-calendar .rbc-timeslot-group .rbc-time-slot {
       display: flex;
       flex-grow: 1;
-      align-items: center; }
+      align-items: flex-start; }
   #boat-calendar .rbc-today {
     background-color: transparent; }
 
 .boat-datepicker-container .btn {
   margin-top: 30px; }
+
+/* booking types */
+.rbc-day-slot .rbc-event.your-booking {
+  background-color: #018400;
+  border-color: #017300; }
 
 /* Date picker */
 .boat-datepicker-container, .react-datepicker-wrapper {

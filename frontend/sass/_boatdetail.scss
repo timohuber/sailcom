@@ -71,7 +71,7 @@
     .rbc-time-slot {
       display: flex;
       flex-grow: 1;
-      align-items: center;
+      align-items: flex-start;
     }
   }
 
@@ -81,9 +81,16 @@
   }
 }
 
-
 .boat-datepicker-container .btn {
   margin-top: $gap-width;
+}
+
+/* booking types */
+.rbc-day-slot .rbc-event {
+  &.your-booking {
+    background-color: #018400;
+    border-color: #017300;
+  }
 }
 
 /* Date picker */

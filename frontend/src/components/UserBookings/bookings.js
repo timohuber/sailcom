@@ -11,7 +11,6 @@ export default function BookingElement(props) {
         e.preventDefault()
         dispatch(deleteUserBookingsAction(booking_id))
     }
-    console.log(booking)
     return (
             <div className='user-bookings-list-element'>
                 <div className='user-bookings-header'>
