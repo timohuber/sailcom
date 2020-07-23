@@ -137,7 +137,6 @@ button {
 
 .btn {
   border: none;
-  text-transform: uppercase;
   letter-spacing: 1px;
   min-width: 200px;
   max-width: 100%;
@@ -154,13 +153,13 @@ button {
   width: 200px;
   margin-left: auto;
   margin-right: auto;
-  display: block; }
+  display: block;
+  text-transform: uppercase; }
   .btn.primary:hover {
     background-color: #20445a; }
 
 .btn.secondary {
   background-color: transparent;
-  text-transform: none;
   letter-spacing: 0px;
   color: #333;
   font-size: 1rem; }
@@ -168,10 +167,23 @@ button {
 .btn.secondary.gap-width-margin {
   margin: 30px; }
 
+.btn.delete {
+  color: #D01017;
+  background: transparent;
+  font-weight: bold;
+  padding: 0;
+  width: auto;
+  min-width: 0px; }
+  .btn.delete:after {
+    margin-left: 10px;
+    content: '\f1f8';
+    font-family: 'Font Awesome 5 Free'; }
+
 .btn.disabled {
   background-color: #bbbbbb;
   color: #fff;
   padding: 10px 20px;
+  text-transform: uppercase;
   height: 40px;
   border-radius: 20px;
   width: 200px;
@@ -786,6 +798,23 @@ form.col-2 .input-container {
 
 .transaction-list-element-wrapper > .transaction-list-element:nth-child(even) {
   background-color: #e8e8e8; }
+
+/* bookings */
+.user-bookings-container {
+  display: flex;
+  flex-direction: column; }
+  .user-bookings-container .user-bookings-list-element {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E4E4E4; }
+    .user-bookings-container .user-bookings-list-element table {
+      width: 100%; }
+  .user-bookings-container .user-bookings-header {
+    display: flex;
+    flex-direction: row; }
+    .user-bookings-container .user-bookings-header .user-bookings-boat-title {
+      font-weight: 600;
+      margin-right: 10px; }
 
 .staff-wrapper {
   align-items: space-between; }

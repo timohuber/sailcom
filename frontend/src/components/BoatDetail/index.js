@@ -7,7 +7,6 @@ import {addBoatAction} from '../../store/actions/boatActions'
 
 function BoatDetails(props) {
     const dispatch = useDispatch()
-    const [boat, setBoat] = useState({});
     const [loading, setLoading] = useState(true);
     const boatID = props.match.params.id
 

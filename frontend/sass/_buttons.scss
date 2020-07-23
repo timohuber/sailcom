@@ -8,7 +8,6 @@ button {
 
 .btn {
     border: none;
-    text-transform: uppercase;
     letter-spacing: 1px;
     min-width: 200px;
     max-width: 100%;
@@ -27,6 +26,8 @@ button {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    text-transform: uppercase;
+
 
     &:hover {
         background-color: $brand-color-dark;
@@ -35,7 +36,6 @@ button {
 
 .btn.secondary {
     background-color: transparent;
-    text-transform: none;
     letter-spacing: 0px;
     color: $base-color;
     font-size: rem(16px);
@@ -45,11 +45,26 @@ button {
     margin: $gap-width;
 }
 
+.btn.delete {
+    color: $error-color;
+    background: transparent;
+    font-weight: bold;
+    padding: 0;
+    width: auto;
+    min-width: 0px;
+
+    &:after {
+        margin-left: 10px;
+        content: '\f1f8';
+        font-family: 'Font Awesome 5 Free';
+    }
+}
+
 .btn.disabled {
     background-color: $disabled-color;
     color: #fff;
     padding: 10px 20px;
-
+    text-transform: uppercase;
     height: 40px;
     border-radius: 20px;
     width: 200px;
