@@ -16,13 +16,14 @@ function MyProfilePage(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        console.log('reload user')
         if (props.userData) {
             setUserData(props.userData);
             setLoading(false);
         } else {
             dispatch(fetchUserData());
         }
-    }, [props]);
+    }, [props.userData]);
 
 
     const content = [

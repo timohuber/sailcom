@@ -17,11 +17,12 @@ export default function UserAddressForm(props) {
     delete initialState.instructed_for_models;
 
     const [loading, setLoading] = useState(true);
-    const [formState, setFormState] = useState(initialState);
+    const [formState, setFormState] = useState({});
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (props.userData) {
+            setFormState(initialState)
             setLoading(false);
         } else {
             dispatch(fetchUserData());
@@ -113,19 +114,6 @@ export default function UserAddressForm(props) {
                                 onChange={(e) => onChangeHandler(e)}
                                 className='required'
                                 value={formState.last_name}
-                            />
-                            <span className='error'>
-                            </span>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <label htmlFor='username'>Benutzername</label>
-                            <input
-                                id='username'
-                                name='username'
-                                onChange={(e) => onChangeHandler(e)}
-                                className='required'
-                                value={formState.user_name}
                             />
                             <span className='error'>
                             </span>

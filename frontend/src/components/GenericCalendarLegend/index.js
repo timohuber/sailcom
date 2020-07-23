@@ -2,6 +2,11 @@ import React from 'react';
 
 export default function CalendarLegend() {
     return (
-        <p>Data comming soon</p>
+        <div className='calendar-legend'>
+            <div className='legend-element-wrapper'>
+                <div className='legend-color-field your-booking' />
+                <p>Ihre Buchung</p>
+            </div>
+        </div>
     );
 };

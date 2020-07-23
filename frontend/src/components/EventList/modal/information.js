@@ -21,7 +21,9 @@ export default function EventInformationModal(props) {
                     ? event.description
                     : 'Noch keine Beschreibung vorhanden.'}
             </p>
-            <button onClick={closeModalHandler} className='btn primary button-margin-top-bottom'>Close</button>
+            <div className='modal-buttons-wrapper'>
+                <button onClick={closeModalHandler} className='btn primary'>Fenster schliessen</button>
+            </div>
         </div>
     );
 }

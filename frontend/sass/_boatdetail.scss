@@ -34,10 +34,14 @@
 }
 
 /* calendar */
+.boat-calendar-wrapper {
+    margin-bottom: $gap-width;
+}
+
 #boat-calendar {
-  margin-bottom: $gap-width;
   height: 500px;
   font-family: $base-font-family;
+  margin-bottom: $gap-width-small;
 
   .rbc-time-view {
     background-color: #ffffff;
@@ -81,16 +85,29 @@
   }
 }
 
+.calendar-legend {
+  .legend-element-wrapper {
+    display: flex;
+  }
+
+  .legend-color-field {
+    width: 20px;
+    height: 20px;
+    margin-right: $gap-width-small;
+  }
+}
+
 .boat-datepicker-container .btn {
   margin-top: $gap-width;
 }
 
 /* booking types */
-.rbc-day-slot .rbc-event {
-  &.your-booking {
-    background-color: #018400;
-    border-color: #017300;
-  }
+#boat-calendar .rbc-day-slot, .calendar-legend {
+   .your-booking {
+      background-color: #6dad6d;
+      border-color: #017300;
+   }
+
 }
 
 /* Date picker */
