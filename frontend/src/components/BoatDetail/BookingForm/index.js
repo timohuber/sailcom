@@ -82,7 +82,7 @@ function BookingForm(props) {
                     loading
                     ? <Loading />
                     : success
-                        ? <BookingSuccess />
+                        ? <BookingSuccess closeModal={props.closeModal}/>
                         : <div className='boat-booking-form'>
                             <h1>Abschluss</h1>
                             <BookingSummary

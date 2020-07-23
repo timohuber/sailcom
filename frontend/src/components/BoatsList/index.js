@@ -27,7 +27,9 @@ export default function BoatListContainer(props) {
                 setLoading(false)
                 return response;
             } catch (error) {
-                console.log(error.response.data)
+                if (error.response) {
+                    console.log('an error occurred', error)
+                }
             }
        }
        fetchBoats()

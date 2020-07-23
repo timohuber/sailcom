@@ -14,7 +14,13 @@ export default function Boat(props) {
             <article className='boat-list-element generic-box'>
                 <div className='boat-list-image' style={imageStyle} />
                 <div className='boat-list-body'>
-                    <p className='upper-subtitle'>{boat.category.category_name}</p>
+                    <p className='upper-subtitle'>
+                    {
+                        boat.category
+                        ? boat.category.category_name
+                        : null
+                    }
+                    </p>
                     <h3>{boat.title}</h3>
                     <div className='location'>
                         <p className='mooring'>{boat.mooring.address}</p>

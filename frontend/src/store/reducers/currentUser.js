@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS } from '../constants';
+import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS, DELETE_USER_BOOKING } from '../constants';
 
 const initialState = {
     authorized: false,
@@ -49,6 +49,23 @@ export const currentUser = (state = initialState, action) => {
             return {
                 ...state,
                 bookings: action.payload
+            }
+
+        case DELETE_USER_BOOKING:
+            let booking_index
+            state.bookings.forEach((booking, index) => {
+                if(booking.id = action.booking_id) {
+                    booking_index = index
+                }
+            })
+            console.log(booking_index)
+            console.log('booking id', action.booking_id)
+            const new_array = state.bookings
+            new_array.splice(booking_index, 1)
+            console.log(new_array)
+            return {
+                ...state,
+                bookings: new_array
             }
 
         case VERIFICATION_CONFORMED:

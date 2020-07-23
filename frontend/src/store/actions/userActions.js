@@ -1,4 +1,4 @@
-import { baseUrl, UPDATE_CURRENT_USER, USER_LOGOUT, GET_USER_BOOKINGS } from '../constants';
+import { baseUrl, UPDATE_CURRENT_USER, USER_LOGOUT, GET_USER_BOOKINGS, DELETE_USER_BOOKING } from '../constants';
 import Axios from "../../axios";
 
 const userUpdate = (data) => {
@@ -15,11 +15,17 @@ const userLogout = () => {
 };
 
 const getUserBookings = (data) => {
-    console.log('in getUserBookings')
 
     return {
         type: GET_USER_BOOKINGS,
         payload: data
+    };
+};
+
+const deleteUserBooking = (booking_id) => {
+    return {
+        type: DELETE_USER_BOOKING,
+        booking_id
     };
 };
 
@@ -51,10 +57,21 @@ export const userLogoutAction = () => (dispatch, getState) => {
 
 
 export const getUserBookingsAction = () => async (dispatch) => {
-    console.log('in getUserBookingsAction')
     try {
         const response = await Axios.get('booking/myBookings/');
         dispatch(getUserBookings(response.data.results));
+    } catch (error) {
+        if (error) {
+            console.log('an error occurred', error)
+        }
+    }
+};
+
+export const deleteUserBookingsAction = (booking_id) => async (dispatch) => {
+    try {
+        const response = await Axios.delete(`booking/${booking_id}/`);
+        console.log(response)
+        dispatch(deleteUserBooking(booking_id))
     } catch (error) {
         if (error) {
             console.log('an error occurred', error)

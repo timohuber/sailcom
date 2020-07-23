@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect, useDispatch} from 'react-redux';
 import Loading from "../GenericLoading";
+import UserBookingsContainer from './bookingsContainer'
 import {getUserBookingsAction} from '../../store/actions/userActions'
 
 function UserBookings(props) {
@@ -24,7 +25,7 @@ function UserBookings(props) {
                 {
                     loading
                     ? <Loading />
-                    : <p>Buchungen..........</p>
+                    : <UserBookingsContainer bookings={props.bookings} />
                 }
             </div>
     );
