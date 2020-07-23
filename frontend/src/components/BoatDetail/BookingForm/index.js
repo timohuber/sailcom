@@ -17,14 +17,6 @@ function BookingForm(props) {
     const from = dateToISOString(props.from)
     const until = dateToISOString(props.until)
 
-    console.log('props.from', props.from)
-    console.log('props.until', props.until)
-    console.log('from - display', dateToDisplayString(from))
-    console.log('until - display', dateToDisplayString(until))
-    console.log('ISO', from)
-    console.log('ISO', until)
-
-
     const config = {
         method: 'POST',
         headers: new Headers({
@@ -88,8 +80,8 @@ function BookingForm(props) {
                             <BookingSummary
                                 boat={props.boat}
                                 calculatedPrice={calculatedPrice}
-                                from={from}
-                                until={until}
+                                from={props.from}
+                                until={props.until}
                             />
                             <p id='booking-error' className='error'></p>
                             <div className='modal-buttons-wrapper'>

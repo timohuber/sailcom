@@ -11,19 +11,18 @@ export function dateToISOString(date) {
 }
 
 export function dateToDisplayString(date) {
-    // return moment(date).tz('Europe/Zurich').format('DD.MM.YYYY hh:mm')
-    return moment(date).tz('Europe/Zurich').format('DD.MM.YYYY HH:mm');
+    return moment(date)
+        .tz('Europe/Zurich')
+        .format('DD.MM.YYYY HH:mm');
+}
+
+export function dateFromBackendToDisplayString(date) {
+    const local_date = moment(date).add(-2, 'hours')
+    return moment(local_date)
+        .tz('Europe/Zurich')
+        .format('DD.MM.YYYY HH:mm');
 }
 
 export function dateShowInTable(date) {
     return Date.parse(date);
-}
-
-export function dateParseWithTimezone(date) {
-    return (
-        moment(date)
-            .tz('Europe/Zurich')
-            .format('LLLL')
-            .split('+')[0] + 'Z'
-    );
 }

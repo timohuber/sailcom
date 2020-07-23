@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import {deleteUserBookingsAction} from '../../store/actions/userActions'
+import {dateFromBackendToDisplayString} from "../../lib/helpers/formatDates";
 
 export default function BookingElement(props) {
     const booking = props.booking
@@ -10,12 +11,34 @@ export default function BookingElement(props) {
         e.preventDefault()
         dispatch(deleteUserBookingsAction(booking_id))
     }
+    console.log(booking)
     return (
             <div className='user-bookings-list-element'>
-                <p className='user-booking-boat'>{booking.boat.title}</p>
-                <p className='user-booking-lake'>{booking.boat.mooring.lake.title}</p>
-                <p>{booking.from_date_time} bis {booking.until_date_time}</p>
-                <p>CHF 20.00</p>
+                <div className='user-bookings-header'>
+                    <p className='user-bookings-boat-title'>{booking.boat.title}</p>
+                    <p>{booking.boat.mooring.lake.title}</p>
+                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Von:</td>
+                            <td>{dateFromBackendToDisplayString(booking.from_date_time)}</td>
+                        </tr>
+                        <tr>
+                            <td>Bis:</td>
+                            <td>{dateFromBackendToDisplayString(booking.from_date_time)}</td>
+                        </tr>
+                        {
+                            booking.transaction
+                            ? <tr>
+                                <td>Kosten:</td>
+                                <td>{booking.transaction.price}</td>
+                            </tr>
+                            : null
+                        }
+
+                    </tbody>
+                </table>
                 <button className='btn delete' onClick={ e => onDeleteHandler(e, booking.id )}>Buchung stornieren</button>
             </div>
     );

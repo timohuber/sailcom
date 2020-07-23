@@ -6,12 +6,12 @@ import {getUserBookingsAction} from '../../store/actions/userActions'
 
 function UserBookings(props) {
     const [loading, setLoading] = useState(true)
+    const [data, setData] = useState([])
     const dispatch = useDispatch()
-    // TODO
-    // Use correct endpoint
 
     useEffect( () => {
         if(props.bookings) {
+            setData(props.bookings)
             setLoading(false)
         } else {
             dispatch(getUserBookingsAction())
@@ -25,7 +25,7 @@ function UserBookings(props) {
                 {
                     loading
                     ? <Loading />
-                    : <UserBookingsContainer bookings={props.bookings} />
+                    : <UserBookingsContainer bookings={data} />
                 }
             </div>
     );

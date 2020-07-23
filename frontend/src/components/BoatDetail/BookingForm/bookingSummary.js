@@ -19,7 +19,6 @@ export default function BookingSummary(props) {
                     </td>
                     <td>
                         {dateToDisplayString(props.from)}
-                        {props.from}
                     </td>
                 </tr>
                 <tr>
@@ -28,7 +27,6 @@ export default function BookingSummary(props) {
                     </td>
                     <td>
                         {dateToDisplayString(props.until)}
-                        {props.until}
                     </td>
                 </tr>
                 <tr className='total'>

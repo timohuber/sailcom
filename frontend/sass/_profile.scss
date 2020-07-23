@@ -47,3 +47,29 @@
 .transaction-list-element-wrapper > .transaction-list-element:nth-child(even) {
     background-color: #e8e8e8;
 }
+
+/* bookings */
+.user-bookings-container {
+    display: flex;
+    flex-direction: column;
+
+    .user-bookings-list-element {
+        margin-bottom: $gap-width;
+        padding-bottom: $gap-width;
+        border-bottom: 1px solid $border-color;
+
+        table {
+            width: 100%;
+        }
+    }
+
+    .user-bookings-header {
+        display: flex;
+        flex-direction: row;
+
+        .user-bookings-boat-title {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+    }
+}

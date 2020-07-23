@@ -13,6 +13,9 @@ import {smoothScroll} from '../../../lib/helpers/scroll'
 import DefaultHeroImage from '../../../assets/default-hero-image.jpg'
 import {NavLink} from "react-router-dom";
 
+import {dateToDisplayString} from '../../../lib/helpers/formatDates'
+
+
 function BoatDetailContainer(props) {
     const [startDateTime, setStartDateTime] = useState();
     const [endDateTime, setEndDateTime] = useState();
@@ -45,6 +48,12 @@ function BoatDetailContainer(props) {
      if (props.currentUser.authorized) {
         instructed = props.currentUser.userData.instructed_for_models.includes(props.boat.model)
     }
+
+     const showDates = e => {
+         e.preventDefault()
+         console.log('startDateTime', startDateTime)
+         console.log('formatted', dateToDisplayString(startDateTime))
+     }
 
     return (
         <>

@@ -17,13 +17,13 @@ const localizer = momentLocalizer(moment)
 function BoatCalendar(props) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-    console.log(props)
+
     useEffect( () => {
         const bookings = props.boatlist[props.boatID].bookings
         const events = []
         bookings.forEach(booking => {
-            console.log(new Date(booking.from_date_time))
-            console.log('this one', moment(booking.from_date_time, moment.defaultFormat).toDate())
+            // console.log(new Date(booking.from_date_time))
+            // console.log('this one', moment(booking.from_date_time, moment.defaultFormat).toDate())
 
             events.push({
                 title: booking.user.fist_name,
