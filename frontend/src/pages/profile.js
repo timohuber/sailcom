@@ -4,7 +4,8 @@ import { connect, useDispatch } from 'react-redux';
 import UserAddressForm from '../components/UserAddress';
 import UserDocumentsForm from '../components/UserDocuments';
 import UserMembership from '../components/UserMembership';
-import UserTransactions from '../components/UserTransactions'
+import UserTransactions from '../components/UserTransactions';
+import UserBookings from '../components/UserBookings';
 import Accordion from '../components/Accordion';
 import Loading from '../components/GenericLoading';
 import { fetchUserData } from '../store/actions/loginActions';
@@ -41,6 +42,10 @@ function MyProfilePage(props) {
             title: 'Transaktionen',
             content: <UserTransactions />,
         },
+        {
+            title: 'Buchungen',
+            content: <UserBookings />,
+        }
     ];
 
     // TODO: uncomment create tabs for each component

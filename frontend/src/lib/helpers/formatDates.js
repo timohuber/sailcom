@@ -1,7 +1,6 @@
 import moment from 'moment-timezone/moment-timezone'
-import {displayTimeDateFormat} from '../../store/constants'
 moment.tz.add("Europe/Zurich|CET CEST|-10 -20|01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-19Lc0 11A0 1o00 11A0 1xG10 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|38e4");
-
+moment.tz.setDefault('Europe/Zurich')
 export function dateToISOString(date) {
     return (
         moment(date)
@@ -13,7 +12,7 @@ export function dateToISOString(date) {
 
 export function dateToDisplayString(date) {
     // return moment(date).tz('Europe/Zurich').format('DD.MM.YYYY hh:mm')
-    return moment(date).format('DD.MM.YYYY HH:mm');
+    return moment(date).tz('Europe/Zurich').format('DD.MM.YYYY HH:mm');
 }
 
 export function dateShowInTable(date) {

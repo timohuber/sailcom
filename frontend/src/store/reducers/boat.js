@@ -6,6 +6,7 @@ const initialState = {
 };
 
 export const boats = (state = initialState, action) => {
+
     switch (action.type) {
         case ADD_BOAT:
             const new_key = action.id;
@@ -16,6 +17,7 @@ export const boats = (state = initialState, action) => {
                     [new_key]: action.payload,
                 },
             };
+
         case GET_ALL_BOAT_INFO:
             return {
                 ...state,
@@ -26,7 +28,6 @@ export const boats = (state = initialState, action) => {
             const boat_key = action.boat_id;
             const new_bookings_array = state.boatlist[boat_key].bookings;
             new_bookings_array.push(action.payload);
-
             return {
                 ...state,
                 boatlist: {
@@ -37,21 +38,6 @@ export const boats = (state = initialState, action) => {
                     },
                 },
             };
-        /*
-            return {
-                ...state,
-                boatlist: {
-                    ...state.boatlist,
-                    [boat_key]: {
-                        ...state.boatlist[boat_key],
-                        bookings: {
-                            ...state.boatlist[boat_key].bookings,
-                            new_booking_key: action.payload
-                        }
-                    }
-                }
-            }
-            */
 
         default:
             return state;
