@@ -15,7 +15,7 @@ export const formErrorHandler = error => {
 
 export const elementUpdatedMessage = (element) => {
     (document.getElementById('element-updated').innerText =
-        `${element} erfolgreich gespichert.`);
+        `${element} erfolgreich gespeichert.`);
 };
 
 // <span id='event-updated'></span>

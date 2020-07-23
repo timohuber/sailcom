@@ -56,7 +56,8 @@ function App() {
                     <Route
                         exact
                         path='/login'
-                        component={authComponent(Login, true)}
+                        // component={authComponent(Login, true)}
+                        component={Login}
                     />
                     <Route exact path='/bootsliste' component={BoatsListPage} />
                     <Route exact path='/boot/:id' component={BoatDetailPage} />

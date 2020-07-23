@@ -192,6 +192,9 @@ button {
 #confirmation-button {
   margin-top: 40px; }
 
+.button-margin-top-bottom {
+  margin: 30px; }
+
 /* remove default react outlines */
 input,
 input:focus {
