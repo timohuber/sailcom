@@ -10,18 +10,20 @@ from .serializers import EventSerializer
 
 from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
+from ..booking.models import Booking
 from ..mail.models import Mail
-from ..permissions import IsLoggedIn, IsMember
+from ..permissions import IsLoggedIn, IsMember, MemberPostLoggedInFetch
 from ..transaction.models import Transaction
 
 
 class ListEventsAllView(ListAPIView):
-    queryset = Event.objects.all()
+    queryset = Event.objects.all().order_by('from_date_time')
     serializer_class = EventSerializer
 
 
 class ListEventsView(ListCreateAPIView):
     serializer_class = EventSerializer
+    permission_classes = [MemberPostLoggedInFetch]
 
     def get_queryset(self):
         data = Event.objects.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1))
@@ -31,25 +33,47 @@ class ListEventsView(ListCreateAPIView):
             data = data.filter(Q(boat__mooring__lake=self.request.query_params.get('lake')))
         if self.request.query_params.get('boat') is not None:
             data = data.filter(Q(boat=self.request.query_params.get('boat')))
-        return data
+        return data.order_by('from_date_time')
 
     def post(self, request, *args, **kwargs):
-        overlapping_bookings = Boat.objects.filter(id=self.request.data['boat']).filter(
-            (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
-             & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
-            |
-            (Q(bookings__from_date_time__lte=self.request.data['until_date_time'])
-             & Q(bookings__until_date_time__gte=self.request.data['until_date_time']))
-            |
-            (Q(bookings__from_date_time__gte=self.request.data['from_date_time'])
-             & Q(bookings__from_date_time__lte=self.request.data['until_date_time']))
-            |
-            (Q(bookings__until_date_time__gte=self.request.data['from_date_time'])
-             & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
+        # method 1 where booking is not created already
+        if self.request.data.get('booking') is None:
+            overlapping_bookings = Boat.objects.filter(id=self.request.data['boat']).filter(
+                (Q(bookings__from_date_time__lte=self.request.data['from_date_time'])
+                 & Q(bookings__until_date_time__gte=self.request.data['from_date_time']))
+                |
+                (Q(bookings__from_date_time__lte=self.request.data['until_date_time'])
+                 & Q(bookings__until_date_time__gte=self.request.data['until_date_time']))
+                |
+                (Q(bookings__from_date_time__gte=self.request.data['from_date_time'])
+                 & Q(bookings__from_date_time__lte=self.request.data['until_date_time']))
+                |
+                (Q(bookings__until_date_time__gte=self.request.data['from_date_time'])
+                 & Q(bookings__until_date_time__lte=self.request.data['until_date_time']))
 
-        )
-        if len(overlapping_bookings) > 0:
-            return HttpResponse('Das Boot ist leider schon besetzt', status=400)
+            )
+            if len(overlapping_bookings) > 0:
+                return HttpResponse('Das Boot ist leider schon besetzt', status=400)
+            # method 2 where booking is given with the event
+        else:
+            searchEvent = Event.objects.filter(until_date_time=self.request.data['until_date_time'],
+                                               from_date_time=self.request.data['from_date_time'],
+                                               boat=self.request.data['boat'])
+            if len(searchEvent) > 0:
+                return HttpResponse('Diesen Event gibt es schon', status=400)
+            searchBooking = Booking.objects.filter(id=self.request.data.get('booking'))
+            if len(searchBooking) == 0:
+                return HttpResponse('Die Buchung wurde nicht gefunden', status=400)
+            if searchBooking[0].event is not None:
+                return HttpResponse('Die Buchung hat schon ein Event', status=400)
+            if not searchBooking[0].boat.id == self.request.data['boat']:
+                return HttpResponse('Die Buchung hat ein anderes Boot', status=400)
+            if not searchBooking[0].from_date_time.isoformat().replace(':00+00:00', 'Z') == self.request.data[
+                'from_date_time'] \
+                    or not searchBooking[0].until_date_time.isoformat().replace(':00+00:00', 'Z') == self.request.data[
+                'until_date_time']:
+                return HttpResponse('Die Daten stimmen mit der Buchung nicht überein', status=400)
+
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):

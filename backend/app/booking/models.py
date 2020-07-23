@@ -3,6 +3,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from datetime import timedelta, datetime
+
 from ..boat.models import Boat
 from ..event.models import Event
 from ..mail.models import Mail
@@ -27,7 +29,7 @@ class Booking(models.Model):
     boat = models.ForeignKey(to=Boat, related_name='bookings', on_delete=models.SET_NULL, null=True)
     event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.SET_NULL,
                                  blank=True, null=True)
-    transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.SET_NULL,
+    transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.CASCADE,
                                        blank=True, null=True)
 
     def __str__(self):
@@ -44,24 +46,61 @@ def send_email(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Booking)
 def create_trans(sender, instance, created, **kwargs):
-    if instance.weekday_days is not None:
-        if instance.weekday_days + instance.weekend_days == 0:  # hourly rate calculation
-            if instance.from_date_time.date().isoweekday() < 6:  # 1-5 Mon-Fri
-                price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday) * float(
-                    instance.duration.seconds / 60 / 60)
-            else:
-                price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekend) * float(
-                    instance.duration.seconds / 60 / 60)
-        else:  # daily rate calculation
-            price = instance.weekday_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday) \
-                    + instance.weekend_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
-        trx = Transaction.objects.create(sent=False, price=price, user=instance.user)
-        Booking.objects.filter(id=instance.id).update(transaction=trx)
+    if instance.transaction is None:
+        if instance.weekday_days is not None:
+            if instance.weekday_days + instance.weekend_days == 0:  # hourly rate calculation
+                if instance.from_date_time.date().isoweekday() < 6:  # 1-5 Mon-Fri
+                    price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday) * float(
+                        instance.duration.seconds / 60 / 60)
+                else:
+                    price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekend) * float(
+                        instance.duration.seconds / 60 / 60)
+            else:  # daily rate calculation
+                price = instance.weekday_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday) \
+                        + instance.weekend_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
+            trx = Transaction.objects.create(sent=False, price=price, user=instance.user)
+            Booking.objects.filter(id=instance.id).update(transaction=trx)
 
 
 @receiver(post_save, sender=Event)
 def create_booking(sender, instance, created, **kwargs):
-    if not Booking.objects.filter(event=instance.id):
+    searchBooking = Booking.objects.filter(boat=instance.boat, from_date_time=instance.from_date_time,
+                                           until_date_time=instance.until_date_time)
+    if not len(searchBooking) > 0:
+
+        until_date_time = instance.until_date_time.date()
+        from_date_time = instance.from_date_time.date()
+
+        duration = until_date_time - from_date_time
+        less_24 = duration.days == 0
+
+        dt_start = from_date_time
+        dt_end = until_date_time
+        dt_current = dt_start
+        weekday_count = 0
+        weekend_count = 0
+        weekday_hours = 0
+        weekend_hours = 0
+
+        # loop through days to count weekend days and weekdays
+        if not less_24:
+            while dt_current <= dt_end:
+                if dt_current.isoweekday() > 5:
+                    weekend_count += 1
+                else:
+                    weekday_count += 1
+                dt_current = dt_current + timedelta(1)  # add 1 day to current day
+
+        if from_date_time.isoweekday() < 6:
+            weekday_hours = float(duration.seconds / 60 / 60)
+        else:
+            weekend_hours = float(duration.seconds / 60 / 60)
+
         Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
                                event=instance, user=instance.instructor,
-                               duration=instance.until_date_time - instance.from_date_time, boat=instance.boat)
+                               duration=instance.until_date_time - instance.from_date_time, boat=instance.boat,
+                               weekday_days=weekday_count, weekend_days=weekend_count
+                               )
+    else:
+        searchBooking[0].event = instance
+        searchBooking[0].save()

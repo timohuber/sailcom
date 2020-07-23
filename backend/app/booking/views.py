@@ -7,12 +7,12 @@ from datetime import timedelta, datetime
 from .models import Booking
 from .serializers import BookingSerializer, CreateBookingSerializer
 from ..boat.models import Boat
-from ..permissions import IsLoggedIn, IsStaffOrCreator
+from ..permissions import IsLoggedIn, IsStaffOrCreator, MemberPostLoggedInFetch
 
 
 class ListCreateBookingsView(ListCreateAPIView):
     queryset = Booking.objects.all()
-    permission_classes = [IsLoggedIn]
+    permission_classes = [MemberPostLoggedInFetch]
 
     def get_serializer_class(self):
         if self.request is None:  # for API documentation

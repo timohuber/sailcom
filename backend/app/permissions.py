@@ -18,6 +18,13 @@ class IsLoggedInOrReadOnly(BasePermission):
         return bool(request.user)
 
 
+class MemberPostLoggedInFetch(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'GET':
+            return bool(request.user)
+        return request.user.is_member
+
+
 class IsStaff(BasePermission):
     def has_permission(self, request, view):
         return request.user.is_staff
@@ -33,12 +40,12 @@ class IsMember(BasePermission):
         return request.user.is_member
 
 
+# Object level permission
 class IsStaffOrCreator(BasePermission):
     def has_object_permission(self, request, view, obj):
         return request.user.is_staff or obj.user == request.user
 
 
-# Object level permission
 """
 class IsAuthorOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
