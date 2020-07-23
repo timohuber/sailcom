@@ -11,9 +11,8 @@ import WhereCrewMemberForm from '../../components/WhereCrewMember';
 function EventForm(props) {
     const dispatch = useDispatch();
     const today = new Date();
-    let requiredFieldsOK = true;
-
     const [value, setValue] = useState({});
+    const [success, setSuccess] = useState(false)
 
     const onChangeHandler = (e) => {
         const key = e.currentTarget.name;
@@ -30,9 +29,29 @@ function EventForm(props) {
         });
     };
 
-    const onSubmitHandler = (e) => {
+    const onSuccessHandler = () => {
+        setSuccess(true)
+    }
+
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        dispatch(createEventAction(value));
+        let fieldsOK = true
+        if (!value.boat) {
+            document.getElementById('boat-error').innerText = 'Bitte Boot auswählen'
+            fieldsOK = false
+        } else {
+            document.getElementById('boat-error').innerText = ''
+        }
+
+        if (!value.from_date_time || !value.until_date_time) {
+            document.getElementById('datepicker-error').innerText = 'Bitte Zeitraum angeben'
+            fieldsOK = false
+        } else {
+            document.getElementById('datepicker-error').innerText = ''
+        }
+        if (fieldsOK) {
+            dispatch(createEventAction(value, onSuccessHandler));
+        }
     };
 
      useEffect(() => {
@@ -42,6 +61,10 @@ function EventForm(props) {
 
     return (
         <div className='main-wrapper'>
+            {
+                success
+                ? <h1>Success!!!</h1>
+                :
             <form
                 id='user-address-form'
                 className='col-2'
@@ -55,7 +78,6 @@ function EventForm(props) {
                             id='title'
                             name='title'
                             onChange={(e) => onChangeHandler(e)}
-                            className='required'
                             value={value.title}
                         />
                         <span className='error' data-key='title'/>
@@ -67,7 +89,6 @@ function EventForm(props) {
                             id='price'
                             name='price'
                             onChange={(e) => onChangeHandler(e)}
-                            className='required'
                             value={value.price}
                         />
                         <span className='error' data-key='price'/>
@@ -93,7 +114,6 @@ function EventForm(props) {
                                 id='from_date_time'
                                 name='from_date_time'
                             />
-                            <span id='datepicker-error' className='error' data-key='from_date_time'/>
                             <DatePicker
                                 selected={
                                     value.until_date_time
@@ -110,7 +130,7 @@ function EventForm(props) {
                                 id='until_date_time'
                                 name='until_date_time'
                             />
-                            <span id='datepicker-error' className='error' data-key='until_date_time'/>
+                            <span id='datepicker-error' className='error' data-key='from_date_time'/>
                         </div>
                     </div>
 
@@ -136,7 +156,6 @@ function EventForm(props) {
                             name='meeting_point'
                             onChange={(e) => onChangeHandler(e)}
                             value={value.meeting_point}
-                            className='required'
                         />
                         <span className='error' data-key='meeting_point'/>
                     </div>
@@ -153,7 +172,6 @@ function EventForm(props) {
                             name='max_participants'
                             onChange={(e) => onChangeHandler(e)}
                             value={value.max_participants}
-                            className='required'
                         />
                         <span className='error' data-key='max_participants'/>
                     </div>
@@ -164,7 +182,6 @@ function EventForm(props) {
                             id='event_type'
                             name='event_type'
                             onChange={(e) => onChangeHandler(e)}
-                            className='required'
                         >
                             <option value='' selected disabled hidden>
                                 Bitte wählen
@@ -187,6 +204,7 @@ function EventForm(props) {
                     </button>
                 </div>
             </form>
+                   }
         </div>
     );
 }

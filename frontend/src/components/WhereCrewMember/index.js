@@ -36,7 +36,7 @@ function WhereCrewMemberForm(props) {
                         );
                     })}
                 </select>
-                <span className='error' data-key='title'></span>
+                <span id='boat-error' className='error' data-key='boat'></span>
             </div>
         );
     };

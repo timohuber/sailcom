@@ -55,12 +55,18 @@ export const whereIsCurrentUserCrewMemberAction = () => async (dispatch) => {
     }
 };
 
-export const createEventAction = (data) => async (dispatch) => {
+export const createEventAction = (data, onSuccess) => async (dispatch) => {
     try {
         const response = await Axios.post('event/', data);
+        onSuccess()
         return response;
     } catch (error) {
         console.log('Error creating a new event', error);
+        if(error.response) {
+            if(error.response.data) {
+                formErrorHandler(error.response.data)
+            }
+        }
         return error;
     }
 };
@@ -72,9 +78,6 @@ export const getEventInformationAction = (event_id) => async (dispatch) => {
         return response;
     } catch (error) {
         console.log('Error in getting event information', error);
-        // error.json().then((errorMessage) => {
-        //     formErrorHandler(errorMessage);
-        // });
     }
 };
 
