@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import DatePicker from "react-datepicker";
-import {displayTimeDateFormatWithoutY} from "../../../store/constants"
+import {displayTimeDateFormat} from "../../../store/constants"
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -23,7 +23,7 @@ export default function PeriodPicker(props) {
                         onChange={date => props.onChangeDateHandler(date, 'from_date_time')}
                         showTimeSelect
                         placeholderText="Von"
-                        dateFormat={displayTimeDateFormatWithoutY}
+                        dateFormat={displayTimeDateFormat}
                         id='from_date_time'
                     />
                     <DatePicker
@@ -32,7 +32,7 @@ export default function PeriodPicker(props) {
                         onChange={date => props.onChangeDateHandler(date, 'until_date_time')}
                         showTimeSelect
                         placeholderText="Bis"
-                        dateFormat={displayTimeDateFormatWithoutY}
+                        dateFormat={displayTimeDateFormat}
                         id='until_date_time'
                     />
                 </div>

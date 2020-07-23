@@ -18,24 +18,40 @@ function BoatCalendar(props) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const eventStyleGetter = (event, start, end, isSelected) => {
+        let className = ''
+        if (event.currentUser.authorized) {
+            if (event.currentUser.userData.id === event.booking.user.id) {
+                className += 'your-booking '
+            }
+        }
+
+        return {
+            className
+        }
+    }
+
     useEffect( () => {
         const bookings = props.boatlist[props.boatID].bookings
         const events = []
         bookings.forEach(booking => {
-            // console.log(new Date(booking.from_date_time))
-            // console.log('this one', moment(booking.from_date_time, moment.defaultFormat).toDate())
+            console.log()
+            if(booking.id === 83) {
+                console.log(booking)
+            }
 
             events.push({
-                title: booking.user.fist_name,
-                start: new Date(booking.from_date_time),
-                end: new Date(booking.until_date_time),
+                currentUser: props.currentUser,
+                booking: booking,
+                start: new Date(moment(booking.from_date_time).add(-2, 'hours')),
+                end: new Date(moment(booking.until_date_time).add(-2, 'hours')),
             })
         })
 
         setData(events)
         setLoading(false)
 
-    }, [props.boatlist])
+    }, [props.boatlist, props.currentUser])
 
     return (<>
         {   loading
@@ -48,6 +64,8 @@ function BoatCalendar(props) {
                 step={60}
                 defaultDate={new Date()}
                 defaultView='week'
+                format={"DD/MM/YYYY HH:mm"}
+                eventPropGetter={eventStyleGetter}
             />
           </div>
        }</>
@@ -57,7 +75,8 @@ function BoatCalendar(props) {
 
 const mapStateToProps = (state) => {
     return {
-        boatlist: state.boats.boatlist
+        boatlist: state.boats.boatlist,
+        currentUser: state.currentUser
     }
 }
 const connection = connect(mapStateToProps);
