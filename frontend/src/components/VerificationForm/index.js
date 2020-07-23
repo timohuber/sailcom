@@ -91,8 +91,8 @@ function VerificationForm(props) {
             >
                 <p className='form-text-centered'>
                     Du möchtest gerne segeln und besitzt kein Boot. Werde
-                    Mitglied und nutze 60 Boote! Das geht ganz einfach -
-                    Formular ausfüllen und Du erhältst weitere Infos per Mail!
+                    Mitglied und nutze mehr als 60 Boote! Das geht ganz einfach -
+                    Formular ausfüllen und Mitgliedschaft beantragen!
                 </p>
                 <div className='input-container'>
                     <div className='input-wrapper'>
@@ -216,18 +216,28 @@ function VerificationForm(props) {
                         />
                     </div>
 
-                    {/* <div className='input-wrapper'>
-                        <label htmlFor='username'>Benutzername</label>
-                        <input
-                            id='username'
-                            name='username'
-                            onChange={(e) => onChangeHandler(e)}
-                            className='required'
-                        />
-                        <span style={{display: 'none'}} className='error' data-key='username'></span>
-                    </div> */}
-
                     <div className='input-wrapper'>
+                        <p><strong>Mitgliedschaft</strong></p>
+                        <div className='checkbox-wrapper'>
+                            <input
+                                type='checkbox'
+                                id='membership_request'
+                                name='membership_request'
+                                value='true'
+                                onChange={(e) => checkBoxHandler(e)}
+                            />
+                            <label htmlFor='membership_request'>
+                                Ich möchte eine Mitgliedschaft beantragen
+                            </label>
+                         </div>
+                        <p className='small'>Die Mitgliedschaft kann auch zu einem späteren Zeitpunkt bentragt werden.</p>
+                        <span
+                            className='error'
+                            data-key='membership_request'
+                        ></span>
+                    </div>
+
+                    <div className='input-wrapper break'>
                         <label htmlFor='avatar'>Benutzerphoto</label>
                         <label htmlFor='avatar' className='btn primary'>
                             Choose a file..
@@ -260,8 +270,8 @@ function VerificationForm(props) {
                         ></span>
                     </div>
 
-                    <div className='input-wrapper'>
-                        <label htmlFor='password'>Passwort</label>
+                    <div className='input-wrapper break'>
+                        <label htmlFor='password' className='required'>Passwort</label>
                         <input
                             type='password'
                             id='password'
@@ -273,7 +283,7 @@ function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='password-repeat'>
+                        <label htmlFor='password-repeat' className='required'>
                             Passwort bestätigen
                         </label>
                         <input
@@ -286,22 +296,6 @@ function VerificationForm(props) {
                         <span
                             className='error'
                             data-key='password_repeat'
-                        ></span>
-                    </div>
-                    <div className='input-wrapper checkbox'>
-                        <input
-                            type='checkbox'
-                            id='membership_request'
-                            name='membership_request'
-                            value='true'
-                            onChange={(e) => checkBoxHandler(e)}
-                        />
-                        <label htmlFor='membership_request'>
-                            Mitgliedschaft beantragen
-                        </label>
-                        <span
-                            className='error'
-                            data-key='membership_request'
                         ></span>
                     </div>
                 </div>

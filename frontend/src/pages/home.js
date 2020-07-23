@@ -71,7 +71,7 @@ function HomePage(props) {
                                 Winde der Schweizer Seen.
                             </p>
                         </div>
-                        <Link to='/'>
+                        <Link to='/bootsliste'>
                             <button
                                 className='btn primary'
                                 // onClick={smoothScroll('#google-map-home')}

@@ -54,17 +54,19 @@ function BoatListFilter(props) {
                         {
                             props.currentUser.authorized
                             ?
-                                <div className='input-wrapper checkbox'>
-                                    <input
-                                        type="checkbox"
-                                        id="instructed"
-                                        name="instructed"
-                                        value="true"
-                                        onChange={ e => onChangeCheckboxHandler(e)}
-                                    />
-                                    <label
-                                        htmlFor="instructed"> Nur von mir eingesegelte Botte anzeigen
-                                    </label>
+                                <div className='input-wrapper'>
+                                    <div className='checkbox-wrapper'>
+                                        <input
+                                            type="checkbox"
+                                            id="instructed"
+                                            name="instructed"
+                                            value="true"
+                                            onChange={ e => onChangeCheckboxHandler(e)}
+                                        />
+                                        <label
+                                            htmlFor="instructed"> Nur von mir eingesegelte Botte anzeigen
+                                        </label>
+                                    </div>
                                 </div>
                             : null
                         }

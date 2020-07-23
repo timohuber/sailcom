@@ -87,7 +87,7 @@ function EventListContainer(props) {
 
     return (
         <>
-            <div className='main-wrapper'>
+            <div className='main-wrapper narrow'>
                 <Accordion content={accordionContent}/>
             </div>
             {props.events.activeModal

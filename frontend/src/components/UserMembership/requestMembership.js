@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
 import GenericTextInput from '../GenericForm/textInput'
+import {updateUserAction} from '../../store/actions/userActions'
 import {formErrorHandler} from '../../lib/helpers/errorHandler'
 import Axios from "../../axios";
-import {getBoatOverview} from "../../store/actions/boatActions";
 
 export default function RequestMembershipForm(props) {
+    const dispatch = useDispatch()
     const user = props.user.userData
     const [formState, setFormState] = useState({
         'first_name': user.first_name,
@@ -49,7 +51,7 @@ export default function RequestMembershipForm(props) {
         if(requiredOK) {
             try {
                 const response = await Axios.post('user/membershipRequest/');
-                console.log(response)
+                const updateResponse = await dispatch(updateUserAction(form))
                 return response;
             } catch (error) {
                 console.log('an error occurred', error.response.data)

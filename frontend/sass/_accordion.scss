@@ -16,6 +16,8 @@
 .panel {
     height: 0;
     overflow: hidden;
+    padding-left: $gap-width-small;
+    padding-right: $gap-width-small;
 }
 
 .panel.open {

@@ -9,6 +9,10 @@
   z-index: 10;
   display: flex;
 
+  h1, h2 {
+    text-align: center;
+  }
+
   .inner {
     padding: $gap-width;
     background-color: #ffffff;
@@ -75,8 +79,10 @@
   }
 
   /* events  */
-  .event-participation-modal {
+  .event-participation-modal, .event-information-modal {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 }
+
