@@ -19,7 +19,7 @@ const Header = (props) => {
     return (
         <>
         <MobileNavigation authorized={props.authorized} whereCrew={props.whereCrew}/>
-        <header className="site-header">
+        <header id='header' className="site-header">
             <NavLink to="/">
                 <img className="site-logo" src={logo} alt="logo" />
             </NavLink>
