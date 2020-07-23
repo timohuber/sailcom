@@ -38,16 +38,16 @@ export default function Footer(props) {
                         <h3>Sailcom</h3>
                         <ul>
                             <li>
-                                <Link>Boat Sharing</Link>
+                                <Link to='/boat-sharing'>Boat Sharing</Link>
                             </li>
                             <li>
-                                <Link>Genossenschaft</Link>
+                                <Link to='/genossenschaft'>Genossenschaft</Link>
                             </li>
                             <li>
-                                <Link>Partner</Link>
+                                <Link to='#'>Partner</Link>
                             </li>
                             <li>
-                                <Link>Covid-19 Schutzkonzept</Link>
+                                <Link to='#'>Covid-19 Schutzkonzept</Link>
                             </li>
                         </ul>
                     </div>
@@ -56,13 +56,13 @@ export default function Footer(props) {
                         <h3>Boote</h3>
                         <ul>
                             <li>
-                                <Link>Flotte</Link>
+                                <Link to='/bootsliste'>Flotte</Link>
                             </li>
                             <li>
-                                <Link>Standorte</Link>
+                                <Link to='#'>Standorte</Link>
                             </li>
                             <li>
-                                <Link>Bootsliste</Link>
+                                <Link to='/bootsliste'>Bootsliste</Link>
                             </li>
                         </ul>
                     </div>
@@ -71,16 +71,16 @@ export default function Footer(props) {
                         <h3>Community</h3>
                         <ul>
                             <li>
-                                <Link>Information</Link>
+                                <Link to='#'>Information</Link>
                             </li>
                             <li>
-                                <Link>Veranstaltungen</Link>
+                                <Link to='/events'>Veranstaltungen</Link>
                             </li>
                             <li>
-                                <Link>Sailing Ladies</Link>
+                                <Link to='#'>Sailing Ladies</Link>
                             </li>
                             <li>
-                                <Link>Race Group</Link>
+                                <Link to='#'>Race Group</Link>
                             </li>
                         </ul>
                     </div>
@@ -89,42 +89,48 @@ export default function Footer(props) {
                         <h3>Beitreten</h3>
                         <ul>
                             <li>
-                                <Link>Mitglied werden</Link>
+                                <Link to='/registrierung'>Mitglied werden</Link>
                             </li>
                             <li>
-                                <Link>Voraussetzungen</Link>
+                                <Link to='#'>Voraussetzungen</Link>
                             </li>
                             <li>
-                                <Link>Kosten</Link>
+                                <Link to='#'>Kosten</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div className='social-footer'>
-                    <hr />
+                    <hr className='hide-md' />
                     <ul>
                         <li>
-                            <Link>
-                                <i class='fab fa-facebook-f'></i>
-                            </Link>
+                            <a target='_blank' href='https://www.facebook.com/'>
+                                <i className='fab fa-facebook-f'></i>
+                            </a>
                         </li>
                         <li>
-                            <Link>
-                                <i class='fab fa-instagram'></i>
-                            </Link>
+                            <a
+                                target='_blank'
+                                href='https://www.instagram.com/'
+                            >
+                                <i className='fab fa-instagram'></i>
+                            </a>
                         </li>
                         <li>
-                            <Link>
-                                <i class='fab fa-pinterest-p'></i>
-                            </Link>
+                            <a
+                                target='_blank'
+                                href='https://www.pinterest.com/'
+                            >
+                                <i className='fab fa-pinterest-p'></i>
+                            </a>
                         </li>
                         <li>
-                            <Link>
-                                <i class='fab fa-youtube'></i>
-                            </Link>
+                            <a target='_blank' href='https://www.youtube.com/'>
+                                <i className='fab fa-youtube'></i>
+                            </a>
                         </li>
                     </ul>
-                    <hr />
+                    <hr className='hide-md' />
                 </div>
             </div>
         </div>
