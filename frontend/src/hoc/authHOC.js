@@ -7,14 +7,14 @@ const authComponent = (WrappedComponent, redirectIfLoggedIn = false) => (props) 
     const {push} = useHistory();
     let {state: { currentUser: {accessToken}}} = props;
 
-    // useEffect(() => {
-    //     if (!redirectIfLoggedIn) {
-    //         if(!accessToken) push('/')
-    //     }
-    //     if (redirectIfLoggedIn) {
-    //         if (accessToken) push('/')
-    //     }
-    // }, [accessToken])
+    useEffect(() => {
+        if (!redirectIfLoggedIn) {
+            if(!accessToken) push('/')
+        }
+        if (redirectIfLoggedIn) {
+            if (accessToken) push('/')
+        }
+    }, [accessToken])
 
     return <WrappedComponent match={props.match}/>
 }
