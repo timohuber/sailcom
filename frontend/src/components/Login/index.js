@@ -10,7 +10,6 @@ export default function LoginForm(props) {
     let history = useHistory();
     const [formState, setFormState] = useState({ email: '', password: '' });
     let url_param = getUrlParams();
-    console.log(url_param);
 
     const onChangeHandler = (e) => {
         const key = e.currentTarget.dataset.key;
@@ -20,10 +19,13 @@ export default function LoginForm(props) {
         });
     };
 
+    const pushToUrl = () => {
+        url_param ? history.push(`/${url_param}`): history.push('/');  
+    };
+
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        dispatch(loginAction(formState));
-        history.push(`/${url_param}`);
+        dispatch(loginAction(formState, pushToUrl));
     };
 
     return (
@@ -44,7 +46,7 @@ export default function LoginForm(props) {
                         type='email'
                         placeholder='EMAIL'
                     />
-                    <span className='error' data-key='email' />
+                    <span id='error-email' className='error' data-key='email' />
                 </div>
                 <div className='input-wrapper'>
                     <input
@@ -59,7 +61,11 @@ export default function LoginForm(props) {
                         id='login-error'
                         data-key='password'
                     />
-                    <span className='error' data-key='detail' />
+                    <span
+                        id='login-form-error'
+                        className='error'
+                        data-key='detail'
+                    />
                 </div>
             </div>
             <div className='button-container'>

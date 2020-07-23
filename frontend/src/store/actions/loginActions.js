@@ -11,7 +11,7 @@ export const userLogin = (accessToken, refreshToken, currentUser) => {
     };
 };
 
-export const loginAction = (formState) => async (dispatch, getState) => {
+export const loginAction = (formState, pushToUrl) => async (dispatch, getState) => {
     try {
         const res = await Axios.post(`auth/token/`, formState);
         if (res.status === 200) {
@@ -20,6 +20,7 @@ export const loginAction = (formState) => async (dispatch, getState) => {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             dispatch(userLogin(accessToken, refreshToken, res.data.user));
+            pushToUrl();
         }
         return res;
     } catch (error) {
