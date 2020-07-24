@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { baseUrl } from '../../store/constants';
-import { formErrorHandler } from '../../lib/helpers/errorHandler';
+import { formErrorHandler, advancedFormErrorHandler } from '../../lib/helpers/errorHandler';
 import { connect } from 'react-redux';
 
 function VerificationForm(props) {
@@ -75,7 +75,7 @@ function VerificationForm(props) {
             .catch((error) => {
                 if (error.status === 400) {
                     error.json().then((errorMessage) => {
-                        formErrorHandler(errorMessage);
+                        advancedFormErrorHandler(errorMessage);
                     });
                 }
             });
@@ -297,9 +297,9 @@ function VerificationForm(props) {
                             className='error'
                             data-key='password_repeat'
                         ></span>
+                        <span className='error' data-key='non_field_errors' />
                     </div>
                 </div>
-                <span className='error' data-key='non_field_errors' />
 
                 <div class='button-container'>
                     <button
