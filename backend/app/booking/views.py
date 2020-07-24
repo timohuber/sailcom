@@ -22,6 +22,8 @@ class ListCreateBookingsView(ListCreateAPIView):
         return BookingSerializer
 
     def post(self, request, *args, **kwargs):
+        if self.request.data.get('until_date_time') is None or self.request.data.get('from_date_time') is None:
+            return HttpResponse('Die Daten von und bis sind nicht vollständig', status=400)
         until_date_time = request.data.get('until_date_time')
         from_date_time = request.data.get('from_date_time')
 
@@ -31,10 +33,7 @@ class ListCreateBookingsView(ListCreateAPIView):
             }
             return HttpResponse(res, status=400)
         if self.request.data.get('boat') is None:
-            res = {
-                "Bitte Boot auswählen"
-            }
-            return HttpResponse(res, status=400)
+            return HttpResponse('Bitte Boot auswählen', status=400)
         existing_bookings = Booking.objects.filter(Q(boat__id__exact=self.request.data.get('boat'))) \
             .filter((
                         Q(from_date_time__exact=from_date_time)
@@ -88,6 +87,9 @@ class CalculateBookingView(ListAPIView):
     serializer_class = BookingSerializer
 
     def post(self, request, *args, **kwargs):
+        if self.request.data.get('from_date_time') is None or self.request.data.get('until_date_time') is None:
+            return HttpResponse('Die Daten von und bis sind nicht vollständig', status=400)
+
         until_date_time = datetime.strptime(request.data.get('until_date_time'), '%Y-%m-%dT%H:%MZ')
         from_date_time = datetime.strptime(request.data.get('from_date_time'), '%Y-%m-%dT%H:%MZ')
 

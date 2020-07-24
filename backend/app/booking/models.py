@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from datetime import timedelta, datetime
+from datetime import timedelta
 
 from ..boat.models import Boat
 from ..event.models import Event
@@ -79,8 +79,6 @@ def create_booking(sender, instance, created, **kwargs):
         dt_current = dt_start
         weekday_count = 0
         weekend_count = 0
-        weekday_hours = 0
-        weekend_hours = 0
 
         # loop through days to count weekend days and weekdays
         if not less_24:
