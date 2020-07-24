@@ -128,6 +128,7 @@ export default function UserDocumentsForm(props) {
 
                         </div>
                     </div>
+                    <span id='element-updated' className='error'></span>
                     <div className='button-container'>
                         <button className='btn primary' type='submit'>
                             Speichern

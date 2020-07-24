@@ -1,6 +1,7 @@
 import {smoothScroll} from "./scroll";
 
 export const formErrorHandler = error => {
+    console.log('in form error handler')
     const errorSpanList = document.querySelectorAll('.error')
     errorSpanList.forEach(error => {
         error.innerText = ''
@@ -24,6 +25,7 @@ export const elementUpdatedMessage = (element) => {
 
 
 export const advancedFormErrorHandler = error => {
+    console.log('in advanced form error handler')
     const errorSpanList = document.querySelectorAll('.error')
     errorSpanList.forEach(error => {
         error.innerText = ''

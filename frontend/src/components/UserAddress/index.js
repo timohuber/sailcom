@@ -240,6 +240,7 @@ export default function UserAddressForm(props) {
                             </span>
                         </div>
                     </div>
+                    <span className='success' id='element-updated'></span>
                     <div className='button-container'>
                         <button className='btn primary' type='submit'>
                             Speichern

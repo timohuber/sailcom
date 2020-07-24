@@ -1,6 +1,6 @@
 import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO, CLOSE_EVENT_MODAL } from '../constants';
 import Axios from '../../axios';
-import { formErrorHandler } from '../../lib/helpers/errorHandler';
+import {advancedFormErrorHandler, formErrorHandler} from '../../lib/helpers/errorHandler';
 
 export const setEventModal = (modal, modalEvent) => {
     return {
@@ -64,7 +64,11 @@ export const createEventAction = (data, onSuccess) => async (dispatch) => {
         console.log('Error creating a new event', error);
         if(error.response) {
             if(error.response.data) {
-                formErrorHandler(error.response.data)
+                if(typeof error.response.data === 'object') {
+                    advancedFormErrorHandler(error.response.data)
+                } else {
+                    document.getElementById('error-detail').innerText = error.response.data
+                }
             }
         }
         return error;

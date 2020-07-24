@@ -275,8 +275,7 @@ form.col-2 .input-container {
   .input-wrapper .error {
     color: #D01017;
     font-size: 0.875rem;
-    min-height: 20px;
-    text-align: center; }
+    min-height: 20px; }
   .input-wrapper .form-success {
     color: #06AD05;
     font-size: 0.875rem;

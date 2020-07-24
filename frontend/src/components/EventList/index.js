@@ -26,14 +26,15 @@ function EventListContainer(props) {
                 setLoading(false)
                 return response;
             } catch (error) {
-                console.log(error.response.data)
+                if(error.response) {
+                    console.log(error.response.data)
+                }
             }
        }
        fetchBoats()
     }, [visibilityFilter])
 
     const updateState = event_id => {
-        console.log('old state', data)
         const user_id = props.currentUser.userData.id
         let event_index = 0
         data.forEach((item, index) =>{
@@ -96,7 +97,9 @@ function EventListContainer(props) {
                 <h1>Veranstaltungen</h1>
                 {
                     props.currentUser.authorized
-                    ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                    ? props.currentUser.userData.is_member
+                        ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                        : null
                     : null
                 }
             </div>
@@ -105,8 +108,10 @@ function EventListContainer(props) {
             }
             {
                 props.currentUser.authorized
-                ? <div className='main-wrapper narrow'><NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink></div>
-                : null
+                    ? props.currentUser.userData.is_member
+                        ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                        : null
+                    : null
             }
         </>
     );

@@ -49,6 +49,7 @@ function EventForm(props) {
         } else {
             document.getElementById('datepicker-error').innerText = ''
         }
+
         if (fieldsOK) {
             dispatch(createEventAction(value, onSuccessHandler));
         }
@@ -177,19 +178,19 @@ function EventForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <label htmlFor='event_type'>Kategorie</label>
+                        <label htmlFor='event_type' className='required' >Kategorie</label>
                         <select
                             id='event_type'
                             name='event_type'
                             onChange={(e) => onChangeHandler(e)}
                         >
-                            <option value='' selected disabled hidden>
+                            <option value='' disabled hidden>
                                 Bitte wählen
                             </option>
 
                             {eventType.map((type, i) => {
                                 return (
-                                    <option key={i} value={type.key}>
+                                    <option key={i} value={type.key} selected={i === 0}>
                                         {type.value}
                                     </option>
                                 );
@@ -198,6 +199,7 @@ function EventForm(props) {
                         <span className='error' data-key='event_type'/>
                     </div>
                 </div>
+                <span className='error' data-key='detail' id='error-detail'></span>
                 <div className='button-container'>
                     <button className='btn primary' type='submit'>
                         Speichern
