@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { baseUrl } from '../../store/constants';
 import { formErrorHandler } from '../../lib/helpers/errorHandler';
 import { connect, useDispatch } from 'react-redux';
 import { userValidationConfirmedAction } from '../../store/actions/registerActions';
 
 function VerificationForm(props) {
-    const { push } = useHistory();
     const dispatch = useDispatch();
     const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
     const [licenceImageRef, licenceRestaurantImageRef] = useState(
@@ -69,8 +67,6 @@ function VerificationForm(props) {
                     throw res;
                 }
                 dispatch(userValidationConfirmedAction())
-                //TODO push doesn't work
-                push('/');
                 return res.json();
             })
             .then((data) => {
