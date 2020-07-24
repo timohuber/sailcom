@@ -21,7 +21,7 @@ class Event(models.Model):
 
     boat_model = models.ForeignKey(to=BoatModel, related_name='event', on_delete=models.SET_NULL, blank=True, null=True)
     event_type = models.ForeignKey(to=EventType, related_name='event', on_delete=models.SET_NULL, blank=True, null=True)
-    instructor = models.ForeignKey(to=User, related_name='organized_events', on_delete=models.SET_NULL)
+    instructor = models.ForeignKey(to=User, related_name='organized_events', on_delete=models.SET_NULL, null=True)
     participants = models.ManyToManyField(to=User, related_name='participated_events', blank=True)
     boat = models.ForeignKey(to=Boat, related_name='event', on_delete=models.SET_NULL, blank=True, null=True)
 
