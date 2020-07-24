@@ -7,7 +7,7 @@ import {
     formErrorHandler,
     elementUpdatedMessage,
 } from '../../lib/helpers/errorHandler';
-import { eventType, baseUrl } from '../../store/constants';
+import {eventType, baseUrl, displayTimeDateFormat, displayTimeFormat} from '../../store/constants';
 import Loading from '../../components/GenericLoading';
 import { dateShowInTable } from '../../lib/helpers/formatDates';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
@@ -129,7 +129,8 @@ export default function EventEditForm(props) {
                                     }
                                     showTimeSelect
                                     placeholderText='Von'
-                                    dateFormat='MMMM d, yyyy h:mm aa'
+                                    dateFormat={displayTimeDateFormat}
+                                    timeFormat={displayTimeFormat}
                                     id='from_date_time'
                                     name='from_date_time'
                                 />
@@ -152,7 +153,8 @@ export default function EventEditForm(props) {
                                     }
                                     showTimeSelect
                                     placeholderText='Bis'
-                                    dateFormat='MMMM d, yyyy h:mm aa'
+                                    dateFormat={displayTimeDateFormat}
+                                    timeFormat={displayTimeFormat}
                                     id='until_date_time'
                                     name='until_date_time'
                                 />

@@ -5,6 +5,7 @@ import Loading from '../../GenericLoading'
 import CalendarLegend from '../../GenericCalendarLegend'
 import {connect} from "react-redux";
 import moment from 'moment'
+import {displayTimeFormat} from "../../../store/constants";
 /*
 import moment from 'moment-timezone/moment-timezone'
 moment.tz.add("Europe/Zurich|CET CEST|-10 -20|01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-19Lc0 11A0 1o00 11A0 1xG10 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|38e4");
@@ -20,10 +21,19 @@ function BoatCalendar(props) {
     const [loading, setLoading] = useState(true)
 
     const eventStyleGetter = (event, start, end, isSelected) => {
+        console.log(event)
         let className = ''
         if (event.currentUser.authorized) {
             if (event.currentUser.userData.id === event.booking.user.id) {
                 className += 'your-booking '
+            }
+            if (event.booking.event) {
+
+                className += 'event '
+
+                if(event.booking.event.participants.includes(event.currentUser.userData.id)) {
+                    className += 'signed-up '
+                }
             }
         }
 

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import DatePicker from "react-datepicker";
-import {displayTimeDateFormat} from "../../../store/constants"
+import {displayTimeDateFormat, displayTimeFormat} from "../../../store/constants"
 import "react-datepicker/dist/react-datepicker.css";
+import {Calendar} from "react-big-calendar";
 
 export default function BoatDateTimePicker(props) {
     const today = new Date()
@@ -21,6 +22,7 @@ export default function BoatDateTimePicker(props) {
                     showTimeSelect
                     placeholderText="Von"
                     dateFormat={displayTimeDateFormat}
+                    timeFormat={displayTimeFormat}
                 />
                 <DatePicker
                     selected={props.endDateTime ? props.endDateTime : null}
@@ -29,6 +31,7 @@ export default function BoatDateTimePicker(props) {
                     showTimeSelect
                     placeholderText="Bis"
                     dateFormat={displayTimeDateFormat}
+                    timeFormat={displayTimeFormat}
                 />
                 <p id='datepicker-error' className='error'></p>
               </div>

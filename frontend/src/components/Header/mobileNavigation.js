@@ -40,40 +40,15 @@ function MobileNavigation(props) {
                                 <NavLink to='/genossenschaft'>Genossenschaft</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/'>Partner</NavLink>
+                                <NavLink to='/events'>Community</NavLink>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <NavLink to='/bootsliste'>Boote</NavLink>
-                        <ul className='level-2'>
-                            <li>
-                                <NavLink to='/bootsliste'>Flotte</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/'>Standorte</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/bootsliste'>Bootsliste</NavLink>
-                            </li>
-                        </ul>
+                        <NavLink to='/bootsliste'>Unsere Boote</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/information'>Community</NavLink>
-                       <ul className='level-2'>
-                            <li>
-                                <NavLink to='/information'>Information</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/events'>Veranstaltungen</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/'>Sailing Ladies</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/'>Race Group</NavLink>
-                            </li>
-                        </ul>
+                        <NavLink to='/events'>Veranstaltungen</NavLink>
                     </li>
                     {
                         props.authorized

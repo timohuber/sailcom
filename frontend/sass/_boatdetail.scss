@@ -86,9 +86,17 @@
 }
 
 .calendar-legend {
-  .legend-element-wrapper {
     display: flex;
-  }
+    flex-display: row;
+    justify-content: space-between;
+    font-size: rem(14px);
+    & > div {
+      width: calc(50% - 15px);
+    }
+
+    .legend-element-wrapper {
+      display: flex;
+    }
 
   .legend-color-field {
     width: 20px;
@@ -107,6 +115,20 @@
       background-color: #6dad6d;
       border-color: #017300;
    }
+
+  .default {
+    background-color: $brand-color;
+  }
+
+  .event {
+      background-color: #e69770;
+      border-color: #b34511;
+  }
+
+  .event.signed-up {
+      background-color: #c76d41;
+      border-color: #b34511;
+  }
 
 }
 
