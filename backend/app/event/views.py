@@ -6,7 +6,7 @@ from django.utils import timezone
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, ListCreateAPIView, CreateAPIView
 
 from .models import Event
-from .serializers import EventSerializer
+from .serializers import EventSerializer, RetrieveEventSerializer
 
 from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
@@ -22,8 +22,12 @@ class ListEventsAllView(ListAPIView):
 
 
 class ListEventsView(ListCreateAPIView):
-    serializer_class = EventSerializer
     permission_classes = [MemberPostLoggedInFetch]
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return RetrieveEventSerializer
+        return EventSerializer
 
     def get_queryset(self):
         data = Event.objects.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1))

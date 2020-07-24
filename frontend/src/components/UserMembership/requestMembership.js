@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import GenericTextInput from '../GenericForm/textInput'
 import {updateUserAction} from '../../store/actions/userActions'
-import {formErrorHandler} from '../../lib/helpers/errorHandler'
+import {advancedFormErrorHandler} from '../../lib/helpers/errorHandler'
 import Axios from "../../axios";
 
 export default function RequestMembershipForm(props) {
@@ -58,7 +58,7 @@ export default function RequestMembershipForm(props) {
             }
 
         } else {
-            formErrorHandler(errors)
+            advancedFormErrorHandler(errors)
         }
     }
     return (

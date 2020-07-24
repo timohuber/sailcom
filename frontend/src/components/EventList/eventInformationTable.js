@@ -40,7 +40,10 @@ export default function EventInformationTable(props) {
                     Leitung
                 </div>
                 <div className='event-cell'>
-                    {event.instructor.first_name} {event.instructor.last_name}
+                    {event.instructor
+                        ? <>{event.instructor.first_name} {event.instructor.last_name}</>
+                        : null
+                    }
                 </div>
             </div>
             <div className='event-row'>

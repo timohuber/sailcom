@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { fetchUserData } from './store/actions/loginActions';
 import authComponent from './hoc/authHOC';
 import staffOrCrewHOC from './hoc/stuffOrCrewHOC';
+import memberHOC from './hoc/memberHOC';
 import './css/main.css';
 
 // components
@@ -82,12 +83,12 @@ function App() {
                     <Route
                         exact
                         path='/event-bearbeiten/:id'
-                        component={authComponent(EditEventPage)}
+                        component={memberHOC(EditEventPage)}
                     />
                     <Route
                         exact
                         path='/event-erstellen'
-                        component={authComponent(CreateEventPage)}
+                        component={memberHOC(CreateEventPage)}
                     />
                     <Route
                         exact

@@ -1,5 +1,6 @@
 import { baseUrl, UPDATE_CURRENT_USER, USER_LOGOUT, GET_USER_BOOKINGS, DELETE_USER_BOOKING, USER_REQUESTED_MEMBERSHIP } from '../constants';
 import Axios from "../../axios";
+import {elementUpdatedMessage} from '../../lib/helpers/errorHandler'
 
 const userUpdate = (data) => {
     return {
@@ -46,10 +47,10 @@ export const updateUserAction = (data) => async (dispatch, getState) => {
     }
     const response = fetch(baseUrl + 'user/me/', config)
         .then(res => {
-            console.log(res)
             return res.json()
         })
         .then((data) => {
+            elementUpdatedMessage('Daten')
             dispatch(userUpdate(data));
             return data;
         });
