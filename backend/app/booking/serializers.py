@@ -25,10 +25,11 @@ class BookingSerializer(serializers.ModelSerializer):
 
 class BookingInBoatSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    event = EventSerializer(read_only=True)
 
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'from_date_time', 'until_date_time', 'duration', 'transaction']
+        fields = ['id', 'user', 'event', 'from_date_time', 'until_date_time', 'duration', 'transaction']
 
 
 class CreateBookingSerializer(serializers.ModelSerializer):

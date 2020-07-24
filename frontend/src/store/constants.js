@@ -8,8 +8,8 @@ export const VERIFICATION_CODE_REQUESTED = 'VERIFICATION_CODE_REQUESTED';
 export const VERIFICATION_CONFORMED = 'VERIFICATION_CONFORMED';
 export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const siteUrl = 'https://sailcom.propulsion-learn.ch/';
-export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
-// export const baseUrl = 'http://localhost:8000/backend/api/';
+// export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';
+export const baseUrl = 'http://localhost:8000/backend/api/';
 
 export const SET_EVENT_MODAL = 'SET_EVENT_MODAL';
 export const WHERE_CREW = 'WHERE_CREW';

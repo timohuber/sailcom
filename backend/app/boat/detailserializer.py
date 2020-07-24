@@ -7,6 +7,7 @@ from .models import Boat
 from ..boat_crew.serializers import BoatCrewSerializer
 from ..booking.serializers import BookingInBoatSerializer
 from ..mooring.serializers import MooringSerializer
+from .boat_model.serializers import BoatModelSerializer
 
 
 class DetailBoatSerializer(serializers.ModelSerializer):

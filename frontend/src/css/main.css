@@ -681,6 +681,8 @@ form label.required:after {
   height: 100vh;
   z-index: 10;
   display: flex;
+  justify-content: center;
+  align-items: center;
   /* Book boats modal */
   /* events  */ }
   .modal h1, .modal h2 {
@@ -691,6 +693,9 @@ form label.required:after {
     display: flex;
     flex-direction: row;
     width: 100%;
+    max-width: 800px;
+    max-height: 750px;
+    height: 100%;
     position: relative;
     border-radius: 15px; }
   .modal .modal-close-icon {
