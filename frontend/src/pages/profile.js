@@ -40,12 +40,12 @@ function MyProfilePage(props) {
             content: <UserDocumentsForm userData={props.userData} />,
         },
         {
-            title: 'Transaktionen',
-            content: <UserTransactions />,
-        },
-        {
             title: 'Buchungen',
             content: <UserBookings />,
+        },
+        {
+            title: 'Transaktionen',
+            content: <UserTransactions />,
         }
     ];
 

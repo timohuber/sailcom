@@ -1,3 +1,6 @@
+import DatePicker from "react-datepicker";
+import React from "react";
+
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_USER_BOOKINGS = 'GET_USER_BOOKINGS';
@@ -24,6 +27,7 @@ export const GET_MEMBERSHIP_CATEGORIES = 'GET_MEMBERSHIP_CATEGORIES'
 
 /* time and date formats */
 export const displayTimeDateFormat = "d.MM.yy HH:mm";
+export const displayTimeFormat = "HH:mm";
 
 export const countrySelection = [
     { key: 'switzerland', value: 'Schweiz' },

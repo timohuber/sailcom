@@ -3,7 +3,7 @@ import { useDispatch, connect } from 'react-redux';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import {displayTimeDateFormat, displayTimeFormat} from '../../store/constants'
 import { eventType } from '../../store/constants';
 import { createEventAction } from '../../store/actions/eventActions';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
@@ -111,7 +111,8 @@ function EventForm(props) {
                                 }
                                 showTimeSelect
                                 placeholderText='Von'
-                                dateFormat='MMMM d, yyyy h:mm aa'
+                                dateFormat={displayTimeDateFormat}
+                                timeFormat={displayTimeFormat}
                                 id='from_date_time'
                                 name='from_date_time'
                             />
@@ -127,7 +128,8 @@ function EventForm(props) {
                                 }
                                 showTimeSelect
                                 placeholderText='Bis'
-                                dateFormat='MMMM d, yyyy h:mm aa'
+                                dateFormat={displayTimeDateFormat}
+                                timeFormat={displayTimeFormat}
                                 id='until_date_time'
                                 name='until_date_time'
                             />
