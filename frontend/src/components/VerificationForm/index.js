@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { baseUrl } from '../../store/constants';
-import { formErrorHandler, advancedFormErrorHandle } from '../../lib/helpers/errorHandler';
+import { formErrorHandler, advancedFormErrorHandler } from '../../lib/helpers/errorHandler';
 import { connect, useDispatch } from 'react-redux';
 import { userValidationConfirmedAction } from '../../store/actions/registerActions';
 
