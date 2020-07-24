@@ -4,7 +4,7 @@ from ..lake.models import Lake
 
 
 class Mooring(models.Model):
-    address = models.CharField(max_length=100)
+    address = models.CharField(max_length=300)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     created = models.DateField(auto_now_add=True)
