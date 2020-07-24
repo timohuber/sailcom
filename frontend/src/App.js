@@ -10,10 +10,7 @@ import './css/main.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import {
-    MainContainer,
-    getFooterHeaderHeight,
-} from './components/MainContainer';
+import { MainContainer } from './components/MainContainer';
 
 // pages
 import Intro from './pages/intro';
@@ -37,8 +34,6 @@ import UserDetailPage from './pages/userdetailpage';
 import Components from './pages/components';
 
 function App() {
-    // const footerHeaderHeight = getFooterHeaderHeight()
-    // console.log(footerHeaderHeight)
     const dispatch = useDispatch();
 
     if (localStorage.getItem('accessToken')) {
