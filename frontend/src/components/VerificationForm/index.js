@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { baseUrl } from '../../store/constants';
 import { formErrorHandler } from '../../lib/helpers/errorHandler';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import { userValidationConfirmedAction } from '../../store/actions/registerActions';
 
 function VerificationForm(props) {
     const { push } = useHistory();
+    const dispatch = useDispatch();
     const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
     const [licenceImageRef, licenceRestaurantImageRef] = useState(
         React.createRef()
@@ -66,7 +68,9 @@ function VerificationForm(props) {
                 if (!res.ok) {
                     throw res;
                 }
-                push('/'); //TODO push doesn't work
+                dispatch(userValidationConfirmedAction())
+                //TODO push doesn't work
+                push('/');
                 return res.json();
             })
             .then((data) => {

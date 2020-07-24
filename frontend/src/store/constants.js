@@ -4,7 +4,7 @@ export const GET_USER_BOOKINGS = 'GET_USER_BOOKINGS';
 export const DELETE_USER_BOOKING = 'DELETE_USER_BOOKING'
 
 export const VERIFICATION_CODE_REQUESTED = 'VERIFICATION_CODE_REQUESTED';
-export const VERIFICATION_CONFORMED = 'VERIFICATION_CONFORMED';
+export const VERIFICATION_CONFIRMED = 'VERIFICATION_CONFIRMED';
 export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const siteUrl = 'https://sailcom.propulsion-learn.ch/';
 export const baseUrl = 'https://sailcom.propulsion-learn.ch/backend/api/';

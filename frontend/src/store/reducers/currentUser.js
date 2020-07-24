@@ -1,11 +1,12 @@
-import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFORMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS, DELETE_USER_BOOKING } from '../constants';
+import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFIRMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS, DELETE_USER_BOOKING } from '../constants';
 
 const initialState = {
     authorized: false,
     accessToken: '',
     refreshToken: '',
     registration: {
-        verificationCodeRequested: false
+        verificationCodeRequested: false,
+        verificationConfirmed: false
     }
 };
 
@@ -65,12 +66,12 @@ export const currentUser = (state = initialState, action) => {
                 bookings: new_array
             }
 
-        case VERIFICATION_CONFORMED:
+        case VERIFICATION_CONFIRMED:
             return {
                 ...state,
                 registration: {
                     ...state.registration,
-                    verificationConformed: true
+                    verificationConfirmed: true
                     }
                 }
 
