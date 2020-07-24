@@ -34,7 +34,8 @@
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: $gap-width;
 
-    & > div, & > article {
+    & > div,
+    & > article {
         margin-bottom: $gap-width;
     }
 }
@@ -50,6 +51,9 @@
     .grid-col-3 {
         grid-template-columns: repeat(2, 1fr);
     }
+    .hide-md {
+        display: none;
+    }
 }
 
 @media (max-width: $break-point-sm) {
@@ -59,7 +63,8 @@
     }
 }
 
-.generic-box, .generic-box-grid > div {
+.generic-box,
+.generic-box-grid > div {
     background-color: #ffffff;
     box-shadow: $generic-box-shadow;
     padding: $gap-width-small;
