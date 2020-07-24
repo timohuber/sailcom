@@ -4,15 +4,16 @@ import {dateFromBackendToDisplayString} from '../../lib/helpers/formatDates'
 
 export default function EventInformationTable(props) {
     const event = props.event
-    console.log(event)
     return (
         <div className='event-meta'>
             <div className='event-row'>
                 <div className='event-cell' colSpan='2'>
                     <span className='upper-subtitle'>
                         {
-                            Boolean(event.event_type)
-                            ? eventTypeDict[event.event_type]
+                            event.event_type
+                            ? event.event_type.id === 1
+                                ? <>{event.event_type.title} {event.boat.title}</>
+                                : <>{event.event_type.title}</>
                             : 'Nicht zugeordnet'
                         }
                     </span>
