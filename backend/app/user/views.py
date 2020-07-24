@@ -140,6 +140,10 @@ class AcceptMembershipRequestView(CreateAPIView):
     permission_classes = [IsStaff]
 
     def post(self, request, *args, **kwargs):
+        if self.request.data.get('User') is None:
+            return HttpResponse('Bitte User angeben', status=400)
+        if self.request.data.get('membership_type') is None:
+            return HttpResponse('Bitte Mitgliedtyp angeben', status=400)
         if len(User.objects.filter(id=self.request.data['User'])) == 0:
             return HttpResponse('Kunde existiert nicht', status=400)
         searchUser = User.objects.get(id=self.request.data['User'])
