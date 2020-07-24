@@ -3,13 +3,14 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchUserData } from './store/actions/loginActions';
 import authComponent from './hoc/authHOC';
-import staffOrCrewHOC from './hoc/stuffOrCrewHOC'
+import staffOrCrewHOC from './hoc/stuffOrCrewHOC';
 import './css/main.css';
 
 // components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from './components/ScrollToTop';
+import { MainContainer } from './components/MainContainer';
 
 // pages
 import Intro from './pages/intro';
@@ -29,12 +30,12 @@ import NotFoundPage from './pages/404';
 import UserSearchPage from './pages/userlistpage';
 import UserDetailPage from './pages/userdetailpage';
 
-
 // remove
 import Components from './pages/components';
 
 function App() {
     const dispatch = useDispatch();
+
     if (localStorage.getItem('accessToken')) {
         dispatch(fetchUserData());
     }
@@ -44,7 +45,7 @@ function App() {
             <BrowserRouter>
                 <ScrollToTop />
                 <Header />
-                <main>
+                <MainContainer>
                     <Route exact path='/' component={Home}></Route>
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/boat-sharing' component={BoatSharing} />
@@ -101,7 +102,7 @@ function App() {
 
                     <Route exact path='/components' component={Components} />
                     <Route exact path='/404' component={NotFoundPage} />
-                </main>
+                </MainContainer>
                 <Footer />
             </BrowserRouter>
         </div>

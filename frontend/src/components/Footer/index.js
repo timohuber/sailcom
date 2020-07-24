@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer(props) {
     return (
-        <div className='footer-wrapper'>
+        <div id='footer' className='footer-wrapper'>
             <div className='main-wrapper'>
                 <div className='grid-col-5'>
                     <div>
