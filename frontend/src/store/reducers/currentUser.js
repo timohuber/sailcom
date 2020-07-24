@@ -1,4 +1,3 @@
-
 import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFIRMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS, DELETE_USER_BOOKING, USER_REQUESTED_MEMBERSHIP } from '../constants';
 
 
@@ -77,7 +76,7 @@ export const currentUser = (state = initialState, action) => {
                     }
                 }
 
-        case VERIFICATION_CONFORMED:
+        case VERIFICATION_CONFIRMED:
             return {
                 ...state,
                 registration: {
