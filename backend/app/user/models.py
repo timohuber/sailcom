@@ -15,7 +15,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
 
     # Additional fields required when using createsuperuser (by default USERNAME_FIELD and passwords)
-    REQUIRED_FIELDS = ['']
+    REQUIRED_FIELDS = []
 
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=100)
