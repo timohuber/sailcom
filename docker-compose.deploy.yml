@@ -20,8 +20,6 @@ services:
       - ./env/prod.env
     volumes:
     - postgres_db:/var/lib/postgresql/data
-      ports:
-        - "5432:5432"
 
   nginx:
     image: nginx:latest
