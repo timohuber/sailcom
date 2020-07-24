@@ -1,3 +1,5 @@
+import {smoothScroll} from "./scroll";
+
 export const formErrorHandler = error => {
     const errorSpanList = document.querySelectorAll('.error')
     errorSpanList.forEach(error => {
@@ -19,3 +21,28 @@ export const elementUpdatedMessage = (element) => {
 };
 
 // <span id='event-updated'></span>
+
+
+export const advancedFormErrorHandler = error => {
+    const errorSpanList = document.querySelectorAll('.error')
+    errorSpanList.forEach(error => {
+        error.innerText = ''
+    })
+
+    const inputWrapperList = document.querySelectorAll('.input-wrapper.has-error')
+    inputWrapperList.forEach( wrapper => {
+        wrapper.classList.remove('has-error')
+    })
+
+    for (const [key, value] of Object.entries(error)) {
+        const errorTag = document.querySelector(`span.error[data-key=${key}]`)
+        errorTag.innerText = value
+        errorTag.closest('.input-wrapper').classList.add('has-error')
+    }
+
+    if(Object.keys(error).length > 0) {
+        smoothScroll('.input-wrapper.has-error')
+    }
+
+}
+
