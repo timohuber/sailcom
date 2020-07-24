@@ -19,10 +19,10 @@ const uweStyle = {
 
 export default function Genossenschaft(props) {
     return (
-        <div className='main-wrapper'>
+        <div className='main-wrapper genossenschaft'>
             <h1>Genossenschaft</h1>
-            <div>
-                <p>
+            <div className='article-wrapper'>
+                <article>
                     Gemeinsam besitzen, günstiger nutzen, in der SailCom
                     Genossenschaft möglich. Die SailCom Genossenschaft wurde
                     1998 gegründet, nachdem erste Boote bereits seit 1991
@@ -40,22 +40,34 @@ export default function Genossenschaft(props) {
                     Mithilfe nimmst Du Einfluss auf die Ausgestaltung der
                     SailCom. Schaue dir hierzu auch unser Leitbild und unsere
                     Statuten an.
-                </p>
+                </article>
             </div>
-            <h2>Geschäftsleitung</h2>
-            <div className=''>
-                <div className='staff-wrapper grid-col-4'>
-                    <div className='staff-photo-container' style={carmenStyle}>
-                        {/* <img src={Carmen}></img> */}
-                    </div>
+            <div className='grid-col-3 staff-wrapper'>
+                <div className='single-staff generic-box'>
+                    <div
+                        className='staff-photo-container'
+                        style={carmenStyle}
+                    ></div>
                     <div className='staff-details'>
-                        <h4>Carmen Somm, Generalsekretärin</h4>
-                        <a className='icon-phone' href='tel:0443226626'>
-                            Tel. 044 322 66 26
-                        </a>
-                        <a className='icon-email' href='mailto:info@sailcom.ch'>
-                            info@sailcom.ch
-                        </a>
+                        <div className='staff-title'>
+                            <h4>Carmen Sommer,</h4>
+                            <h4 className='margin-bottom-15'>
+                                Generalsekretärin
+                            </h4>
+                            <a
+                                className='icon-phone margin-bottom-5'
+                                href='tel:0443226626'
+                            >
+                                Tel. 044 322 66 26
+                            </a>
+                            <a
+                                className='icon-email margin-bottom-15'
+                                href='mailto:info@sailcom.ch'
+                            >
+                                info@sailcom.ch
+                            </a>
+                        </div>
+
                         <p>
                             Carmen führt die Geschäftsstelle und ist für den
                             gesamten operativen Betrieb verantwortlich. Sie ist
@@ -64,18 +76,31 @@ export default function Genossenschaft(props) {
                         </p>
                     </div>
                 </div>
-                <div className='staff-wrapper grid-col-4'>
-                    <div className='staff-photo-container' style={markusStyle}>
-                        {/* <img src={Markus}></img> */}
-                    </div>
+                <div className='single-staff generic-box'>
+                    <div
+                        className='staff-photo-container'
+                        style={markusStyle}
+                    ></div>
                     <div className='staff-details'>
-                        <h4>Markus Hartmeier, Leiter Administration</h4>
-                        <a className='icon-phone' href='tel:0443226626'>
-                            Tel. 044 322 66 26
-                        </a>
-                        <a className='icon-email' href='mailto:info@sailcom.ch'>
-                            info@sailcom.ch
-                        </a>
+                        <div className='staff-title'>
+                            <h4>Markus Hartmeier,</h4>
+                            <h4 className='margin-bottom-15'>
+                                Leiter Administration
+                            </h4>
+                            <a
+                                className='icon-phone margin-bottom-5'
+                                href='tel:0443226626'
+                            >
+                                Tel. 044 322 66 26
+                            </a>
+                            <a
+                                className='icon-email margin-bottom-15'
+                                href='mailto:info@sailcom.ch'
+                            >
+                                info@sailcom.ch
+                            </a>
+                        </div>
+
                         <p>
                             Markus ist primärer Ansprechpartner für
                             Interessenten und Mitglieder, und kümmert sich um
@@ -85,18 +110,30 @@ export default function Genossenschaft(props) {
                         </p>
                     </div>
                 </div>
-                <div className='staff-wrapper grid-col-4'>
-                    <div className='staff-photo-container' style={uweStyle}>
-                        {/* <img src={Uwe}></img> */}
-                    </div>
+                <div className='single-staff generic-box'>
+                    <div
+                        className='staff-photo-container'
+                        style={uweStyle}
+                    ></div>
                     <div className='staff-details'>
-                        <h4>Uwe Bechmann, Leiter Flotte</h4>
-                        <a className='icon-phone' href='tel:0443226626'>
-                            Tel. 044 322 66 24
-                        </a>
-                        <a className='icon-email' href='mailto:info@sailcom.ch'>
-                            info@sailcom.ch
-                        </a>
+                        <div className='staff-title'>
+                            <h4>Uwe Bechmann,</h4>
+                            <h4 className='margin-bottom-15'>Leiter Flotte</h4>
+                            <a
+                                className='icon-phone margin-bottom-5'
+                                href='tel:0443226626'
+                            >
+                                Tel. 044 322 66 24
+                            </a>
+
+                            <a
+                                className='icon-email margin-bottom-15'
+                                href='mailto:info@sailcom.ch'
+                            >
+                                info@sailcom.ch
+                            </a>
+                        </div>
+
                         <p>
                             Uwe unterstützt die Bootsteams beim Unterhalt der
                             Schiffe und technischen Fragen. Er ist
