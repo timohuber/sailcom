@@ -26,6 +26,11 @@
     cursor: pointer;
     z-index: 8;
 
+    &.open {
+      position: fixed;
+      right: $gap-width-small;
+    }
+
     span {
       display: block;
       position: absolute;

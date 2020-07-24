@@ -1,4 +1,6 @@
-import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFIRMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS, DELETE_USER_BOOKING } from '../constants';
+
+import { USER_LOGIN, USER_LOGOUT, VERIFICATION_CODE_REQUESTED, VERIFICATION_CONFIRMED, UPDATE_CURRENT_USER, GET_USER_BOOKINGS, DELETE_USER_BOOKING, USER_REQUESTED_MEMBERSHIP } from '../constants';
+
 
 const initialState = {
     authorized: false,
@@ -27,7 +29,7 @@ export const currentUser = (state = initialState, action) => {
                 authorized: false,
                 accessToken: '',
                 refreshToken: '',
-                userInfo: {}
+                // userInfo: {}
                 }
 
         case VERIFICATION_CODE_REQUESTED:
@@ -66,7 +68,16 @@ export const currentUser = (state = initialState, action) => {
                 bookings: new_array
             }
 
-        case VERIFICATION_CONFIRMED:
+        case USER_REQUESTED_MEMBERSHIP:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    request_membership: true
+                    }
+                }
+
+        case VERIFICATION_CONFORMED:
             return {
                 ...state,
                 registration: {

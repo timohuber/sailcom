@@ -8,7 +8,7 @@ function ListButtonsContainer(props) {
     const boat = props.boat
 
     if (user.authorized) {
-        instructed = user.userData.instructed_for_models.includes(props.boat.model)
+        instructed = user.userData.instructed_for_models.includes(props.boat.model.id)
     }
 
     return (

@@ -56,6 +56,13 @@ function UserEditMembership(props) {
                     :
                         <>
                             <h2>Mitgliederstatus</h2>
+                            {
+                                user.membership_type
+                                ? <p>Mitgliedschaft: {user.membership_type}</p>
+                                : user.request_membership
+                                    ? <p className='success'>{user.first_name} {user.last_name} hat eine Mitgliedschaft beantragt</p>
+                                    : <p className='error'>{user.first_name} {user.last_name} hat noch keine Mitgliedschaft beantragt</p>
+                            }
                             <form onSubmit={ e => onSubmitHandler(e) }>
                                 <p>Bitte wählen Sie den Mitgliederstatus</p>
                                 <div className='input-wrapper'>

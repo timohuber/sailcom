@@ -1,6 +1,6 @@
 import React from "react";
 import {eventTypeDict} from '../../store/constants'
-import {dateToDisplayString} from '../../lib/helpers/formatDates'
+import {dateFromBackendToDisplayString} from '../../lib/helpers/formatDates'
 
 export default function EventInformationTable(props) {
     const event = props.event
@@ -10,8 +10,10 @@ export default function EventInformationTable(props) {
                 <div className='event-cell' colSpan='2'>
                     <span className='upper-subtitle'>
                         {
-                            Boolean(event.event_type)
-                            ? eventTypeDict[event.event_type]
+                            event.event_type
+                            ? event.event_type.id === 1
+                                ? <>{event.event_type.title} {event.boat.title}</>
+                                : <>{event.event_type.title}</>
                             : 'Nicht zugeordnet'
                         }
                     </span>
@@ -22,7 +24,7 @@ export default function EventInformationTable(props) {
                     Datum / Uhrzeit
                 </div>
                 <div className='event-cell'>
-                    {event.from_date_time}
+                    {dateFromBackendToDisplayString(event.from_date_time)}
                 </div>
             </div>
             <div className='event-row'>
@@ -46,7 +48,7 @@ export default function EventInformationTable(props) {
                     Kosten
                 </div>
                 <div className='event-cell'>
-                    {event.price}
+                    CHF {event.price}
                 </div>
             </div>
             <div className='event-row'>

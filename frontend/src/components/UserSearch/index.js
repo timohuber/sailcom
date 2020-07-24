@@ -3,6 +3,8 @@ import Loading from '../GenericLoading'
 import UserSearchForm from "./searchForm";
 import UsersContainer from './usersContainer'
 import {baseUrl, authenticatedGetConfig} from "../../store/constants";
+import Axios from "../../axios";
+import {getMembershipTypes} from "../../store/actions/miscActions";
 
 
 export default function UserSearch(props) {
@@ -34,10 +36,24 @@ export default function UserSearch(props) {
         }
     }
 
+    const openMembershipRequestsHandler = async e => {
+        e.preventDefault()
+        try {
+            const response = await Axios.get('user/openMembershipRequest/');
+            setData(response.data['results'])
+            return response;
+        } catch (error) {
+            if(error) {
+                console.log('an error occurred', error)
+            }
+        }
+
+    }
+
     return (
         <div className='main-wrapper'>
             <h1>Mitglieder suchen</h1>
-            <UserSearchForm onSubmitHandler={onSubmitHandler} onChangeHandler={onChangeHandler}/>
+            <UserSearchForm onSubmitHandler={onSubmitHandler} onChangeHandler={onChangeHandler} toggleOpenRequests={openMembershipRequestsHandler}/>
             {
                 !data
                 ? null

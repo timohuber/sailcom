@@ -87,25 +87,25 @@ function EventListContainer(props) {
 
     return (
         <>
-            <div className='main-wrapper'>
-                <Accordion content={accordionContent}/>
-            </div>
             {props.events.activeModal
                 ? <EventModal activeModal={props.events.activeModal} event={props.events.modalEvent} updateState={updateState}/>
                 : null
             }
-            <h1>Veranstaltungen</h1>
-            {
-                props.currentUser.authorized
-                ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
-                : null
-            }
+            <div className='main-wrapper narrow'>
+                <Accordion content={accordionContent}/>
+                <h1>Veranstaltungen</h1>
+                {
+                    props.currentUser.authorized
+                    ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                    : null
+                }
+            </div>
             {loading ?
                 <Loading /> : <EventsContainer data={data}/>
             }
             {
                 props.currentUser.authorized
-                ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                ? <div className='main-wrapper narrow'><NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink></div>
                 : null
             }
         </>

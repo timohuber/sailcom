@@ -36,6 +36,10 @@ form.col-2 .input-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: $gap-width;
+
+    .break {
+        grid-column-start: 1;
+    }
 }
 
 @media (max-width: $break-point-md) {
@@ -96,10 +100,11 @@ form.col-2 .input-container {
         text-align: center;
     }
 
-    &.checkbox {
+    .checkbox-wrapper{
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-bottom: $gap-width-small;
 
         input {
             width: auto;
@@ -110,11 +115,18 @@ form.col-2 .input-container {
         label {
             flex-grow: 1;
             margin-bottom: 0;
+            font-size: $base-font-size;
         }
     }
 }
 
-
+/* required */
+form label.required:after {
+    content: '*';
+    color: $brand-color;
+    font-weight: bold;
+    margin-left: 5px;
+}
 
 /* Registration */
 #register-form .btn.secondary {

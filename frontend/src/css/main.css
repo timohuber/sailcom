@@ -45,6 +45,17 @@ p {
   p span {
     color: #00b0f0; }
 
+p.small {
+  font-size: 0.875rem; }
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+
+.success {
+  color: #06AD05; }
+
 table {
   margin-bottom: 8px;
   border-spacing: 0; }
@@ -150,7 +161,6 @@ button {
   padding: 10px 20px;
   min-height: 40px;
   border-radius: 20px;
-  width: 200px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -225,6 +235,8 @@ form.col-2 .input-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 30px; }
+  form.col-2 .input-container .break {
+    grid-column-start: 1; }
 
 @media (max-width: 768px) {
   form.col-2 .input-container {
@@ -269,17 +281,26 @@ form.col-2 .input-container {
     color: #06AD05;
     font-size: 0.875rem;
     text-align: center; }
-  .input-wrapper.checkbox {
+  .input-wrapper .checkbox-wrapper {
     display: flex;
     flex-direction: row;
-    align-items: center; }
-    .input-wrapper.checkbox input {
+    align-items: center;
+    margin-bottom: 15px; }
+    .input-wrapper .checkbox-wrapper input {
       width: auto;
       margin: 0;
       margin-right: 30px; }
-    .input-wrapper.checkbox label {
+    .input-wrapper .checkbox-wrapper label {
       flex-grow: 1;
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      font-size: 1rem; }
+
+/* required */
+form label.required:after {
+  content: '*';
+  color: #2c5d7b;
+  font-weight: bold;
+  margin-left: 5px; }
 
 /* Registration */
 #register-form .btn.secondary {
@@ -311,6 +332,9 @@ form.col-2 .input-container {
     transition: .5s ease-in-out;
     cursor: pointer;
     z-index: 8; }
+    .site-header #mobile-menu.open {
+      position: fixed;
+      right: 15px; }
     .site-header #mobile-menu span {
       display: block;
       position: absolute;
@@ -506,10 +530,13 @@ form.col-2 .input-container {
   display: block; }
 
 /* calendar */
+.boat-calendar-wrapper {
+  margin-bottom: 30px; }
+
 #boat-calendar {
-  margin-bottom: 30px;
   height: 500px;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: 15px;
   /* today */ }
   #boat-calendar .rbc-time-view {
     background-color: #ffffff;
@@ -535,12 +562,20 @@ form.col-2 .input-container {
   #boat-calendar .rbc-today {
     background-color: transparent; }
 
+.calendar-legend .legend-element-wrapper {
+  display: flex; }
+
+.calendar-legend .legend-color-field {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px; }
+
 .boat-datepicker-container .btn {
   margin-top: 30px; }
 
 /* booking types */
-.rbc-day-slot .rbc-event.your-booking {
-  background-color: #018400;
+#boat-calendar .rbc-day-slot .your-booking, .calendar-legend .your-booking {
+  background-color: #6dad6d;
   border-color: #017300; }
 
 /* Date picker */
@@ -626,7 +661,7 @@ form.col-2 .input-container {
     flex-wrap: wrap;
     padding: 8px 0px;
     border-bottom: 1px solid #E4E4E4; }
-    .event-meta .event-row .event-cell {
+    .event-meta .event-row .event-cell:not([colspan]) {
       width: 50%; }
 
 .event-list > .event-list-element:last-child {
@@ -646,14 +681,21 @@ form.col-2 .input-container {
   height: 100vh;
   z-index: 10;
   display: flex;
+  justify-content: center;
+  align-items: center;
   /* Book boats modal */
   /* events  */ }
+  .modal h1, .modal h2 {
+    text-align: center; }
   .modal .inner {
     padding: 30px;
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
     width: 100%;
+    max-width: 800px;
+    max-height: 750px;
+    height: 100%;
     position: relative;
     border-radius: 15px; }
   .modal .modal-close-icon {
@@ -694,9 +736,10 @@ form.col-2 .input-container {
     .modal .boat-booking-form .btn {
       max-width: 100%;
       width: auto; }
-  .modal .event-participation-modal {
+  .modal .event-participation-modal, .modal .event-information-modal {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    width: 100%; }
 
 .home-icon-box {
   display: flex;
@@ -917,7 +960,9 @@ form.col-2 .input-container {
 
 .panel {
   height: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  padding-left: 15px;
+  padding-right: 15px; }
 
 .panel.open {
   height: auto;

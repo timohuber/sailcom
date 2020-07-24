@@ -8,6 +8,12 @@
   height: 100vh;
   z-index: 10;
   display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1, h2 {
+    text-align: center;
+  }
 
   .inner {
     padding: $gap-width;
@@ -15,6 +21,9 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    max-width: 800px;
+    max-height: 750px;
+    height: 100%;
     position: relative;
     border-radius: $large-border-radius;
   }
@@ -75,8 +84,10 @@
   }
 
   /* events  */
-  .event-participation-modal {
+  .event-participation-modal, .event-information-modal {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 }
+

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Loading from '../../GenericLoading'
+import CalendarLegend from '../../GenericCalendarLegend'
 import {connect} from "react-redux";
 import moment from 'moment'
 /*
@@ -56,18 +57,23 @@ function BoatCalendar(props) {
     return (<>
         {   loading
         ? <Loading />
-        :  <div id='boat-calendar'>
-            <Calendar
-                culture='de-CH'
-                localizer={localizer}
-                events={data}
-                step={60}
-                defaultDate={new Date()}
-                defaultView='week'
-                format={"DD/MM/YYYY HH:mm"}
-                eventPropGetter={eventStyleGetter}
-            />
-          </div>
+        :
+            <div className='boat-calendar-wrapper'>
+                <div id='boat-calendar'>
+                <Calendar
+                    culture='de-CH'
+                    localizer={localizer}
+                    events={data}
+                    step={60}
+                    defaultDate={new Date()}
+                    defaultView='week'
+                    format={"DD/MM/YYYY HH:mm"}
+                    eventPropGetter={eventStyleGetter}
+                />
+              </div>
+                <CalendarLegend />
+            </div>
+
        }</>
     );
 };
