@@ -1012,15 +1012,33 @@ form label.required:after {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: calc(100vh - 85px - 297px);
   background-size: cover;
-  background-position: center; }
+  background-position: center;
+  padding: calc(30px / 2); }
 
 .inner-404 {
   text-align: center;
-  color: #ffffff; }
-  .inner-404 h1 {
-    color: #ffffff; }
+  color: #2c5d7b;
+  display: flex; }
+  .inner-404 .left-404 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .inner-404 .left-404 a {
+      margin-bottom: 30px; }
+  .inner-404 img {
+    max-width: 50%; }
+
+@media (max-width: 768px) {
+  .grid-col-5,
+  .grid-col-3 {
+    grid-template-columns: repeat(1, 1fr); }
+  .inner-404 {
+    flex-direction: column; }
+  .left-404 {
+    color: green;
+    align-items: normal; } }
 
 .map-home-wrapper {
   width: 100%;
