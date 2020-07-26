@@ -64,11 +64,16 @@ class ListEventsView(ListCreateAPIView):
                 return HttpResponse('Das Boot ist leider schon besetzt', status=400)
             # method 2 where booking is given with the event
         else:
+
             searchEvent = Event.objects.filter(until_date_time=self.request.data['until_date_time'],
                                                from_date_time=self.request.data['from_date_time'],
                                                boat=self.request.data['boat'])
             if len(searchEvent) > 0:
                 return HttpResponse('Diesen Event gibt es schon', status=400)
+
+            # TODO
+            # searchBooking = Booking.objects.get(id=self.request.data.get('booking'))
+
             searchBooking = Booking.objects.filter(id=self.request.data.get('booking'))
             if len(searchBooking) == 0:
                 return HttpResponse('Die Buchung wurde nicht gefunden', status=400)
@@ -76,12 +81,14 @@ class ListEventsView(ListCreateAPIView):
                 return HttpResponse('Die Buchung hat schon eine Veranstaltung', status=400)
             if not searchBooking[0].boat.id == self.request.data['boat']:
                 return HttpResponse('Die Buchung hat ein anderes Boot', status=400)
+
+            """
             if not searchBooking[0].from_date_time.isoformat().replace(':00+00:00', 'Z') == self.request.data[
                 'from_date_time'] \
                     or not searchBooking[0].until_date_time.isoformat().replace(':00+00:00', 'Z') == self.request.data[
                     'until_date_time']:
                 return HttpResponse('Die Daten stimmen mit der Buchung nicht überein', status=400)
-
+            """
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):

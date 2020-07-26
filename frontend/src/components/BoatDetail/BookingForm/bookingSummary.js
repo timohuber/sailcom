@@ -34,7 +34,7 @@ export default function BookingSummary(props) {
                         Total
                     </td>
                     <td>
-                        {props.calculatedPrice}
+                        CHF {props.calculatedPrice}
                     </td>
                 </tr>
             </tbody>

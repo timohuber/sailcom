@@ -22,6 +22,10 @@ export default function CalendarLegend() {
                     <div className='legend-color-field event signed-up' />
                     <p>Event (angemeldet)</p>
                 </div>
+                 <div className='legend-element-wrapper'>
+                    <div className='legend-color-field event your-booking signed-up' />
+                    <p>Ihr Event</p>
+                </div>
             </div>
         </div>
     );

@@ -97,7 +97,7 @@ function EventListContainer(props) {
                 <h1>Veranstaltungen</h1>
                 {
                     props.currentUser.authorized
-                    ? props.currentUser.userData.is_member
+                    ? props.currentUser.userData.is_member || props.currentUser.userData.is_crew
                         ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
                         : null
                     : null
@@ -108,8 +108,8 @@ function EventListContainer(props) {
             }
             {
                 props.currentUser.authorized
-                    ? props.currentUser.userData.is_member
-                        ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
+                    ? props.currentUser.userData.is_member || props.currentUser.userData.is_crew
+                    ? <div className='main-wrapper narrow'><NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink></div>
                         : null
                     : null
             }
