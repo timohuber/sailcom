@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, connect } from 'react-redux';
-
+import moment from 'moment'
 import DatePicker from 'react-datepicker';
+import EventTypes from './eventType'
 import 'react-datepicker/dist/react-datepicker.css';
 import {displayTimeDateFormat, displayTimeFormat} from '../../store/constants'
-import { eventType } from '../../store/constants';
 import { createEventAction } from '../../store/actions/eventActions';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
+import BookingsSelect from "./bookings";
 
 function EventForm(props) {
     const dispatch = useDispatch();
     const today = new Date();
     const [value, setValue] = useState({});
     const [success, setSuccess] = useState(false)
+    const [eventType, setEventType] = useState()
 
     const onChangeHandler = (e) => {
         const key = e.currentTarget.name;
@@ -23,11 +25,37 @@ function EventForm(props) {
     };
 
     const onChangeDateHandler = (date, key) => {
+        console.log(date)
         setValue({
             ...value,
             [key]: date,
         });
     };
+
+        const onChangeBookingHandler = (e) => {
+        const target = e.currentTarget
+        const key = target.name;
+        console.log()
+        setValue({
+            ...value,
+            [key]: e.currentTarget.value,
+            boat: parseInt(target.options[target.selectedIndex].dataset.boat),
+            from_date_time: new Date(target.options[target.selectedIndex].dataset.from),
+            until_date_time: new Date(target.options[target.selectedIndex].dataset.until)
+        });
+    };
+
+    const onChangeTypeHandler = e => {
+        setEventType(parseInt(e.currentTarget.value))
+        setValue({
+            ...value,
+            event_type: e.currentTarget.value,
+            bookings: null,
+            boat: null,
+            from_date_time: null,
+            until_date_time: null
+        });
+    }
 
     const onSuccessHandler = () => {
         setSuccess(true)
@@ -36,11 +64,19 @@ function EventForm(props) {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         let fieldsOK = true
+        console.log(value)
+
+        if(!value.event_type) {
+            document.getElementById('type-error').innerText = 'Bitte auswählen'
+            return
+        } else {
+            document.getElementById('type-error').innerText = ''
+        }
         if (!value.boat) {
-            document.getElementById('boat-error').innerText = 'Bitte Boot auswählen'
+            document.getElementById('select-error').innerText = 'Bitte auswählen'
             fieldsOK = false
         } else {
-            document.getElementById('boat-error').innerText = ''
+            document.getElementById('select-error').innerText = ''
         }
 
         if (!value.from_date_time || !value.until_date_time) {
@@ -73,6 +109,19 @@ function EventForm(props) {
             >
                 <h1>Veranstaltung hinzufügen</h1>
                 <div className='input-container'>
+                    <EventTypes
+                        onChangeTypeHandler={onChangeTypeHandler}
+                        setEventType={setEventType}
+                    />
+                    {
+                        eventType
+                        ? eventType === 1
+                            ? <WhereCrewMemberForm onChangeHandler={onChangeHandler} />
+                            : eventType === 2
+                                ? <BookingsSelect onChangeHandler={onChangeBookingHandler} />
+                                : <p></p>
+                            : <div className='input-wrapper'>Bitte geben Sie eine Kategorie an</div>
+                    }
                     <div className='input-wrapper'>
                         <label htmlFor='title'>Event Name</label>
                         <input
@@ -109,6 +158,8 @@ function EventForm(props) {
                                 onChange={(date) =>
                                     onChangeDateHandler(date, 'from_date_time')
                                 }
+
+                                disabled={value.event_type == 2}
                                 showTimeSelect
                                 placeholderText='Von'
                                 dateFormat={displayTimeDateFormat}
@@ -126,6 +177,7 @@ function EventForm(props) {
                                 onChange={(date) =>
                                     onChangeDateHandler(date, 'until_date_time')
                                 }
+                                disabled={value.event_type == 2}
                                 showTimeSelect
                                 placeholderText='Bis'
                                 dateFormat={displayTimeDateFormat}
@@ -163,8 +215,6 @@ function EventForm(props) {
                         <span className='error' data-key='meeting_point'/>
                     </div>
 
-                    <WhereCrewMemberForm onChangeHandler={onChangeHandler} />
-
                     <div className='input-wrapper'>
                         <label htmlFor='max_participants'>
                             Anzahl Teilnehmer max.
@@ -177,28 +227,6 @@ function EventForm(props) {
                             value={value.max_participants}
                         />
                         <span className='error' data-key='max_participants'/>
-                    </div>
-
-                    <div className='input-wrapper'>
-                        <label htmlFor='event_type' className='required' >Kategorie</label>
-                        <select
-                            id='event_type'
-                            name='event_type'
-                            onChange={(e) => onChangeHandler(e)}
-                        >
-                            <option value='' disabled hidden>
-                                Bitte wählen
-                            </option>
-
-                            {eventType.map((type, i) => {
-                                return (
-                                    <option key={i} value={type.key} selected={i === 0}>
-                                        {type.value}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                        <span className='error' data-key='event_type'/>
                     </div>
                 </div>
                 <span className='error' data-key='detail' id='error-detail'></span>
@@ -216,6 +244,7 @@ function EventForm(props) {
 const mapStateToProps = (state) => {
     return {
         whereCrew: state.events.whereCrew,
+        user: state.currentUser.userData
     };
 };
 

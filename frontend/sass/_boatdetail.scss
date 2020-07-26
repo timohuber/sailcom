@@ -125,6 +125,16 @@
       border-color: #b34511;
   }
 
+  .your-booking.event {
+    background: repeating-linear-gradient(
+      45deg,
+      #e69770,
+      #e69770 5px,
+      #b34511 5px,
+      #b34511 7px
+    );
+  }
+
   .event.signed-up {
       background-color: #c76d41;
       border-color: #b34511;

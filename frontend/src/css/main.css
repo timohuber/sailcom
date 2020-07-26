@@ -608,6 +608,9 @@ form label.required:after {
   background-color: #e69770;
   border-color: #b34511; }
 
+#boat-calendar .rbc-day-slot .your-booking.event, .calendar-legend .your-booking.event {
+  background: repeating-linear-gradient(45deg, #e69770, #e69770 5px, #b34511 5px, #b34511 7px); }
+
 #boat-calendar .rbc-day-slot .event.signed-up, .calendar-legend .event.signed-up {
   background-color: #c76d41;
   border-color: #b34511; }
@@ -770,6 +773,11 @@ form label.required:after {
     .modal .boat-booking-form .btn {
       max-width: 100%;
       width: auto; }
+  .modal .booking-success {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto; }
   .modal .event-participation-modal, .modal .event-information-modal {
     display: flex;
     flex-direction: column;

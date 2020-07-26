@@ -17,7 +17,7 @@ function WhereCrewMemberForm(props) {
     const formHandler = () => {
         return (
             <div className='input-wrapper'>
-                <label htmlFor='boat'>Boot auswählen</label>
+                <label htmlFor='boat' className='required'>Boot auswählen</label>
                 <select
                     id='boat'
                     name='boat'
@@ -36,7 +36,7 @@ function WhereCrewMemberForm(props) {
                         );
                     })}
                 </select>
-                <span id='boat-error' className='error' data-key='boat'></span>
+                <span id='select-error' className='error' data-key='boat'></span>
             </div>
         );
     };

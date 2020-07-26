@@ -1,4 +1,4 @@
-import { GET_MEMBERSHIP_CATEGORIES } from '../constants';
+import { GET_MEMBERSHIP_CATEGORIES, GET_EVENT_TYPES } from '../constants';
 
 const initialState = {
 };
@@ -9,6 +9,12 @@ export const misc = (state = initialState, action) => {
             return {
                 ...state,
                 membership_categories: action.payload,
+            };
+
+        case GET_EVENT_TYPES:
+            return {
+                ...state,
+                event_types: action.payload,
             };
 
         default:

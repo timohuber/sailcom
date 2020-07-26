@@ -10,7 +10,7 @@ const memberHOC = (WrappedComponent) => (props) => {
     useEffect(() => {
         if(!currentUser.authorized) {
             push('/')
-        } else if (!currentUser.userData.is_member) {
+        } else if (!currentUser.userData.is_member && !currentUser.userData.is_crew) {
             push('/')
         }
     }, [currentUser])
