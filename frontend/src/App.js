@@ -47,7 +47,7 @@ function App() {
                 <ScrollToTop />
                 <Header />
                 <MainContainer>
-                    <Switch>
+                    {/* <Switch> */}
                         <Route exact path='/' component={Home}></Route>
                         <Route exact path='/home' component={Home} />
                         <Route
@@ -119,8 +119,8 @@ function App() {
                             path='/components'
                             component={Components}
                         />
-                        <Route component={NotFoundPage} />
-                    </Switch>
+                        {/* <Route component={NotFoundPage} /> */}
+                    {/* </Switch> */}
                 </MainContainer>
                 <Footer />
             </BrowserRouter>
