@@ -47,62 +47,80 @@ function App() {
                 <ScrollToTop />
                 <Header />
                 <MainContainer>
-                    <Route exact path='/' component={Home}></Route>
-                    <Route exact path='/home' component={Home} />
-                    <Route exact path='/boat-sharing' component={BoatSharing} />
-                    <Route
-                        exact
-                        path='/genossenschaft'
-                        component={Genossenschaft}
-                    />
-                    <Route
-                        exact
-                        path='/login'
-                        // component={authComponent(Login, true)}
-                        component={Login}
-                    />
-                    <Route exact path='/bootsliste' component={BoatsListPage} />
-                    <Route exact path='/boot/:id' component={BoatDetailPage} />
-                    <Route
-                        exact
-                        path='/registrierung'
-                        component={authComponent(RegistrationPage, true)}
-                    />
-                    <Route
-                        exact
-                        path='/verifikation'
-                        component={authComponent(VerificationPage, true)}
-                    />
-                    <Route exact path='/intro' component={Intro} />
-                    <Route
-                        exact
-                        path='/profil'
-                        component={authComponent(MyProfilePage)}
-                    />
-                    <Route exact path='/events' component={EventPage} />
-                    <Route
-                        exact
-                        path='/event-bearbeiten/:id'
-                        component={memberHOC(EditEventPage)}
-                    />
-                    <Route
-                        exact
-                        path='/event-erstellen'
-                        component={memberHOC(CreateEventPage)}
-                    />
-                    <Route
-                        exact
-                        path='/mitglieder'
-                        component={staffOrCrewHOC(UserSearchPage)}
-                    />
-                    <Route
-                        exact
-                        path='/mitglied/:id'
-                        component={staffOrCrewHOC(UserDetailPage)}
-                    />
+                    <Switch>
+                        <Route exact path='/' component={Home}></Route>
+                        <Route exact path='/home' component={Home} />
+                        <Route
+                            exact
+                            path='/boat-sharing'
+                            component={BoatSharing}
+                        />
+                        <Route
+                            exact
+                            path='/genossenschaft'
+                            component={Genossenschaft}
+                        />
+                        <Route
+                            exact
+                            path='/login'
+                            // component={authComponent(Login, true)}
+                            component={Login}
+                        />
+                        <Route
+                            exact
+                            path='/bootsliste'
+                            component={BoatsListPage}
+                        />
+                        <Route
+                            exact
+                            path='/boot/:id'
+                            component={BoatDetailPage}
+                        />
+                        <Route
+                            exact
+                            path='/registrierung'
+                            component={authComponent(RegistrationPage, true)}
+                        />
+                        <Route
+                            exact
+                            path='/verifikation'
+                            component={authComponent(VerificationPage, true)}
+                        />
+                        <Route exact path='/intro' component={Intro} />
+                        <Route
+                            exact
+                            path='/profil'
+                            component={authComponent(MyProfilePage)}
+                        />
+                        <Route exact path='/events' component={EventPage} />
+                        <Route
+                            exact
+                            path='/event-bearbeiten/:id'
+                            component={memberHOC(EditEventPage)}
+                        />
+                        <Route
+                            exact
+                            path='/event-erstellen'
+                            component={memberHOC(CreateEventPage)}
+                        />
+                        <Route
+                            exact
+                            path='/mitglieder'
+                            component={staffOrCrewHOC(UserSearchPage)}
+                        />
+                        <Route
+                            exact
+                            path='/mitglied/:id'
+                            component={staffOrCrewHOC(UserDetailPage)}
+                        />
 
-                    <Route exact path='/components' component={Components} />
-                    <Route exact path='/404' component={NotFoundPage} />
+                        <Route
+                            exact
+                            path='/components'
+                            component={Components}
+                        />
+                        <Route path="*" component={NotFoundPage} />
+                    </Switch>
                 </MainContainer>
                 <Footer />
             </BrowserRouter>
@@ -111,10 +129,3 @@ function App() {
 }
 
 export default App;
-
-/*
-<Route path=''>
-    <Redirect to='/404' />
-</Route>
-
-*/
