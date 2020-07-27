@@ -26,13 +26,8 @@ export const currentUser = (state = initialState, action) => {
                 }
 
         case USER_LOGOUT:
-            return {
-                ...state,
-                authorized: false,
-                accessToken: '',
-                refreshToken: '',
-                // userInfo: {}
-                }
+            return initialState
+
 
         case VERIFICATION_CODE_REQUESTED:
             return {
