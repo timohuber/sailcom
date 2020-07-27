@@ -62,7 +62,7 @@ function BoatDetailContainer(props) {
             <h1>{boat.title}</h1>
             <p className='subtitle'>{boat.mooring.lake.title}, {boat.mooring.address}</p>
 
-            <ButtonsContainer user={props.currentUser} instructed={instructed} triggerBookingModal={triggerBookingModal}/>
+            <ButtonsContainer boat_id={boat.id} user={props.currentUser} instructed={instructed} triggerBookingModal={triggerBookingModal}/>
 
             <PricesTable boat={boat} />
             <div className='detail-description'>

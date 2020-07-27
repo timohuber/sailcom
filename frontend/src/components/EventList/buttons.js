@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getCurrentUrl } from '../../lib/helpers/getUrlParams';
 
 export const DisplayInformationButton = (props) => {
     return (
@@ -29,9 +28,8 @@ export const ParticipateButton = (props) => {
 };
 
 export const NotLoggedInButton = () => {
-    const url = getCurrentUrl();
     return (
-        <NavLink to={`/login/?=${url}`} className='btn disabled'>
+        <NavLink to={`/login/?events`} className='btn disabled'>
             Einloggen
         </NavLink>
     );
