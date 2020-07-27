@@ -28,6 +28,6 @@ def calculate_duration(serializer):
         'duration': duration
     }
 
+
 def calculate_price():
     return 30
-

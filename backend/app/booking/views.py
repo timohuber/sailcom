@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework.generics import ListCreateAPIView, ListAPIView, DestroyAPIView
 
 from datetime import timedelta, datetime
-
+from django.utils import timezone
 from .models import Booking
 from .serializers import BookingSerializer, CreateBookingSerializer
 from ..boat.models import Boat
@@ -147,4 +147,8 @@ class MyBookingView(ListAPIView):
     permission_classes = [IsLoggedIn]
 
     def get_queryset(self):
-        return Booking.objects.filter(Q(user=self.request.user))
+        data = Booking.objects.filter(Q(user=self.request.user))
+        if self.request.query_params.get('mitsegeln') is not None and self.request.query_params.get('mitsegeln') \
+                == 'true':
+            data = data.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1), event__isnull=True)
+        return data
