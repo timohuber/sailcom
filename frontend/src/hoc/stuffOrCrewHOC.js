@@ -10,7 +10,7 @@ const staffOrCrewHOC = (WrappedComponent) => (props) => {
     useEffect(() => {
         if(!currentUser.accessToken) {
             push('/')
-        } else if(!currentUser.userData.is_staff) {
+        } else if(!currentUser.userData.is_staff && !currentUser.userData.is_crew) {
             push('/')
         }
     }, [currentUser])
