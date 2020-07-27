@@ -3,7 +3,8 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import { NavLink, Link } from 'react-router-dom';
 import mapStyle from './map-styles.js';
 import BoatIcon from '../../assets/sailboat-map.svg';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
 
 export class MapContainer extends React.Component {
     constructor(props) {
@@ -15,6 +16,13 @@ export class MapContainer extends React.Component {
             selectedPlace: {},
         };
     }
+
+    // componentDidUpdate(props) {
+    //     // Typical usage (don't forget to compare props):
+    //     if (this.state.boatOverview !== props.boatOverview) {
+            
+    //     }
+    // }
 
     onMarkerClick = (props, marker, e) => {
         this.setState({
@@ -47,13 +55,14 @@ export class MapContainer extends React.Component {
                     lng: 8.224210049999993,
                 }}
             >
-                {this.state.boatOverview.map((boat, i) => {
+                {this.props.boatOverview.map((boat, i) => {
                     const latitude = boat.mooring.latitude;
                     const longitude = boat.mooring.longitude;
+                    console.log('boats', boat)
                     return (
                         <Marker
                             onClick={this.onMarkerClick}
-                            key={i}
+                            key={boat.id}
                             title={boat.description}
                             name={boat.title}
                             pier={boat.mooring.address}
@@ -78,7 +87,11 @@ export class MapContainer extends React.Component {
                         <h3>{this.state.selectedPlace.name}</h3>
                         <p>{this.state.selectedPlace.pier}</p>
                         <BrowserRouter>
-                            <Link to={`/boot/${this.state.selectedPlace.boat_id}`}>Anschauen</Link>
+                            <Link
+                                to={`/boot/${this.state.selectedPlace.boat_id}`}
+                            >
+                                Anschauen
+                            </Link>
                         </BrowserRouter>
                         {/* to={`${siteUrl}${this.state.selectedPlace.boat_id}`} */}
                         {/* //https://stackoverflow.com/questions/42183312/render-react-router-link-inside-google-infowindow */}
