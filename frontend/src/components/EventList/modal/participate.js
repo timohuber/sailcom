@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import EventInformationTable from "../eventInformationTable";
 import {connect} from "react-redux";
 import Axios from "../../../axios";
+import ParticipationSuccess from './success'
 
 function EventParticipationModal(props) {
+    const [success, setSuccess] = useState(false)
     const event = props.event
 
     const toggleEventParticipation = (e) => {
@@ -12,6 +14,8 @@ function EventParticipationModal(props) {
         const sendRequest = async () => {
             try {
                 const response = await Axios.post(`event/register/${event.id}/`);
+                props.updateState(event.id)
+                setSuccess(true)
             } catch (error) {
                 console.log('an error occurred', error.response.data)
             }
@@ -23,12 +27,18 @@ function EventParticipationModal(props) {
 
     return (
         <div className='event-participation-modal'>
-            <h1>Anmeldung</h1>
-            <EventInformationTable event={event}/>
-             <div className='modal-buttons-wrapper'>
-                    <button className='btn secondary' onClick={ e => props.closeModal(e) }>Abbrechen</button>
-                    <button className={`btn ${signedUp ? 'disabled' : 'primary'}`} onClick={e => toggleEventParticipation(e)}>{signedUp ? 'Abmelden' : 'Anmelden'}</button>
-            </div>
+            {
+                success
+                ? <ParticipationSuccess />
+                : <>
+                    <h1>Anmeldung</h1>
+                    <EventInformationTable event={event}/>
+                     <div className='modal-buttons-wrapper'>
+                            <button className='btn secondary' onClick={ e => props.closeModal(e) }>Abbrechen</button>
+                            <button className={`btn ${signedUp ? 'disabled' : 'primary'}`} onClick={e => toggleEventParticipation(e)}>{signedUp ? 'Abmelden' : 'Anmelden'}</button>
+                    </div>
+                </>
+                }
         </div>
     )
 }
@@ -43,27 +53,3 @@ const ConnectedEventParticipationModal = connection(EventParticipationModal);
 
 export default ConnectedEventParticipationModal;
 
-
-
-/*
-
-const config = {
-            method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            })
-        }
-        const response = fetch(baseUrl + `event/register/${event.id}/`, config)
-        .then(res => {
-
-            return res.json()
-        })
-        .then(data => {
-            return data;
-        })
-        .catch(error => {
-                return response
-        })
-
- */
