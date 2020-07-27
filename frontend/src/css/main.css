@@ -1103,10 +1103,13 @@ form label.required:after {
   .heroContainer h1 {
     color: #fff;
     margin: 0;
-    font-family: fantasy;
-    font-size: 32px; }
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px; }
   .heroContainer h3 {
-    color: #fff; }
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px; }
   .heroContainer button.hero-button {
     background-color: #EE7219;
     border: 1px solid; }

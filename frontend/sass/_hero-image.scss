@@ -22,13 +22,17 @@
     h1 {
         color: #fff;
         margin: 0;
-        font-family: fantasy;
+        font-family: 'Oswald', sans-serif;
         font-size: 32px;
+        letter-spacing: 2px;
     }
 
     h3 {
         color: #fff;
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 2px;
     }
+
     button.hero-button {
         background-color: $accent-color;
         border: 1px solid;
