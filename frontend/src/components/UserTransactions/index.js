@@ -29,14 +29,14 @@ function UserTransactions(props) {
 
     return (
         <>
-            {loading
-            ? <Loading />
-            : <TransactionsContainer transactions={data}/>
+            {
+                loading
+                ? <Loading />
+                : <TransactionsContainer transactions={data}/>
             }
         </>
     );
 };
-
 
 const mapStateToProps = (state) => {
     return {

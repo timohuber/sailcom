@@ -151,3 +151,7 @@
 #mobile-navigation.open {
   transform: translateY(0px);
 }
+
+.logout i {
+  margin-right: $gap-width-small;
+}

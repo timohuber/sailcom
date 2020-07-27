@@ -38,7 +38,7 @@ function EventForm(props) {
         })
     };
 
-        const onChangeBookingHandler = (e) => {
+    const onChangeBookingHandler = (e) => {
         const target = e.currentTarget
         const key = target.name;
         console.log()

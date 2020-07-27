@@ -427,6 +427,9 @@ form label.required:after {
 #mobile-navigation.open {
   transform: translateY(0px); }
 
+.logout i {
+  margin-right: 15px; }
+
 .main-wrapper {
   max-width: 1200px;
   margin: auto;
@@ -906,10 +909,12 @@ form label.required:after {
 
 .transaction-list-element {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 3fr 3fr 3fr 2fr;
   border-bottom: 1px solid #E4E4E4; }
   .transaction-list-element > div {
     padding: 8px; }
+  .transaction-list-element .status {
+    text-align: right; }
 
 .transaction-list-element-wrapper > .transaction-list-element:nth-child(even) {
   background-color: #e8e8e8; }

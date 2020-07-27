@@ -65,7 +65,7 @@ export const userLogoutAction = () => (dispatch, getState) => {
 
 export const getUserBookingsAction = () => async (dispatch) => {
     try {
-        const response = await Axios.get('booking/myBookings/');
+        const response = await Axios.get('booking/myBookings/?mitsegeln=true');
         dispatch(getUserBookings(response.data.results));
     } catch (error) {
         if (error) {
@@ -77,7 +77,6 @@ export const getUserBookingsAction = () => async (dispatch) => {
 export const deleteUserBookingsAction = (booking_id) => async (dispatch) => {
     try {
         const response = await Axios.delete(`booking/${booking_id}/`);
-        console.log(response)
         dispatch(deleteUserBooking(booking_id))
     } catch (error) {
         if (error) {
