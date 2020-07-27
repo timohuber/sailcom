@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from datetime import timedelta
@@ -27,7 +27,7 @@ class Booking(models.Model):
     weekend_days = models.IntegerField(blank=True, null=True)
     user = models.ForeignKey(to=User, related_name='bookings', on_delete=models.SET_NULL, null=True)
     boat = models.ForeignKey(to=Boat, related_name='bookings', on_delete=models.SET_NULL, null=True)
-    event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.SET_NULL,
+    event = models.OneToOneField(to=Event, related_name='bookings', on_delete=models.CASCADE,
                                  blank=True, null=True)
     transaction = models.OneToOneField(to=Transaction, related_name='booking', on_delete=models.CASCADE,
                                        blank=True, null=True)
@@ -97,3 +97,17 @@ def create_booking(sender, instance, created, **kwargs):
     else:
         searchBooking[0].event = instance
         searchBooking[0].save()
+
+
+@receiver(post_delete, sender=Booking)
+def delete_transaction_booking(sender, instance, *args, **kwargs):
+    if instance.transaction:
+        instance.transaction.delete()
+
+
+@receiver(post_delete, sender=Booking)
+def delete_transaction_booking(sender, instance, *args, **kwargs):
+    if instance.transaction:
+        instance.transaction.delete()
+    if len(Event.objects.filter(id=instance.event_id)) > 0:
+        Event.objects.get(id=instance.event_id).delete()

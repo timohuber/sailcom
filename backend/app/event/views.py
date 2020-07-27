@@ -3,7 +3,8 @@ from datetime import timedelta
 from django.db.models import Q
 from django.http import HttpResponse
 from django.utils import timezone
-from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, ListCreateAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import AllowAny
 
 from .models import Event
 from .serializers import EventSerializer, RetrieveEventSerializer
@@ -12,7 +13,7 @@ from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
 from ..booking.models import Booking
 from ..mail.models import Mail
-from ..permissions import IsLoggedIn, IsMember, MemberPostLoggedInFetch
+from ..permissions import IsLoggedIn, IsMember, MemberPostLoggedInFetch, IsStaffOrInstructor
 from ..transaction.models import Transaction
 
 
@@ -89,9 +90,15 @@ class ListEventsView(ListCreateAPIView):
         return HttpResponse('Neue Veranstaltung wurde erstellt', status=200)
 
 
-class ListEventView(RetrieveUpdateAPIView):
+class ListEventView(RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'DELETE':
+            return (IsStaffOrInstructor(),)
+        else:
+            return (AllowAny(),)
 
 
 class RegisterEventView(CreateAPIView):
