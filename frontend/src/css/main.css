@@ -1089,3 +1089,12 @@ form label.required:after {
   height: 50vh;
   position: relative !important;
   margin-bottom: 30px; }
+
+.filtered-map {
+  margin-top: 30px;
+  width: 100%;
+  height: 70vh;
+  position: relative !important; }
+
+.filtered-wrapper {
+  padding: 15px 15px 0 15px; }

@@ -30,6 +30,7 @@ import Genossenschaft from './pages/genossenschaft';
 import NotFoundPage from './pages/404';
 import UserSearchPage from './pages/userlistpage';
 import UserDetailPage from './pages/userdetailpage';
+import LocationContainer from './pages/standorte';
 
 // remove
 import Components from './pages/components';
@@ -99,6 +100,9 @@ function App() {
                         exact
                         path='/mitglied/:id'
                         component={staffOrCrewHOC(UserDetailPage)}
+                    />
+                    <Route
+                        exact path='/standorte' component={LocationContainer}
                     />
 
                     <Route exact path='/components' component={Components} />
