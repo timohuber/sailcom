@@ -8,6 +8,7 @@ User = get_user_model()
 
 class MeSerializer(serializers.ModelSerializer):
     bookings = BookingSerializer(read_only=True, many=True)
+    #membership_type = serializers.SlugRelatedField(read_only=True, slug_field='title')
 
     class Meta:
         model = User
