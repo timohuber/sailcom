@@ -6,6 +6,7 @@ import ButtonsContainer from './buttonsContainer';
 import BoatDateTimePicker from "./datepicker";
 import BoatDocuments from './documents'
 import BoatCarousel from "./carousel";
+import BoatTeamContainer from './boatTeamContainer';
 import BoatTechnicalData from './technicalData'
 import BookingForm from '../BookingForm'
 import {connect} from "react-redux";
@@ -77,6 +78,8 @@ function BoatDetailContainer(props) {
             <BoatTechnicalData boat={boat}/>
 
             <BoatCarousel images={boat.images}/>
+
+            <BoatTeamContainer members={boat.crew.members}/>
 
             <BoatCalendar boat={boat} boatID={boat.id}/>
 

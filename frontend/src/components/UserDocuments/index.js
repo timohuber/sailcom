@@ -6,7 +6,6 @@ import LicenceDefault from '../../assets/pdf.svg';
 import { fetchUserData } from '../../store/actions/loginActions';
 import Loading from '../../components/GenericLoading';
 import { updateUserAction } from '../../store/actions/userActions';
-import {NavLink} from "react-router-dom";
 
 export default function UserDocumentsForm(props) {
     const initialState = {
