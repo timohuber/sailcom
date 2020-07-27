@@ -49,11 +49,6 @@ function BoatDetailContainer(props) {
      if (props.currentUser.authorized) {
         instructed = props.currentUser.userData.instructed_for_models.includes(props.boat.model)
     }
-     const showDates = e => {
-         e.preventDefault()
-         console.log('startDateTime', startDateTime)
-         console.log('formatted', dateToDisplayString(startDateTime))
-     }
 
     return (
         <>

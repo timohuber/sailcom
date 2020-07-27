@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import DatePicker from "react-datepicker";
 import {displayTimeDateFormat, displayTimeFormat} from "../../../store/constants"
 import "react-datepicker/dist/react-datepicker.css";
-import {Calendar} from "react-big-calendar";
 
 export default function BoatDateTimePicker(props) {
     const today = new Date()

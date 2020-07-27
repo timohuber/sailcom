@@ -38,11 +38,15 @@
 
 .transaction-list-element {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 3fr 3fr 3fr 2fr;
     border-bottom: 1px solid $border-color;
 
     & > div {
         padding: 8px;
+    }
+
+    .status {
+        text-align: right;
     }
 }
 

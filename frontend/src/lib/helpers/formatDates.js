@@ -16,6 +16,12 @@ export function dateToDisplayString(date) {
         .format('DD.MM.YYYY HH:mm');
 }
 
+export function dateToDisplayStringWithoutTime(date) {
+    return moment(date)
+        .tz('Europe/Zurich')
+        .format('DD.MM.YYYY');
+}
+
 export function dateFromBackendToDisplayString(date) {
     const local_date = moment(date).add(-2, 'hours')
     return moment(local_date)
@@ -25,4 +31,8 @@ export function dateFromBackendToDisplayString(date) {
 
 export function dateShowInTable(date) {
     return Date.parse(date);
+}
+
+export function dateShowInDatepicker(date) {
+    return Date.parse(moment(date).add(-2, 'hours'));
 }
