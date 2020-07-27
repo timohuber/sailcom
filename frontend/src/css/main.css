@@ -681,6 +681,20 @@ form label.required:after {
 .carousel-status, thumbs-wrapper {
   display: none; }
 
+/* Team */
+.boat-team-container {
+  margin-bottom: 30px; }
+  .boat-team-container .boat-team-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px; }
+  .boat-team-container .boat-team-member {
+    display: flex;
+    flex-direction: row; }
+    .boat-team-container .boat-team-member .avatar {
+      width: 50px;
+      margin-right: 15px; }
+
 .event-list-element {
   margin-bottom: 30px; }
   .event-list-element .event-button-container .btn {
@@ -854,6 +868,18 @@ form label.required:after {
   margin-right: 12px;
   font-size: 1rem; }
 
+/* avatr */
+.avatar {
+  border-radius: 50%;
+  background-size: cover; }
+
+.avatar:before {
+  content: '';
+  padding-top: 100%;
+  display: block;
+  width: 100%;
+  position: relative; }
+
 .user-documents-img-btn-wrapper {
   width: 100%;
   display: flex;
@@ -866,14 +892,6 @@ form label.required:after {
     width: 30%;
     margin-right: 30px;
     flex-shrink: 0; }
-    .user-documents-img-btn-wrapper .user-document-list-image.avatar {
-      border-radius: 50%; }
-    .user-documents-img-btn-wrapper .user-document-list-image:before {
-      content: '';
-      padding-top: 100%;
-      display: block;
-      width: 100%;
-      position: relative; }
 
 /* Transaction */
 .transaction-list-element.header {

@@ -228,3 +228,24 @@
 .carousel-status, thumbs-wrapper {
   display: none;
 }
+
+/* Team */
+.boat-team-container {
+  margin-bottom: $gap-width;
+
+  .boat-team-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: $gap-width-small;
+  }
+
+  .boat-team-member {
+    display: flex;
+    flex-direction: row;
+
+    .avatar {
+      width: 50px;
+      margin-right: $gap-width-small;
+    }
+  }
+}

@@ -1,3 +1,17 @@
+/* avatr */
+.avatar {
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.avatar:before {
+    content: '';
+    padding-top: 100%;
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
 .user-documents-img-btn-wrapper {
     width: 100%;
     display: flex;
@@ -11,18 +25,6 @@
         width: 30%;
         margin-right: $gap-width;
         flex-shrink: 0;
-
-        &.avatar {
-            border-radius: 50%;
-        }
-
-        &:before {
-            content: '';
-            padding-top: 100%;
-            display: block;
-            width: 100%;
-            position: relative;
-        }
     }
 }
 
