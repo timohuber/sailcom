@@ -54,7 +54,6 @@ function MobileNavigation(props) {
                         props.authorized
                         ? <>
                                 <li><NavLink to='/profil' >Profil</NavLink></li>
-                                <li><button className='btn secondary' onClick={ e => toggleUserLogout(e) }>Logout</button></li>
                             </>
                         :   <>
                                 <li><NavLink to='/login' >Login</NavLink></li>
@@ -67,6 +66,11 @@ function MobileNavigation(props) {
                             <li>
                                 <NavLink to='/mitglieder'>Mitglieder</NavLink>
                             </li>
+                        : null
+                    }
+                    {
+                        props.authorized
+                        ?  <li><button className='btn secondary' onClick={ e => toggleUserLogout(e) }>Logout</button></li>
                         : null
                     }
 
