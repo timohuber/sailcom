@@ -12,7 +12,6 @@ function EventParticipationModal(props) {
         const sendRequest = async () => {
             try {
                 const response = await Axios.post(`event/register/${event.id}/`);
-                props.updateState(event.id)
             } catch (error) {
                 console.log('an error occurred', error.response.data)
             }

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {connect, useDispatch} from "react-redux";
 import Loading from '../GenericLoading';
 import {getUserBookingsAction} from "../../store/actions/userActions";
-import {dateToDisplayString} from "../../lib/helpers/formatDates"
+import {dateFromBackendToDisplayString} from "../../lib/helpers/formatDates"
 
 function BookingsSelect(props) {
     const [loading, setLoading] = useState(true)
@@ -44,7 +44,7 @@ function BookingsSelect(props) {
                                         data-from={booking.from_date_time}
                                         data-until={booking.until_date_time}
                                     >
-                                        {dateToDisplayString(booking.from_date_time)} - {booking.boat.title}
+                                        {dateFromBackendToDisplayString(booking.from_date_time)} - {booking.boat.title}
                                     </option>
                                 );
                             })

@@ -4,7 +4,7 @@ export default function ExistingMembership(props) {
     const user = props.user
     return (
         <>
-            <h1>Ihre Mitgliedschaft</h1>
+            <h2>Ihre Mitgliedschaft</h2>
             <p>Typ: {user.userData.membership_type}</p>
         </>
     );

@@ -31,9 +31,9 @@ function UserMembership(props) {
             loading
             ? <Loading />
             :
-                <div className='main-wrapper'>
+                <>
                     {membershipComponent}
-                </div>
+                </>
             }
          </>
     );

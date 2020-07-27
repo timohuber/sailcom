@@ -8,19 +8,10 @@ import backgroundSVG from '../../assets/logo/logo-sailcom.svg'
 function MobileNavigation(props) {
     const dispatch = useDispatch()
 
-    // add onclick to all anchors
-    useEffect(() => {
-        const anchors = document.querySelectorAll("#mobile-navigation a")
-        for (const anchor of anchors) {
-            anchor.addEventListener('click', function() {
-                toggleMobileNavigation()
-            })
-        }
-    }, []);
-
     const toggleUserLogout = e => {
         e.preventDefault()
-       dispatch(userLogoutAction())
+        dispatch(userLogoutAction())
+        toggleMobileNavigation()
     }
 
     const backgroundStyle = {
@@ -31,46 +22,46 @@ function MobileNavigation(props) {
             <nav>
                 <ul className='level-1'>
                     <li>
-                        <NavLink to='/home'>SailCom</NavLink>
+                        <NavLink to='/home' onClick={ e => toggleMobileNavigation()}>SailCom</NavLink>
                         <ul className='level-2'>
                             <li>
-                                <NavLink to='/boat-sharing'>Boat Sharing</NavLink>
+                                <NavLink to='/boat-sharing' onClick={ e => toggleMobileNavigation()}>Boat Sharing</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/genossenschaft'>Genossenschaft</NavLink>
+                                <NavLink to='/genossenschaft' onClick={ e => toggleMobileNavigation()}>Genossenschaft</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/events'>Community</NavLink>
+                                <NavLink to='/events' onClick={ e => toggleMobileNavigation()}>Community</NavLink>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <NavLink to='/bootsliste'>Unsere Boote</NavLink>
+                        <NavLink to='/bootsliste' onClick={ e => toggleMobileNavigation()}>Unsere Boote</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/events'>Veranstaltungen</NavLink>
+                        <NavLink to='/events' onClick={ e => toggleMobileNavigation()}>Veranstaltungen</NavLink>
                     </li>
                     {
                         props.authorized
                         ? <>
-                                <li><NavLink to='/profil' >Profil</NavLink></li>
+                                <li><NavLink to='/profil' onClick={ e => toggleMobileNavigation()}>Profil</NavLink></li>
                             </>
                         :   <>
-                                <li><NavLink to='/login' >Login</NavLink></li>
-                                <li><NavLink to='/registrierung' >Beitreten</NavLink></li>
+                                <li><NavLink to='/login' onClick={ e => toggleMobileNavigation()}>Login</NavLink></li>
+                                <li><NavLink to='/registrierung' onClick={ e => toggleMobileNavigation()}>Beitreten</NavLink></li>
                             </>
                     }
                     {
-                        props.is_crew || props.is_staff
+                        props.is_crew || props.currentUser.userData.is_staff
                         ?
                             <li>
-                                <NavLink to='/mitglieder'>Mitglieder</NavLink>
+                                <NavLink to='/mitglieder' onClick={ e => toggleMobileNavigation()}>Mitglieder</NavLink>
                             </li>
                         : null
                     }
                     {
                         props.authorized
-                        ?  <li><button className='btn secondary logout' onClick={ e => toggleUserLogout(e) }>
+                        ?  <li><button className='btn secondary logout' onClick={ e => toggleUserLogout(e) } >
                                 <i className="fas fa-sign-out-alt"></i>
                                  Logout
                             </button></li>
@@ -85,7 +76,9 @@ function MobileNavigation(props) {
 
 const mapStateToProps = (state) => {
     return {
-        is_crew: state.events.is_crew
+        authorized: state.currentUser.authorized,
+        is_crew: state.events.is_crew,
+        currentUser: state.currentUser
     }
 }
 const connection = connect(mapStateToProps);
