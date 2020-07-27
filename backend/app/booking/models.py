@@ -89,11 +89,6 @@ def create_booking(sender, instance, created, **kwargs):
                     weekday_count += 1
                 dt_current = dt_current + timedelta(1)  # add 1 day to current day
 
-        if from_date_time.isoweekday() < 6:
-            weekday_hours = float(duration.seconds / 60 / 60)
-        else:
-            weekend_hours = float(duration.seconds / 60 / 60)
-
         Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
                                event=instance, user=instance.instructor,
                                duration=instance.until_date_time - instance.from_date_time, boat=instance.boat,
