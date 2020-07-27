@@ -132,7 +132,6 @@ class RegisterEventView(CreateAPIView):
         else:
             Transaction.objects.get(user=currentUser, event=searchEvent).delete()
             searchEvent.participants.remove(currentUser)
-            Transaction.objects.create(price=searchEvent.price, user=currentUser, event=searchEvent)
             email = Mail(recipient=searchEvent.instructor.email,
                          subject=f'Abmeldung für Veranstaltung {searchEvent.title}',
                          content=f'{currentUser.first_name} {currentUser.last_name} hat sich für {searchEvent.title}'

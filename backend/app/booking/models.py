@@ -103,11 +103,5 @@ def create_booking(sender, instance, created, **kwargs):
 def delete_transaction_booking(sender, instance, *args, **kwargs):
     if instance.transaction:
         instance.transaction.delete()
-
-
-@receiver(post_delete, sender=Booking)
-def delete_transaction_booking(sender, instance, *args, **kwargs):
-    if instance.transaction:
-        instance.transaction.delete()
     if len(Event.objects.filter(id=instance.event_id)) > 0:
         Event.objects.get(id=instance.event_id).delete()
