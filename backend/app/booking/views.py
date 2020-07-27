@@ -11,7 +11,7 @@ from ..permissions import IsLoggedIn, IsStaffOrCreator, MemberPostLoggedInFetch
 
 
 class ListCreateBookingsView(ListCreateAPIView):
-    queryset = Booking.objects.all()
+    queryset = Booking.objects.all().order_by('from_date_time')
     permission_classes = [MemberPostLoggedInFetch]
 
     def get_serializer_class(self):
@@ -151,4 +151,4 @@ class MyBookingView(ListAPIView):
         if self.request.query_params.get('mitsegeln') is not None and self.request.query_params.get('mitsegeln') \
                 == 'true':
             data = data.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1), event__isnull=True)
-        return data
+        return data.order_by('from_date_time')
