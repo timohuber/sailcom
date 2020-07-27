@@ -18,7 +18,7 @@ const Header = (props) => {
 
     return (
         <>
-        <MobileNavigation authorized={props.authorized} whereCrew={props.whereCrew}/>
+        <MobileNavigation whereCrew={props.whereCrew}/>
         <header id='header' className="site-header">
             <NavLink to="/">
                 <img className="site-logo" src={logo} alt="logo" />
@@ -31,7 +31,6 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        authorized: state.currentUser.authorized,
         whereCrew: state.events.whereCrew
     }
 }

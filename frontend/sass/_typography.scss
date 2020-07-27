@@ -77,7 +77,11 @@ h4 {
 
 @media (max-width: $break-point-md) {
     h1 {
-        font-size: $large-font-size;
+        font-size: rem(22px);
+    }
+
+    h2 {
+        font-size: rem(20px);
     }
 }
 

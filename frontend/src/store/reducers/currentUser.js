@@ -8,6 +8,9 @@ const initialState = {
     registration: {
         verificationCodeRequested: false,
         verificationConfirmed: false
+    },
+    userData: {
+        is_staff: false,
     }
 };
 

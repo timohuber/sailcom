@@ -60,8 +60,10 @@ button {
 }
 
 .btn.disabled {
-    background-color: $disabled-color;
-    color: #fff;
+    background-color: transparent;
+    color: $brand-color;
+    font-weight: bold;
+    border: 2px solid $brand-color;
     padding: 10px 20px;
     text-transform: uppercase;
     height: 40px;

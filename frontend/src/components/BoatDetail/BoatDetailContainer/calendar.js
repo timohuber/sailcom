@@ -45,11 +45,13 @@ function BoatCalendar(props) {
         const bookings = props.boatlist[props.boatID].bookings
         const events = []
         bookings.forEach(booking => {
+            const start = moment(booking.from_date_time).add(-2, 'hours')
+            const end = moment(booking.until_date_time).add(-2, 'hours')
             events.push({
                 currentUser: props.currentUser,
                 booking: booking,
-                start: new Date(moment(booking.from_date_time).add(-2, 'hours')),
-                end: new Date(moment(booking.until_date_time).add(-2, 'hours')),
+                start: new Date(start),
+                end: new Date(end),
             })
         })
 

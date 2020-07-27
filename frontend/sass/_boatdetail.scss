@@ -242,6 +242,7 @@
   .boat-team-member {
     display: flex;
     flex-direction: row;
+    margin-bottom: $gap-width-small;
 
     .avatar {
       width: 50px;

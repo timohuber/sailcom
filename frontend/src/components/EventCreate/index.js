@@ -10,6 +10,7 @@ import BookingsSelect from "./bookings";
 import EventCreateSuccess from "./success";
 import {dateToISOString} from "../../lib/helpers/formatDates";
 import GenericTextInput from "../GenericForm/textInput";
+import moment from "moment";
 
 function EventForm(props) {
     const dispatch = useDispatch();
@@ -34,7 +35,8 @@ function EventForm(props) {
         });
         setDisplayDates({
             ...displayDates,
-            [key]: date,
+            [key]: moment(date).add(-2, 'hours')
+,
         })
     };
 
@@ -49,6 +51,12 @@ function EventForm(props) {
             from_date_time: new Date(target.options[target.selectedIndex].dataset.from),
             until_date_time: new Date(target.options[target.selectedIndex].dataset.until)
         });
+
+        setDisplayDates({
+            ...displayDates,
+            from_date_time: new Date(moment(target.options[target.selectedIndex].dataset.from).add(-2, 'hours')),
+            until_date_time: new Date(moment(target.options[target.selectedIndex].dataset.until).add(-2, 'hours')),
+        })
     };
 
     const onChangeTypeHandler = e => {
@@ -102,6 +110,7 @@ function EventForm(props) {
         datePickers.forEach( input => input.setAttribute("readOnly", true))
      })
 
+    console.log(displayDates)
     return (
         <div className='main-wrapper'>
             {
@@ -138,7 +147,7 @@ function EventForm(props) {
 
                         <div id='event-datepicker'>
                             <DatePicker
-                                selected={displayDates.from_date_time ? displayDates.from_date_time : null }
+                                selected={displayDates.from_date_time ? new Date(displayDates.from_date_time) : null }
                                 minDate={today}
                                 onChange={(date) => onChangeDateHandler(date, 'from_date_time') }
                                 disabled={value.event_type == 2}
@@ -150,7 +159,7 @@ function EventForm(props) {
                                 name='from_date_time'
                             />
                             <DatePicker
-                                selected={displayDates.until_date_time ? displayDates.until_date_time : null }
+                                selected={displayDates.until_date_time ? new Date(displayDates.until_date_time) : null }
                                 minDate={displayDates.from_date_time}
                                 onChange={(date) => onChangeDateHandler(date, 'until_date_time')}
                                 disabled={value.event_type == 2}

@@ -15,16 +15,20 @@
 .user-documents-img-btn-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin-bottom: $gap-width;
 
     .user-document-list-image {
         background-size: cover;
-        width: 30%;
-        margin-right: $gap-width;
+        width: 120px;
+        margin-bottom: $gap-width-small;
         flex-shrink: 0;
+    }
+
+    .document {
+        margin-bottom: $gap-width-small;
     }
 }
 
