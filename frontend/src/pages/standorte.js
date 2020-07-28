@@ -83,12 +83,12 @@ export default function LocationContainer(props) {
                 <Loading />
             ) : (
                 <>
-                    <div className='filtered-wrapper'>
+                    {/* <div className='filtered-wrapper'>
                         <BoatListFilter
                             submitFilterHandler={submitFilterHandler}
                             resetFilter={resetFilter}
                         />
-                    </div>
+                    </div> */}
 
                     <div className='filtered-map'>
                         <Maps boatOverview={data} />

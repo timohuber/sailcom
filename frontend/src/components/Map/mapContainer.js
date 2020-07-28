@@ -5,10 +5,8 @@ import mapStyle from './map-styles.js';
 import BoatIcon from '../../assets/sailboat-map.svg';
 import { BrowserRouter } from 'react-router-dom';
 
-
 export class MapContainer extends React.Component {
     constructor(props) {
-        console.log(props.boatOverview)
         super(props);
         this.state = {
             // boatOverview: props.boatOverview,
@@ -17,7 +15,6 @@ export class MapContainer extends React.Component {
             selectedPlace: {},
         };
     }
-    
 
     onMarkerClick = (props, marker, e) => {
         this.setState({
@@ -37,8 +34,6 @@ export class MapContainer extends React.Component {
     };
 
     render() {
-        console.log('rerendr map', this.props.boatOverview);
-
         return (
             <Map
                 google={this.props.google}
