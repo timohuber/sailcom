@@ -3,18 +3,21 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import { NavLink, Link } from 'react-router-dom';
 import mapStyle from './map-styles.js';
 import BoatIcon from '../../assets/sailboat-map.svg';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
 
 export class MapContainer extends React.Component {
     constructor(props) {
+        console.log(props.boatOverview)
         super(props);
         this.state = {
-            boatOverview: props.boatOverview,
+            // boatOverview: props.boatOverview,
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
         };
     }
+    
 
     onMarkerClick = (props, marker, e) => {
         this.setState({
@@ -34,6 +37,8 @@ export class MapContainer extends React.Component {
     };
 
     render() {
+        console.log('rerendr map', this.props.boatOverview);
+
         return (
             <Map
                 google={this.props.google}
@@ -41,23 +46,23 @@ export class MapContainer extends React.Component {
                 style={{ width: '100%', height: '100%' }}
                 styles={mapStyle.mapStyle}
                 className={'map'}
-                zoom={8}
+                zoom={7}
                 initialCenter={{
                     lat: 46.822398674887474,
                     lng: 8.224210049999993,
                 }}
             >
-                {this.state.boatOverview.map((boat, i) => {
+                {this.props.boatOverview.map((boat) => {
                     const latitude = boat.mooring.latitude;
                     const longitude = boat.mooring.longitude;
                     return (
                         <Marker
                             onClick={this.onMarkerClick}
-                            key={i}
+                            key={boat.id}
                             title={boat.description}
                             name={boat.title}
                             pier={boat.mooring.address}
-                            boat_id={1}
+                            boat_id={boat.id}
                             position={{
                                 lat: latitude,
                                 lng: longitude,
@@ -78,10 +83,12 @@ export class MapContainer extends React.Component {
                         <h3>{this.state.selectedPlace.name}</h3>
                         <p>{this.state.selectedPlace.pier}</p>
                         <BrowserRouter>
-                            <Link to={`/boot/${this.state.selectedPlace.boat_id}`}>Anschauen</Link>
+                            <Link
+                                to={`/boot/${this.state.selectedPlace.boat_id}`}
+                            >
+                                Anschauen
+                            </Link>
                         </BrowserRouter>
-                        {/* to={`${siteUrl}${this.state.selectedPlace.boat_id}`} */}
-                        {/* //https://stackoverflow.com/questions/42183312/render-react-router-link-inside-google-infowindow */}
                     </div>
                 </InfoWindow>
             </Map>

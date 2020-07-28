@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {baseUrl} from "../../store/constants";
 import BoatsContainer from "./boatscontainer";
 import BoatListFilter from "./Filter";
 import Loading from '../GenericLoading'
 import Accordion from "../Accordion";
 import {dateToISOString} from "../../lib/helpers/formatDates";
 import Axios from "../../axios";
-import {formErrorHandler} from "../../lib/helpers/errorHandler";
-import {getBoatOverview} from "../../store/actions/boatActions";
+import {toggleAccordionHandler} from "../../lib/helpers/filters";
+import {smoothScroll} from '../../lib/helpers/scroll'
 
 export default function BoatListContainer(props) {
     const [data, setData] = useState([]);
@@ -35,13 +34,17 @@ export default function BoatListContainer(props) {
        fetchBoats()
     }, [visibilityFilter])
 
-    const resetFilter = (e) => {
+    const resetFilter = (e, panelID, iconID) => {
         e.preventDefault()
+        toggleAccordionHandler(panelID, iconID)
+        smoothScroll('.App')
         setVisibilityFilter(null)
     }
 
-    const submitFilterHandler = (e, filterQuery) => {
+    const submitFilterHandler = (e, filterQuery, panelID, iconID) => {
         e.preventDefault()
+        toggleAccordionHandler(panelID, iconID)
+        smoothScroll('.App')
 
         let count = 0
         let query = '?'

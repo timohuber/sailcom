@@ -54,9 +54,7 @@
   .boat-button-container {
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-end;
+    margin-top: auto;
 
     .btn {
       width: 100%;

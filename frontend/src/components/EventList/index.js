@@ -7,6 +7,8 @@ import EventModal from './modal'
 import EventListFilter from './Filter'
 import Accordion from "../Accordion";
 import Axios from "../../axios";
+import {toggleAccordionHandler} from "../../lib/helpers/filters";
+import {smoothScroll} from "../../lib/helpers/scroll";
 
 function EventListContainer(props) {
     const [data, setData] = useState([]);
@@ -56,13 +58,17 @@ function EventListContainer(props) {
         setData(newData)
     }
 
- const resetFilter = (e) => {
+ const resetFilter = (e, panelID, iconID) => {
         e.preventDefault()
+        toggleAccordionHandler(panelID, iconID)
+        smoothScroll('.App')
         setVisibilityFilter(null)
     }
 
-    const submitFilterHandler = (e, filterQuery) => {
+    const submitFilterHandler = (e, filterQuery, panelID, iconID) => {
         e.preventDefault()
+        toggleAccordionHandler(panelID, iconID)
+        smoothScroll('.App')
         let count = 0
         let query = '?'
         for (const [key, value] of Object.entries(filterQuery)) {

@@ -534,9 +534,7 @@ form label.required:after {
   .boat-list-element .boat-button-container {
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-end; }
+    margin-top: auto; }
     .boat-list-element .boat-button-container .btn {
       width: 100%; }
 
