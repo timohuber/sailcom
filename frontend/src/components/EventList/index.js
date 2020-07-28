@@ -34,26 +34,28 @@ function EventListContainer(props) {
        fetchBoats()
     }, [visibilityFilter])
 
-    const updateState = event_id => {
-        const user_id = props.currentUser.userData.id
-        let event_index = 0
-        data.forEach((item, index) =>{
-            if(item.id === event_id) {
-                event_index = index;
+    const updateState = eventID => {
+        console.log(eventID)
+        console.log(data)
+
+        let arrayIndex = null
+        data.forEach((event, index) => {
+            if(event.id == eventID) {
+                arrayIndex = index
             }
         })
-        let new_participants = data[event_index].participants
-        if (new_participants.includes(user_id)) {
-            console.log('it contains id')
-            new_participants.splice(new_participants.indexOf(user_id), 1);
+        console.log(arrayIndex)
+        console.log(data[arrayIndex])
+        const participantsArray = data[arrayIndex].participants
+        const userID = props.currentUser.userData.id
+
+        if(participantsArray.includes(userID)) {
+            const index = participantsArray.indexOf(userID);
+            participantsArray.splice(index, 1);
         } else {
-            console.log('it does not contain id')
-            new_participants.push(user_id)
+            participantsArray.push(userID)
         }
-        let newState = data
-        newState[event_index].participants = new_participants
-        console.log('new State', newState)
-        setData(newState)
+
     }
 
  const resetFilter = (e) => {
@@ -127,3 +129,26 @@ const connection = connect(mapStateToProps);
 const ConnectedEventListContainer = connection(EventListContainer);
 
 export default ConnectedEventListContainer;
+
+
+/*
+*         const user_id = props.currentUser.userData.id
+        let event_index = 0
+        data.forEach((item, index) =>{
+            if(item.id === event_id) {
+                event_index = index;
+            }
+        })
+        let new_participants = data[event_index].participants
+        if (new_participants.includes(user_id)) {
+            console.log('it contains id')
+            new_participants.splice(new_participants.indexOf(user_id), 1);
+        } else {
+            console.log('it does not contain id')
+            new_participants.push(user_id)
+        }
+        let newState = data
+        newState[event_index].participants = new_participants
+        console.log('new State', newState)
+        setData(newState)
+* */

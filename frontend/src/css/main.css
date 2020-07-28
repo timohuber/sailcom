@@ -1010,6 +1010,8 @@ thumbs-wrapper {
 
 .search-user-from {
   margin-bottom: 30px; }
+  .search-user-from #search-form-error {
+    margin-bottom: 15px; }
 
 .user-edit-membership, .user-address, .user-boats {
   margin-bottom: 30px; }

@@ -6,6 +6,8 @@ import UserBoatsForm from "./userBoatsForm";
 import UserEditMembership from './editMembership';
 import Loading from "../GenericLoading";
 import {connect} from "react-redux";
+import {currentUser} from "../../store/reducers/currentUser";
+import Accordion from "../Accordion";
 
 function UserDetail(props) {
     const [user, setUser] = useState({});
@@ -30,8 +32,21 @@ function UserDetail(props) {
             : `url(${AvatarDefault})`,
     };
 
-    //
+    const content = [
+    ];
 
+    if (props.currentUser.is_crew) {
+         content.push({
+                title: 'Boote freischalten',
+                content: <UserBoatsForm user={user} />,
+            })
+    }
+    if (props.currentUser.is_staff) {
+         content.push({
+            title: 'Mitgliederstatus',
+            content: <UserEditMembership user={user}/>
+        })
+    }
     return (
         <div className='main-wrapper narrow'>
             {loading
@@ -39,12 +54,8 @@ function UserDetail(props) {
                 : <>
                     <div className='user-detail-avatar user-avatar' style={avatarStyle}/>
                     <UserAddress user={user}/>
-                    <UserBoatsForm user={user}/>
-                    {
-                        props.currentUser.is_staff
-                        ? <UserEditMembership user={user}/>
-                        : null
-                    }
+
+                    <Accordion content={content}/>
                 </>
             }
         </div>

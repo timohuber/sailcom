@@ -29,13 +29,6 @@ export default function UserDocumentsForm(props) {
             : `url(${AvatarDefault})`,
     };
 
-    const licenceStyle = {
-        backgroundImage: `url(${LicenceDefault})`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center'
-    };
-
     useEffect(() => {
         if (props.userData) {
             setUserData(props.userData);

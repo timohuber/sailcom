@@ -10,7 +10,7 @@ export default function UserPreview(props) {
             : `url(${AvatarDefault})`,
     };
     return (
-        <article className='user-list-element'>
+        <div className='user-list-element'>
             <NavLink to={`/mitglied/${user.id}`}>
                 <div className='user-list-avatar user-avatar' style={avatarStyle}></div>
             </NavLink>
@@ -18,6 +18,6 @@ export default function UserPreview(props) {
                 <h3>{user.first_name} {user.last_name}</h3>
                 <p>{user.email}</p>
             </div>
-        </article>
+        </div>
     );
 };
