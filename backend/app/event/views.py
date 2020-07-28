@@ -33,7 +33,7 @@ class ListEventsView(ListCreateAPIView):
     def get_queryset(self):
         data = Event.objects.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1))
         if self.request.query_params.get('category') is not None:
-            data = data.filter(Q(boat__category=self.request.query_params.get('category')))
+            data = data.filter(Q(event_type=self.request.query_params.get('category')))
         if self.request.query_params.get('lake') is not None:
             data = data.filter(Q(boat__mooring__lake=self.request.query_params.get('lake')))
         if self.request.query_params.get('boat') is not None:
