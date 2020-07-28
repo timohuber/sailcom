@@ -5,7 +5,7 @@ import BookingSuccess from './success'
 import BookingSummary from './bookingSummary'
 import {connect, useDispatch} from "react-redux";
 import {baseUrl} from "../../../store/constants";
-import {dateToISOString, dateToDisplayString} from '../../../lib/helpers/formatDates'
+import {dateToISOString, dateToISOStringWithZ} from '../../../lib/helpers/formatDates'
 import {addBookingToBoatAction} from "../../../store/actions/boatActions";
 
 function BookingForm(props) {
@@ -14,8 +14,8 @@ function BookingForm(props) {
     const [loading, setLoading] = useState(true);
     const [success, setSuccess] = useState(false);
 
-    const from = dateToISOString(props.from)
-    const until = dateToISOString(props.until)
+    const from = dateToISOStringWithZ(props.from)
+    const until = dateToISOStringWithZ(props.until)
 
     const config = {
         method: 'POST',
