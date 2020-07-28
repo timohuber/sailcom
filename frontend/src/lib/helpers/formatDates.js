@@ -7,16 +7,6 @@ export function dateToISOString(date) {
         moment(date)
             .format('YYYY-MM-DDTHH:mmZ')
             .split('+')[0]
-
-    );
-}
-
-export function dateToISOStringWithZ(date) {
-    return (
-        moment(date)
-            .format('YYYY-MM-DDTHH:mmZ')
-            .split('+')[0]
-            + 'Z'
     );
 }
 
