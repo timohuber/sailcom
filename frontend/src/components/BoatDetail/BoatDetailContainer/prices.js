@@ -20,7 +20,7 @@ export const PricesTable = (props) => {
                             Pro Stunde
                         </td>
                         <td>
-                            {boat.price_hour_weekday}
+                            CHF {boat.price_hour_weekday}
                         </td>
                     </tr>
                     <tr>
@@ -28,7 +28,7 @@ export const PricesTable = (props) => {
                             Pro Tag
                         </td>
                         <td>
-                            {boat.price_fullday_weekday}
+                           CHF {boat.price_fullday_weekday}
                         </td>
                     </tr>
                 </tbody>

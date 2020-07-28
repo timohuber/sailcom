@@ -141,3 +141,11 @@ form label.required:after {
     margin-top: $gap-width;
     margin-bottom: $gap-width;
 }
+
+/* Login */
+#login-form-error {
+    text-align: center;
+    margin-bottom: $gap-width-small;
+    display: block;
+    width: 100%;
+}

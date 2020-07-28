@@ -37,7 +37,6 @@ export class MapContainer extends React.Component {
     };
 
     render() {
-        console.log('rerendr map', this.props.boatOverview);
 
         return (
             <Map
