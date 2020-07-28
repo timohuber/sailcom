@@ -99,7 +99,7 @@ class CalculateBookingView(ListAPIView):
 
         weekday_count = duration_dates['weekday_count']
         weekend_count = duration_dates['weekend_count']
-        duration = duration_dates['weekend_count']
+        duration = duration_dates['duration']
 
         price = calculate_price(weekday_count, weekend_count, from_date_time, duration, self.request.data.get('boat'))
 
