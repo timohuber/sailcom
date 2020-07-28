@@ -40,7 +40,7 @@ class ListMe(RetrieveUpdateAPIView):
 
 class ToggleInstructedForView(CreateAPIView):
     serializer_class = UserSerializer
-    permission_classes = [IsStaff]
+    permission_classes = [IsStaffOrCrew]
 
     def post(self, request, *args, **kwargs):
         searchUser = User.objects.filter(id=request.data['User'])

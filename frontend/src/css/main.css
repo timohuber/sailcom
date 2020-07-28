@@ -494,7 +494,10 @@ form label.required:after {
       width: 100%;
       position: relative; }
   .boat-list-element .boat-list-body {
-    padding: calc(30px / 2); }
+    padding: calc(30px / 2);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; }
   .boat-list-element .location > p {
     padding-left: 25px;
     position: relative;
@@ -514,7 +517,8 @@ form label.required:after {
     border-bottom: 1px solid #E4E4E4; }
   .boat-list-element .boat-button-container {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    margin-top: auto; }
     .boat-list-element .boat-button-container .btn {
       width: 100%; }
 
@@ -1098,3 +1102,6 @@ form label.required:after {
 
 .filtered-wrapper {
   padding: 15px 15px 0 15px; }
+
+.filter-container .btn.secondary {
+  margin-top: 15px; }

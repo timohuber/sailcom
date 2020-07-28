@@ -49,8 +49,8 @@ function EventListFilter(props) {
                         <SelectBoat
                             onChangeHandler={onChangeHandler} />
                     </div>
-                    <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState) }>Suchen</button>
-                    <button className='btn secondary' onClick={ e => props.resetFilter(e) } >Filter zurücksetzen</button>
+                    <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState, 'panel-0', 'icon-0') }>Suchen</button>
+                    <button className='btn secondary' onClick={ e => props.resetFilter(e, 'panel-0', 'icon-0') } >Filter zurücksetzen</button>
                 </form>
             </div>
     );
