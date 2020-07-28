@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 from datetime import timedelta
 
-from .calculation import calculate_price
+from .calculation import calculate_price, calculate_duration
 from ..boat.models import Boat
 from ..event.models import Event
 from ..mail.models import Mail
@@ -59,32 +59,12 @@ def create_booking(sender, instance, created, **kwargs):
     searchBooking = Booking.objects.filter(boat=instance.boat, from_date_time=instance.from_date_time,
                                            until_date_time=instance.until_date_time)
     if not len(searchBooking) > 0:
-
-        until_date_time = instance.until_date_time.date()
-        from_date_time = instance.from_date_time.date()
-
-        duration = until_date_time - from_date_time
-        less_24 = duration.days == 0
-
-        dt_start = from_date_time
-        dt_end = until_date_time
-        dt_current = dt_start
-        weekday_count = 0
-        weekend_count = 0
-
-        # loop through days to count weekend days and weekdays
-        if not less_24:
-            while dt_current <= dt_end:
-                if dt_current.isoweekday() > 5:
-                    weekend_count += 1
-                else:
-                    weekday_count += 1
-                dt_current = dt_current + timedelta(1)  # add 1 day to current day
+        duration_calc = calculate_duration(instance.from_date_time, instance.until_date_time)
 
         Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
                                event=instance, user=instance.instructor,
                                duration=instance.until_date_time - instance.from_date_time, boat=instance.boat,
-                               weekday_days=weekday_count, weekend_days=weekend_count
+                               weekday_days=duration_calc.weekday_count, weekend_days=duration_calc.weekend_count
                                )
     else:
         searchBooking[0].event = instance
