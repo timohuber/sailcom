@@ -19,7 +19,7 @@ User = get_user_model()
 class ListUserView(RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsStaff]
+    permission_classes = [IsStaffOrCrew]
 
 
 class ListUsersView(ListAPIView):

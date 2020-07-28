@@ -11,10 +11,8 @@ export default function EventInformationTable(props) {
                     <span className='upper-subtitle'>
                         {
                             event.event_type
-                            ? event.event_type.id === 1
-                                ? <>{event.event_type.title} {event.boat.title}</>
-                                : <>{event.event_type.title}</>
-                            : 'Nicht zugeordnet'
+                            ? <>{event.event_type.title} {event.boat.title}</>
+                            : <>Nicht zugeordner</>
                         }
                     </span>
                 </div>

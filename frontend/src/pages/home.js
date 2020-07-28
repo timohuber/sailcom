@@ -7,14 +7,25 @@ import Community from '../assets/home-community.svg';
 import Switzerland from '../assets/home-switzerland.svg';
 import { smoothScroll } from '../lib/helpers/scroll';
 
+// hero image
+import HeroImage from '../components/HeroImage';
+import BgImage from '../assets/sail-boat-sharing.jpg';
+const heroContent = {
+    title: 'Boat Sharing',
+    subtitle:
+        'Faszination Segeln - einfacher, günstiger, ökologischer und abwechslungsreicher!',
+    buttontext: 'Boote anschauen',
+    buttonlink: '/bootsliste',
+    heroStyle: {
+        backgroundImage: `url(${BgImage})`,
+    },
+};
+
 function HomePage(props) {
     return (
         <>
+            <HeroImage heroContent={heroContent} />
             <div className='main-wrapper'>
-                <h1>
-                    Faszination Segeln - einfacher, günstiger, ökologischer und
-                    abwechslungsreicher!
-                </h1>
                 <div className='grid-col-3 generic-box-grid'>
                     <div className='home-icon-box'>
                         <div className='upper-wrapper'>

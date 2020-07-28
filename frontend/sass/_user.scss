@@ -1,5 +1,8 @@
 .search-user-from {
   margin-bottom: $gap-width;
+  #search-form-error {
+    margin-bottom: $gap-width-small;
+  }
 }
 .user-edit-membership, .user-address, .user-boats {
   margin-bottom: $gap-width;

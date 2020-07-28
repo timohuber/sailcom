@@ -8,7 +8,7 @@ export default function ButtonsContainer(props) {
     return (
         <div className='boat-button-container'>
             {user.authorized === false ?
-                <ToLoginPageButton /> :
+                <ToLoginPageButton boat_id={props.boat_id}/> :
                 props.instructed ?
                 <BookBoatButton triggerBookingModal={props.triggerBookingModal}/> :
                 <>

@@ -1,5 +1,6 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from ..user.serializers import UserSerializer
+
+from ..user.meserializer import MeSerializer
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -8,7 +9,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         refresh = self.get_token(self.user)
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
-        user = UserSerializer(self.user)
+        user = MeSerializer(self.user)
 
         # Add extra responses here
         data['user'] = user.data

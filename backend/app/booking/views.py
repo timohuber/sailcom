@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework.generics import ListCreateAPIView, ListAPIView, DestroyAPIView
 
 from datetime import timedelta, datetime
-
+from django.utils import timezone
 from .models import Booking
 from .serializers import BookingSerializer, CreateBookingSerializer
 from ..boat.models import Boat
@@ -11,7 +11,7 @@ from ..permissions import IsLoggedIn, IsStaffOrCreator, MemberPostLoggedInFetch
 
 
 class ListCreateBookingsView(ListCreateAPIView):
-    queryset = Booking.objects.all()
+    queryset = Booking.objects.all().order_by('from_date_time')
     permission_classes = [MemberPostLoggedInFetch]
 
     def get_serializer_class(self):
@@ -90,8 +90,8 @@ class CalculateBookingView(ListAPIView):
         if self.request.data.get('from_date_time') is None or self.request.data.get('until_date_time') is None:
             return HttpResponse('Die Daten von und bis sind nicht vollständig', status=400)
 
-        until_date_time = datetime.strptime(request.data.get('until_date_time'), '%Y-%m-%dT%H:%MZ')
-        from_date_time = datetime.strptime(request.data.get('from_date_time'), '%Y-%m-%dT%H:%MZ')
+        until_date_time = datetime.strptime(request.data.get('until_date_time'), '%Y-%m-%dT%H:%M')
+        from_date_time = datetime.strptime(request.data.get('from_date_time'), '%Y-%m-%dT%H:%M')
 
         if from_date_time >= until_date_time:
             res = {
@@ -147,4 +147,8 @@ class MyBookingView(ListAPIView):
     permission_classes = [IsLoggedIn]
 
     def get_queryset(self):
-        return Booking.objects.filter(Q(user=self.request.user))
+        data = Booking.objects.filter(Q(user=self.request.user))
+        if self.request.query_params.get('mitsegeln') is not None and self.request.query_params.get('mitsegeln') \
+                == 'true':
+            data = data.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1), event__isnull=True)
+        return data.order_by('from_date_time')

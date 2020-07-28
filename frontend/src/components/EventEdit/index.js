@@ -2,21 +2,20 @@ import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Axios from '../../axios';
-
-import {
-    formErrorHandler,
-    elementUpdatedMessage,
-} from '../../lib/helpers/errorHandler';
-import {eventType, baseUrl, displayTimeDateFormat, displayTimeFormat} from '../../store/constants';
+import {formErrorHandler, elementUpdatedMessage} from '../../lib/helpers/errorHandler';
+import {baseUrl, displayTimeDateFormat, displayTimeFormat} from '../../store/constants';
 import Loading from '../../components/GenericLoading';
-import { dateShowInTable } from '../../lib/helpers/formatDates';
+import {dateShowInDatepicker, dateToISOString} from '../../lib/helpers/formatDates';
 import WhereCrewMemberForm from '../../components/WhereCrewMember';
 import {NavLink} from "react-router-dom";
+import GenericTextInput from "../GenericForm/textInput";
+import BookingsSelect from "../EventCreate/bookings";
 
 export default function EventEditForm(props) {
     const today = new Date();
     const event_id = props.match.params.id;
     const [value, setValue] = useState([]);
+    const [displayDates, setDisplayDates] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,6 +29,7 @@ export default function EventEditForm(props) {
             .then((res) => res.json())
             .then((data) => {
                 setValue(data);
+
                 setLoading(false);
             })
             .catch((response) => {
@@ -48,8 +48,12 @@ export default function EventEditForm(props) {
     const onChangeDateHandler = (date, key) => {
         setValue({
             ...value,
-            [key]: date,
+            [key]: dateToISOString(date),
         });
+        setDisplayDates({
+            ...displayDates,
+            [key]: date,
+        })
     };
 
     const onSubmitHandler = async (e) => {
@@ -69,6 +73,18 @@ export default function EventEditForm(props) {
         }
     };
 
+    const onChangeBookingHandler = (e) => {
+        const target = e.currentTarget
+        const key = target.name;
+        setValue({
+            ...value,
+            [key]: e.currentTarget.value,
+            boat: parseInt(target.options[target.selectedIndex].dataset.boat),
+            from_date_time: new Date(target.options[target.selectedIndex].dataset.from),
+            until_date_time: new Date(target.options[target.selectedIndex].dataset.until)
+        });
+    };
+
      useEffect(() => {
         const datePickers = document.querySelectorAll('.react-datepicker__input-container input')
         datePickers.forEach( input => input.setAttribute("readOnly", true))
@@ -84,49 +100,27 @@ export default function EventEditForm(props) {
                 >
                     <h1>Veranstaltung bearbeiten</h1>
                     <div className='input-container'>
-                        <div className='input-wrapper'>
-                            <label htmlFor='title'>Event Name</label>
-                            <input
-                                id='title'
-                                name='title'
-                                onChange={(e) => onChangeHandler(e)}
-                                className='required'
-                                value={value.title}
-                            />
-                            <span className='error' data-key='title'></span>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <label htmlFor='price'>Preis</label>
-                            <input
-                                id='price'
-                                name='price'
-                                onChange={(e) => onChangeHandler(e)}
-                                className='required'
-                                value={value.price}
-                            />
-                            <span className='error' data-key='price'></span>
-                        </div>
+                        {
+                            value.event_type
+                            ? value.event_type === 1
+                                ? <WhereCrewMemberForm onChangeHandler={onChangeHandler} />
+                                : value.event_type === 2
+                                    ? <BookingsSelect onChangeHandler={onChangeBookingHandler} />
+                                    : <p></p>
+                                : <div className='input-wrapper'>Bitte geben Sie eine Kategorie an</div>
+                        }
+                        <GenericTextInput onChangeHandler={onChangeHandler} data_key={'title'} label={'Event Name'} required={true} value={value.title}/>
+                        <GenericTextInput onChangeHandler={onChangeHandler} data_key={'price'} label={'Preis'} required={true} value={value.price}/>
 
                         <div className='input-wrapper'>
                             <label htmlFor='date_time'>Datum / Uhrzeit</label>
 
                             <div id='event-datepicker'>
                                 <DatePicker
-                                    selected={
-                                        value.from_date_time
-                                            ? dateShowInTable(
-                                                  value.from_date_time
-                                              )
-                                            : null
-                                    }
+                                    selected={value.from_date_time ? dateShowInDatepicker(value.from_date_time) : null }
                                     minDate={today}
-                                    onChange={(date) =>
-                                        onChangeDateHandler(
-                                            date,
-                                            'from_date_time'
-                                        )
-                                    }
+                                    onChange={(date) => onChangeDateHandler(date, 'from_date_time') }
+                                    disabled={value.event_type == 2}
                                     showTimeSelect
                                     placeholderText='Von'
                                     dateFormat={displayTimeDateFormat}
@@ -135,22 +129,10 @@ export default function EventEditForm(props) {
                                     name='from_date_time'
                                 />
                                 <DatePicker
-                                    selected={
-                                        value.until_date_time
-                                            ? dateShowInTable(
-                                                  value.until_date_time
-                                              )
-                                            : null
-                                    }
-                                    minDate={dateShowInTable(
-                                        value.from_date_time
-                                    )}
-                                    onChange={(date) =>
-                                        onChangeDateHandler(
-                                            date,
-                                            'until_date_time'
-                                        )
-                                    }
+                                    selected={value.until_date_time ? dateShowInDatepicker(value.until_date_time) : null }
+                                    minDate={value.from_date_time}
+                                    onChange={(date) => onChangeDateHandler(date, 'until_date_time')}
+                                    disabled={value.event_type == 2}
                                     showTimeSelect
                                     placeholderText='Bis'
                                     dateFormat={displayTimeDateFormat}
@@ -178,66 +160,9 @@ export default function EventEditForm(props) {
                             <span className='error' data-key='comment'></span>
                         </div>
 
-                        <div className='input-wrapper'>
-                            <label htmlFor='meeting_point'>Treffpunkt</label>
-                            <input
-                                id='meeting_point'
-                                name='meeting_point'
-                                onChange={(e) => onChangeHandler(e)}
-                                value={value.meeting_point}
-                                className='required'
-                            />
-                            <span
-                                className='error'
-                                data-key='meeting_point'
-                            ></span>
-                        </div>
+                        <GenericTextInput onChangeHandler={onChangeHandler} data_key={'meeting_point'} label={'Treffpunkt'} required={true} value={value.meeting_point}/>
+                        <GenericTextInput onChangeHandler={onChangeHandler} data_key={'max_participants'} label={'Anzahl Teilnehmer max.'} required={true} value={value.max_participants}/>
 
-                        <WhereCrewMemberForm
-                            onChangeHandler={onChangeHandler}
-                            boat={value.boat}
-                        />
-
-                        <div className='input-wrapper'>
-                            <label htmlFor='max_participants'>
-                                Anzahl Teilnehmer max.
-                            </label>
-                            <input
-                                type='max_participants'
-                                id='max_participants'
-                                name='max_participants'
-                                onChange={(e) => onChangeHandler(e)}
-                                value={value.max_participants}
-                                className='required'
-                            />
-                            <span
-                                className='error'
-                                data-key='max_participants'
-                            ></span>
-                        </div>
-
-                        <div className='input-wrapper'>
-                            <label htmlFor='event_type'>Kategorie</label>
-                            <select
-                                id='event_type'
-                                name='event_type'
-                                onChange={(e) => onChangeHandler(e)}
-                                className='required'
-                                value={value.event_type}
-                            >
-                                {eventType.map((type, i) => {
-                                    return (
-                                        <option key={i} value={type.key}>
-                                            {type.value}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                            <span
-                                className='error'
-                                data-key='event_type'
-                            ></span>
-                        </div>
                     </div>
                     <div className='button-container'>
                         <div>

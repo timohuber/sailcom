@@ -3,7 +3,8 @@ from datetime import timedelta
 from django.db.models import Q
 from django.http import HttpResponse
 from django.utils import timezone
-from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, ListCreateAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import AllowAny
 
 from .models import Event
 from .serializers import EventSerializer, RetrieveEventSerializer
@@ -12,7 +13,7 @@ from ..boat.boat_model.models import BoatModel
 from ..boat.models import Boat
 from ..booking.models import Booking
 from ..mail.models import Mail
-from ..permissions import IsLoggedIn, IsMember, MemberPostLoggedInFetch
+from ..permissions import IsLoggedIn, IsMember, MemberPostLoggedInFetch, IsStaffOrInstructor
 from ..transaction.models import Transaction
 
 
@@ -81,14 +82,6 @@ class ListEventsView(ListCreateAPIView):
                 return HttpResponse('Die Buchung hat schon eine Veranstaltung', status=400)
             if not searchBooking[0].boat.id == self.request.data['boat']:
                 return HttpResponse('Die Buchung hat ein anderes Boot', status=400)
-
-            """
-            if not searchBooking[0].from_date_time.isoformat().replace(':00+00:00', 'Z') == self.request.data[
-                'from_date_time'] \
-                    or not searchBooking[0].until_date_time.isoformat().replace(':00+00:00', 'Z') == self.request.data[
-                    'until_date_time']:
-                return HttpResponse('Die Daten stimmen mit der Buchung nicht überein', status=400)
-            """
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
@@ -97,9 +90,15 @@ class ListEventsView(ListCreateAPIView):
         return HttpResponse('Neue Veranstaltung wurde erstellt', status=200)
 
 
-class ListEventView(RetrieveUpdateAPIView):
+class ListEventView(RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'DELETE':
+            return (IsStaffOrInstructor(),)
+        else:
+            return (AllowAny(),)
 
 
 class RegisterEventView(CreateAPIView):
@@ -133,7 +132,6 @@ class RegisterEventView(CreateAPIView):
         else:
             Transaction.objects.get(user=currentUser, event=searchEvent).delete()
             searchEvent.participants.remove(currentUser)
-            Transaction.objects.create(price=searchEvent.price, user=currentUser, event=searchEvent)
             email = Mail(recipient=searchEvent.instructor.email,
                          subject=f'Abmeldung für Veranstaltung {searchEvent.title}',
                          content=f'{currentUser.first_name} {currentUser.last_name} hat sich für {searchEvent.title}'

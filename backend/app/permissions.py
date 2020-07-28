@@ -46,6 +46,11 @@ class IsStaffOrCreator(BasePermission):
         return request.user.is_staff or obj.user == request.user
 
 
+class IsStaffOrInstructor(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_staff or obj.instructor == request.user
+
+
 """
 class IsAuthorOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):

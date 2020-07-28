@@ -1,4 +1,4 @@
-import { SET_EVENT_MODAL, WHERE_CREW, GET_EVENT_INFO, CLOSE_EVENT_MODAL } from '../constants';
+import { SET_EVENT_MODAL, WHERE_CREW, CLOSE_EVENT_MODAL } from '../constants';
 import Axios from '../../axios';
 import {advancedFormErrorHandler, formErrorHandler} from '../../lib/helpers/errorHandler';
 
@@ -22,13 +22,6 @@ export const whereIsCurrentUserCrewMember = (info, is_crew) => {
         type: WHERE_CREW,
         payload: info,
         is_crew
-    };
-};
-
-export const getEventInformation = (info) => {
-    return {
-        type: GET_EVENT_INFO,
-        payload: info,
     };
 };
 
@@ -75,6 +68,15 @@ export const createEventAction = (data, onSuccess) => async (dispatch) => {
     }
 };
 
+
+/*
+export const getEventInformation = (info) => {
+    return {
+        type: GET_EVENT_INFO,
+        payload: info,
+    };
+};
+
 export const getEventInformationAction = (event_id) => async (dispatch) => {
     try {
         const response = await Axios.get(`event/${event_id}/`);
@@ -98,3 +100,4 @@ export const updateEventAction = (event_id, data) => async (dispatch) => {
         });
     }
 };
+*/
