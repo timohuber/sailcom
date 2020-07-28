@@ -27,7 +27,7 @@ export const GET_MEMBERSHIP_CATEGORIES = 'GET_MEMBERSHIP_CATEGORIES';
 export const GET_EVENT_TYPES = 'GET_EVENT_TYPES';
 
 /* time and date formats */
-export const displayTimeDateFormat = "d.MM.yy HH:mm";
+export const displayTimeDateFormat = "dd.MM.yy HH:mm";
 export const displayTimeFormat = "HH:mm";
 
 export const countrySelection = [

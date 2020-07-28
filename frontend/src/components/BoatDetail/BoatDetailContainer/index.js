@@ -60,7 +60,7 @@ function BoatDetailContainer(props) {
         <div className='hero-image boat' style={heroImageStyle}></div>
         <div className='main-wrapper boat-detail-container'>
             <h1>{boat.title}</h1>
-            <p className='subtitle'>{boat.mooring.lake.title}, {boat.mooring.address}</p>
+            <p className='subtitle'>{boat.mooring.lake.title}<br/>{boat.mooring.address}</p>
 
             <ButtonsContainer boat_id={boat.id} user={props.currentUser} instructed={instructed} triggerBookingModal={triggerBookingModal}/>
 

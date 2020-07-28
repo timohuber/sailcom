@@ -152,6 +152,9 @@
   transform: translateY(0px);
 }
 
-.logout i {
+.logout {
+  display: inline;
+  i {
   margin-right: $gap-width-small;
+  }
 }
