@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 from datetime import timedelta
 
+from .calculation import calculate_price
 from ..boat.models import Boat
 from ..event.models import Event
 from ..mail.models import Mail
@@ -47,19 +48,10 @@ def send_email(sender, instance, **kwargs):
 @receiver(post_save, sender=Booking)
 def create_trans(sender, instance, created, **kwargs):
     if instance.transaction is None:
-        if instance.weekday_days is not None:
-            if instance.weekday_days + instance.weekend_days == 0:  # hourly rate calculation
-                if instance.from_date_time.date().isoweekday() < 6:  # 1-5 Mon-Fri
-                    price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekday) * float(
-                        instance.duration.seconds / 60 / 60)
-                else:
-                    price = float(Boat.objects.get(id=instance.boat.id).price_hour_weekend) * float(
-                        instance.duration.seconds / 60 / 60)
-            else:  # daily rate calculation
-                price = instance.weekday_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekday) \
-                        + instance.weekend_days * float(Boat.objects.get(id=instance.boat.id).price_fullday_weekend)
-            trx = Transaction.objects.create(sent=False, price=price, user=instance.user)
-            Booking.objects.filter(id=instance.id).update(transaction=trx)
+        price = calculate_price(instance.weekday_days, instance.weekend_days, instance.from_date_time,
+                                instance.duration, instance.boat.id)
+        trx = Transaction.objects.create(sent=False, price=price, user=instance.user)
+        Booking.objects.filter(id=instance.id).update(transaction=trx)
 
 
 @receiver(post_save, sender=Event)
