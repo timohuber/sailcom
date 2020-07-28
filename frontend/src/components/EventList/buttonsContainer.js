@@ -18,7 +18,7 @@ function ButtonsContainer(props) {
         e.preventDefault();
         dispatch(setEventModalAction(modal, event));
     };
-
+    console.log('buttons', event)
     return (
         <div className='event-button-container'>
             <DisplayInformationButton toggleModal={toggleModal} />
@@ -40,11 +40,11 @@ function ButtonsContainer(props) {
         </div>
     );
 }
-// TODO: user variable instead of fix max participants
 
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,
+        activeModal: state.events.activeModal
     };
 };
 const connection = connect(mapStateToProps);

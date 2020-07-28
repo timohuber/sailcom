@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom'
 import Loading from '../GenericLoading'
 import EventsContainer from './eventscontainer'
 import EventModal from './modal'
+import CreateEventButton from './createEventButton'
 import EventListFilter from './Filter'
 import Accordion from "../Accordion";
 import Axios from "../../axios";
@@ -37,13 +38,14 @@ function EventListContainer(props) {
     }, [visibilityFilter])
 
     const updateState = eventID => {
+        console.log('in updateState')
         let arrayIndex = null
         data.forEach((event, index) => {
             if(event.id == eventID) {
                 arrayIndex = index
             }
         })
-        const participantsArray = data[arrayIndex].participants
+        const participantsArray = data[arrayIndex].participants.slice();
         const userID = props.currentUser.userData.id
 
         if(participantsArray.includes(userID)) {
@@ -56,6 +58,7 @@ function EventListContainer(props) {
         let newData = data
         newData[arrayIndex].participants = participantsArray
         setData(newData)
+        console.log('data was set', data)
     }
 
  const resetFilter = (e, panelID, iconID) => {
@@ -101,24 +104,18 @@ function EventListContainer(props) {
             <div className='main-wrapper narrow'>
                 <Accordion content={accordionContent}/>
                 <h1>Veranstaltungen</h1>
-                {
-                    props.currentUser.authorized
-                    ? props.currentUser.userData.is_member || props.currentUser.userData.is_crew
-                        ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
-                        : null
-                    : null
-                }
+                <CreateEventButton authorized={props.currentUser.authorized}
+                                   is_member={props.currentUser.userData.is_member}
+                                   is_crew={props.currentUser.userData.is_crew}/>
             </div>
             {loading ?
                 <Loading /> : <EventsContainer data={data}/>
             }
-            {
-                props.currentUser.authorized
-                    ? props.currentUser.userData.is_member || props.currentUser.userData.is_crew
-                    ? <div className='main-wrapper narrow'><NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink></div>
-                        : null
-                    : null
-            }
+            <div className='main-wrapper narrow'>
+                <CreateEventButton authorized={props.currentUser.authorized}
+                                   is_member={props.currentUser.userData.is_member}
+                                   is_crew={props.currentUser.userData.is_crew}/>
+            </div>
         </>
     );
 };
