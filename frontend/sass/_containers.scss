@@ -8,16 +8,6 @@
     }
 }
 
-.grid-col-5 {
-    max-width: $page-width;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: $gap-width;
-    & > div {
-        margin-bottom: $gap-width;
-    }
-}
-
 .grid-col-4 {
     max-width: $page-width;
     display: grid;
@@ -47,7 +37,7 @@
 }
 
 @media (max-width: $break-point-md) {
-    .grid-col-5,
+    .grid-col-4,
     .grid-col-3 {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -57,7 +47,7 @@
 }
 
 @media (max-width: $break-point-sm) {
-    .grid-col-5,
+    .grid-col-4,
     .grid-col-3 {
         grid-template-columns: repeat(1, 1fr);
     }
