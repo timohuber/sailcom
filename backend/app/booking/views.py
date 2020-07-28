@@ -90,8 +90,8 @@ class CalculateBookingView(ListAPIView):
         if self.request.data.get('from_date_time') is None or self.request.data.get('until_date_time') is None:
             return HttpResponse('Die Daten von und bis sind nicht vollständig', status=400)
 
-        until_date_time = datetime.strptime(request.data.get('until_date_time'), '%Y-%m-%dT%H:%MZ')
-        from_date_time = datetime.strptime(request.data.get('from_date_time'), '%Y-%m-%dT%H:%MZ')
+        until_date_time = datetime.strptime(request.data.get('until_date_time'), '%Y-%m-%dT%H:%M')
+        from_date_time = datetime.strptime(request.data.get('from_date_time'), '%Y-%m-%dT%H:%M')
 
         if from_date_time >= until_date_time:
             res = {

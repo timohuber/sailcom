@@ -1,6 +1,16 @@
 import moment from 'moment-timezone/moment-timezone'
 moment.tz.add("Europe/Zurich|CET CEST|-10 -20|01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010|-19Lc0 11A0 1o00 11A0 1xG10 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1cM0 1fA0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|38e4");
 moment.tz.setDefault('Europe/Zurich')
+
+export function dateToISOString(date) {
+    return (
+        moment(date)
+            .format('YYYY-MM-DDTHH:mmZ')
+            .split('+')[0]
+    );
+}
+
+/*
 export function dateToISOString(date) {
     return (
         moment(date)
@@ -9,6 +19,20 @@ export function dateToISOString(date) {
             .split('+')[0] + 'Z'
     );
 }
+*/
+/*
+=> Gillaume
+export function dateToISOString(date) {
+    return (
+        moment(date)
+            // .tz('Europe/Zurich')
+            .format('YYYY-MM-DDTHH:mmZ')
+            .split('+')[0]
+    );
+}
+
+
+*/
 
 export function dateToDisplayString(date) {
     return moment(date)
