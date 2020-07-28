@@ -747,7 +747,7 @@ thumbs-wrapper {
   margin-bottom: 30px; }
   .event-list-element .event-button-container .btn {
     margin-top: 15px;
-    display: block;
+    display: flex;
     width: 100%; }
 
 .event-meta {
@@ -1168,9 +1168,6 @@ thumbs-wrapper {
     max-width: 50%; }
 
 @media (max-width: 768px) {
-  .grid-col-5,
-  .grid-col-3 {
-    grid-template-columns: repeat(1, 1fr); }
   .inner-404 {
     flex-direction: column; }
   .left-404 {

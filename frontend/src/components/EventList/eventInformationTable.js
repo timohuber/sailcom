@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 
 export default function EventInformationTable(props) {
     const event = props.event
-    console.log(event)
     return (
         <div className='event-meta'>
             <div className='event-row'>
