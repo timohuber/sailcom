@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import SelectLake from "./selectLake";
-import SelectCategory from "./selectCategory";
+import EventTypesSelect from "./eventType";
 import SelectBoat from "./selectBoat";
 import {connect} from "react-redux";
 import {dateToISOString} from "../../../lib/helpers/formatDates";
@@ -44,7 +44,7 @@ function EventListFilter(props) {
                     <div className="input-container">
                         <SelectLake
                             onChangeHandler={onChangeHandler}/>
-                        <SelectCategory
+                        <EventTypesSelect
                             onChangeHandler={onChangeHandler} />
                         <SelectBoat
                             onChangeHandler={onChangeHandler} />
