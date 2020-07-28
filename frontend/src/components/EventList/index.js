@@ -35,17 +35,12 @@ function EventListContainer(props) {
     }, [visibilityFilter])
 
     const updateState = eventID => {
-        console.log(eventID)
-        console.log(data)
-
         let arrayIndex = null
         data.forEach((event, index) => {
             if(event.id == eventID) {
                 arrayIndex = index
             }
         })
-        console.log(arrayIndex)
-        console.log(data[arrayIndex])
         const participantsArray = data[arrayIndex].participants
         const userID = props.currentUser.userData.id
 
@@ -56,6 +51,9 @@ function EventListContainer(props) {
             participantsArray.push(userID)
         }
 
+        let newData = data
+        newData[arrayIndex].participants = participantsArray
+        setData(newData)
     }
 
  const resetFilter = (e) => {

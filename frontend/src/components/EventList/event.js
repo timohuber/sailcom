@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ButtonsContainer from './buttonsContainer'
 import EventInformationTable from './eventInformationTable'
 export default function Event(props) {

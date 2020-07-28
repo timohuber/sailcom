@@ -74,7 +74,7 @@ function BoatDetailContainer(props) {
 
             <BoatCarousel images={boat.images}/>
 
-            <BoatTeamContainer members={boat.crew.members}/>
+            <BoatTeamContainer crew={boat.crew}/>
 
             <BoatCalendar boat={boat} boatID={boat.id}/>
 
