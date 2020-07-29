@@ -1,6 +1,6 @@
 import React from 'react';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import mapStyle from './map-styles.js';
 import BoatIcon from '../../assets/sailboat-map.svg';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,7 +9,6 @@ export class MapContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // boatOverview: props.boatOverview,
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},

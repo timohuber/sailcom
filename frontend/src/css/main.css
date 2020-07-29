@@ -1012,6 +1012,7 @@ form label.required:after {
     width: 100% !important;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #2c5d7b;
     color: #fff;
     border: none;
@@ -1095,5 +1096,5 @@ form label.required:after {
   height: 70vh;
   position: relative !important; }
 
-.filtered-wrapper {
-  padding: 15px 15px 0 15px; }
+.map-filter-wrapper {
+  margin-top: 10px; }
