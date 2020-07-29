@@ -63,7 +63,7 @@ def create_booking(sender, instance, created, **kwargs):
         Booking.objects.create(from_date_time=instance.from_date_time, until_date_time=instance.until_date_time,
                                event=instance, user=instance.instructor,
                                duration=instance.until_date_time - instance.from_date_time, boat=instance.boat,
-                               weekday_days=duration_calc.weekday_count, weekend_days=duration_calc.weekend_count
+                               weekday_days=duration_calc['weekday_count'], weekend_days=duration_calc['weekend_count']
                                )
     else:
         searchBooking[0].event = instance
