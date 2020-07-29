@@ -5,7 +5,7 @@ export default function BoatTechnicalData(props) {
     return (
         <div className='boat-technical-data'>
             <p><strong>Technische Details</strong></p>
-            <table className='simple'>
+            <table className='simple striped'>
                 <tbody>
                     <tr>
                         <td>

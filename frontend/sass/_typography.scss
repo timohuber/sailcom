@@ -129,6 +129,10 @@ table.simple {
     }
 }
 
+table.striped tbody > tr:nth-child(odd) td {
+    background-color: #fff;;
+}
+
 .upper-subtitle {
     color: $brand-color;
     text-transform: uppercase;
