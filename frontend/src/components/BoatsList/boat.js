@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 import ListButtonsContainer from './boatButtons'
 
 export default function Boat(props) {

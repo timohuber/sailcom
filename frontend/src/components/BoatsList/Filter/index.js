@@ -8,7 +8,6 @@ function BoatListFilter(props) {
     const [formState, setFormState] = useState({})
 
     const onChangeHandler = (e) => {
-        console.log(formState)
         const key = e.currentTarget.name;
         setFormState({
             ...formState,

@@ -14,9 +14,6 @@ import {smoothScroll} from '../../../lib/helpers/scroll'
 import DefaultHeroImage from '../../../assets/default-hero-image.jpg'
 import {NavLink} from "react-router-dom";
 
-import {dateToDisplayString} from '../../../lib/helpers/formatDates'
-
-
 function BoatDetailContainer(props) {
     const [startDateTime, setStartDateTime] = useState();
     const [endDateTime, setEndDateTime] = useState();

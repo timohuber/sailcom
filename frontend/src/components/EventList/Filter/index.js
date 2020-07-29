@@ -3,13 +3,11 @@ import SelectLake from "./selectLake";
 import EventTypesSelect from "./eventType";
 import SelectBoat from "./selectBoat";
 import {connect} from "react-redux";
-import {dateToISOString} from "../../../lib/helpers/formatDates";
 
 function EventListFilter(props) {
     const [formState, setFormState] = useState({})
 
     const onChangeHandler = (e) => {
-        console.log(formState)
         const key = e.currentTarget.name;
         setFormState({
             ...formState,
@@ -18,11 +16,6 @@ function EventListFilter(props) {
     };
 
     const onChangeDateHandler = (date, key) => {
-        console.log(date)
-        console.log(dateToISOString(date))
-
-        // date = dateToISOString(date)
-
         setFormState({
             ...formState,
             [key]: date,

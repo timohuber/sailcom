@@ -1210,8 +1210,8 @@ thumbs-wrapper {
   height: 70vh;
   position: relative !important; }
 
-.filtered-wrapper {
-  padding: 15px 15px 0 15px; }
+.map-filter-wrapper {
+  margin-top: 10px; }
 
 .filter-container .btn.secondary {
   margin-top: 15px; }
