@@ -8,6 +8,9 @@ const initialState = {
     registration: {
         verificationCodeRequested: false,
         verificationConfirmed: false
+    },
+    userData: {
+        is_staff: false,
     }
 };
 
@@ -23,13 +26,8 @@ export const currentUser = (state = initialState, action) => {
                 }
 
         case USER_LOGOUT:
-            return {
-                ...state,
-                authorized: false,
-                accessToken: '',
-                refreshToken: '',
-                // userInfo: {}
-                }
+            return initialState
+
 
         case VERIFICATION_CODE_REQUESTED:
             return {
@@ -54,14 +52,12 @@ export const currentUser = (state = initialState, action) => {
             }
 
         case DELETE_USER_BOOKING:
-            let booking_index
-            state.bookings.forEach((booking, index) => {
-                if(booking.id === action.booking_id) {
-                    booking_index = index
+            let new_array = []
+            state.bookings.forEach(booking => {
+                if(booking.id != action.booking_id) {
+                    new_array.push(booking)
                 }
             })
-            const new_array = state.bookings
-            new_array.splice(booking_index, 1)
             return {
                 ...state,
                 bookings: new_array

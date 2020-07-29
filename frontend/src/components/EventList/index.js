@@ -4,9 +4,12 @@ import {NavLink} from 'react-router-dom'
 import Loading from '../GenericLoading'
 import EventsContainer from './eventscontainer'
 import EventModal from './modal'
+import CreateEventButton from './createEventButton'
 import EventListFilter from './Filter'
 import Accordion from "../Accordion";
 import Axios from "../../axios";
+import {toggleAccordionHandler} from "../../lib/helpers/filters";
+import {smoothScroll} from "../../lib/helpers/scroll";
 
 function EventListContainer(props) {
     const [data, setData] = useState([]);
@@ -34,35 +37,41 @@ function EventListContainer(props) {
        fetchBoats()
     }, [visibilityFilter])
 
-    const updateState = event_id => {
-        const user_id = props.currentUser.userData.id
-        let event_index = 0
-        data.forEach((item, index) =>{
-            if(item.id === event_id) {
-                event_index = index;
+    const updateState = eventID => {
+        console.log('in updateState')
+        let arrayIndex = null
+        data.forEach((event, index) => {
+            if(event.id == eventID) {
+                arrayIndex = index
             }
         })
-        let new_participants = data[event_index].participants
-        if (new_participants.includes(user_id)) {
-            console.log('it contains id')
-            new_participants.splice(new_participants.indexOf(user_id), 1);
+        const participantsArray = data[arrayIndex].participants.slice();
+        const userID = props.currentUser.userData.id
+
+        if(participantsArray.includes(userID)) {
+            const index = participantsArray.indexOf(userID);
+            participantsArray.splice(index, 1);
         } else {
-            console.log('it does not contain id')
-            new_participants.push(user_id)
+            participantsArray.push(userID)
         }
-        let newState = data
-        newState[event_index].participants = new_participants
-        console.log('new State', newState)
-        setData(newState)
+
+        let newData = data
+        newData[arrayIndex].participants = participantsArray
+        setData(newData)
+        console.log('data was set', data)
     }
 
- const resetFilter = (e) => {
+ const resetFilter = (e, panelID, iconID) => {
         e.preventDefault()
+        toggleAccordionHandler(panelID, iconID)
+        smoothScroll('.App')
         setVisibilityFilter(null)
     }
 
-    const submitFilterHandler = (e, filterQuery) => {
+    const submitFilterHandler = (e, filterQuery, panelID, iconID) => {
         e.preventDefault()
+        toggleAccordionHandler(panelID, iconID)
+        smoothScroll('.App')
         let count = 0
         let query = '?'
         for (const [key, value] of Object.entries(filterQuery)) {
@@ -95,24 +104,18 @@ function EventListContainer(props) {
             <div className='main-wrapper narrow'>
                 <Accordion content={accordionContent}/>
                 <h1>Veranstaltungen</h1>
-                {
-                    props.currentUser.authorized
-                    ? props.currentUser.userData.is_member || props.currentUser.userData.is_crew
-                        ? <NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink>
-                        : null
-                    : null
-                }
+                <CreateEventButton authorized={props.currentUser.authorized}
+                                   is_member={props.currentUser.userData.is_member}
+                                   is_crew={props.currentUser.userData.is_crew}/>
             </div>
             {loading ?
                 <Loading /> : <EventsContainer data={data}/>
             }
-            {
-                props.currentUser.authorized
-                    ? props.currentUser.userData.is_member || props.currentUser.userData.is_crew
-                    ? <div className='main-wrapper narrow'><NavLink to='/event-erstellen' className='btn primary create-event'>Event erstellen</NavLink></div>
-                        : null
-                    : null
-            }
+            <div className='main-wrapper narrow'>
+                <CreateEventButton authorized={props.currentUser.authorized}
+                                   is_member={props.currentUser.userData.is_member}
+                                   is_crew={props.currentUser.userData.is_crew}/>
+            </div>
         </>
     );
 };
@@ -127,3 +130,26 @@ const connection = connect(mapStateToProps);
 const ConnectedEventListContainer = connection(EventListContainer);
 
 export default ConnectedEventListContainer;
+
+
+/*
+*         const user_id = props.currentUser.userData.id
+        let event_index = 0
+        data.forEach((item, index) =>{
+            if(item.id === event_id) {
+                event_index = index;
+            }
+        })
+        let new_participants = data[event_index].participants
+        if (new_participants.includes(user_id)) {
+            console.log('it contains id')
+            new_participants.splice(new_participants.indexOf(user_id), 1);
+        } else {
+            console.log('it does not contain id')
+            new_participants.push(user_id)
+        }
+        let newState = data
+        newState[event_index].participants = new_participants
+        console.log('new State', newState)
+        setData(newState)
+* */

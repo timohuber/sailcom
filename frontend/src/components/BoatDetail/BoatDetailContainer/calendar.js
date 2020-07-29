@@ -21,7 +21,6 @@ function BoatCalendar(props) {
     const [loading, setLoading] = useState(true)
 
     const eventStyleGetter = (event, start, end, isSelected) => {
-        console.log(event)
         let className = ''
         if (event.currentUser.authorized) {
             if (event.currentUser.userData.id === event.booking.user.id) {
@@ -46,16 +45,15 @@ function BoatCalendar(props) {
         const bookings = props.boatlist[props.boatID].bookings
         const events = []
         bookings.forEach(booking => {
-            console.log()
-            if(booking.id === 83) {
-                console.log(booking)
-            }
+
+            const start = moment(booking.from_date_time).add(-2, 'hours')
+            const end = moment(booking.until_date_time).add(-2, 'hours')
 
             events.push({
                 currentUser: props.currentUser,
                 booking: booking,
-                start: new Date(moment(booking.from_date_time).add(-2, 'hours')),
-                end: new Date(moment(booking.until_date_time).add(-2, 'hours')),
+                start: new Date(start),
+                end: new Date(end),
             })
         })
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import SelectLake from "./selectLake";
-import SelectCategory from "./selectCategory";
+import EventTypesSelect from "./eventType";
 import SelectBoat from "./selectBoat";
 import {connect} from "react-redux";
 import {dateToISOString} from "../../../lib/helpers/formatDates";
@@ -44,13 +44,13 @@ function EventListFilter(props) {
                     <div className="input-container">
                         <SelectLake
                             onChangeHandler={onChangeHandler}/>
-                        <SelectCategory
+                        <EventTypesSelect
                             onChangeHandler={onChangeHandler} />
                         <SelectBoat
                             onChangeHandler={onChangeHandler} />
                     </div>
-                    <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState) }>Suchen</button>
-                    <button className='btn secondary' onClick={ e => props.resetFilter(e) } >Filter zurücksetzen</button>
+                    <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState, 'panel-0', 'icon-0') }>Suchen</button>
+                    <button className='btn secondary' onClick={ e => props.resetFilter(e, 'panel-0', 'icon-0') } >Filter zurücksetzen</button>
                 </form>
             </div>
     );

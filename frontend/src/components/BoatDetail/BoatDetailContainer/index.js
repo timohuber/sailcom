@@ -6,6 +6,7 @@ import ButtonsContainer from './buttonsContainer';
 import BoatDateTimePicker from "./datepicker";
 import BoatDocuments from './documents'
 import BoatCarousel from "./carousel";
+import BoatTeamContainer from './boatTeamContainer';
 import BoatTechnicalData from './technicalData'
 import BookingForm from '../BookingForm'
 import {connect} from "react-redux";
@@ -48,11 +49,6 @@ function BoatDetailContainer(props) {
      if (props.currentUser.authorized) {
         instructed = props.currentUser.userData.instructed_for_models.includes(props.boat.model)
     }
-     const showDates = e => {
-         e.preventDefault()
-         console.log('startDateTime', startDateTime)
-         console.log('formatted', dateToDisplayString(startDateTime))
-     }
 
     return (
         <>
@@ -64,9 +60,9 @@ function BoatDetailContainer(props) {
         <div className='hero-image boat' style={heroImageStyle}></div>
         <div className='main-wrapper boat-detail-container'>
             <h1>{boat.title}</h1>
-            <p className='subtitle'>{boat.mooring.lake.title}, {boat.mooring.address}</p>
+            <p className='subtitle'>{boat.mooring.lake.title}<br/>{boat.mooring.address}</p>
 
-            <ButtonsContainer user={props.currentUser} instructed={instructed} triggerBookingModal={triggerBookingModal}/>
+            <ButtonsContainer boat_id={boat.id} user={props.currentUser} instructed={instructed} triggerBookingModal={triggerBookingModal}/>
 
             <PricesTable boat={boat} />
             <div className='detail-description'>
@@ -77,6 +73,8 @@ function BoatDetailContainer(props) {
             <BoatTechnicalData boat={boat}/>
 
             <BoatCarousel images={boat.images}/>
+
+            <BoatTeamContainer crew={boat.crew}/>
 
             <BoatCalendar boat={boat} boatID={boat.id}/>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {dateToDisplayStringWithoutTime} from '../../lib/helpers/formatDates'
 
 export default function Transaction(props) {
     const transaction = props.transaction
@@ -15,7 +16,7 @@ export default function Transaction(props) {
                     }
                 </div>
                 <div className='date'>
-                    {transaction.created}
+                    {dateToDisplayStringWithoutTime(transaction.created)}
                 </div>
                 <div className='status'>
                     {

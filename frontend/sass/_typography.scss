@@ -52,6 +52,7 @@ h2 {
     color: $brand-color;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-align: center;
 }
 
 h2.h2-underlined:after {
@@ -77,13 +78,18 @@ h4 {
 
 @media (max-width: $break-point-md) {
     h1 {
-        font-size: $large-font-size;
+        font-size: rem(22px);
+    }
+
+    h2 {
+        font-size: rem(20px);
     }
 }
 
 .error {
     color: $error-color;
     font-size: $smaller-font-size;
+    text-align: center;
 }
 
 #element-updated {
@@ -121,6 +127,10 @@ table.simple {
         border-bottom: 1px solid $border-color;
         padding: 8px;
     }
+}
+
+table.striped tbody > tr:nth-child(odd) td {
+    background-color: #fff;;
 }
 
 .upper-subtitle {

@@ -3,15 +3,16 @@ from django.http import HttpResponse
 from rest_framework.generics import ListCreateAPIView, ListAPIView, DestroyAPIView
 
 from datetime import timedelta, datetime
+from django.utils import timezone
 
+from .calculation import calculate_duration, calculate_price
 from .models import Booking
 from .serializers import BookingSerializer, CreateBookingSerializer
-from ..boat.models import Boat
 from ..permissions import IsLoggedIn, IsStaffOrCreator, MemberPostLoggedInFetch
 
 
 class ListCreateBookingsView(ListCreateAPIView):
-    queryset = Booking.objects.all()
+    queryset = Booking.objects.all().order_by('from_date_time')
     permission_classes = [MemberPostLoggedInFetch]
 
     def get_serializer_class(self):
@@ -57,23 +58,12 @@ class ListCreateBookingsView(ListCreateAPIView):
         # calculate booking duration
         until_date_time = serializer.validated_data.get('until_date_time')
         from_date_time = serializer.validated_data.get('from_date_time')
-        duration = until_date_time - from_date_time
-        less_24 = duration.days == 0
 
-        dt_start = serializer.validated_data.get('from_date_time').date()
-        dt_end = serializer.validated_data.get('until_date_time').date()
-        dt_current = dt_start
-        weekday_count = 0
-        weekend_count = 0
+        duration_calc = calculate_duration(from_date_time, until_date_time)
 
-        # loop through days to count weekend days and weekdays
-        if not less_24:
-            while dt_current <= dt_end:
-                if dt_current.isoweekday() > 5:
-                    weekend_count += 1
-                else:
-                    weekday_count += 1
-                dt_current = dt_current + timedelta(1)  # add 1 day to current day
+        weekday_count = duration_calc['weekday_count']
+        weekend_count = duration_calc['weekend_count']
+        duration = duration_calc['duration']
 
         serializer.save(
             user=self.request.user,
@@ -104,35 +94,13 @@ class CalculateBookingView(ListAPIView):
             }
             return HttpResponse(res, status=400)
 
-        duration = until_date_time - from_date_time
-        less_24 = duration.days == 0
+        duration_dates = calculate_duration(from_date_time, until_date_time)
 
-        dt_start = from_date_time.date()
-        dt_end = until_date_time.date()
-        dt_current = dt_start
-        weekday_count = 0
-        weekend_count = 0
+        weekday_count = duration_dates['weekday_count']
+        weekend_count = duration_dates['weekend_count']
+        duration = duration_dates['duration']
 
-        # loop through days to count weekend days and weekdays
-        if not less_24:
-            while dt_current <= dt_end:
-                if dt_current.isoweekday() > 5:
-                    weekend_count += 1
-                else:
-                    weekday_count += 1
-                dt_current = dt_current + timedelta(1)  # add 1 day to current day
-
-        if weekday_count is not None:
-            if weekday_count + weekend_count == 0:  # hourly rate calculation
-                if from_date_time.date().isoweekday() < 6:  # 1-5 Mon-Fri
-                    price = float(Boat.objects.get(id=request.data['boat']).price_hour_weekday) * float(
-                        duration.seconds / 60 / 60)
-                else:
-                    price = float(Boat.objects.get(id=request.data['boat']).price_hour_weekend) * float(
-                        duration.seconds / 60 / 60)
-            else:  # daily rate calculation
-                price = weekday_count * float(Boat.objects.get(id=request.data['boat']).price_fullday_weekday) \
-                        + weekend_count * float(Boat.objects.get(id=request.data['boat']).price_fullday_weekend)
+        price = calculate_price(weekday_count, weekend_count, from_date_time, duration, self.request.data.get('boat'))
 
         return HttpResponse(price, status=200)
 
@@ -147,4 +115,8 @@ class MyBookingView(ListAPIView):
     permission_classes = [IsLoggedIn]
 
     def get_queryset(self):
-        return Booking.objects.filter(Q(user=self.request.user))
+        data = Booking.objects.filter(Q(user=self.request.user))
+        if self.request.query_params.get('mitsegeln') is not None and self.request.query_params.get('mitsegeln') \
+                == 'true':
+            data = data.filter(from_date_time__gte=timezone.localtime() - timedelta(days=1), event__isnull=True)
+        return data.order_by('from_date_time')

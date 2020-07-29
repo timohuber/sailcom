@@ -37,7 +37,7 @@ class CreateBookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time', 'duration', 'transaction']
+        fields = ['id', 'user', 'boat', 'from_date_time', 'until_date_time', 'duration']
 
     def perform_create(self, validated_data):
         instance = Booking.objects.create(

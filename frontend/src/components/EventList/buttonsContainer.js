@@ -18,38 +18,33 @@ function ButtonsContainer(props) {
         e.preventDefault();
         dispatch(setEventModalAction(modal, event));
     };
-
+    console.log('buttons', event)
     return (
         <div className='event-button-container'>
             <DisplayInformationButton toggleModal={toggleModal} />
-            {!user.authorized ? (
-                <NotLoggedInButton toggleModal={toggleModal} />
-            ) : event.max_participants <= event.participants.length ? (
-                <FullyBookedButton />
-            ) : event.instructor.id !== user.userData.id ? (
-                <ParticipateButton
-                    toggleModal={toggleModal}
-                    signedUp={event.participants.includes(user.userData.id)}
-                />
-            ) : null}
-            {user.authorized ? (
-                event.instructor.id === user.userData.id ? (
-                    <NavLink
-                        to={`/event-bearbeiten/${event.id}/`}
-                        className='btn secondary'
-                    >
-                        Event bearbeiten
-                    </NavLink>
-                ) : null
-            ) : null}
+
+            {!user.authorized
+                ?  <NotLoggedInButton toggleModal={toggleModal} />
+
+                : event.max_participants <= event.participants.length
+                    ?  <FullyBookedButton />
+
+                    : event.instructor.id == user.userData.id
+                        ? <NavLink to={`/event-bearbeiten/${event.id}/`} className='btn secondary'>Event bearbeiten</NavLink>
+
+                        : event.event_type.is_public || user.userData.is_member
+                            ? <ParticipateButton toggleModal={toggleModal} signedUp={event.participants.includes(user.userData.id)}/>
+                            : null
+            }
+
         </div>
     );
 }
-// TODO: user variable instead of fix max participants
 
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,
+        activeModal: state.events.activeModal
     };
 };
 const connection = connect(mapStateToProps);

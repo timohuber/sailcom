@@ -3,7 +3,6 @@ import SelectLake from "./selectLake";
 import SelectCategory from "./selectCategory";
 import PeriodPicker from "./periodPicker";
 import {connect} from "react-redux";
-import {dateToISOString} from "../../../lib/helpers/formatDates";
 
 function BoatListFilter(props) {
     const [formState, setFormState] = useState({})
@@ -18,11 +17,6 @@ function BoatListFilter(props) {
     };
 
     const onChangeDateHandler = (date, key) => {
-        console.log(date)
-        console.log(dateToISOString(date))
-
-        // date = dateToISOString(date)
-
         setFormState({
             ...formState,
             [key]: date,
@@ -71,8 +65,8 @@ function BoatListFilter(props) {
                             : null
                         }
                     </div>
-                    <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState) }>Suchen</button>
-                    <button className='btn secondary' onClick={ e => props.resetFilter(e) } >Filter zurücksetzen</button>
+                    <button className='btn primary' type='submit' onClick={ e => props.submitFilterHandler(e, formState, 'panel-0', 'icon-0') }>Suchen</button>
+                    <button className='btn secondary' onClick={ e => props.resetFilter(e, 'panel-0', 'icon-0') } >Filter zurücksetzen</button>
                 </form>
             </div>
     );

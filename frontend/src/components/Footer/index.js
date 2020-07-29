@@ -5,9 +5,9 @@ export default function Footer(props) {
     return (
         <div id='footer' className='footer-wrapper'>
             <div className='main-wrapper'>
-                <div className='grid-col-5'>
+                <div className='grid-col-4'>
                     <div>
-                        <h3>Kontakt</h3>
+                        <h3>Adresse</h3>
                         <ul>
                             <li>
                                 <p>SailCom Genossenschaft</p>
@@ -18,6 +18,11 @@ export default function Footer(props) {
                             <li>
                                 <p>8006 Zürich</p>
                             </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Kontakt</h3>
+                        <ul>
                             <li>
                                 <a className='icon-phone' href='tel:0443226626'>
                                     044 322 66 26
@@ -33,9 +38,19 @@ export default function Footer(props) {
                             </li>
                         </ul>
                     </div>
-
                     <div>
-                        <h3>Sailcom</h3>
+                        <h3>Boote</h3>
+                        <ul>
+                            <li>
+                                <Link to='/bootsliste'>Bootsliste</Link>
+                            </li>
+                            <li>
+                                <Link to='/standorte'>Standorte</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Community</h3>
                         <ul>
                             <li>
                                 <Link to='/boat-sharing'>Boat Sharing</Link>
@@ -44,58 +59,10 @@ export default function Footer(props) {
                                 <Link to='/genossenschaft'>Genossenschaft</Link>
                             </li>
                             <li>
-                                <Link to='#'>Partner</Link>
-                            </li>
-                            <li>
-                                <Link to='#'>Covid-19 Schutzkonzept</Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3>Boote</h3>
-                        <ul>
-                            <li>
-                                <Link to='/bootsliste'>Flotte</Link>
-                            </li>
-                            <li>
-                                <Link to='#'>Standorte</Link>
-                            </li>
-                            <li>
-                                <Link to='/bootsliste'>Bootsliste</Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3>Community</h3>
-                        <ul>
-                            <li>
-                                <Link to='#'>Information</Link>
-                            </li>
-                            <li>
                                 <Link to='/events'>Veranstaltungen</Link>
                             </li>
                             <li>
-                                <Link to='#'>Sailing Ladies</Link>
-                            </li>
-                            <li>
-                                <Link to='#'>Race Group</Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3>Beitreten</h3>
-                        <ul>
-                            <li>
                                 <Link to='/registrierung'>Mitglied werden</Link>
-                            </li>
-                            <li>
-                                <Link to='#'>Voraussetzungen</Link>
-                            </li>
-                            <li>
-                                <Link to='#'>Kosten</Link>
                             </li>
                         </ul>
                     </div>

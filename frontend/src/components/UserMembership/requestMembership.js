@@ -63,7 +63,7 @@ export default function RequestMembershipForm(props) {
     }
     return (
         <>
-        <h1>Mitgliedschaft beantragen</h1>
+        <h2>Mitgliedschaft beantragen</h2>
         <form id='request-membership-form'
             className='col-2'
             onSubmit={(e) => onSubmitHandler(e)}>

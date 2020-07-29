@@ -14,6 +14,9 @@ button {
     text-align: center;
     font-weight: normal;
     font-size: rem(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn.primary {
@@ -26,7 +29,6 @@ button {
     margin-right: auto;
     display: block;
     text-transform: uppercase;
-
 
     &:hover {
         background-color: $brand-color-dark;
@@ -60,14 +62,19 @@ button {
 }
 
 .btn.disabled {
-    background-color: $disabled-color;
-    color: #fff;
+    background-color: transparent;
+    color: $brand-color;
+    font-weight: bold;
+    border: 2px solid $brand-color;
     padding: 10px 20px;
     text-transform: uppercase;
     height: 40px;
     border-radius: 20px;
     width: 200px;
     max-width: 100%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 }
 
 #confirmation-button {

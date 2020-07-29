@@ -1,12 +1,8 @@
 import React from 'react';
+import {toggleAccordionHandler} from '../../lib/helpers/filters'
 
 export default function Accordion(props) {
     const content = props.content;
-
-    const onClickHandler = (panel_id, icon_id) => {
-        document.getElementById(panel_id).classList.toggle('open');
-        document.getElementById(icon_id).classList.toggle('fa-chevron-up');       
-    };
 
     return (
         <div className='accordion-wrapper'>
@@ -17,7 +13,7 @@ export default function Accordion(props) {
                     <section >
                         <button
                             className='accordion'
-                            onClick={(e) => onClickHandler(panel_id, icon_id)}
+                            onClick={(e) => toggleAccordionHandler(panel_id, icon_id)}
                         >
                             {element.title}
                             <i class='fas fa-chevron-down' id={icon_id}></i>

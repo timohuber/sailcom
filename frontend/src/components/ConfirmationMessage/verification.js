@@ -8,12 +8,11 @@ export default function ConfirmationVerification(props) {
                 <h1>Erfolgreich verifiziert</h1>
                 <p className='form-text-centered'>
                     Gratulation! Sie haben sich gerade verifiziert. Falls Sie
-                    eine Mitgliedschaft beantragt haben, werden wir Sie in kürze
-                    von uns höhren. Klicken Sie auf weiter um auf die Startseite
-                    zu gehen.
+                    eine Mitgliedschaft beantragt haben, werden Sie in kürze von
+                    uns höhren. Klicken Sie auf weiter um sich einzuloggen.
                 </p>
                 <div id='confirmation-button' className='button-container'>
-                    <Link to='/'>
+                    <Link to='/login'>
                         <button className='btn primary'>Weiter</button>
                     </Link>
                 </div>
