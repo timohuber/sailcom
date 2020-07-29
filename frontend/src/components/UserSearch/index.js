@@ -4,7 +4,6 @@ import UserSearchForm from "./searchForm";
 import UsersContainer from './usersContainer'
 import {baseUrl, authenticatedGetConfig} from "../../store/constants";
 import Axios from "../../axios";
-import {getMembershipTypes} from "../../store/actions/miscActions";
 
 
 export default function UserSearch(props) {
@@ -16,21 +15,21 @@ export default function UserSearch(props) {
         setSearchQuery(e.currentTarget.value)
     }
 
-    const onSubmitHandler = e => {
+    const onSubmitHandler = async e => {
         e.preventDefault()
         if (searchQuery) {
-            document.getElementById('search-form-error').innerText = ''
-            setLoading(true)
-            const response = fetch(baseUrl + `user/?search=${searchQuery}`, authenticatedGetConfig)
-            .then(res => res.json())
-            .then(data => {
-                setData(data['results']);
+            try {
+                document.getElementById('search-form-error').innerText = ''
+                setLoading(true)
+                const response = await Axios.get(baseUrl + `user/?search=${searchQuery}`)
+                setData(response.data['results'])
                 setLoading(false)
-                console.log(data)
-            })
-            .catch(response => {
-                return
-            })
+                console.log(response.data['results'])
+            } catch (error) {
+            if(error) {
+                console.log('an error occurred', error)
+                }
+            }
         } else {
             document.getElementById('search-form-error').innerText = 'Bitte Suchbegriff eingeben'
         }
@@ -64,3 +63,4 @@ export default function UserSearch(props) {
         </div>
     );
 };
+

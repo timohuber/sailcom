@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 export default function UserSearchForm(props) {
     return (
@@ -6,9 +6,9 @@ export default function UserSearchForm(props) {
             <div className='input-wrapper'>
                 <input id='search-user-input' onChange={ e => props.onChangeHandler(e)}/>
             </div>
-                <button className='btn secondary center' onClick={ e => props.toggleOpenRequests(e) }>Alle offenen Anträge anzeigen</button>
                 <span id='search-form-error' className='error'></span>
                 <button type='submit' className='btn primary'>Suchen</button>
+                <button className='btn secondary center' onClick={ e => props.toggleOpenRequests(e) }>Alle offenen Mitgliedernträge anzeigen</button>
         </form>
     );
 };
