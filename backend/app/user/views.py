@@ -153,6 +153,7 @@ class AcceptMembershipRequestView(CreateAPIView):
             return HttpResponse('Kunde hat keine Mitgliedschaft beantragt', status=400)
         if searchUser.membership_type is None:
             searchUser.membership_type = MembershipType.objects.get(id=self.request.data['membership_type'])
+            searchUser.is_member = True
             searchUser.save()
             membership_fee = MembershipType.objects.get(id=self.request.data['membership_type']).membership_fee
             trx = Transaction.objects.create(sent=False, description='Eintrittsgebühr',
