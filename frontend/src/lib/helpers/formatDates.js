@@ -10,6 +10,15 @@ export function dateToISOString(date) {
     );
 }
 
+export function dateToISOStringWithZ(date) {
+    return (
+        moment(date)
+            .format('YYYY-MM-DDTHH:mmZ')
+            .split('+')[0]
+            + 'Z'
+    );
+}
+
 /*
 export function dateToISOString(date) {
     return (

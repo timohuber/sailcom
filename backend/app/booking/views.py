@@ -8,7 +8,6 @@ from django.utils import timezone
 from .calculation import calculate_duration, calculate_price
 from .models import Booking
 from .serializers import BookingSerializer, CreateBookingSerializer
-from ..boat.models import Boat
 from ..permissions import IsLoggedIn, IsStaffOrCreator, MemberPostLoggedInFetch
 
 
