@@ -65,7 +65,6 @@ class ListEventsView(ListCreateAPIView):
                 return HttpResponse('Das Boot ist leider schon besetzt', status=400)
             # method 2 where booking is given with the event
         else:
-
             searchEvent = Event.objects.filter(until_date_time=self.request.data['until_date_time'],
                                                from_date_time=self.request.data['from_date_time'],
                                                boat=self.request.data['boat'])
