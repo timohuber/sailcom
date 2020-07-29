@@ -55,7 +55,6 @@ function HomePage(props) {
                                 segeln.
                             </p>
                         </div>
-
                         <Link to='/events'>
                             <button className='btn primary'>
                                 Events Anschauen
@@ -82,13 +81,8 @@ function HomePage(props) {
                                 Winde der Schweizer Seen.
                             </p>
                         </div>
-                        <Link to='/bootsliste'>
-                            <button
-                                className='btn primary'
-                                // onClick={smoothScroll('#google-map-home')}
-                            >
-                                Miet Locations
-                            </button>
+                        <Link to='/standorte'>
+                            <button className='btn primary'>Standorte</button>
                         </Link>
                     </div>
                 </div>
@@ -98,64 +92,56 @@ function HomePage(props) {
             </div>
             <div className='main-wrapper'>
                 <div className='grid-col-3 generic-box-grid'>
-                    <div>
-                        <h2>Finde das passende Boot</h2>
-                        <hr />
-                        <p>
-                            Die SailCom Flotte umfasst ca. 60 Boote. Ob für
-                            sportliches Regattasegln, gemütliche
-                            Famillienausflüge, Feierabend-Kurztörns bei
-                            Sonnenuntergang, mehrtägige Ferientörns – bei
-                            SailCom findest du das passende Boot. Finde mehr
-                            heraus und{' '}
-                            <Link to='/boote/flotte'>
-                                schau dir unsere Flotte{' '}
-                            </Link>
-                            an.
-                        </p>
-                        <Link to='/boote'>
-                            <button className='btn primary'>
+                    <div className='home-find-boat'>
+                        <div className='home-find-boat-text-content'>
+                            <h2>Finde das passende Boot</h2>
+                            <p>
+                                Die SailCom Flotte umfasst ca. 60 Boote. Ob für
+                                sportliches Regattasegln, gemütliche
+                                Famillienausflüge, Feierabend-Kurztörns bei
+                                Sonnenuntergang, mehrtägige Ferientörns – bei
+                                SailCom findest du das passende Boot. Finde mehr
+                                heraus und 
+                                <Link to='/standorte'> schau dir unsere Standorte </Link>
+                                an.
+                            </p>
+                        </div>
+                        <Link to='/bootsliste'>
+                            <button className='btn primary home-btn-margin'>
                                 Boote Anschauen
                             </button>
                         </Link>
                     </div>
-                    <div className='col-2'>
+                    <div className='col-2 home-membership-section'>
                         <h2>Werde Mitglied</h2>
-                        <hr />
                         <p>
-                            <span>Du hast schon einen D-Schein:</span>
+                            <p>Du hast schon einen D-Schein:</p>
+                            Stell ein Mitgliederantrag im Boatsharing und
+                            profitiere von einem günstigen Zugang zu Booten &
+                            der Community.
                             <br />
-                            Werde <Link to='/registrierung'>Mitglied</Link> im
-                            Boatsharing und profitiere von einem günstigen
-                            Zugang zu
-                            <Link to='/boote/flotte'> Booten</Link> & der{' '}
-                            <Link to='/community'>Community</Link>.<br />
-                            <span>Du hast (noch) keinen D-Schein:</span>
                             <br />
-                            Lerne Segeln mit einer unserer{' '}
-                            <Link to='/partner'>Partner-Segelschulen</Link> und
-                            profitiere von vergünstigten Kurspreisen im
-                            Kombiangebot bei einer Mitgliedschaft SailCom +
+                            <p>Du hast (noch) keinen D-Schein:</p>
+                            Lerne Segeln mit einer unserer Partner-Segelschulen
+                            und profitiere von vergünstigten Kurspreisen im
+                            Kombiangebot bei einer Mitgliedschaft SailCom mit
                             Segelkurs.
                             <br />
-                            <span>
+                            <br />
+                            <p>
                                 Möchtest du einfach einmal das Segeln
                                 beschnuppern?
-                            </span>
-                            <br />
-                            Dann erstelle gratis einen{' '}
-                            <Link to='/registrierung'>Account</Link> und nimm an
-                            unseren öffentlichen
-                            <Link to='/community/events'>
-                                {' '}
-                                Segel-Events
-                            </Link>{' '}
+                            </p>
+                            Dann erstelle gratis einen
+                            <Link to='/registrierung'> Account</Link> und nimm
+                            an unseren öffentlichen
+                            <Link to='/events'> Segel-Events </Link>
                             teil.
                         </p>
 
                         <div className='button-container'>
                             <Link to='/registrierung'>
-                                <button className='btn primary'>
+                                <button className='btn primary home-btn-margin'>
                                     Mitglied werden
                                 </button>
                             </Link>
