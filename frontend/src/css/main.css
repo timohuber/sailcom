@@ -736,7 +736,8 @@ thumbs-wrapper {
     margin-bottom: 15px;
     background-color: #fff;
     border-radius: 5px;
-    padding: 10px; }
+    padding: 10px;
+    align-items: flex-start; }
     .boat-team-container .boat-team-member .avatar {
       width: 50px;
       margin-right: 15px; }
@@ -1039,6 +1040,10 @@ thumbs-wrapper {
 
 .user-edit-membership, .user-address, .user-boats {
   margin-bottom: 30px; }
+
+.user-edit-membership .form-success {
+  width: 100%;
+  margin-bottom: 15px; }
 
 .user-avatar {
   border-radius: 50%;
