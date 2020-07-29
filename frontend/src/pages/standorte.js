@@ -4,7 +4,7 @@ import Loading from '../components/GenericLoading';
 import Accordion from '../components/Accordion';
 import { dateToISOString } from '../lib/helpers/formatDates';
 import Axios from '../axios';
-import Maps from '../components/Map';
+import Maps from '../components/Map/mapContainer';
 
 export default function LocationContainer(props) {
     const [data, setData] = useState([]);
@@ -62,38 +62,29 @@ export default function LocationContainer(props) {
         }
     };
 
-    // const accordionContent = [
-    //     {
-    //         title: 'Filter',
-    //         content: (
-    //             <BoatListFilter
-    //                 submitFilterHandler={submitFilterHandler}
-    //                 resetFilter={resetFilter}
-    //             />
-    //         ),
-    //     },
-    // ];
+    const accordionContent = [
+        {
+            title: 'Filter',
+            content: (
+                <BoatListFilter
+                    submitFilterHandler={submitFilterHandler}
+                    resetFilter={resetFilter}
+                />
+            ),
+        },
+    ];
 
     return (
         <>
-            {/* <div className='main-wrapper'>
+            <div className='main-wrapper map-filter-wrapper'>
                 <Accordion content={accordionContent} />
-            </div> */}
+            </div>
             {loading ? (
                 <Loading />
             ) : (
-                <>
-                    <div className='filtered-wrapper'>
-                        <BoatListFilter
-                            submitFilterHandler={submitFilterHandler}
-                            resetFilter={resetFilter}
-                        />
-                    </div>
-
-                    <div className='filtered-map'>
-                        <Maps boatOverview={data} />
-                    </div>
-                </>
+                <div className='filtered-map'>
+                    <Maps boatOverview={data} />
+                </div>
             )}
         </>
     );
