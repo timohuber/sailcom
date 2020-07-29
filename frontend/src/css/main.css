@@ -43,7 +43,7 @@ p {
   margin-top: 0;
   margin-bottom: 8px; }
   p span {
-    color: #00b0f0; }
+    font-weight: bold; }
 
 p.small {
   font-size: 0.875rem; }
@@ -872,6 +872,17 @@ thumbs-wrapper {
       margin-top: 14px; }
   .home-icon-box .btn {
     margin: 15px 0; }
+
+.home-membership-section p p {
+  font-weight: bold; }
+
+.home-btn-margin {
+  margin: 30px 0 15px; }
+
+.home-find-boat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
 
 .footer-wrapper {
   padding-top: 30px;

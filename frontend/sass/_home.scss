@@ -30,3 +30,21 @@
         margin: $gap-width-small 0;
     }
 }
+
+.home-membership-section {
+    p {
+        p {
+            font-weight: bold;
+        }
+    }
+}
+
+.home-btn-margin {
+    margin: $gap-width 0 $gap-width-small;
+}
+
+.home-find-boat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
