@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { store } from '../../store';
 import AvatarDefault from '../../assets/avatar-placeholder.jpg';
-import LicenceDefault from '../../assets/pdf.svg';
 import { fetchUserData } from '../../store/actions/loginActions';
 import Loading from '../../components/GenericLoading';
 import { updateUserAction } from '../../store/actions/userActions';
@@ -14,13 +13,10 @@ export default function UserDocumentsForm(props) {
     delete initialState.avatar;
     delete initialState.licence;
 
-    const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
+    const [userImageRef] = useState(React.createRef());
     const [userData, setUserData] = useState();
-    const [formState, setFormState] = useState({});
     const [loading, setLoading] = useState(true);
-    const [licenceImageRef, licenceRestaurantImageRef] = useState(
-        React.createRef()
-    );
+    const [licenceImageRef] = useState(React.createRef());
     const dispatch = useDispatch();
 
     const avatarStyle = {
@@ -46,7 +42,7 @@ export default function UserDocumentsForm(props) {
 
         if (avatar) {
             form.append('avatar', avatar);
-            console.log(avatar)
+            console.log(avatar);
         }
         if (licence) {
             form.append('licence', licence);
@@ -94,13 +90,23 @@ export default function UserDocumentsForm(props) {
                         <h2>Segelausweis</h2>
                         <div className='input-wrapper '>
                             <div className='user-documents-img-btn-wrapper'>
-                                {props.userData.licence
-                                ? <a
-                                    className=' document pdf'
-                                    href={props.userData.licence ? props.userData.licence : null}
-                                    target='_blank'>Ihr Segelausweis</a>
-                                : <p className='error'>Noch kein Segelausweis hochgeladen</p>
-                                }
+                                {props.userData.licence ? (
+                                    <a
+                                        className=' document pdf'
+                                        href={
+                                            props.userData.licence
+                                                ? props.userData.licence
+                                                : null
+                                        }
+                                        target='_blank'
+                                    >
+                                        Ihr Segelausweis
+                                    </a>
+                                ) : (
+                                    <p className='error'>
+                                        Noch kein Segelausweis hochgeladen
+                                    </p>
+                                )}
                                 <label htmlFor='licence'></label>
                                 <label
                                     htmlFor='licence'
@@ -117,7 +123,6 @@ export default function UserDocumentsForm(props) {
                                 />
                             </div>
                             <span id='licence-error' className='error' />
-
                         </div>
                     </div>
                     <span id='element-updated' className='error'></span>
@@ -130,7 +135,6 @@ export default function UserDocumentsForm(props) {
             </>
         );
     };
-    // TODO: uncomment
-    // return loading ? formHandler() : <Loading />;
+
     return loading ? <Loading /> : formHandler();
 }

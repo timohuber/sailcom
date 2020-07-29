@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { baseUrl } from '../../store/constants';
-import { formErrorHandler, advancedFormErrorHandler } from '../../lib/helpers/errorHandler';
+import { advancedFormErrorHandler } from '../../lib/helpers/errorHandler';
 import { connect, useDispatch } from 'react-redux';
 import { userValidationConfirmedAction } from '../../store/actions/registerActions';
 
 function VerificationForm(props) {
     const dispatch = useDispatch();
-    const [userImageRef, userRestaurantImageRef] = useState(React.createRef());
-    const [licenceImageRef, licenceRestaurantImageRef] = useState(
-        React.createRef()
-    );
+    const [userImageRef] = useState(React.createRef());
+    const [licenceImageRef] = useState(React.createRef());
 
     const [formState, setFormState] = useState({
         email: props.registration.email,
@@ -66,7 +64,7 @@ function VerificationForm(props) {
                 if (!res.ok) {
                     throw res;
                 }
-                dispatch(userValidationConfirmedAction())
+                dispatch(userValidationConfirmedAction());
                 return res.json();
             })
             .then((data) => {
@@ -91,8 +89,8 @@ function VerificationForm(props) {
             >
                 <p className='form-text-centered'>
                     Du möchtest gerne segeln und besitzt kein Boot. Werde
-                    Mitglied und nutze mehr als 60 Boote! Das geht ganz einfach -
-                    Formular ausfüllen und Mitgliedschaft beantragen!
+                    Mitglied und nutze mehr als 60 Boote! Das geht ganz einfach
+                    - Formular ausfüllen und Mitgliedschaft beantragen!
                 </p>
                 <div className='input-container'>
                     <div className='input-wrapper'>
@@ -217,7 +215,9 @@ function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper'>
-                        <p><strong>Mitgliedschaft</strong></p>
+                        <p>
+                            <strong>Mitgliedschaft</strong>
+                        </p>
                         <div className='checkbox-wrapper'>
                             <input
                                 type='checkbox'
@@ -229,8 +229,11 @@ function VerificationForm(props) {
                             <label htmlFor='membership_request'>
                                 Ich möchte eine Mitgliedschaft beantragen
                             </label>
-                         </div>
-                        <p className='small'>Die Mitgliedschaft kann auch zu einem späteren Zeitpunkt bentragt werden.</p>
+                        </div>
+                        <p className='small'>
+                            Die Mitgliedschaft kann auch zu einem späteren
+                            Zeitpunkt bentragt werden.
+                        </p>
                         <span
                             className='error'
                             data-key='membership_request'
@@ -271,7 +274,9 @@ function VerificationForm(props) {
                     </div>
 
                     <div className='input-wrapper break'>
-                        <label htmlFor='password' className='required'>Passwort</label>
+                        <label htmlFor='password' className='required'>
+                            Passwort
+                        </label>
                         <input
                             type='password'
                             id='password'
