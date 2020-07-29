@@ -63,6 +63,11 @@ function App() {
                         />
                         <Route
                             exact
+                            path='/standorte'
+                            component={LocationContainer}
+                        />
+                        <Route
+                            exact
                             path='/login'
                             // component={authComponent(Login, true)}
                             component={Login}

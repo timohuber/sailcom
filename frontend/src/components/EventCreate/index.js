@@ -43,7 +43,6 @@ function EventForm(props) {
     const onChangeBookingHandler = (e) => {
         const target = e.currentTarget
         const key = target.name;
-        console.log()
         setValue({
             ...value,
             [key]: e.currentTarget.value,
@@ -78,7 +77,6 @@ function EventForm(props) {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         let fieldsOK = true
-        console.log(value)
 
         if(!value.event_type) {
             document.getElementById('type-error').innerText = 'Bitte auswählen'
@@ -110,7 +108,6 @@ function EventForm(props) {
         datePickers.forEach( input => input.setAttribute("readOnly", true))
      })
 
-    console.log(displayDates)
     return (
         <div className='main-wrapper'>
             {

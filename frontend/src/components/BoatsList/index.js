@@ -15,8 +15,8 @@ export default function BoatListContainer(props) {
 
     useEffect(() => {
         const fetchBoats = async () => {
+            setLoading(true)
             let url = 'boat/'
-
             if (visibilityFilter) {
                 url += visibilityFilter
             }
@@ -52,7 +52,6 @@ export default function BoatListContainer(props) {
             if(value) {
                 if(key === 'from_date_time' || key === 'until_date_time') {
                     const formatted_date = dateToISOString(value)
-                    console.log('is date', formatted_date)
                     query += `${key}=${formatted_date}&`
                 } else {
                     query += `${key}=${value}&`

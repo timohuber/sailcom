@@ -41,35 +41,3 @@ export default function PeriodPicker(props) {
         </div>
     );
 };
-
-
-/*
-return (
-        <div className='filter-datepicker-container'>
-            <div id='boat-datepicker'>
-                <div className='input-wrapper'>
-                    <label>Zeitraum</label>
-                    <DatePicker
-                        selected={props.from ? Date.parse(props.from) : null}
-                        minDate={today}
-                        onChange={date => props.onChangeDateHandler(dateToISOString(date), 'from_date_time')}
-                        showTimeSelect
-                        placeholderText="Von"
-                        dateFormat={displayTimeDateFormatWithoutY}
-                        id='from_date_time'
-                    />
-                    <DatePicker
-                        selected={props.until ? Date.parse(props.until) : null}
-                        minDate={Date.parse(props.from)}
-                        onChange={date => props.onChangeDateHandler(dateToISOString(date), 'until_date_time')}
-                        showTimeSelect
-                        placeholderText="Bis"
-                        dateFormat={displayTimeDateFormatWithoutY}
-                        id='until_date_time'
-                    />
-                </div>
-                <p id='datepicker-error' className='error'></p>
-              </div>
-        </div>
-    );
-*/

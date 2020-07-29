@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { toggleMobileNavigation } from './functions';
@@ -6,6 +6,9 @@ import { userLogoutAction } from '../../store/actions/userActions';
 import backgroundSVG from '../../assets/logo/logo-sailcom.svg';
 
 function MobileNavigation(props) {
+    const [authorized, setAuthorized] = useState(false)
+    const [is_crew, setIsCrew] = useState(false)
+    const [currentUser, setCurrentUser] = useState({})
     const dispatch = useDispatch();
 
     const toggleUserLogout = (e) => {
@@ -13,6 +16,12 @@ function MobileNavigation(props) {
         dispatch(userLogoutAction());
         toggleMobileNavigation();
     };
+
+    useEffect( () => {
+        setAuthorized(props.authorized)
+        setIsCrew(props.is_crew)
+        setCurrentUser(props.currentUser)
+    }, [props])
 
     const backgroundStyle = {
         backgroundImage: `url(${backgroundSVG})`,
@@ -81,7 +90,7 @@ function MobileNavigation(props) {
                             Veranstaltungen
                         </NavLink>
                     </li>
-                    {props.authorized ? (
+                    {authorized ? (
                         <>
                             <li>
                                 <NavLink
@@ -112,7 +121,7 @@ function MobileNavigation(props) {
                             </li>
                         </>
                     )}
-                    {props.is_crew || props.currentUser.userData.is_staff ? (
+                    {is_crew || props.currentUser.userData.is_staff ? (
                         <li>
                             <NavLink
                                 to='/mitglieder'
@@ -122,7 +131,7 @@ function MobileNavigation(props) {
                             </NavLink>
                         </li>
                     ) : null}
-                    {props.authorized ? (
+                    {authorized ? (
                         <li>
                             <button
                                 className='btn secondary logout'
