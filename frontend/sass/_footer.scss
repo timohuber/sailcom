@@ -15,10 +15,9 @@
     }
     hr {
         width: 100%;
-        // margin-bottom: 40px;
     }
     .social-footer {
-        margin-bottom: $gap-width;
+        margin: $gap-width-small 0 $gap-width;
         display: flex;
         justify-content: center;
         align-items: center;
