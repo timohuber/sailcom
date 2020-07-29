@@ -35,7 +35,7 @@ function EventForm(props) {
         });
         setDisplayDates({
             ...displayDates,
-            [key]: moment(date).add(-2, 'hours')
+            [key]: moment(date)
 ,
         })
     };
@@ -130,12 +130,10 @@ function EventForm(props) {
                     />
                     {
                         eventType
-                        ? eventType === 1
-                            ? <WhereCrewMemberForm onChangeHandler={onChangeHandler} />
-                            : eventType === 2
-                                ? <BookingsSelect onChangeHandler={onChangeBookingHandler} />
-                                : <p></p>
-                            : <div className='input-wrapper'>Bitte geben Sie eine Kategorie an</div>
+                        ? eventType === 2
+                            ? <BookingsSelect onChangeHandler={onChangeBookingHandler} />
+                            :  <WhereCrewMemberForm onChangeHandler={onChangeHandler} />
+                                : <div className='input-wrapper'>Bitte geben Sie eine Kategorie an</div>
                     }
 
                     <GenericTextInput onChangeHandler={onChangeHandler} data_key={'title'} label={'Event Name'} required={true} value={value.title}/>
