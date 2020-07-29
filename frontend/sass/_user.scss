@@ -7,6 +7,12 @@
 .user-edit-membership, .user-address, .user-boats {
   margin-bottom: $gap-width;
 }
+
+.user-edit-membership .form-success {
+  width: 100%;
+  margin-bottom: $gap-width-small;
+}
+
 .user-avatar {
     border-radius: 50%;
     background-size: cover;
