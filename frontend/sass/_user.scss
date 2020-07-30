@@ -55,6 +55,13 @@
   justify-content: space-between;
   padding: 15px 0px;
 
+  & > p:first-child {
+    width: 40%;
+  }
+  & > p:nth-child(2) {
+    flex-grow: 1;
+  }
+
   .toggle-instructed {
     width: 30px;
     height: 30px;
