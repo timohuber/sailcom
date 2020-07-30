@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropulsionLogo from '../../assets/frontend_src_assets_propulsion_logo_horizontal_white.png'
 
 export default function Footer(props) {
     return (
@@ -68,8 +69,17 @@ export default function Footer(props) {
                     </div>
                 </div>
                 <div className='social-footer'>
-                    <hr className='hide-md' />
-                    <ul>
+                    <hr />
+                        <img className='propulsion-logo' src={PropulsionLogo} />
+                    <hr />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/*
+*   <ul>
                         <li>
                             <a target='_blank' href='https://www.facebook.com/'>
                                 <i className='fab fa-facebook-f'></i>
@@ -97,9 +107,4 @@ export default function Footer(props) {
                             </a>
                         </li>
                     </ul>
-                    <hr className='hide-md' />
-                </div>
-            </div>
-        </div>
-    );
-}
+                    */

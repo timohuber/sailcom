@@ -923,6 +923,10 @@ thumbs-wrapper {
       justify-content: center; }
     .footer-wrapper .social-footer i {
       margin: 33px 14px 33px 14px; }
+    .footer-wrapper .social-footer .propulsion-logo {
+      width: 200px;
+      margin-left: 15px;
+      margin-right: 15px; }
 
 .icon-email:before {
   font-family: 'Font Awesome 5 Free';
