@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import {NavLink} from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 import { registerAction } from '../../store/actions/registerActions';
 
 export default function RegisterForm(props) {
     const dispatch = useDispatch();
-    const { push } = useHistory();
     const [formState, setFormState] = useState({ email: '' });
 
     const onChangeHandler = (e) => {
@@ -20,7 +18,6 @@ export default function RegisterForm(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(formState)
         dispatch(registerAction(formState.email));
     };
 
@@ -46,7 +43,7 @@ export default function RegisterForm(props) {
                             type='email'
                             placeholder='E-Mail'
                         />
-                        <span className='error' data-key='email'/>
+                        <span className='error' data-key='email' />
                     </div>
                 </div>
 
@@ -58,7 +55,9 @@ export default function RegisterForm(props) {
                     >
                         Absenden
                     </button>
-                    <NavLink className='btn secondary' to='/verifikation'>Ich habe bereits einen Code</NavLink>
+                    <NavLink className='btn secondary' to='/verifikation'>
+                        Ich habe bereits einen Code
+                    </NavLink>
                 </div>
             </form>
         </>

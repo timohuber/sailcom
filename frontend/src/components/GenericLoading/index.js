@@ -3,7 +3,7 @@ import React from 'react';
 export default function Loading() {
     return (
         <div className='lds-ring-wrapper'>
-            <div className="lds-ring">
+            <div className='lds-ring'>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -11,4 +11,4 @@ export default function Loading() {
             </div>
         </div>
     );
-};
+}

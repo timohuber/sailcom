@@ -130,7 +130,7 @@ table.simple {
 }
 
 table.striped tbody > tr:nth-child(odd) td {
-    background-color: #fff;;
+    background-color: #fff;
 }
 
 .upper-subtitle {
@@ -139,4 +139,8 @@ table.striped tbody > tr:nth-child(odd) td {
     letter-spacing: 0.5px;
     font-weight: bold;
     font-size: rem(14px);
+}
+
+.bold {
+    font-weight: bold;
 }

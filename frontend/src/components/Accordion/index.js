@@ -16,7 +16,7 @@ export default function Accordion(props) {
                             onClick={(e) => toggleAccordionHandler(panel_id, icon_id)}
                         >
                             {element.title}
-                            <i class='fas fa-chevron-down' id={icon_id}></i>
+                            <i className='fas fa-chevron-down' id={icon_id}></i>
                         </button>
                         <div className='panel' id={panel_id}>
                             <div className='inner'>{element.content}</div>

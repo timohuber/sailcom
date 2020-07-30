@@ -6,9 +6,9 @@ import { userLogoutAction } from '../../store/actions/userActions';
 import backgroundSVG from '../../assets/logo/logo-sailcom.svg';
 
 function MobileNavigation(props) {
-    const [authorized, setAuthorized] = useState(false)
-    const [is_crew, setIsCrew] = useState(false)
-    const [currentUser, setCurrentUser] = useState({})
+    const [authorized, setAuthorized] = useState(false);
+    const [is_crew, setIsCrew] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
     const dispatch = useDispatch();
 
     const toggleUserLogout = (e) => {
@@ -17,11 +17,11 @@ function MobileNavigation(props) {
         toggleMobileNavigation();
     };
 
-    useEffect( () => {
-        setAuthorized(props.authorized)
-        setIsCrew(props.is_crew)
-        setCurrentUser(props.currentUser)
-    }, [props])
+    useEffect(() => {
+        setAuthorized(props.authorized);
+        setIsCrew(props.is_crew);
+        setCurrentUser(props.currentUser);
+    }, [props]);
 
     const backgroundStyle = {
         backgroundImage: `url(${backgroundSVG})`,

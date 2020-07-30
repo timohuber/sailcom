@@ -33,7 +33,6 @@ export class MapContainer extends React.Component {
     };
 
     render() {
-
         return (
             <Map
                 google={this.props.google}

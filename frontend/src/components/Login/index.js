@@ -20,7 +20,7 @@ export default function LoginForm(props) {
     };
 
     const pushToUrl = () => {
-        url_param ? history.push(`/${url_param}`): history.push('/');  
+        url_param ? history.push(`/${url_param}`) : history.push('/');
     };
 
     const onSubmitHandler = async (e) => {

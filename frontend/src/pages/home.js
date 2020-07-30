@@ -101,8 +101,11 @@ function HomePage(props) {
                                 Famillienausflüge, Feierabend-Kurztörns bei
                                 Sonnenuntergang, mehrtägige Ferientörns – bei
                                 SailCom findest du das passende Boot. Finde mehr
-                                heraus und 
-                                <Link to='/standorte'> schau dir unsere Standorte </Link>
+                                heraus und
+                                <Link to='/standorte'>
+                                    {' '}
+                                    schau dir unsere Standorte{' '}
+                                </Link>
                                 an.
                             </p>
                         </div>
@@ -114,30 +117,34 @@ function HomePage(props) {
                     </div>
                     <div className='col-2 home-membership-section'>
                         <h2>Werde Mitglied</h2>
-                        <p>
-                            <p>Du hast schon einen D-Schein:</p>
-                            Stell ein Mitgliederantrag im Boatsharing und
-                            profitiere von einem günstigen Zugang zu Booten &
-                            der Community.
-                            <br />
-                            <br />
-                            <p>Du hast (noch) keinen D-Schein:</p>
-                            Lerne Segeln mit einer unserer Partner-Segelschulen
-                            und profitiere von vergünstigten Kurspreisen im
-                            Kombiangebot bei einer Mitgliedschaft SailCom mit
-                            Segelkurs.
-                            <br />
-                            <br />
+                        <div>
+                            <p className='bold'>Du hast schon einen D-Schein:</p>
                             <p>
+                                Stell ein Mitgliederantrag im Boatsharing und
+                                profitiere von einem günstigen Zugang zu Booten
+                                & der Community.
+                            </p>
+                            <br />
+                            <p className='bold'>Du hast (noch) keinen D-Schein:</p>
+                            <p>
+                                Lerne Segeln mit einer unserer
+                                Partner-Segelschulen und profitiere von
+                                vergünstigten Kurspreisen im Kombiangebot bei
+                                einer Mitgliedschaft SailCom mit Segelkurs.
+                            </p>
+                            <br />
+                            <p className='bold'>
                                 Möchtest du einfach einmal das Segeln
                                 beschnuppern?
                             </p>
-                            Dann erstelle gratis einen
-                            <Link to='/registrierung'> Account</Link> und nimm
-                            an unseren öffentlichen
-                            <Link to='/events'> Segel-Events </Link>
-                            teil.
-                        </p>
+                            <p>
+                                Dann erstelle gratis einen
+                                <Link to='/registrierung'> Account</Link> und
+                                nimm an unseren öffentlichen
+                                <Link to='/events'> Segel-Events </Link>
+                                teil.
+                            </p>
+                        </div>
 
                         <div className='button-container'>
                             <Link to='/registrierung'>
