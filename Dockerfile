@@ -22,7 +22,7 @@ RUN mkdir -p /frontend
 RUN mkdir -p /frontend_tmp
 COPY ./frontend /frontend_tmp
 WORKDIR /frontend_tmp
-RUN npm i
+RUN npm install --no-package-lock
 RUN npm run build
 
 WORKDIR /backend
