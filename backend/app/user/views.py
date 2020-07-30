@@ -23,11 +23,11 @@ class ListUserView(RetrieveAPIView):
 
 
 class ListUsersView(ListAPIView):
+    permission_classes = [IsStaffOrCrew]
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['first_name', 'last_name', 'email']
-    permission_classes = [IsStaffOrCrew]
 
 
 class ListMe(RetrieveUpdateAPIView):
