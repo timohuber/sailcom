@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
-
 import Loading from '../../components/GenericLoading';
 import { whereIsCurrentUserCrewMemberAction } from '../../store/actions/eventActions';
 
@@ -17,7 +16,9 @@ function WhereCrewMemberForm(props) {
     const formHandler = () => {
         return (
             <div className='input-wrapper'>
-                <label htmlFor='boat' className='required'>Boot auswählen</label>
+                <label htmlFor='boat' className='required'>
+                    Boot auswählen
+                </label>
                 <select
                     id='boat'
                     name='boat'
@@ -36,28 +37,31 @@ function WhereCrewMemberForm(props) {
                         );
                     })}
                 </select>
-                <span id='select-error' className='error' data-key='boat'></span>
+                <span
+                    id='select-error'
+                    className='error'
+                    data-key='boat'
+                ></span>
             </div>
         );
     };
 
     if (props.currentUser.authorized && props.currentUser.userData.is_crew) {
         return props.whereCrew ? formHandler() : <Loading />;
-    }
-    else {
+    } else {
         return (
             <div className='input-wrapper'>
                 <label htmlFor='boat'>Boot auswählen</label>
                 <p className='error'>Keine Boote</p>
             </div>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         whereCrew: state.events.whereCrew,
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
     };
 };
 

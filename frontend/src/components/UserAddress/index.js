@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { baseUrl, countrySelection } from '../../store/constants';
+import { countrySelection } from '../../store/constants';
 import { fetchUserData } from '../../store/actions/loginActions';
 import { updateUserAction } from '../../store/actions/userActions';
 import Loading from '../../components/GenericLoading';
 
 export default function UserAddressForm(props) {
     const initialState = {
-        ...props.userData
+        ...props.userData,
     };
     delete initialState.avatar;
     delete initialState.licence;
@@ -22,7 +22,7 @@ export default function UserAddressForm(props) {
 
     useEffect(() => {
         if (props.userData) {
-            setFormState(initialState)
+            setFormState(initialState);
             setLoading(false);
         } else {
             dispatch(fetchUserData());
@@ -43,7 +43,7 @@ export default function UserAddressForm(props) {
         const form = new FormData();
         for (const [key, value] of Object.entries(formState)) {
             if (value) {
-                form.append(key, value)
+                form.append(key, value);
             }
         }
         dispatch(updateUserAction(form));
@@ -89,8 +89,7 @@ export default function UserAddressForm(props) {
                                     </>
                                 )}
                             </select>
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -102,8 +101,7 @@ export default function UserAddressForm(props) {
                                 className='required'
                                 value={formState.first_name}
                             />
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -115,8 +113,7 @@ export default function UserAddressForm(props) {
                                 className='required'
                                 value={formState.last_name}
                             />
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -168,8 +165,7 @@ export default function UserAddressForm(props) {
                                 value={formState.street}
                                 className='required'
                             />
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -193,8 +189,7 @@ export default function UserAddressForm(props) {
                                 value={formState.zip_code}
                                 className='required'
                             />
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -206,8 +201,7 @@ export default function UserAddressForm(props) {
                                 value={formState.city}
                                 className='required'
                             />
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
 
                         <div className='input-wrapper'>
@@ -236,8 +230,7 @@ export default function UserAddressForm(props) {
                                     );
                                 })}
                             </select>
-                            <span className='error'>
-                            </span>
+                            <span className='error'></span>
                         </div>
                     </div>
                     <span className='success' id='element-updated'></span>
@@ -250,7 +243,6 @@ export default function UserAddressForm(props) {
             </>
         );
     };
-    // TODO: uncomment
-    // return loading ? formHandler() : <Loading />;
+
     return loading ? <Loading /> : formHandler();
 }
