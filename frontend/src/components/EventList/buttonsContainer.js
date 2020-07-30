@@ -26,11 +26,11 @@ function ButtonsContainer(props) {
             {!user.authorized
                 ?  <NotLoggedInButton toggleModal={toggleModal} />
 
-                : event.event_type.is_public || user.userData.is_member
-                    ? <ParticipateButton toggleModal={toggleModal} signedUp={event.participants.includes(user.userData.id)}/>
-
-                    : event.instructor.id == user.userData.id
+                : event.instructor.id == user.userData.id
                         ? <NavLink to={`/event-bearbeiten/${event.id}/`} className='btn secondary'>Event bearbeiten</NavLink>
+
+                    : event.event_type.is_public || user.userData.is_member
+                        ? <ParticipateButton toggleModal={toggleModal} signedUp={event.participants.includes(user.userData.id)}/>
 
                         : event.max_participants <= event.participants.length
                             ?  <FullyBookedButton />
