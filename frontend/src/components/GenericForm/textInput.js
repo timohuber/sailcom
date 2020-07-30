@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
 
 export default function GenericTextInput(props) {
     return (
         <div className='input-wrapper'>
-            <label htmlFor={props.key} className='required'>{props.label}</label>
+            <label htmlFor={props.key} className='required'>
+                {props.label}
+            </label>
             <input
                 id={props.data_key}
                 name={props.data_key}
@@ -11,7 +13,7 @@ export default function GenericTextInput(props) {
                 className={props.required ? 'required' : null}
                 value={props.value}
             />
-            <span className='error' data-key={props.data_key}/>
+            <span className='error' data-key={props.data_key} />
         </div>
-    )
+    );
 }

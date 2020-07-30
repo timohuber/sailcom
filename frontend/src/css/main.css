@@ -146,6 +146,9 @@ table.striped tbody > tr:nth-child(odd) td {
   font-weight: bold;
   font-size: 0.875rem; }
 
+.bold {
+  font-weight: bold; }
+
 button {
   font-size: inherit;
   cursor: pointer;
