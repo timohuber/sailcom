@@ -428,7 +428,7 @@ form label.required:after {
     height: 100%;
     justify-content: center; }
     #mobile-navigation nav ul.level-1 {
-      height: 80%;
+      height: 90%;
       max-height: 600px;
       display: flex;
       flex-direction: column;
@@ -1080,6 +1080,10 @@ thumbs-wrapper {
   flex-direction: row;
   justify-content: space-between;
   padding: 15px 0px; }
+  .boat-form-list-element > p:first-child {
+    width: 40%; }
+  .boat-form-list-element > p:nth-child(2) {
+    flex-grow: 1; }
   .boat-form-list-element .toggle-instructed {
     width: 30px;
     height: 30px;

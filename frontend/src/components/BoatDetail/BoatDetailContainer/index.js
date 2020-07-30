@@ -51,7 +51,7 @@ function BoatDetailContainer(props) {
         <>
         {
             bookingModal ?
-            <BookingForm from={startDateTime} until={endDateTime} boat={boat} closeModal={closeModal}/> :
+            <BookingForm from={startDateTime} until={endDateTime} boat={boat} closeModal={closeModal} setStartDateTime={setStartDateTime} setEndDateTime={setEndDateTime}/> :
             null
         }
         <div className='hero-image boat' style={heroImageStyle}></div>

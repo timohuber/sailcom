@@ -5,6 +5,7 @@ import Accordion from '../components/Accordion';
 import { dateToISOString } from '../lib/helpers/formatDates';
 import Axios from '../axios';
 import Maps from '../components/Map/mapContainer';
+import {toggleAccordionHandler} from '../lib/helpers/filters'
 
 export default function LocationContainer(props) {
     const [data, setData] = useState([]);
@@ -13,6 +14,7 @@ export default function LocationContainer(props) {
 
     useEffect(() => {
         const fetchBoats = async () => {
+            setLoading(true)
             let url = 'boat/';
 
             if (visibilityFilter) {
@@ -35,11 +37,13 @@ export default function LocationContainer(props) {
     const resetFilter = (e) => {
         e.preventDefault();
         setVisibilityFilter(null);
+        toggleAccordionHandler('panel-0', 'icon-0')
+
     };
 
     const submitFilterHandler = (e, filterQuery) => {
         e.preventDefault();
-
+        toggleAccordionHandler('panel-0', 'icon-0')
         let count = 0;
         let query = '?';
         for (const [key, value] of Object.entries(filterQuery)) {
