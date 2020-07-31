@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import Robot from '../assets/robot.png';
 
 export default function NotFoundPage(props) {
-    // const backgroundStyle = {
-    //     // backgroundImage: `url(https://images.unsplash.com/photo-1592162985416-38009bef258e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)`
-    //     backgroundImage: `url(${Boat})`,
-    // }
-
-    // style={backgroundStyle}
     return (
         <div className='wrapper-404'>
             <div className='inner-404'>

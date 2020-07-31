@@ -5,7 +5,6 @@ import GoogleMap from '../components/Map';
 import Boat from '../assets/home-sailboat.svg';
 import Community from '../assets/home-community.svg';
 import Switzerland from '../assets/home-switzerland.svg';
-import { smoothScroll } from '../lib/helpers/scroll';
 
 // hero image
 import HeroImage from '../components/HeroImage';

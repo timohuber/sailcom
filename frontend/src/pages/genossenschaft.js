@@ -28,10 +28,10 @@ export default function Genossenschaft(props) {
                     1998 gegründet, nachdem erste Boote bereits seit 1991
                     innerhalb der Auto-Sharing Organisation Mobility (ehemals
                     ShareCom) geteilt wurden. Sie hat um die 2500 Mitglieder und
-                    bietet rund{' '}
+                    bietet rund
                     <Link to='/boote/flotte'>
                         60 Boote in der ganzen Schweiz
-                    </Link>{' '}
+                    </Link>
                     an. SailCom schreibt die Community gross. Wer will kann an
                     Segelevents teilnehmen, aber auch gemeinsam mit anderen
                     SailCom-Mitgliedern sich am Bootsunterhalt beteiligen. Das
@@ -151,7 +151,6 @@ export default function Genossenschaft(props) {
                     Notfallnummer bei technischen Notfällen (z.B. Schäden am
                     Schiff wenn das Bootsteam nicht erreicht werden kann):
                     <a className='emergency' href='tel:0443226628'>
-                        {' '}
                         044 322 66 28
                     </a>
                 </p>

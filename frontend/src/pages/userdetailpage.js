@@ -1,8 +1,6 @@
 import React from 'react';
-import UserDetail from '../components/UserDetail'
+import UserDetail from '../components/UserDetail';
 
 export default function UserDetailPage(props) {
-     return (
-        <UserDetail match={props.match}/>
-    );
+    return <UserDetail match={props.match} />;
 }

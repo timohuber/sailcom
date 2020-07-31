@@ -16,7 +16,6 @@ function MyProfilePage(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('reload user')
         if (props.userData) {
             setUserData(props.userData);
             setLoading(false);
@@ -24,7 +23,6 @@ function MyProfilePage(props) {
             dispatch(fetchUserData());
         }
     }, [props.userData]);
-
 
     const content = [
         {
@@ -46,17 +44,17 @@ function MyProfilePage(props) {
         {
             title: 'Transaktionen',
             content: <UserTransactions />,
-        }
+        },
     ];
 
-    // TODO: uncomment create tabs for each component
     return (
         <div className='main-wrapper'>
-                {loading ? (
+            {loading ? (
                 <Loading />
-            ) : (<>
-                        <h1>Hallo {props.userData.first_name}</h1>
-                        <Accordion content={content}/>
+            ) : (
+                <>
+                    <h1>Hallo {props.userData.first_name}</h1>
+                    <Accordion content={content} />
                 </>
             )}
         </div>
