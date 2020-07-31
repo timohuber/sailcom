@@ -14,8 +14,8 @@ export default function BoatSharing(props) {
                         nicht nur kostensparend dank guter Auslastung der Boote,
                         sondern auch ökologisch: In den Häfen stauen sich
                         weniger unbenutzte Booten, es gibt weniger
-                        Materialaufwand. SailCom bietet eine grosse Auswahl an{' '}
-                        <Link to='/boote/flotte'>Booten </Link> und{' '}
+                        Materialaufwand. SailCom bietet eine grosse Auswahl an
+                        <Link to='/boote/flotte'>Booten </Link> und
                         <Link to='/boote/flotte'>Standplätzen </Link> für die
                         Mitglieder.
                     </p>
@@ -25,7 +25,7 @@ export default function BoatSharing(props) {
                     <hr />
                     <p>
                         Segeln bei SailCom ist wesentlich einfacher als ein
-                        eigenes Boot zu besitzen! Die Genossenschaft besorgt die{' '}
+                        eigenes Boot zu besitzen! Die Genossenschaft besorgt die
                         <Link to='/boote/flotte'>Flotte </Link>. Sie kümmert
                         sich um alles Notwendige wie Liegeplatz, Zulassung und
                         Versicherungen, usw. freiwillige Mitglieder helfen beim
@@ -49,10 +49,10 @@ export default function BoatSharing(props) {
                     <h2>Community</h2>
                     <hr />
                     <p>
-                        Die SailCom <Link to='/community'>Community</Link>{' '}
-                        vermittelt{' '}
+                        Die SailCom <Link to='/community'>Community</Link>
+                        vermittelt
                         <Link to='/community/mitsegelgelegenheiten'>
-                            Mitsegelgelegenheiten{' '}
+                            Mitsegelgelegenheiten
                         </Link>
                         , Segelwissen, <Link to='/community'>Events</Link> und
                         vieles mehr. Die Mitglieder buchen die Boote online und

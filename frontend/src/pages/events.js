@@ -17,7 +17,7 @@ const heroContent = {
 
 export default function EventPage(props) {
     return (
-        <>  
+        <>
             <HeroImage heroContent={heroContent} />
             <EventListContainer />
         </>
