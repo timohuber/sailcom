@@ -18,7 +18,6 @@ function ButtonsContainer(props) {
         e.preventDefault();
         dispatch(setEventModalAction(modal, event));
     };
-    console.log('buttons', event)
     return (
         <div className='event-button-container'>
             <DisplayInformationButton toggleModal={toggleModal} />

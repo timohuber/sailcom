@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {baseUrl} from "../../../store/constants";
 import Loading from '../../GenericLoading'
 
-
 export default function SelectLake(props) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
