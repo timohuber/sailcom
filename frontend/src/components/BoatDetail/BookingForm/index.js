@@ -7,7 +7,6 @@ import {connect, useDispatch} from "react-redux";
 import {baseUrl} from "../../../store/constants";
 import {dateToISOStringWithZ} from '../../../lib/helpers/formatDates'
 import {addBookingToBoatAction} from "../../../store/actions/boatActions";
-import BoatDateTimePicker from "../BoatDetailContainer/datepicker";
 
 function BookingForm(props) {
     const dispatch = useDispatch()

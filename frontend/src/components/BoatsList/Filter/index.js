@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import SelectLake from "./selectLake";
 import SelectCategory from "./selectCategory";
 import PeriodPicker from "./periodPicker";
