@@ -1,4 +1,3 @@
-import DatePicker from "react-datepicker";
 import React from "react";
 
 export const USER_LOGIN = 'USER_LOGIN';

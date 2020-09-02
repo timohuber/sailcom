@@ -34,9 +34,6 @@ function VerificationForm(props) {
         const avatar = document.getElementById('avatar').files[0];
         const licence = document.getElementById('licence').files[0];
 
-        const requiredFields = document.querySelectorAll('.required');
-        let requiredFieldsOK = true;
-
         const form = new FormData();
 
         for (const [key, value] of Object.entries(formState)) {
