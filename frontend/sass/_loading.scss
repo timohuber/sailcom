@@ -21,7 +21,7 @@
   margin: 2px;
   border: 2px solid $brand-color;
   border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: $brand-color transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
@@ -32,12 +32,4 @@
 }
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

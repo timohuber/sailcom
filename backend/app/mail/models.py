@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Mail(models.Model):
     recipient = models.CharField(max_length=200, blank=False)
-    sender = models.CharField(max_length=200, blank=False, default='students@propulsionacademy.com')
+    sender = models.CharField(max_length=200, blank=False, default='sailcom@timo-huber.ch')
     subject = models.CharField(max_length=200)
     content = models.CharField(max_length=2000)
     sent = models.DateTimeField(auto_now_add=True)

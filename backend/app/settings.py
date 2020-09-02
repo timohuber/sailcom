@@ -193,8 +193,15 @@ CORS_ORIGIN_REGEX_WHITELIST = [
 ]
 
 # email settings
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'asmtp.mail.hostpoint.ch'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'students@propulsionacademy.com'
-EMAIL_HOST_PASSWORD = 'Ahsdfhj83j3h4rwfeoiuhas83dbj3j3dmnvbl'
+EMAIL_HOST_USER = 'sailcom@timo-huber.ch'
+EMAIL_HOST_PASSWORD = 'SArXVk7U'
 EMAIL_USE_TLS = True
+
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = '587'
+# EMAIL_HOST_USER = 'students@propulsionacademy.com'
+# EMAIL_HOST_PASSWORD = 'Ahsdfhj83j3h4rwfeoiuhas83dbj3j3dmnvbl'
+# EMAIL_USE_TLS = True

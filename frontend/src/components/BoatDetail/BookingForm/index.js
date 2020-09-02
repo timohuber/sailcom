@@ -12,6 +12,7 @@ function BookingForm(props) {
     const dispatch = useDispatch()
     const [calculatedPrice, setCalculatedPrice] = useState();
     const [loading, setLoading] = useState(true);
+    const [requestPending, setRequestPending] = useState(false);
     const [success, setSuccess] = useState(false);
 
     const from = dateToISOStringWithZ(props.from)
@@ -43,15 +44,16 @@ function BookingForm(props) {
     }, [])
 
     const submitHandler = e => {
-        e.preventDefault()
-
+        e.preventDefault();
+        setRequestPending(true);
         const response = fetch(baseUrl + 'booking/', config)
         .then(res => {
             if(!res.ok) {
                 throw res
             }
             if (res.status === 201) {
-                setSuccess(true)
+                setSuccess(true);
+                setRequestPending(false);
             }
             return res.json()
         })
@@ -88,7 +90,12 @@ function BookingForm(props) {
                             <p id='booking-error' className='error'></p>
                             <div className='modal-buttons-wrapper'>
                                 <button className='btn secondary' onClick={ e => props.closeModal(e) }>Abbrechen</button>
-                                <button className='btn primary' onClick={e => submitHandler(e)}>Buchung abschliessen</button>
+                                {
+                                    requestPending ?
+                                    <button className='btn primary pending'></button> :
+                                    <button className='btn primary' onClick={e => submitHandler(e)}>Buchung abschliessen</button>
+                                }
+
                             </div>
                         </div>
                     }

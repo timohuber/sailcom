@@ -3,6 +3,12 @@
 /* breakpoints */
 /* grid */
 /* others */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
 * {
   box-sizing: border-box; }
 
@@ -159,7 +165,7 @@ button {
 .btn {
   border: none;
   letter-spacing: 1px;
-  min-width: 200px;
+  min-width: 240px;
   max-width: 100%;
   text-align: center;
   font-weight: normal;
@@ -180,6 +186,15 @@ button {
   text-transform: uppercase; }
   .btn.primary:hover {
     background-color: #20445a; }
+  .btn.primary.pending {
+    opacity: 0.8; }
+    .btn.primary.pending:before {
+      content: '\f110';
+      font-family: 'Font Awesome 5 Free';
+      display: inline-block;
+      position: relative;
+      animation: rotate linear 0.8s infinite;
+      font-weight: bold; }
 
 .btn.secondary {
   background-color: transparent;
@@ -1162,7 +1177,7 @@ thumbs-wrapper {
   margin: 2px;
   border: 2px solid #2c5d7b;
   border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #2c5d7b transparent transparent transparent; }
 
 .lds-ring div:nth-child(1) {
@@ -1173,12 +1188,6 @@ thumbs-wrapper {
 
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s; }
-
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg); }
-  100% {
-    transform: rotate(360deg); } }
 
 .wrapper-404 {
   display: flex;
