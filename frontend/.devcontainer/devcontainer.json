@@ -1,0 +1,13 @@
+{
+	"name": "Sailcom",
+
+	"build": {
+		"dockerfile": "Dockerfile",
+	},
+
+	"settings": { 
+		"terminal.integrated.shell.linux": null
+	},
+
+	"extensions": [],
+}

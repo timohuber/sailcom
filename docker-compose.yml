@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: registry.gitlab.propulsion-home.ch/full-stack/batch-12-may-2020/final-projects/sailcom/sailcom:latest
+    image: registry.gitlab.propulsion-home.ch/full-stack/previous-batches/batch-12-may-2020/final-projects/sailcom/sailcom:latest
     volumes:
       - ./backend:/backend
     env_file:
